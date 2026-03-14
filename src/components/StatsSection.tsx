@@ -13,19 +13,24 @@ const stats = [
 
 function CountUp({ target, started }: { target: number; started: boolean }) {
   const [count, setCount] = useState(0);
+  const hasRun = useRef(false);
 
   useEffect(() => {
-    if (!started) return;
-    let frame = 0;
-    const total = 60;
-    const timer = setInterval(() => {
-      frame++;
-      const progress = frame / total;
+    if (!started || hasRun.current) return;
+    hasRun.current = true;
+
+    const duration = 1500;
+    const startTime = performance.now();
+
+    const tick = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.min(Math.round(eased * target), target));
-      if (frame >= total) clearInterval(timer);
-    }, 16);
-    return () => clearInterval(timer);
+      setCount(Math.round(eased * target));
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+
+    requestAnimationFrame(tick);
   }, [started, target]);
 
   return <>{count}</>;
@@ -33,7 +38,7 @@ function CountUp({ target, started }: { target: number; started: boolean }) {
 
 export default function StatsSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
     <section className="py-24 px-4 sm:px-6 bg-[#0D0D14]">

@@ -42,7 +42,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 pt-6 border-t border-[#2A2A35] text-xs text-[#F5F5F5]/25 text-center">
-          © 2025 부산AI랩 · 부산AI코딩스쿨 운영팀. All rights reserved.
+          © 2026 부산AI랩 · 부산AI코딩스쿨 운영팀. All rights reserved.
         </div>
       </div>
     </footer>
