@@ -1,3 +1,5 @@
+export const revalidate = 3600; // 1시간마다 Notion 데이터 갱신
+
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import ProofSection from "@/components/ProofSection";
