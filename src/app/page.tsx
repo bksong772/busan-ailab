@@ -35,16 +35,16 @@ export default function Home() {
         {/* 5. 어디서 검증됐나 — 기관 레퍼런스 */}
         <ReferencesSection />
 
-        {/* 6. 실제 결과물 — 교육 사례 (Notion) */}
+        {/* 6. 숫자로 증명 */}
+        <StatsSection />
+
+        {/* 7. 실제 결과물 — 교육 사례 (Notion) */}
         <Suspense fallback={null}>
           <IndividualCasesSection />
         </Suspense>
 
-        {/* 7. 나한테 맞나 — 대상별 */}
+        {/* 8. 나한테 맞나 — 대상별 */}
         <AudienceSection />
-
-        {/* 8. 숫자로 증명 */}
-        <StatsSection />
 
         {/* 9. 연결 */}
         <BridgeSection />
