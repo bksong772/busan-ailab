@@ -3,9 +3,9 @@
 import { motion } from "framer-motion";
 
 const badges = [
-  { icon: "⏱", text: "반복 업무 시간 80% 절감" },
-  { icon: "💰", text: "홈페이지 제작 비용 90% 절감" },
-  { icon: "📝", text: "콘텐츠 제작 시간 85% 단축" },
+  { icon: "🏛", text: "100+ 기관 검증된 교육팀" },
+  { icon: "📦", text: "교육 당일 결과물 완성" },
+  { icon: "⚡", text: "재직자 맞춤 커리큘럼" },
 ];
 
 export default function HeroSection() {
@@ -44,8 +44,8 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-base sm:text-lg text-[#F5F5F5]/60 mb-10 max-w-2xl mx-auto leading-relaxed"
         >
-          블로그, 홈페이지, 고객응대, 제안서 —<br />
-          저희가 실제 사업에 적용한 방법 그대로 드립니다.
+          보고서·데이터 분석·업무 자동화·고객 응대 —<br />
+          교육 당일, 직원이 직접 만들고 바로 씁니다.
         </motion.p>
 
         {/* 뱃지 */}
