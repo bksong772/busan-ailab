@@ -3,7 +3,15 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import FadeInSection from "./FadeInSection";
-import type { CaseItem } from "@/lib/notion";
+
+interface CaseItem {
+  id: string;
+  title: string;
+  summary: string;
+  link: string | null;
+  image: string | null;
+  target: "기관" | "개인" | string;
+}
 
 export default function CasesGrid({ cases }: { cases: CaseItem[] }) {
   const 기관Cases = cases.filter((c) => c.target === "기관");
