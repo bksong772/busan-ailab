@@ -14,6 +14,18 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://busan-ailab.vercel.app",
     siteName: "부산AI랩",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "부산AI랩 — 반복 업무에 쓰던 시간, AI한테 넘겼습니다",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og.png"],
   },
 };
 
