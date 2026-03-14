@@ -3,6 +3,7 @@ export interface CaseItem {
   title: string;
   summary: string;
   link: string | null;
+  image: string | null;
   target: "기관" | "개인" | string;
   sortOrder: number;
 }
@@ -47,6 +48,7 @@ export async function getCases(): Promise<CaseItem[]> {
       title: getText(p["제목"]),
       summary: getText(p["한줄 요약"]),
       link: p["링크"]?.url ?? null,
+      image: getText(p["이미지"]) || null,
       target: p["Lab 대상"]?.select?.name ?? "",
       sortOrder: p["Lab 정렬"]?.number ?? 99,
     };
