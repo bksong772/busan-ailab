@@ -34,6 +34,9 @@ export default function HowWeWorkSection() {
         <FadeInSection>
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">이렇게 운영합니다</h2>
+            <p className="text-[#F5F5F5]/50 text-base sm:text-lg">
+              AX자동화·AI업무자동화 교육, 방법론이 달라야 현장에서 씁니다.
+            </p>
           </div>
         </FadeInSection>
 

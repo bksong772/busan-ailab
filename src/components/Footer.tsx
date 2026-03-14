@@ -41,8 +41,14 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-[#2A2A35] text-xs text-[#F5F5F5]/25 text-center">
-          © 2026 부산AI랩 · 부산AI코딩스쿨 운영팀. All rights reserved.
+        <div className="mt-8 pt-6 border-t border-[#2A2A35]">
+          <p className="text-xs text-[#F5F5F5]/20 leading-relaxed mb-4">
+            부산AI랩은 부산·울산·경남(부울경) 기업·공공기관·소상공인 대상 AI실무교육·AX교육·AI업무자동화·AX자동화 전문 교육 브랜드입니다.
+            AI콘텐츠자동화, AI챗봇구축, AI홈페이지제작, AX실무교육 등 교육 당일 결과물이 완성되는 실무 중심 프로그램을 운영합니다.
+          </p>
+          <p className="text-xs text-[#F5F5F5]/25 text-center">
+            © 2026 부산AI랩 · 부산AI코딩스쿨 운영팀. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

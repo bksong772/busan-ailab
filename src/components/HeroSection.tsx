@@ -24,7 +24,7 @@ export default function HeroSection() {
           className="inline-flex items-center gap-2 bg-[#13131A] border border-[#2A2A35] rounded-full px-4 py-1.5 text-sm text-[#3B82F6] mb-8"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6] animate-pulse" />
-          부산 기업·기관·소상공인 대상 AI 실무 교육
+          부산·울산·경남 AI실무교육 · AX자동화 · AI업무자동화 전문
         </motion.div>
 
         <motion.h1
@@ -44,7 +44,7 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-base sm:text-lg text-[#F5F5F5]/60 mb-10 max-w-2xl mx-auto leading-relaxed"
         >
-          보고서·데이터 분석·업무 자동화·고객 응대 —<br />
+          AI실무교육·AX교육·AI업무자동화·AI챗봇·홈페이지 제작 —<br />
           교육 당일, 직원이 직접 만들고 바로 씁니다.
         </motion.p>
 

@@ -155,11 +155,14 @@ export default function ProgramsSection() {
       <div className="max-w-6xl mx-auto">
         <FadeInSection>
           <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 text-xs text-[#F5F5F5]/40 border border-[#2A2A35] rounded-full px-4 py-1.5 mb-5">
+              AI실무교육 · AX교육 · AI업무자동화 프로그램
+            </div>
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
               수업이 끝나면 결과물이 남습니다
             </h2>
             <p className="text-[#F5F5F5]/50 text-base sm:text-lg">
-              이론 말고 실무. 교육 당일 완성한 것을 내일 바로 씁니다.
+              이론 말고 실무. 부산·울산·경남 기업·공공기관 대상 AI실무교육 — 교육 당일 완성한 것을 내일 바로 씁니다.
             </p>
           </div>
         </FadeInSection>
