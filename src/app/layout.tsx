@@ -63,10 +63,10 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    // 구글 서치콘솔 등록 후 발급받는 코드를 여기에 입력
-    // google: "YOUR_GOOGLE_VERIFICATION_CODE",
-    // 네이버 웹마스터도구 등록 후 발급받는 코드를 여기에 입력
-    // other: { "naver-site-verification": "YOUR_NAVER_CODE" },
+    google: "NCmSUlylxVZTnOxYsc97UieZ58KABUKTxMh_IPz8ztY",
+    other: {
+      "naver-site-verification": "1dcac641868a3720d5ebffaa9d541e042e928bf6",
+    },
   },
 };
 
