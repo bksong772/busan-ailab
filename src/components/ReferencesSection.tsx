@@ -6,8 +6,7 @@ import FadeInSection from "./FadeInSection";
 const badges = [
   { icon: "🏛️", text: "100+ 누적 출강 기관" },
   { icon: "📅", text: "310회+ 연간 출강 (2025)" },
-  { icon: "🎓", text: "부산대·동아대·한국해양대 대학 출강" },
-  { icon: "🗺️", text: "서울 포함 전국 출강" },
+  { icon: "🌏", text: "부울경 전역 공공기관·기업 출강" },
 ];
 
 const refs = [
