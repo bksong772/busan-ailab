@@ -91,11 +91,11 @@ export default function ProofSection() {
         <FadeInSection>
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              교육 내용, 저희가 먼저 직접 구현했습니다
+              지금도 매달 만들고 있습니다
             </h2>
             <p className="text-[#F5F5F5]/50 text-base sm:text-lg max-w-2xl mx-auto">
-              수업에서 가르치는 모든 방법은<br />
-              실제 운영 중인 서비스에서 검증된 것입니다.
+              AI로 사업을 운영하면서 생긴 노하우를 그대로 가르칩니다.<br />
+              강의실 밖에서 먼저 써본 것만 교육합니다.
             </p>
           </div>
         </FadeInSection>

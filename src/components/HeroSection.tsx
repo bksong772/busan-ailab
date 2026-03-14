@@ -3,9 +3,9 @@
 import { motion } from "framer-motion";
 
 const badges = [
-  { icon: "🏛", text: "100+ 기관 검증된 교육팀" },
+  { icon: "🔨", text: "매달 AI 결과물 직접 제작·운영" },
   { icon: "📦", text: "교육 당일 결과물 완성" },
-  { icon: "⚡", text: "재직자 맞춤 커리큘럼" },
+  { icon: "🎓", text: "부산AI코딩스쿨 교육팀의 AI 실무 브랜드" },
 ];
 
 export default function HeroSection() {

@@ -46,9 +46,13 @@ export default function ReferencesSection() {
       <div className="max-w-6xl mx-auto">
         <FadeInSection>
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">함께한 기관들</h2>
+            <div className="inline-flex items-center gap-2 text-xs text-[#F5F5F5]/40 border border-[#2A2A35] rounded-full px-4 py-1.5 mb-5">
+              부산AI코딩스쿨 교육팀 기반
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">교육 경험이 다릅니다</h2>
             <p className="text-[#F5F5F5]/50 text-base sm:text-lg">
-              부울경 100개 이상 기관에서 검증된 교육팀입니다
+              부산AI랩은 부산AI코딩스쿨 운영팀이 만든 AI 실무 전문 브랜드입니다.<br />
+              아래는 팀이 직접 출강한 기관들입니다.
             </p>
           </div>
         </FadeInSection>
