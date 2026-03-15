@@ -40,21 +40,15 @@ export default function InquiryModal() {
     setStatus("loading");
 
     try {
-      const res = await fetch("https://formsubmit.co/ajax/bksong77@naver.com", {
+      const res = await fetch("/api/inquiry", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          이름: form.name,
-          연락처: form.contact,
-          "기관·기업명": form.org || "(미입력)",
-          문의유형: form.type,
-          내용: form.message || "(미입력)",
-          _subject: `[부산AI랩 문의] ${form.type} — ${form.name}`,
-          _template: "table",
-          _captcha: "false",
+          name: form.name,
+          contact: form.contact,
+          org: form.org,
+          type: form.type,
+          message: form.message,
         }),
       });
 
