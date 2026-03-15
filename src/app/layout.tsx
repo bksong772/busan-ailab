@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import InquiryModal from "@/components/InquiryModal";
 
 const BASE_URL = "https://busan-ailab.vercel.app";
 
@@ -229,6 +230,7 @@ export default function RootLayout({
       </head>
       <body className="bg-[#0A0A0F] text-[#F5F5F5] antialiased">
         {children}
+        <InquiryModal />
       </body>
     </html>
   );

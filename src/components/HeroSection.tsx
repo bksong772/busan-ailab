@@ -1,6 +1,8 @@
 "use client";
 
+"use client";
 import { motion } from "framer-motion";
+import { openInquiry } from "@/lib/openInquiry";
 
 const badges = [
   { icon: "🔨", text: "매달 AI 결과물 직접 제작·운영" },
@@ -73,14 +75,12 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="flex flex-col sm:flex-row gap-3 justify-center"
         >
-          <a
-            href="https://pf.kakao.com/_LKGRX/chat"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={openInquiry}
             className="inline-flex items-center justify-center gap-2 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-semibold px-8 py-3.5 rounded-xl transition-all text-base"
           >
-            💬 카카오로 문의하기
-          </a>
+            💬 교육 문의하기
+          </button>
           <a
             href="#programs"
             className="inline-flex items-center justify-center gap-2 border border-[#2A2A35] hover:border-[#3B82F6] text-[#F5F5F5]/80 hover:text-[#F5F5F5] font-semibold px-8 py-3.5 rounded-xl transition-all text-base"

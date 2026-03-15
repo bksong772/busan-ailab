@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { openInquiry } from "@/lib/openInquiry";
 
 export default function Navbar() {
   return (
@@ -19,14 +20,12 @@ export default function Navbar() {
           <a href="#proof" className="hover:text-[#F5F5F5] transition-colors">운영 사례</a>
           <a href="#audience" className="hover:text-[#F5F5F5] transition-colors">교육 대상</a>
         </div>
-        <a
-          href="https://pf.kakao.com/_LKGRX/chat"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          onClick={openInquiry}
           className="text-sm bg-[#3B82F6] hover:bg-[#2563EB] text-white px-5 py-2 rounded-full transition-colors font-semibold"
         >
           문의하기
-        </a>
+        </button>
       </div>
     </motion.nav>
   );

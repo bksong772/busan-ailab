@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import FadeInSection from "./FadeInSection";
+import { openInquiry } from "@/lib/openInquiry";
 
 const inquiryTips = [
   { icon: "📋", text: "현재 상황 (업무/학습/프로젝트)" },
@@ -46,16 +47,14 @@ export default function CTASection() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <motion.a
+              <motion.button
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                href="https://pf.kakao.com/_LKGRX/chat"
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={openInquiry}
                 className="inline-flex items-center justify-center gap-2 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-semibold px-8 py-4 rounded-xl transition-all text-base"
               >
-                💬 카카오로 상담하기
-              </motion.a>
+                💬 교육 문의하기
+              </motion.button>
               <motion.a
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}

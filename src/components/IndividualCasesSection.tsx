@@ -12,8 +12,8 @@ export default async function IndividualCasesSection() {
     // Notion 실패해도 정적 데이터로 표시
   }
 
-  // 노션 데이터가 있으면 앞에, 없으면 정적 데이터만
-  const allCases = [...notionCases, ...staticCases];
+  // 노션에 데이터 있으면 노션만, 없으면 정적 데이터 fallback
+  const allCases = notionCases.length > 0 ? notionCases : staticCases;
 
   return <CasesGrid cases={allCases} />;
 }
