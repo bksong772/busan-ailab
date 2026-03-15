@@ -33,6 +33,15 @@ export default function InquiryModal() {
     return () => document.removeEventListener("openInquiry", handler);
   }, []);
 
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
   const close = () => setOpen(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -75,13 +84,14 @@ export default function InquiryModal() {
             className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm"
           />
 
-          {/* 모달 */}
+          {/* 모달 래퍼 — 화면 정중앙 */}
+          <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-4 pointer-events-none">
           <motion.div
             initial={{ opacity: 0, y: 40, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.97 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-x-4 bottom-0 sm:inset-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 z-50 w-full sm:max-w-lg bg-[#13131A] border border-[#2A2A35] rounded-t-3xl sm:rounded-2xl shadow-2xl max-h-[92vh] overflow-y-auto"
+            className="pointer-events-auto w-full sm:max-w-lg bg-[#13131A] border border-[#2A2A35] rounded-t-3xl sm:rounded-2xl shadow-2xl max-h-[92vh] overflow-y-auto"
           >
             {status !== "done" ? (
               <form onSubmit={handleSubmit} className="p-6 sm:p-8 flex flex-col gap-5">
@@ -189,6 +199,7 @@ export default function InquiryModal() {
               </div>
             )}
           </motion.div>
+          </div>
         </>
       )}
     </AnimatePresence>
