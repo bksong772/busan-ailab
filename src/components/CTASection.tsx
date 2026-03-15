@@ -55,14 +55,14 @@ export default function CTASection() {
               >
                 💬 맞춤 상담 신청하기
               </motion.button>
-              <motion.button
+              <motion.a
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={openInquiry}
+                href="tel:010-9825-8816"
                 className="inline-flex items-center justify-center gap-2 border border-[#2A2A35] hover:border-[#3B82F6] text-[#F5F5F5]/80 hover:text-[#F5F5F5] font-semibold px-8 py-4 rounded-xl transition-all text-base"
               >
-                📋 맞춤 커리큘럼 받아보기
-              </motion.button>
+                📞 지금 바로 전화하기
+              </motion.a>
             </div>
           </div>
         </FadeInSection>

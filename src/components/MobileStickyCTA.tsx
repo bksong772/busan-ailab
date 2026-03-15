@@ -18,12 +18,12 @@ export default function MobileStickyCTA() {
         >
           💬 맞춤 상담 신청
         </button>
-        <button
-          onClick={openInquiry}
+        <a
+          href="tel:010-9825-8816"
           className="flex-1 flex items-center justify-center gap-1.5 border border-[#2A2A35] text-[#F5F5F5]/80 font-semibold py-3 rounded-xl text-sm"
         >
-          📋 커리큘럼 받기
-        </button>
+          📞 전화 문의
+        </a>
       </div>
     </motion.div>
   );
