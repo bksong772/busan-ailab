@@ -182,16 +182,14 @@ export default function InquiryModal() {
                   <h3 className="text-xl font-bold text-[#F5F5F5] mb-2">문의가 접수됐습니다!</h3>
                   <p className="text-sm text-[#F5F5F5]/55 leading-relaxed">
                     빠른 시간 내에 연락드리겠습니다.<br />
-                    급하신 경우 카카오 채널로 문의해주세요.
+                    급하신 경우 전화로 문의해주세요.
                   </p>
                 </div>
                 <a
-                  href="https://pf.kakao.com/_KZGNb/chat"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="tel:010-9825-8816"
                   className="w-full flex items-center justify-center gap-2 border border-[#2A2A35] hover:border-[#3B82F6] text-[#F5F5F5]/70 hover:text-[#F5F5F5] font-semibold py-3 rounded-xl transition-colors text-sm"
                 >
-                  💬 카카오 채널 바로가기
+                  📞 전화 문의
                 </a>
                 <button onClick={close} className="text-sm text-[#F5F5F5]/40 hover:text-[#F5F5F5] transition-colors">
                   닫기

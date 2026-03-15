@@ -31,12 +31,10 @@ export default function Footer() {
               블로그
             </a>
             <a
-              href="https://pf.kakao.com/_KZGNb/chat"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="tel:010-9825-8816"
               className="hover:text-[#F5F5F5] transition-colors"
             >
-              카카오 상담
+              전화 문의
             </a>
           </div>
         </div>
