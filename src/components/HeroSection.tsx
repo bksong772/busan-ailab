@@ -1,6 +1,5 @@
 "use client";
 
-"use client";
 import { motion } from "framer-motion";
 import { openInquiry } from "@/lib/openInquiry";
 
