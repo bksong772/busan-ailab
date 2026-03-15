@@ -15,7 +15,7 @@ const TYPES = [
 
 export default function InquiryModal() {
   const [open, setOpen] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
   const [form, setForm] = useState({
     name: "",
     contact: "",
@@ -25,19 +25,48 @@ export default function InquiryModal() {
   });
 
   useEffect(() => {
-    const handler = () => { setOpen(true); setSubmitted(false); };
+    const handler = () => {
+      setOpen(true);
+      setStatus("idle");
+    };
     document.addEventListener("openInquiry", handler);
     return () => document.removeEventListener("openInquiry", handler);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const text = `[부산AI랩 문의]\n이름: ${form.name}\n연락처: ${form.contact}${form.org ? `\n기관/기업: ${form.org}` : ""}\n문의유형: ${form.type}${form.message ? `\n\n내용: ${form.message}` : ""}`;
-    navigator.clipboard?.writeText(text).catch(() => {});
-    setSubmitted(true);
-  };
-
   const close = () => setOpen(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/bksong77@naver.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          이름: form.name,
+          연락처: form.contact,
+          "기관·기업명": form.org || "(미입력)",
+          문의유형: form.type,
+          내용: form.message || "(미입력)",
+          _subject: `[부산AI랩 문의] ${form.type} — ${form.name}`,
+          _template: "table",
+          _captcha: "false",
+        }),
+      });
+
+      if (res.ok) {
+        setStatus("done");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
 
   return (
     <AnimatePresence>
@@ -60,7 +89,7 @@ export default function InquiryModal() {
             transition={{ duration: 0.25 }}
             className="fixed inset-x-4 bottom-0 sm:inset-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 z-50 w-full sm:max-w-lg bg-[#13131A] border border-[#2A2A35] rounded-t-3xl sm:rounded-2xl shadow-2xl max-h-[92vh] overflow-y-auto"
           >
-            {!submitted ? (
+            {status !== "done" ? (
               <form onSubmit={handleSubmit} className="p-6 sm:p-8 flex flex-col gap-5">
                 {/* 헤더 */}
                 <div className="flex items-start justify-between">
@@ -71,7 +100,7 @@ export default function InquiryModal() {
                   <button type="button" onClick={close} className="text-[#F5F5F5]/40 hover:text-[#F5F5F5] transition-colors text-2xl leading-none mt-0.5">×</button>
                 </div>
 
-                {/* 필드들 */}
+                {/* 필드 */}
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5">
                     <label className="text-xs font-semibold text-[#F5F5F5]/50 uppercase tracking-wider">이름 *</label>
@@ -128,32 +157,37 @@ export default function InquiryModal() {
                   />
                 </div>
 
+                {status === "error" && (
+                  <p className="text-sm text-red-400 text-center">전송 실패했습니다. 잠시 후 다시 시도해주세요.</p>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full bg-[#3B82F6] hover:bg-[#2563EB] text-white font-semibold py-3.5 rounded-xl transition-colors text-base"
+                  disabled={status === "loading"}
+                  className="w-full bg-[#3B82F6] hover:bg-[#2563EB] disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3.5 rounded-xl transition-colors text-base"
                 >
-                  문의 내용 카카오로 보내기 →
+                  {status === "loading" ? "전송 중..." : "문의 보내기"}
                 </button>
               </form>
             ) : (
               /* 완료 화면 */
               <div className="p-6 sm:p-8 flex flex-col items-center gap-5 text-center">
                 <button type="button" onClick={close} className="self-end text-[#F5F5F5]/40 hover:text-[#F5F5F5] transition-colors text-2xl leading-none -mt-1 -mr-1">×</button>
-                <div className="text-4xl">✅</div>
+                <div className="text-5xl">✅</div>
                 <div>
-                  <h3 className="text-xl font-bold text-[#F5F5F5] mb-2">문의 내용이 복사됐어요!</h3>
+                  <h3 className="text-xl font-bold text-[#F5F5F5] mb-2">문의가 접수됐습니다!</h3>
                   <p className="text-sm text-[#F5F5F5]/55 leading-relaxed">
-                    아래 카카오 채널로 접속 후<br />
-                    <span className="text-[#3B82F6] font-medium">붙여넣기(Ctrl+V / 길게 누르기)</span>로 전송해주세요.
+                    빠른 시간 내에 연락드리겠습니다.<br />
+                    급하신 경우 카카오 채널로 문의해주세요.
                   </p>
                 </div>
                 <a
                   href="https://pf.kakao.com/_LKGRX/chat"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-semibold py-3.5 rounded-xl transition-colors text-base"
+                  className="w-full flex items-center justify-center gap-2 border border-[#2A2A35] hover:border-[#3B82F6] text-[#F5F5F5]/70 hover:text-[#F5F5F5] font-semibold py-3 rounded-xl transition-colors text-sm"
                 >
-                  💬 카카오 채널 열기
+                  💬 카카오 채널 바로가기
                 </a>
                 <button onClick={close} className="text-sm text-[#F5F5F5]/40 hover:text-[#F5F5F5] transition-colors">
                   닫기
