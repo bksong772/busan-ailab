@@ -4,6 +4,7 @@ export interface StaticCase {
   summary: string;
   link: string | null;
   image: string | null;
+  imageUrl: string | null;
   target: "기관" | "개인";
   sortOrder: number;
 }
@@ -16,6 +17,7 @@ export const staticCases: StaticCase[] = [
     summary: "온실가스 데이터를 AI로 예측하는 모델을 직접 만든 대학원 실습",
     link: "https://blog.naver.com/rlaworlawo321/223823741975",
     image: "org-01.png",
+    imageUrl: null,
     target: "기관",
     sortOrder: 1,
   },
@@ -25,6 +27,7 @@ export const staticCases: StaticCase[] = [
     summary: "비전공 공무원이 AI 로봇을 직접 코딩한 하루",
     link: "https://blog.naver.com/rlaworlawo321/224107742588",
     image: "org-02.png",
+    imageUrl: null,
     target: "기관",
     sortOrder: 2,
   },
@@ -34,6 +37,7 @@ export const staticCases: StaticCase[] = [
     summary: "강사들이 수업 후 바로 써먹은 블록코딩 커리큘럼",
     link: "https://blog.naver.com/rlaworlawo321/223314180434",
     image: "org-03.png",
+    imageUrl: null,
     target: "기관",
     sortOrder: 3,
   },
@@ -43,6 +47,7 @@ export const staticCases: StaticCase[] = [
     summary: "금융 데이터를 엑셀 대신 파이썬으로 분석한 신입직원 연수",
     link: "https://blog.naver.com/rlaworlawo321/223783623712",
     image: "org-04.png",
+    imageUrl: null,
     target: "기관",
     sortOrder: 4,
   },
@@ -52,6 +57,7 @@ export const staticCases: StaticCase[] = [
     summary: "직접 코딩하는 실습형 수업 방식",
     link: "https://blog.naver.com/rlaworlawo321/223223947101",
     image: "org-05.png",
+    imageUrl: null,
     target: "기관",
     sortOrder: 5,
   },
@@ -61,6 +67,7 @@ export const staticCases: StaticCase[] = [
     summary: "드론을 직접 코딩해서 날린 환경공학과 학생들의 AI 실습",
     link: "https://blog.naver.com/rlaworlawo321/223680002320",
     image: "org-06.png",
+    imageUrl: null,
     target: "기관",
     sortOrder: 6,
   },
@@ -71,6 +78,7 @@ export const staticCases: StaticCase[] = [
     summary: "아이디어 단계에서 실제 동작하는 웹 MVP로 구현",
     link: "https://blog.naver.com/rlaworlawo321/224150031291",
     image: "personal-02.png",
+    imageUrl: null,
     target: "개인",
     sortOrder: 1,
   },
@@ -80,6 +88,7 @@ export const staticCases: StaticCase[] = [
     summary: "개인 업무 흐름에 맞춰 자동화와 웹을 연동",
     link: null,
     image: "personal-03.png",
+    imageUrl: null,
     target: "개인",
     sortOrder: 2,
   },
@@ -89,6 +98,7 @@ export const staticCases: StaticCase[] = [
     summary: "반복되던 엑셀 업무를 자동화해 업무 시간 단축",
     link: null,
     image: "personal-04.png",
+    imageUrl: null,
     target: "개인",
     sortOrder: 3,
   },
@@ -98,6 +108,7 @@ export const staticCases: StaticCase[] = [
     summary: "RAG 기반으로 실무자가 직접 AI Agent를 설계·구현",
     link: "https://blog.naver.com/rlaworlawo321/224173833821",
     image: "personal-05.png",
+    imageUrl: null,
     target: "개인",
     sortOrder: 4,
   },
@@ -107,6 +118,7 @@ export const staticCases: StaticCase[] = [
     summary: "자동 견적프로그램 제작 후 PDF 자동생성 및 노션 DB 구축",
     link: "https://blog.naver.com/rlaworlawo321/224193754327",
     image: "personal-06.png",
+    imageUrl: null,
     target: "개인",
     sortOrder: 5,
   },

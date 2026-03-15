@@ -10,6 +10,7 @@ interface CaseItem {
   summary: string;
   link: string | null;
   image: string | null;
+  imageUrl: string | null;
   target: "기관" | "개인" | string;
 }
 
@@ -77,10 +78,10 @@ function CaseCard({ item, index, color }: { item: CaseItem; index: number; color
         transition={{ duration: 0.2 }}
         className="bg-[#13131A] border border-[#2A2A35] rounded-2xl p-5 flex flex-col gap-3 h-full"
       >
-        {item.image && (
+        {(item.imageUrl || item.image) && (
           <div className="relative w-full h-36 rounded-xl overflow-hidden">
             <Image
-              src={`/cases/${item.image}`}
+              src={item.imageUrl ?? `/cases/${item.image}`}
               alt={item.title}
               fill
               className="object-cover"
