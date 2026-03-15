@@ -186,7 +186,7 @@ export default function InquiryModal() {
                   </p>
                 </div>
                 <a
-                  href="https://pf.kakao.com/_LKGRX/chat"
+                  href="https://pf.kakao.com/_KZGNb/chat"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full flex items-center justify-center gap-2 border border-[#2A2A35] hover:border-[#3B82F6] text-[#F5F5F5]/70 hover:text-[#F5F5F5] font-semibold py-3 rounded-xl transition-colors text-sm"

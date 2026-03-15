@@ -20,12 +20,20 @@ export default function Navbar() {
           <a href="#proof" className="hover:text-[#F5F5F5] transition-colors">운영 사례</a>
           <a href="#audience" className="hover:text-[#F5F5F5] transition-colors">교육 대상</a>
         </div>
-        <button
-          onClick={openInquiry}
-          className="text-sm bg-[#3B82F6] hover:bg-[#2563EB] text-white px-5 py-2 rounded-full transition-colors font-semibold"
-        >
-          문의하기
-        </button>
+        <div className="flex items-center gap-2">
+          <a
+            href="tel:010-9825-8816"
+            className="hidden sm:inline-flex text-sm border border-[#2A2A35] hover:border-[#3B82F6] text-[#F5F5F5]/70 hover:text-[#F5F5F5] px-4 py-2 rounded-full transition-colors font-semibold"
+          >
+            📞 전화 문의
+          </a>
+          <button
+            onClick={openInquiry}
+            className="text-sm bg-[#3B82F6] hover:bg-[#2563EB] text-white px-5 py-2 rounded-full transition-colors font-semibold"
+          >
+            맞춤 상담
+          </button>
+        </div>
       </div>
     </motion.nav>
   );

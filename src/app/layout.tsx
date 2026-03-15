@@ -138,7 +138,7 @@ const jsonLd = {
       contactPoint: {
         "@type": "ContactPoint",
         contactType: "교육 문의",
-        url: "https://pf.kakao.com/_LKGRX/chat",
+        url: "https://pf.kakao.com/_KZGNb/chat",
         availableLanguage: "Korean",
       },
     },

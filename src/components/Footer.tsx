@@ -31,7 +31,7 @@ export default function Footer() {
               블로그
             </a>
             <a
-              href="https://pf.kakao.com/_LKGRX/chat"
+              href="https://pf.kakao.com/_KZGNb/chat"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#F5F5F5] transition-colors"
