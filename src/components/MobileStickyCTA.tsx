@@ -16,14 +16,14 @@ export default function MobileStickyCTA() {
           onClick={openInquiry}
           className="flex-1 flex items-center justify-center gap-1.5 bg-[#3B82F6] text-white font-semibold py-3 rounded-xl text-sm"
         >
-          💬 교육 문의하기
+          💬 무료 상담 신청
         </button>
-        <a
-          href="tel:010-9825-8816"
+        <button
+          onClick={openInquiry}
           className="flex-1 flex items-center justify-center gap-1.5 border border-[#2A2A35] text-[#F5F5F5]/80 font-semibold py-3 rounded-xl text-sm"
         >
-          📞 전화 문의
-        </a>
+          📋 커리큘럼 받기
+        </button>
       </div>
     </motion.div>
   );

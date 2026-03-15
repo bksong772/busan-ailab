@@ -53,16 +53,16 @@ export default function CTASection() {
                 onClick={openInquiry}
                 className="inline-flex items-center justify-center gap-2 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-semibold px-8 py-4 rounded-xl transition-all text-base"
               >
-                💬 교육 문의하기
+                💬 무료 상담 신청하기
               </motion.button>
-              <motion.a
+              <motion.button
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                href="tel:010-9825-8816"
+                onClick={openInquiry}
                 className="inline-flex items-center justify-center gap-2 border border-[#2A2A35] hover:border-[#3B82F6] text-[#F5F5F5]/80 hover:text-[#F5F5F5] font-semibold px-8 py-4 rounded-xl transition-all text-base"
               >
-                📞 010-9825-8816
-              </motion.a>
+                📋 맞춤 커리큘럼 받아보기
+              </motion.button>
             </div>
           </div>
         </FadeInSection>
