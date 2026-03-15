@@ -16,7 +16,7 @@ export default function MobileStickyCTA() {
           onClick={openInquiry}
           className="flex-1 flex items-center justify-center gap-1.5 bg-[#3B82F6] text-white font-semibold py-3 rounded-xl text-sm"
         >
-          💬 무료 상담 신청
+          💬 맞춤 상담 신청
         </button>
         <button
           onClick={openInquiry}
