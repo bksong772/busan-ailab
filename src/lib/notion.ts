@@ -3,13 +3,14 @@ export interface CaseItem {
   title: string;
   summary: string;
   link: string | null;
-  image: string | null;
+  image: string | null;      // 정적 파일명 (staticCases용)
+  imageUrl: string | null;   // 노션 커버 이미지 URL
   target: "기관" | "개인" | string;
   sortOrder: number;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type NotionPage = { id: string; properties: Record<string, any> };
+type NotionPage = { id: string; properties: Record<string, any>; cover?: any };
 
 async function queryNotion(databaseId: string) {
   const res = await fetch(
@@ -48,7 +49,13 @@ export async function getCases(): Promise<CaseItem[]> {
       title: getText(p["제목"]),
       summary: getText(p["한줄 요약"]),
       link: p["링크"]?.url ?? null,
-      image: getText(p["이미지"]) || null,
+      image: null,
+      imageUrl:
+        page.cover?.type === "external"
+          ? page.cover.external.url
+          : page.cover?.type === "file"
+          ? page.cover.file.url
+          : null,
       target: p["Lab 대상"]?.select?.name ?? "",
       sortOrder: p["Lab 정렬"]?.number ?? 99,
     };
