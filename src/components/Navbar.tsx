@@ -16,9 +16,10 @@ export default function Navbar() {
           부산<span className="text-[#3B82F6]">AI랩</span>
         </a>
         <div className="hidden sm:flex items-center gap-7 text-sm font-medium text-[#F5F5F5]/70">
-          <a href="#programs" className="hover:text-[#F5F5F5] transition-colors">프로그램</a>
-          <a href="#proof" className="hover:text-[#F5F5F5] transition-colors">운영 사례</a>
-          <a href="#audience" className="hover:text-[#F5F5F5] transition-colors">교육 대상</a>
+          <a href="/#programs" className="hover:text-[#F5F5F5] transition-colors">프로그램</a>
+          <a href="/#proof" className="hover:text-[#F5F5F5] transition-colors">운영 사례</a>
+          <a href="/#audience" className="hover:text-[#F5F5F5] transition-colors">교육 대상</a>
+          <a href="/insight" className="hover:text-[#F5F5F5] transition-colors">인사이트</a>
         </div>
         <div className="flex items-center gap-2">
           <a
