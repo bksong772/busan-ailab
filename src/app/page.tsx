@@ -4,6 +4,7 @@ import HeroSection from "@/components/HeroSection";
 import ProgramsSection from "@/components/ProgramsSection";
 import AXConsultingSection from "@/components/AXConsultingSection";
 import SaaSDevelopmentSection from "@/components/SaaSDevelopmentSection";
+import CaseGallerySection from "@/components/CaseGallerySection";
 import HowWeWorkSection from "@/components/HowWeWorkSection";
 import ProofSection from "@/components/ProofSection";
 import ReferencesSection from "@/components/ReferencesSection";
@@ -34,7 +35,10 @@ export default function Home() {
         {/* 4. SaaS 개발 — academy-manager식 멀티테넌트 */}
         <SaaSDevelopmentSection />
 
-        {/* 5. 어떻게 운영하나 — 방법론 */}
+        {/* 5. 케이스 갤러리 — 5개 자동화 사례 (직접 굴리는 + 외부 컨설팅) */}
+        <CaseGallerySection />
+
+        {/* 6. 어떻게 운영하나 — 방법론 */}
         <HowWeWorkSection />
 
         {/* 6. 왜 믿을 수 있나 — 직접 구현한 AI 스킬 */}
