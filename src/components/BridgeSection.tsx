@@ -12,7 +12,7 @@ export default function BridgeSection() {
             <span>🎓</span> 관련 브랜드
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold mb-4 leading-snug">
-            AX팩토리은 부산AI코딩스쿨 운영팀이 만들었습니다
+            AX팩토리는 부산AI코딩스쿨 운영팀이 만들었습니다
           </h2>
           <p className="text-[#F5F5F5]/50 text-base sm:text-lg mb-10 leading-relaxed">
             100개 이상 기관 교육,<br />
