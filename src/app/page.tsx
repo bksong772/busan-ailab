@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import ServicesSection from "@/components/ServicesSection";
 import ProgramsSection from "@/components/ProgramsSection";
 import AXConsultingSection from "@/components/AXConsultingSection";
 import SaaSDevelopmentSection from "@/components/SaaSDevelopmentSection";
@@ -26,7 +27,10 @@ export default function Home() {
         {/* 1. 후킹 */}
         <HeroSection />
 
-        {/* 2. 교육 — 프로그램 */}
+        {/* 2. 제공 서비스 4개 — 가격 명확 (Hero 바로 아래) */}
+        <ServicesSection />
+
+        {/* 3. 교육 — 프로그램 */}
         <ProgramsSection />
 
         {/* 3. AX 컨설팅 — 소녀방앗간식 진단·자동화·인계 */}
