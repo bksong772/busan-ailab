@@ -24,7 +24,7 @@ export async function generateMetadata({
   const item = await getInsightBySlug(params.slug);
   if (!item) return { title: "인사이트를 찾을 수 없습니다" };
 
-  const url = `https://busan-ailab.vercel.app/insight/${item.slug}`;
+  const url = `https://axfactory.vercel.app/insight/${item.slug}`;
   return {
     title: item.title,
     description: item.summary,
@@ -55,13 +55,13 @@ export default async function InsightDetailPage({ params }: { params: Params }) 
     headline: item.title,
     description: item.summary,
     datePublished: item.publishedAt,
-    author: { "@type": "Organization", name: "부산AI랩" },
+    author: { "@type": "Organization", name: "AX팩토리" },
     publisher: {
       "@type": "Organization",
-      name: "부산AI랩",
-      url: "https://busan-ailab.vercel.app",
+      name: "AX팩토리",
+      url: "https://axfactory.vercel.app",
     },
-    mainEntityOfPage: `https://busan-ailab.vercel.app/insight/${item.slug}`,
+    mainEntityOfPage: `https://axfactory.vercel.app/insight/${item.slug}`,
     keywords: item.tags.join(", "),
   };
 
@@ -103,7 +103,7 @@ export default async function InsightDetailPage({ params }: { params: Params }) 
               <span>·</span>
               <span>읽는 시간 {item.readingMinutes}분</span>
               <span>·</span>
-              <span>부산AI랩</span>
+              <span>AX팩토리</span>
             </div>
             <p className="mt-6 text-base sm:text-lg text-[#F5F5F5]/70 leading-7 break-keep">
               {item.summary}

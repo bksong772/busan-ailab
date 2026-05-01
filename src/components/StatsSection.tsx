@@ -49,7 +49,7 @@ export default function StatsSection() {
               숫자로 보여드립니다
             </h2>
             <p className="text-[#F5F5F5]/50 text-base sm:text-lg">
-              부산AI랩 운영팀이 실제 사업에서 측정한 수치입니다
+              AX팩토리 운영팀이 실제 사업에서 측정한 수치입니다
             </p>
           </div>
         </FadeInSection>

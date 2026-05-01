@@ -13,7 +13,7 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <a href="/" className="font-bold text-xl text-[#F5F5F5] hover:opacity-80 transition-opacity">
-          부산<span className="text-[#3B82F6]">AI랩</span>
+          AX<span className="text-[#3B82F6]">팩토리</span>
         </a>
         <div className="hidden sm:flex items-center gap-7 text-sm font-medium text-[#F5F5F5]/70">
           <a href="/#programs" className="hover:text-[#F5F5F5] transition-colors">프로그램</a>

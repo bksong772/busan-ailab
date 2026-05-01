@@ -12,7 +12,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://busan-ailab.vercel.app/sitemap.xml",
-    host: "https://busan-ailab.vercel.app",
+    sitemap: "https://axfactory.vercel.app/sitemap.xml",
+    host: "https://axfactory.vercel.app",
   };
 }
