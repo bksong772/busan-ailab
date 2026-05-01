@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>고개서동 새벽 자동 알람·발송 — 무인 체크인 데모</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+:root {
+  --navy: #27397d;
+  --navy2: #1d2c63;
+  --kakao: #fee500;
+  --kakao-dark: #3c1e1e;
+  --tg: #229ED9;
+  --cream: #faf7f2;
+  --paper: #f4ede2;
+  --dawn: #1a1f3a;
+  --morning: #ffd9a8;
+}
+body { font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; background: var(--cream); color: #1a1a1a; }
+.bg-navy { background: var(--navy); }
+.bg-navy2 { background: var(--navy2); }
+.text-navy { color: var(--navy); }
+.text-kakao-dark { color: var(--kakao-dark); }
+.bg-kakao { background: var(--kakao); }
+.bg-cream { background: var(--cream); }
+.bg-paper { background: var(--paper); }
+.bg-dawn { background: var(--dawn); }
+.bg-tg { background: var(--tg); }
+
+@keyframes slideInRow { from { opacity: 0; transform: translateY(-8px); background: #fef9c3; } to { opacity: 1; transform: translateY(0); background: white; } }
+@keyframes slideInMsg { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+@keyframes typing { from { width: 0 } to { width: 100% } }
+@keyframes fingerTap { 0% { transform: translate(-50%, -50%) scale(1); opacity: 0.9 } 50% { transform: translate(-50%, -50%) scale(0.85); opacity: 1 } 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9 } }
+@keyframes notifSlideDown { from { transform: translateY(-100%); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes nodeGlow { 0%, 100% { box-shadow: 0 0 0 0 rgba(254,229,0,0); } 50% { box-shadow: 0 0 30px 8px rgba(254,229,0,0.5); } }
+@keyframes checkPop { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
+
+.anim-row { animation: slideInRow 1.2s ease forwards; }
+.anim-msg { animation: slideInMsg 0.6s ease forwards; }
+.pulse-dot { animation: pulse-dot 1.5s ease-in-out infinite; }
+.anim-typing { overflow: hidden; white-space: nowrap; animation: typing 1.5s steps(40, end) forwards; }
+.anim-finger { animation: fingerTap 0.6s ease-in-out 2; }
+.anim-notif { animation: notifSlideDown 0.5s ease forwards; }
+.anim-glow { animation: nodeGlow 1.6s ease-in-out infinite; }
+.anim-check { animation: checkPop 0.4s ease forwards; }
+.cursor-blink::after { content: '|'; animation: blink 1s infinite; color: var(--navy); }
+
+.phone-frame { width: 280px; height: 560px; background: #1a1a1a; border-radius: 36px; padding: 10px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); margin: 0 auto; }
+.phone-screen { width: 100%; height: 100%; background: white; border-radius: 28px; overflow: hidden; position: relative; }
+.terminal { background: #0a0a0a; color: #00ff00; font-family: 'Menlo', 'Monaco', monospace; padding: 20px; border-radius: 12px; font-size: 12px; line-height: 1.7; }
+.terminal .prompt { color: #888; }
+.terminal .cmd { color: #fff; }
+.terminal .ok { color: #10b981; }
+.terminal .info { color: #60a5fa; }
+.notion-row { background: white; border: 1px solid #e7e7e3; border-radius: 8px; padding: 14px; }
+.notion-prop { display: flex; gap: 8px; padding: 4px 0; font-size: 12px; }
+.notion-prop .label { color: #9b9b97; min-width: 70px; }
+.notion-prop .val { color: #37352f; font-weight: 500; }
+
+.n8n-node { width: 64px; height: 64px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; background: #2c2c2c; border: 2px solid #444; color: white; position: relative; }
+.n8n-line { height: 2px; background: linear-gradient(90deg, #444 0%, var(--kakao) 100%); flex: 1; }
+.kakao-bubble { background: white; border-radius: 14px 14px 14px 4px; padding: 10px 12px; max-width: 220px; font-size: 12px; line-height: 1.5; color: #1a1a1a; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+.kakao-bubble-self { background: var(--kakao); border-radius: 14px 14px 4px 14px; padding: 10px 12px; max-width: 220px; font-size: 12px; line-height: 1.5; color: #1a1a1a; }
+.tg-bubble { background: #e7f5ff; border-radius: 12px; padding: 10px 12px; font-size: 12px; line-height: 1.5; color: #1a1a1a; max-width: 240px; }
+
+</style>
+</head>
+<body class="min-h-screen">
+
+<!-- 데모 안내 배너 -->
+<div class="bg-navy text-white text-center py-2 text-sm">
+  ☘️ <strong>고개서동 새벽 자동 알람·발송 데모</strong> · 매일 04:00 n8n이 알아서 정리하고 안내하는 무인 체크인 흐름
+</div>
+
+<div class="max-w-4xl mx-auto px-4 py-10">
+  <header class="mb-8 text-center">
+    <div class="inline-block px-3 py-1 rounded-full bg-paper text-xs tracking-widest mb-4 text-navy">CASE STUDY · 고개서동 게스트하우스 (부산 사하구)</div>
+    <h1 class="text-4xl font-bold text-navy">새벽 4시, 운영자는 자고 있어도<br><span style="color:#b8860b;background:var(--kakao);padding:2px 10px;border-radius:6px;">손님 안내는 끝나 있다</span></h1>
+    <p class="mt-3 text-stone-600">매일 04:00 n8n 자동 트리거 → 오늘 체크인 정리 → 운영자 텔레그램 알람 → 손님 카톡 자동 발송. 4년 직접 굴리며 다듬은 흐름.</p>
+  </header>
+
+  <div class="text-center mb-10">
+    <button id="playFlowBtn" class="bg-navy hover:bg-navy2 text-white px-8 py-4 rounded-2xl font-medium shadow-lg transform hover:scale-105 transition">
+      🎬 새벽 자동화 사이클 보기 <span class="text-xs opacity-75 ml-1">(약 13초)</span>
+    </button>
+    <p class="text-xs text-stone-500 mt-3">04:00 트리거 → 예약 정리 → 체크리스트 → 운영자 알람 → 손님 카톡 → AI 응답</p>
+  </div>
+
+  <!-- 텍스트 흐름 설명 -->
+  <section class="bg-white rounded-3xl p-7 mb-6 shadow-sm border border-stone-100">
+    <h2 class="text-xl font-semibold text-navy mb-4">📋 6단계 새벽 자동화</h2>
+    <ol class="space-y-3 text-sm text-stone-700">
+      <li class="flex gap-3"><span class="font-bold text-navy">①</span> 새벽 4시 — n8n cron 트리거가 워크플로우 점화</li>
+      <li class="flex gap-3"><span class="font-bold text-navy">②</span> 오늘 체크인 예약 자동 수집 (체크인·체크아웃·인원·요청사항)</li>
+      <li class="flex gap-3"><span class="font-bold text-navy">③</span> AI가 객실별 청소·세팅 체크리스트 자동 생성</li>
+      <li class="flex gap-3"><span class="font-bold text-navy">④</span> 운영자(혜정·병근) 텔레그램으로 오늘 안내 정리본 전송</li>
+      <li class="flex gap-3"><span class="font-bold text-navy">⑤</span> 손님에게 카카오톡 자동 발송 (방 비번·체크인 시간·길안내·와이파이)</li>
+      <li class="flex gap-3"><span class="font-bold text-navy">⑥</span> 손님 답변 → AI가 FAQ 인지하고 자동 응답 (주차·체크아웃 등)</li>
+    </ol>
+    <div class="mt-5 p-4 bg-paper rounded-xl text-sm text-stone-700">
+      <strong style="color:#b8860b;">실제 운영:</strong> 부산 사하구 고개서동 게스트하우스 (운영자 송혜정·송병근). 사람 손은 청소만, 야간 응대는 무인화.
+    </div>
+  </section>
+
+  <!-- 효과 -->
+  <section class="bg-white rounded-3xl p-7 mb-6 shadow-sm border border-stone-100">
+    <h2 class="text-xl font-semibold text-navy mb-4">📈 효과</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div class="bg-paper rounded-xl p-4 text-center">
+        <div class="text-2xl font-bold text-navy">1h→0분</div>
+        <div class="text-xs text-stone-500 mt-1">새벽 정리 시간</div>
+      </div>
+      <div class="bg-paper rounded-xl p-4 text-center">
+        <div class="text-2xl font-bold" style="color: var(--tg)">30분→즉시</div>
+        <div class="text-xs text-stone-500 mt-1">손님 안내 응답</div>
+      </div>
+      <div class="bg-paper rounded-xl p-4 text-center">
+        <div class="text-2xl font-bold" style="color:#b8860b;">종종→0건</div>
+        <div class="text-xs text-stone-500 mt-1">누락된 안내</div>
+      </div>
+      <div class="bg-paper rounded-xl p-4 text-center">
+        <div class="text-2xl font-bold" style="color: #9a3412">매일→무인</div>
+        <div class="text-xs text-stone-500 mt-1">야간 응대 부담</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-navy text-white rounded-3xl p-8 mb-6 text-center">
+    <h2 class="text-2xl font-bold mb-2">비슷한 게스트하우스·숙박 자동화 의뢰</h2>
+    <p class="opacity-80 mb-6">에어비앤비·게스트하우스·펜션의 체크인 안내·청소 매뉴얼·야간 응대 자동화. 실제 4년 운영 경험으로 인계까지.</p>
+    <div class="flex gap-3 justify-center flex-wrap">
+      <a href="https://busan-ailab.vercel.app" target="_blank" class="bg-kakao hover:opacity-90 text-kakao-dark px-6 py-3 rounded-xl font-semibold">부산AI랩에 자동화 의뢰 →</a>
+      <a href="https://gogaeseodong-sigma.vercel.app" target="_blank" class="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-xl font-semibold">고개서동 둘러보기</a>
+      <a href="tel:01098258816" class="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-xl font-semibold">담당 김진완 010-9825-8816</a>
+    </div>
+  </section>
+
+  <footer class="mt-10 text-center text-xs text-stone-400">
+    <p>고개서동 새벽 자동 알람·발송 데모 · 2026-05</p>
+    <p class="mt-1">운영: 송혜정·송병근 · 자동화 설계: (주)크리플레이</p>
+  </footer>
+</div>
+
+<!-- 🎬 풀스크린 자동 재생 오버레이 -->
+<div id="flowOverlay" class="fixed inset-0 bg-black/85 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+  <div class="bg-cream rounded-3xl max-w-3xl w-full p-6 sm:p-8 relative max-h-[95vh] overflow-y-auto">
+    <button id="closeFlow" class="absolute top-4 right-5 text-stone-400 hover:text-stone-700 text-2xl leading-none">✕</button>
+
+    <div class="text-center mb-5">
+      <div class="text-xs tracking-widest text-stone-500">CHECK-IN AUTOMATION · 04:00</div>
+      <div id="flowTitle" class="text-2xl font-semibold mt-2 text-navy">① 새벽 4시 — n8n 자동 트리거</div>
+      <div class="flex items-center justify-center gap-1.5 mt-3">
+        <div id="flowDot1" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot2" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot3" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot4" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot5" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot6" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+      </div>
+    </div>
+
+    <!-- Phase 1: 새벽 4시 트리거 -->
+    <div id="flowPhase1" class="flow-phase hidden py-4">
+      <div class="rounded-2xl p-8 max-w-xl mx-auto text-center" style="background:linear-gradient(180deg,var(--dawn) 0%,var(--navy) 100%);">
+        <div class="text-white/70 text-xs tracking-widest mb-3">새벽 · 부산 사하구 고개서동</div>
+        <div class="text-7xl mb-2">⏰</div>
+        <div id="p1Clock" class="text-5xl font-mono font-bold text-white mb-1">04:00</div>
+        <div class="text-white/60 text-xs mb-6">2026.05.01 · KST</div>
+
+        <div class="flex items-center justify-center gap-2 mb-4">
+          <div id="p1Node1" class="n8n-node">⏰</div>
+          <div class="n8n-line"></div>
+          <div id="p1Node2" class="n8n-node">📊</div>
+          <div class="n8n-line"></div>
+          <div id="p1Node3" class="n8n-node">🤖</div>
+        </div>
+        <div class="text-xs text-white/80">n8n workflow: <span style="color:var(--kakao);">gogaeseodong-checkin</span></div>
+        <div id="p1Status" class="text-xs text-white/60 mt-2 min-h-[16px]"></div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">⏰ cron 04:00 KST — 운영자가 자는 동안 워크플로우 점화</div>
+    </div>
+
+    <!-- Phase 2: 오늘 예약 정보 자동 수집 -->
+    <div id="flowPhase2" class="flow-phase hidden py-4">
+      <div class="bg-white rounded-xl border border-stone-200 max-w-2xl mx-auto overflow-hidden shadow-lg">
+        <div class="bg-stone-100 px-4 py-2 text-xs flex items-center gap-2 border-b">
+          <span>📊</span>
+          <span class="font-medium text-stone-700">오늘 체크인 예약 (2026-05-01)</span>
+          <span class="ml-auto text-navy pulse-dot">●</span>
+        </div>
+        <div class="p-2">
+          <table class="w-full text-xs">
+            <thead class="bg-stone-50 text-stone-500">
+              <tr>
+                <th class="text-left p-2">손님</th>
+                <th class="text-left p-2">객실</th>
+                <th class="text-left p-2">체크인/아웃</th>
+                <th class="text-left p-2">인원</th>
+                <th class="text-left p-2">요청사항</th>
+              </tr>
+            </thead>
+            <tbody id="p2Rows">
+            </tbody>
+          </table>
+        </div>
+        <div class="bg-stone-50 px-4 py-2 text-xs text-stone-600 border-t flex justify-between">
+          <span id="p2Counter">0팀 수집 중...</span>
+          <span class="text-stone-400">출처: 에어비앤비 + 직접예약 + 야놀자</span>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">📥 OTA·직접예약 통합 — 오늘 들어올 손님 자동 수집</div>
+    </div>
+
+    <!-- Phase 3: AI 청소·세팅 체크리스트 -->
+    <div id="flowPhase3" class="flow-phase hidden py-4">
+      <div class="bg-white rounded-xl border border-stone-200 max-w-2xl mx-auto overflow-hidden shadow-lg">
+        <div class="bg-stone-100 px-4 py-2 text-xs flex items-center gap-2 border-b">
+          <span>🧹</span>
+          <span class="font-medium text-stone-700">오늘 세팅 체크리스트 — AI 자동 생성</span>
+          <span class="ml-auto text-stone-400">2팀 기준</span>
+        </div>
+        <div class="p-4 space-y-2 max-h-[380px] overflow-y-auto" id="p3List">
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">🤖 객실 상태 + 인원 수 → 청소·어메니티·온도까지 자동 정리</div>
+    </div>
+
+    <!-- Phase 4: 운영자 텔레그램 알람 -->
+    <div id="flowPhase4" class="flow-phase hidden py-4">
+      <div class="phone-frame">
+        <div class="phone-screen relative" style="background:linear-gradient(180deg,#1a1f3a 0%,#3a4470 100%);">
+          <!-- 알림 슬라이드 다운 -->
+          <div id="p4Notif" class="hidden anim-notif absolute top-3 left-3 right-3 bg-white/95 backdrop-blur rounded-2xl p-3 shadow-lg z-10">
+            <div class="flex items-center gap-2 mb-1">
+              <div class="w-6 h-6 rounded-md bg-tg flex items-center justify-center text-white text-xs font-bold">T</div>
+              <div class="text-xs font-semibold text-stone-700">Telegram</div>
+              <div class="text-[10px] text-stone-400 ml-auto">04:00</div>
+            </div>
+            <div class="text-xs font-semibold text-stone-800">🏠 고개서동 봇</div>
+            <div class="text-xs text-stone-600 mt-0.5">오늘 체크인 2팀 안내 정리 완료</div>
+          </div>
+
+          <!-- 텔레그램 채팅 화면 -->
+          <div class="absolute inset-0 pt-16 pb-4 px-3 overflow-hidden">
+            <div class="bg-tg text-white text-xs rounded-t-lg px-3 py-2 -mx-3 -mt-16 mt-0 mb-2 flex items-center gap-2" style="background:var(--tg)">
+              <span>🏠</span>
+              <span class="font-semibold">고개서동 봇</span>
+              <span class="ml-auto text-white/70 text-[10px]">online</span>
+            </div>
+            <div class="space-y-2" id="p4Chat">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">📲 운영자(혜정·병근) 텔레그램에 오늘 안내 정리본 도착</div>
+    </div>
+
+    <!-- Phase 5: 손님 카톡 자동 발송 -->
+    <div id="flowPhase5" class="flow-phase hidden py-4">
+      <div class="phone-frame">
+        <div class="phone-screen relative">
+          <!-- 카톡 알림 -->
+          <div id="p5Notif" class="hidden anim-notif absolute top-3 left-3 right-3 bg-white/95 backdrop-blur rounded-2xl p-3 shadow-lg z-10 border border-stone-200">
+            <div class="flex items-center gap-2 mb-1">
+              <div class="w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold" style="background:var(--kakao);color:var(--kakao-dark);">K</div>
+              <div class="text-xs font-semibold text-stone-700">KakaoTalk</div>
+              <div class="text-[10px] text-stone-400 ml-auto">지금</div>
+            </div>
+            <div class="text-xs font-semibold text-stone-800">고개서동 게스트하우스</div>
+            <div class="text-xs text-stone-600 mt-0.5">안녕하세요, 오늘 체크인 안내드려요 🌊</div>
+          </div>
+
+          <!-- 카톡 채팅 화면 (노란 배경) -->
+          <div class="absolute inset-0 pt-16 pb-4 px-3 overflow-hidden" style="background:#b2c7d9;">
+            <div class="text-white text-xs rounded-t-lg px-3 py-2 -mx-3 -mt-16 mt-0 mb-2 flex items-center gap-2" style="background:var(--kakao-dark);">
+              <span>🏡</span>
+              <span class="font-semibold" style="color:var(--kakao);">고개서동</span>
+              <span class="ml-auto text-white/60 text-[10px]">자동 발송</span>
+            </div>
+            <div class="space-y-2 overflow-hidden" id="p5Chat">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">💬 손님 카톡으로 방 비번·체크인 시간·길안내·와이파이 자동 전송</div>
+    </div>
+
+    <!-- Phase 6: 손님 답변 → AI 자동 응답 -->
+    <div id="flowPhase6" class="flow-phase hidden py-4">
+      <div class="phone-frame">
+        <div class="phone-screen relative">
+          <div class="absolute inset-0 pt-2 pb-4 px-3 overflow-hidden" style="background:#b2c7d9;">
+            <div class="text-white text-xs rounded-lg px-3 py-2 mb-2 flex items-center gap-2" style="background:var(--kakao-dark);">
+              <span>🏡</span>
+              <span class="font-semibold" style="color:var(--kakao);">고개서동</span>
+              <span class="ml-auto text-white/60 text-[10px]">AI 응답</span>
+            </div>
+            <div class="space-y-2 overflow-hidden" id="p6Chat">
+            </div>
+            <div id="p6AIBadge" class="hidden anim-msg absolute bottom-4 left-3 right-3 bg-white rounded-lg p-2 text-[10px] text-stone-500 border border-stone-200 flex items-center gap-2">
+              <span>🤖</span>
+              <span>AI가 FAQ 인지 → 자동 응답 (운영자 개입 X)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">🤖 손님 질문 → AI가 FAQ 매칭 → 자동 응답 (야간에도 즉시)</div>
+    </div>
+
+    <!-- Ending -->
+    <div id="flowEnding" class="hidden py-6 text-center">
+      <div class="text-5xl mb-3">🌅</div>
+      <div class="text-2xl font-bold text-navy mb-2">아침 7시, 운영자가 일어나면</div>
+      <div class="text-stone-600 mb-6">손님 안내는 이미 다 끝나 있다 — 청소만 가면 OK</div>
+      <div class="bg-paper rounded-2xl p-5 inline-block max-w-2xl">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-sm">
+          <div>
+            <div class="text-xl font-bold text-navy">1h→0분</div>
+            <div class="text-xs text-stone-500 mt-1">새벽 정리</div>
+          </div>
+          <div>
+            <div class="text-xl font-bold" style="color:var(--tg)">30분→즉시</div>
+            <div class="text-xs text-stone-500 mt-1">손님 응답</div>
+          </div>
+          <div>
+            <div class="text-xl font-bold" style="color:#b8860b;">종종→0건</div>
+            <div class="text-xs text-stone-500 mt-1">누락 안내</div>
+          </div>
+          <div>
+            <div class="text-xl font-bold" style="color:#9a3412">매일→무인</div>
+            <div class="text-xs text-stone-500 mt-1">야간 응대</div>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-stone-300 text-xs text-stone-600 leading-relaxed">
+          <strong class="text-navy">운영자가 하는 것</strong>: 청소 (단 1가지)<br>
+          <strong style="color:#b8860b;">AI가 하는 것</strong>: 예약 수집 · 체크리스트 · 운영자 알람 · 손님 카톡 · FAQ 응답
+        </div>
+      </div>
+      <div class="mt-5 text-sm text-navy font-medium italic">"운영자는 청소만, 나머지는 자동. 4년 직접 굴리며 다듬은 흐름."</div>
+      <div class="mt-6 flex gap-2 justify-center flex-wrap">
+        <button id="replayFlow" class="bg-navy text-white px-5 py-2.5 rounded-xl font-medium">🔁 다시 보기</button>
+        <button id="closeFlowEnd" class="bg-stone-200 text-stone-700 px-5 py-2.5 rounded-xl font-medium">페이지로 이동 →</button>
+      </div>
+      <p class="mt-4 text-xs text-stone-400">자동화 의뢰: <a href="https://busan-ailab.vercel.app" target="_blank" class="underline">부산AI랩</a> · <a href="https://gogaeseodong-sigma.vercel.app" target="_blank" class="underline">고개서동</a> · 김진완 010-9825-8816</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const flowOverlay = document.getElementById('flowOverlay');
+const flowTitle = document.getElementById('flowTitle');
+const phases = ['flowPhase1','flowPhase2','flowPhase3','flowPhase4','flowPhase5','flowPhase6','flowEnding'];
+const dots = ['flowDot1','flowDot2','flowDot3','flowDot4','flowDot5','flowDot6'];
+
+function showPhase(idx) {
+  phases.forEach(id => document.getElementById(id).classList.add('hidden'));
+  if (idx < phases.length) document.getElementById(phases[idx]).classList.remove('hidden');
+  dots.forEach((id, i) => {
+    const el = document.getElementById(id);
+    el.style.background = i < idx + 1 ? 'var(--navy)' : '#d6d3d1';
+    el.style.transform = i === idx ? 'scale(1.5)' : 'scale(1)';
+  });
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+async function typeInto(el, text, ms) {
+  el.textContent = '';
+  for (const ch of text) { el.textContent += ch; await sleep(ms); }
+}
+
+async function playFlow() {
+  flowOverlay.classList.remove('hidden');
+  flowOverlay.classList.add('flex');
+
+  // ─── Phase 1: 새벽 4시 트리거 ───
+  flowTitle.textContent = '① 새벽 4시 — n8n 자동 트리거';
+  showPhase(0);
+  const p1Status = document.getElementById('p1Status');
+  const p1Node1 = document.getElementById('p1Node1');
+  const p1Node2 = document.getElementById('p1Node2');
+  const p1Node3 = document.getElementById('p1Node3');
+  p1Status.textContent = '';
+  p1Node1.classList.remove('anim-glow');
+  p1Node2.classList.remove('anim-glow');
+  p1Node3.classList.remove('anim-glow');
+  await sleep(400);
+  p1Node1.classList.add('anim-glow');
+  p1Status.textContent = '⏰ cron triggered at 04:00:00';
+  await sleep(500);
+  p1Node2.classList.add('anim-glow');
+  p1Status.textContent = '📊 Fetching today bookings...';
+  await sleep(500);
+
+  // ─── Phase 2: 오늘 예약 수집 ───
+  flowTitle.textContent = '② 오늘 체크인 예약 자동 수집';
+  showPhase(1);
+  const p2Rows = document.getElementById('p2Rows');
+  const p2Counter = document.getElementById('p2Counter');
+  p2Rows.innerHTML = '';
+  p2Counter.textContent = '0팀 수집 중...';
+  await sleep(300);
+
+  const bookings = [
+    { name: '김O민 님', room: '온돌방', inout: '15:00 → 11:00', people: '2인', req: '늦은 도착 (22시경)' },
+    { name: 'Sarah K.', room: '바다뷰방', inout: '16:00 → 11:00', people: '3인', req: 'Late check-in OK' },
+  ];
+  for (let i = 0; i < bookings.length; i++) {
+    const b = bookings[i];
+    const tr = document.createElement('tr');
+    tr.className = 'anim-row border-t border-stone-100';
+    tr.innerHTML = `
+      <td class="p-2 font-medium">${b.name}</td>
+      <td class="p-2"><span class="px-2 py-0.5 rounded text-[10px] font-medium" style="background:#fef3c7;color:#92400e;">${b.room}</span></td>
+      <td class="p-2 text-stone-600">${b.inout}</td>
+      <td class="p-2">${b.people}</td>
+      <td class="p-2 text-stone-500 text-[11px]">${b.req}</td>
+    `;
+    p2Rows.appendChild(tr);
+    p2Counter.textContent = `${i+1}팀 수집됨...`;
+    await sleep(600);
+  }
+  p2Counter.innerHTML = '<strong class="text-navy">✓ 오늘 체크인 2팀 · 총 5명</strong>';
+  await sleep(900);
+
+  // ─── Phase 3: 체크리스트 자동 생성 ───
+  flowTitle.textContent = '③ AI 청소·세팅 체크리스트 자동 생성';
+  showPhase(2);
+  const p3List = document.getElementById('p3List');
+  p3List.innerHTML = '';
+  await sleep(300);
+
+  const checklist = [
+    { room: '온돌방 (2인)', items: ['바닥 청소 + 이불 정리', '수건 2장 + 칫솔 2', '온돌 22도 세팅', '비번 #2401 → #5712'] },
+    { room: '바다뷰방 (3인)', items: ['바닷바람 환기 30분', '수건 3장 + 어메니티 3', '에어컨 24도', '비번 #1130 → #8849'] },
+    { room: '공용', items: ['공용 화장실 점검', '와이파이 안내문 확인'] },
+  ];
+  for (const group of checklist) {
+    const groupDiv = document.createElement('div');
+    groupDiv.className = 'anim-msg';
+    groupDiv.innerHTML = `
+      <div class="text-xs font-semibold text-navy mb-1.5 flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-navy"></span>
+        ${group.room}
+      </div>
+      <div class="space-y-1 pl-3" id="grp-${group.room}"></div>
+    `;
+    p3List.appendChild(groupDiv);
+    const target = groupDiv.querySelector('div.space-y-1');
+    for (const item of group.items) {
+      const itemDiv = document.createElement('div');
+      itemDiv.className = 'anim-check text-xs text-stone-700 flex items-center gap-2';
+      itemDiv.innerHTML = `<span class="text-green-600 font-bold">✓</span> <span>${item}</span>`;
+      target.appendChild(itemDiv);
+      await sleep(140);
+    }
+    await sleep(150);
+  }
+  await sleep(700);
+
+  // ─── Phase 4: 운영자 텔레그램 ───
+  flowTitle.textContent = '④ 운영자 텔레그램 알람 도착';
+  showPhase(3);
+  const p4Notif = document.getElementById('p4Notif');
+  const p4Chat = document.getElementById('p4Chat');
+  p4Notif.classList.add('hidden');
+  p4Chat.innerHTML = '';
+  await sleep(400);
+  p4Notif.classList.remove('hidden');
+  await sleep(900);
+  p4Notif.classList.add('hidden');
+
+  const tgMessages = [
+    `<div class="tg-bubble anim-msg"><strong>🏠 오늘 체크인 안내 (5/1)</strong><br><br>• <strong>김O민 님</strong> · 온돌방 2인<br>&nbsp;&nbsp;15:00 IN, 22시경 도착 예정<br><br>• <strong>Sarah K.</strong> · 바다뷰 3인<br>&nbsp;&nbsp;16:00 IN, late OK<br><br>총 5명 · 청소 12:00까지 OK</div>`,
+    `<div class="tg-bubble anim-msg" style="background:#fff3cd;border-left:3px solid #b8860b;"><strong>⚠️ 체크</strong><br>비번 2개 변경됨 · 시트 자동 동기화됨</div>`,
+  ];
+  for (const m of tgMessages) {
+    const wrap = document.createElement('div');
+    wrap.innerHTML = m;
+    p4Chat.appendChild(wrap.firstChild);
+    await sleep(550);
+  }
+  await sleep(900);
+
+  // ─── Phase 5: 손님 카톡 자동 발송 ───
+  flowTitle.textContent = '⑤ 손님 카카오톡 자동 발송';
+  showPhase(4);
+  const p5Notif = document.getElementById('p5Notif');
+  const p5Chat = document.getElementById('p5Chat');
+  p5Notif.classList.add('hidden');
+  p5Chat.innerHTML = '';
+  await sleep(300);
+  p5Notif.classList.remove('hidden');
+  await sleep(900);
+  p5Notif.classList.add('hidden');
+
+  const kakaoMessages = [
+    `<div class="flex justify-start"><div class="kakao-bubble anim-msg"><strong>안녕하세요 김O민 님 🌊</strong><br>오늘 고개서동 체크인 안내드려요.</div></div>`,
+    `<div class="flex justify-start"><div class="kakao-bubble anim-msg">📍 부산 사하구 다대로 ○○○<br>🚪 <strong>온돌방 비번: 5712#</strong><br>⏰ 15:00부터 입실 가능</div></div>`,
+    `<div class="flex justify-start"><div class="kakao-bubble anim-msg">📶 와이파이: GogaeGuest_2F<br>비번: gogae2024<br><br>늦게 오셔도 OK, 편히 들어오세요!</div></div>`,
+  ];
+  for (const m of kakaoMessages) {
+    const wrap = document.createElement('div');
+    wrap.innerHTML = m;
+    p5Chat.appendChild(wrap.firstChild);
+    await sleep(700);
+  }
+  await sleep(900);
+
+  // ─── Phase 6: 손님 질문 → AI 응답 ───
+  flowTitle.textContent = '⑥ 손님 답변 → AI 자동 응답';
+  showPhase(5);
+  const p6Chat = document.getElementById('p6Chat');
+  const p6AIBadge = document.getElementById('p6AIBadge');
+  p6Chat.innerHTML = '';
+  p6AIBadge.classList.add('hidden');
+  await sleep(300);
+
+  // 손님 질문
+  const q = document.createElement('div');
+  q.className = 'flex justify-end';
+  q.innerHTML = `<div class="kakao-bubble-self anim-msg">혹시 주차 가능할까요? 🚗</div>`;
+  p6Chat.appendChild(q);
+  await sleep(700);
+
+  // AI 응답 (타이핑 인디케이터)
+  const typing = document.createElement('div');
+  typing.className = 'flex justify-start';
+  typing.innerHTML = `<div class="kakao-bubble" style="padding:8px 14px;"><span class="pulse-dot">●</span> <span class="pulse-dot" style="animation-delay:0.3s">●</span> <span class="pulse-dot" style="animation-delay:0.6s">●</span></div>`;
+  p6Chat.appendChild(typing);
+  await sleep(800);
+  p6Chat.removeChild(typing);
+
+  const a = document.createElement('div');
+  a.className = 'flex justify-start';
+  a.innerHTML = `<div class="kakao-bubble anim-msg">네 가능해요! 🚗<br>건물 옆 골목에 무료 주차 2대 가능하시고,<br>만차일 땐 다대포역 공영주차장(도보 5분, 시간당 600원) 이용해주세요.</div>`;
+  p6Chat.appendChild(a);
+  await sleep(600);
+  p6AIBadge.classList.remove('hidden');
+  await sleep(1200);
+
+  // ─── Ending ───
+  flowTitle.textContent = '🌅 새벽 자동화 완료';
+  showPhase(6);
+  dots.forEach(id => document.getElementById(id).style.background = 'var(--kakao)');
+}
+
+document.getElementById('playFlowBtn').addEventListener('click', playFlow);
+document.getElementById('replayFlow').addEventListener('click', playFlow);
+document.getElementById('closeFlow').addEventListener('click', () => {
+  flowOverlay.classList.add('hidden'); flowOverlay.classList.remove('flex');
+});
+document.getElementById('closeFlowEnd').addEventListener('click', () => {
+  flowOverlay.classList.add('hidden'); flowOverlay.classList.remove('flex');
+  document.querySelector('section').scrollIntoView({ behavior: 'smooth' });
+});
+
+const params = new URLSearchParams(location.search);
+if (params.get('autoplay') === '1') {
+  setTimeout(() => playFlow(), 800);
+}
+</script>
+
+</body>
+</html>

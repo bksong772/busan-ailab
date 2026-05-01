@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>수리공의온도 콘텐츠 자동 발행 — 시공 사례 → 블로그·당근 동시 업로드</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+:root {
+  --brown: #2d1c17;
+  --brown2: #3d2820;
+  --orange: #FF6B35;
+  --orange2: #FF8C5A;
+  --karrot: #FF7E36;
+  --naver: #03C75A;
+  --cream: #faf5ee;
+  --paper: #f4ebdb;
+}
+body { font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; background: var(--cream); color: #1a1a1a; }
+.bg-brown { background: var(--brown); }
+.bg-brown2 { background: var(--brown2); }
+.text-brown { color: var(--brown); }
+.text-orange-brand { color: var(--orange); }
+.text-karrot { color: var(--karrot); }
+.text-naver { color: var(--naver); }
+.bg-cream { background: var(--cream); }
+.bg-paper { background: var(--paper); }
+.bg-karrot { background: var(--karrot); }
+.bg-naver { background: var(--naver); }
+@keyframes slideInRow { from { opacity: 0; transform: translateY(-8px); background: #fef9c3; } to { opacity: 1; transform: translateY(0); background: white; } }
+@keyframes slideInMsg { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+@keyframes typing { from { width: 0 } to { width: 100% } }
+@keyframes fingerTap { 0% { transform: translate(-50%, -50%) scale(1); opacity: 0.9 } 50% { transform: translate(-50%, -50%) scale(0.85); opacity: 1 } 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9 } }
+@keyframes notifSlideDown { from { transform: translateY(-100%); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes nodeFire { 0% { box-shadow: 0 0 0 0 rgba(255,107,53,0.7); transform: scale(1); } 50% { box-shadow: 0 0 0 12px rgba(255,107,53,0); transform: scale(1.05); } 100% { box-shadow: 0 0 0 0 rgba(255,107,53,0); transform: scale(1); } }
+@keyframes likeBump { 0% { transform: scale(1); } 50% { transform: scale(1.4); color: #ef4444; } 100% { transform: scale(1); } }
+.anim-row { animation: slideInRow 1.2s ease forwards; }
+.anim-msg { animation: slideInMsg 0.6s ease forwards; }
+.pulse-dot { animation: pulse-dot 1.5s ease-in-out infinite; }
+.anim-typing { overflow: hidden; white-space: nowrap; animation: typing 1.5s steps(40, end) forwards; }
+.anim-finger { animation: fingerTap 0.6s ease-in-out 2; }
+.anim-notif { animation: notifSlideDown 0.5s ease forwards; }
+.anim-fire { animation: nodeFire 1s ease-in-out infinite; }
+.anim-like { animation: likeBump 0.5s ease; }
+.cursor-blink::after { content: '|'; animation: blink 1s infinite; color: var(--orange); }
+.phone-frame { width: 280px; height: 560px; background: #1a1a1a; border-radius: 36px; padding: 10px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); margin: 0 auto; }
+.phone-screen { width: 100%; height: 100%; background: white; border-radius: 28px; overflow: hidden; position: relative; }
+.terminal { background: #0a0a0a; color: #00ff00; font-family: 'Menlo', 'Monaco', monospace; padding: 20px; border-radius: 12px; font-size: 12px; line-height: 1.7; }
+.terminal .prompt { color: #888; }
+.terminal .cmd { color: #fff; }
+.terminal .ok { color: #10b981; }
+.terminal .info { color: #60a5fa; }
+.kakao-bg { background: #B2C7DA; }
+.kakao-bubble-other { background: white; border-radius: 16px; padding: 10px 12px; max-width: 80%; }
+.kakao-bubble-me { background: #FAE100; border-radius: 16px; padding: 10px 12px; max-width: 80%; margin-left: auto; }
+.n8n-node { background: white; border: 2px solid #e7e7e3; border-radius: 8px; padding: 10px 14px; font-size: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+.n8n-node.active { border-color: var(--orange); }
+.n8n-line { height: 2px; background: #d6d3d1; flex: 1; position: relative; }
+.n8n-line.done { background: var(--orange); }
+.kw-card { background: white; border: 1px solid #e7e7e3; border-radius: 999px; padding: 6px 14px; font-size: 12px; color: var(--brown); display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+</style>
+</head>
+<body class="min-h-screen">
+
+<!-- 데모 안내 배너 -->
+<div class="bg-brown text-white text-center py-2 text-sm">
+  🔧 <strong>수리공의온도 콘텐츠 자동 발행 데모</strong> · 시공만 하면 글·홍보·발행은 AI가 매번 자동으로
+</div>
+
+<div class="max-w-4xl mx-auto px-4 py-10">
+  <header class="mb-8 text-center">
+    <div class="inline-block px-3 py-1 rounded-full bg-paper text-xs tracking-widest mb-4 text-orange-brand">CASE STUDY · 수리공의온도</div>
+    <h1 class="text-4xl font-bold text-brown">시공 끝 → 블로그·당근 동시 발행<br><span class="text-orange-brand">신규 문의까지 자동</span></h1>
+    <p class="mt-3 text-stone-600">사진 1~2장과 짧은 메모만 보내면, AI가 키워드 분석부터 블로그·당근 글까지 자동으로. 부산 출장 수리·시공의 마케팅 사이클을 손에서 뗀다.</p>
+  </header>
+
+  <div class="text-center mb-10">
+    <button id="playFlowBtn" class="bg-brown hover:bg-brown2 text-white px-8 py-4 rounded-2xl font-medium shadow-lg transform hover:scale-105 transition">
+      🎬 자동 발행 사이클 보기 <span class="text-xs opacity-75 ml-1">(약 16초)</span>
+    </button>
+    <p class="text-xs text-stone-500 mt-3">시공 완료 → n8n 트리거 → AI 키워드·작성 → 블로그·당근 발행 → 문의 도착</p>
+  </div>
+
+  <!-- 텍스트 흐름 설명 -->
+  <section class="bg-white rounded-3xl p-7 mb-6 shadow-sm border border-stone-100">
+    <h2 class="text-xl font-semibold text-brown mb-4">📋 7단계 자동 발행 사이클</h2>
+    <ol class="space-y-3 text-sm text-stone-700">
+      <li class="flex gap-3"><span class="font-bold text-orange-brand">①</span> 시공 완료 → 사진·짧은 메모 카톡 한 통 (사람 손은 여기까지)</li>
+      <li class="flex gap-3"><span class="font-bold text-orange-brand">②</span> n8n 자동 워크플로우 트리거 — "📥 새 시공 사례 감지"</li>
+      <li class="flex gap-3"><span class="font-bold text-orange-brand">③</span> AI가 네이버 트렌드·연관검색어로 SEO 키워드 자동 수집</li>
+      <li class="flex gap-3"><span class="font-bold text-orange-brand">④</span> AI 시공 사례 블로그 글 자동 작성 (제목·본문 자동 타이핑)</li>
+      <li class="flex gap-3"><span class="font-bold text-orange-brand">⑤</span> 네이버 블로그 자동 발행 + 라이브 URL</li>
+      <li class="flex gap-3"><span class="font-bold text-orange-brand">⑥</span> 당근마켓 동네생활 자동 게시 — 좋아요·조회수 카운트</li>
+      <li class="flex gap-3"><span class="font-bold text-orange-brand">⑦</span> 신규 문의 카톡 도착 — "어제 보일러 글 보고 연락드려요"</li>
+    </ol>
+    <div class="mt-5 p-4 bg-paper rounded-xl text-sm text-stone-700">
+      <strong class="text-orange-brand">실제 운영:</strong> 부산 출장 수리·시공 (보일러·누수·도배·타일·전기·도어).
+      운영자 김진완(시공)·송병근(시스템). 시공 1건 → 블로그+당근 동시 노출 → 동네 검색·이웃 노출 양방향.
+    </div>
+  </section>
+
+  <!-- 효과 -->
+  <section class="bg-white rounded-3xl p-7 mb-6 shadow-sm border border-stone-100">
+    <h2 class="text-xl font-semibold text-brown mb-4">📈 효과</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div class="bg-paper rounded-xl p-4 text-center">
+        <div class="text-2xl font-bold text-brown">1h→자동</div>
+        <div class="text-xs text-stone-500 mt-1">글 작성 시간</div>
+      </div>
+      <div class="bg-paper rounded-xl p-4 text-center">
+        <div class="text-2xl font-bold" style="color: var(--karrot)">1→2채널</div>
+        <div class="text-xs text-stone-500 mt-1">동시 발행</div>
+      </div>
+      <div class="bg-paper rounded-xl p-4 text-center">
+        <div class="text-2xl font-bold text-orange-brand">우연→AI</div>
+        <div class="text-xs text-stone-500 mt-1">SEO 키워드</div>
+      </div>
+      <div class="bg-paper rounded-xl p-4 text-center">
+        <div class="text-2xl font-bold" style="color: #9a3412">월N→자동</div>
+        <div class="text-xs text-stone-500 mt-1">신규 문의</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-brown text-white rounded-3xl p-8 mb-6 text-center">
+    <h2 class="text-2xl font-bold mb-2">비슷한 자영업·소상공인 콘텐츠 자동화 의뢰</h2>
+    <p class="opacity-80 mb-6">시공·서비스업·동네 가게의 사례 글·블로그·동네 SNS 자동 발행 흐름. 사람은 본업만, AI가 마케팅을.</p>
+    <div class="flex gap-3 justify-center flex-wrap">
+      <a href="https://busan-ailab.vercel.app" target="_blank" class="bg-orange-brand hover:opacity-90 text-white px-6 py-3 rounded-xl font-semibold">부산AI랩 둘러보기 →</a>
+      <a href="tel:01098258816" class="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-xl font-semibold">담당 김진완 010-9825-8816</a>
+    </div>
+  </section>
+
+  <footer class="mt-10 text-center text-xs text-stone-400">
+    <p>수리공의온도 콘텐츠 자동 발행 데모 · 2026-04</p>
+    <p class="mt-1">제작: 송병근·김진완 · 부산AI랩</p>
+  </footer>
+</div>
+
+<!-- 🎬 풀스크린 자동 재생 오버레이 -->
+<div id="flowOverlay" class="fixed inset-0 bg-black/85 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+  <div class="bg-cream rounded-3xl max-w-3xl w-full p-6 sm:p-8 relative max-h-[95vh] overflow-y-auto">
+    <button id="closeFlow" class="absolute top-4 right-5 text-stone-400 hover:text-stone-700 text-2xl leading-none">✕</button>
+
+    <div class="text-center mb-5">
+      <div class="text-xs tracking-widest text-stone-500">CONTENT AUTO-PUBLISH · 수리공의온도</div>
+      <div id="flowTitle" class="text-2xl font-semibold mt-2 text-brown">① 시공 완료 → 사진·메모 카톡 전송</div>
+      <div class="flex items-center justify-center gap-1.5 mt-3">
+        <div id="flowDot1" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot2" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot3" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot4" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot5" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot6" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot7" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+      </div>
+    </div>
+
+    <!-- Phase 1: 시공 완료 → 카톡 전송 (폰) -->
+    <div id="flowPhase1" class="flow-phase hidden py-4">
+      <div class="phone-frame">
+        <div class="phone-screen kakao-bg relative">
+          <div class="absolute top-0 left-0 right-0 bg-white/90 backdrop-blur px-4 py-3 flex items-center gap-2 border-b border-stone-200">
+            <span class="text-stone-500">←</span>
+            <div class="w-7 h-7 rounded-full bg-brown text-white flex items-center justify-center text-xs">🔧</div>
+            <div class="text-sm font-semibold text-brown">수리공 작업방</div>
+            <span class="ml-auto text-xs text-stone-400">3</span>
+          </div>
+          <div class="pt-14 px-3 space-y-2">
+            <div id="p1Bubble1" class="hidden anim-msg kakao-bubble-me">
+              <div class="w-full h-32 rounded-lg flex items-center justify-center text-4xl" style="background:linear-gradient(135deg,#94a3b8,#475569);">🔧</div>
+              <div class="text-[10px] text-stone-500 mt-1 text-right">시공 후 사진</div>
+            </div>
+            <div id="p1Bubble2" class="hidden anim-msg kakao-bubble-me text-xs text-stone-800">
+              오늘 강서구 OO아파트<br>보일러 누수 교체 완료
+            </div>
+            <div id="p1Bubble3" class="hidden anim-msg kakao-bubble-me text-xs text-stone-800">
+              부품 8만, 공임 12만<br>2시간 작업
+            </div>
+            <div id="p1Time" class="hidden text-[10px] text-stone-500 text-right pr-2">오후 4:23 · 읽음</div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">📱 김진완 시공 후 사진 + 짧은 메모 한 통 (사람 손은 여기까지)</div>
+    </div>
+
+    <!-- Phase 2: n8n 워크플로우 트리거 -->
+    <div id="flowPhase2" class="flow-phase hidden py-4">
+      <div class="bg-white rounded-2xl p-6 max-w-2xl mx-auto shadow-lg border border-stone-200">
+        <div class="flex items-center gap-2 mb-5">
+          <div class="text-xl">⚡</div>
+          <div>
+            <div class="font-semibold text-brown">n8n · surigong-auto-publish</div>
+            <div class="text-xs text-stone-500">시공 사례 자동 발행 워크플로우</div>
+          </div>
+          <span class="ml-auto text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700">ACTIVE</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div id="p2N1" class="n8n-node anim-fire" style="border-color:var(--orange);">
+            <div class="text-[10px] text-stone-500">Trigger</div>
+            <div class="font-semibold text-brown">📥 새 시공 사례 감지</div>
+          </div>
+          <div id="p2L1" class="n8n-line"></div>
+          <div id="p2N2" class="n8n-node opacity-40">
+            <div class="text-[10px] text-stone-500">AI</div>
+            <div class="font-semibold text-stone-700">🔍 키워드 수집</div>
+          </div>
+          <div id="p2L2" class="n8n-line"></div>
+          <div id="p2N3" class="n8n-node opacity-40">
+            <div class="text-[10px] text-stone-500">AI</div>
+            <div class="font-semibold text-stone-700">✍️ 글 작성</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 mt-2">
+          <div class="n8n-node opacity-40 invisible">.</div>
+          <div class="n8n-line invisible"></div>
+          <div id="p2N4" class="n8n-node opacity-40">
+            <div class="text-[10px] text-stone-500">Publish</div>
+            <div class="font-semibold text-stone-700">🟢 네이버 블로그</div>
+          </div>
+          <div id="p2L3" class="n8n-line"></div>
+          <div id="p2N5" class="n8n-node opacity-40">
+            <div class="text-[10px] text-stone-500">Publish</div>
+            <div class="font-semibold text-stone-700">🥕 당근 동네생활</div>
+          </div>
+        </div>
+        <div class="mt-5 bg-stone-50 rounded-lg p-3 text-xs text-stone-600 font-mono">
+          <div>[16:23:01] 📥 카톡 webhook 수신 → 사진 1건, 메모 추출</div>
+          <div class="text-orange-brand">[16:23:02] ▶ 워크플로우 시작 — 5개 노드 대기</div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">⚡ n8n 워크플로우 자동 트리거 — 5개 노드 순차 실행</div>
+    </div>
+
+    <!-- Phase 3: AI 키워드 자동 수집 -->
+    <div id="flowPhase3" class="flow-phase hidden py-4">
+      <div class="bg-white rounded-2xl p-6 max-w-2xl mx-auto shadow-lg border border-stone-200">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="text-xl">🔍</div>
+          <div>
+            <div class="font-semibold text-brown">AI 키워드 자동 수집</div>
+            <div class="text-xs text-stone-500">네이버 트렌드 · 연관검색어 · 자동완성 분석</div>
+          </div>
+          <span class="ml-auto text-xs text-green-600 pulse-dot">● 분석 중</span>
+        </div>
+        <div class="text-xs text-stone-500 mb-2">검색량 상위 키워드</div>
+        <div class="flex flex-wrap gap-2 mb-4 min-h-[80px]" id="p3Keywords"></div>
+        <div class="bg-paper rounded-lg p-3 text-xs text-stone-700">
+          <div class="font-semibold mb-1 text-brown">🎯 SEO 타겟 결정</div>
+          <div id="p3Target" class="text-stone-600 italic"></div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">🔍 시공 메모 한 줄 → 부산 검색 키워드 자동 매칭</div>
+    </div>
+
+    <!-- Phase 4: AI 블로그 글 자동 작성 -->
+    <div id="flowPhase4" class="flow-phase hidden py-4">
+      <div class="bg-white rounded-xl border border-stone-200 max-w-2xl mx-auto overflow-hidden shadow-lg">
+        <div class="bg-brown text-white px-4 py-2 text-xs flex items-center gap-2">
+          <span class="text-orange-brand">✍️</span>
+          <span class="font-medium">surigong-blog-draft.md · AI 자동 작성 중</span>
+          <span class="ml-auto text-xs text-orange-brand pulse-dot">● writing</span>
+        </div>
+        <div class="p-5 bg-cream max-h-[340px] overflow-hidden">
+          <div class="text-xs text-stone-400 mb-1">제목</div>
+          <div id="p4Title" class="text-lg font-bold text-brown mb-3 cursor-blink"></div>
+          <div class="text-xs text-stone-400 mb-1">본문</div>
+          <div id="p4Body" class="text-xs text-stone-700 leading-relaxed space-y-1"></div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">✍️ AI가 시공 사진·메모 → 자연스러운 블로그 글 자동 작성</div>
+    </div>
+
+    <!-- Phase 5: 네이버 블로그 자동 발행 -->
+    <div id="flowPhase5" class="flow-phase hidden py-4">
+      <div class="bg-white rounded-xl border border-stone-200 max-w-2xl mx-auto overflow-hidden shadow-lg">
+        <div class="bg-naver text-white px-4 py-2 text-xs flex items-center gap-2">
+          <span class="font-bold">N</span>
+          <span class="font-medium">네이버 블로그 · 수리공의온도</span>
+          <span class="ml-auto bg-white/20 px-2 py-0.5 rounded text-[10px]">자동 발행</span>
+        </div>
+        <div class="p-5 bg-white">
+          <div class="border-b border-stone-200 pb-3 mb-3">
+            <div class="text-[11px] text-stone-500 mb-1">출장수리·시공 사례</div>
+            <div class="text-base font-bold text-stone-800 mb-2">강서구 보일러 누수, 2시간 만에 해결한 출장 수리 후기</div>
+            <div class="flex items-center gap-2 text-[11px] text-stone-500">
+              <div class="w-5 h-5 rounded-full bg-naver text-white flex items-center justify-center font-bold text-[10px]">수</div>
+              <span>수리공의온도</span>
+              <span>·</span>
+              <span id="p5Time">방금 전</span>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <div class="w-full h-24 rounded-lg flex items-center justify-center text-3xl" style="background:linear-gradient(135deg,#94a3b8,#475569);">🔧</div>
+            <div class="text-xs text-stone-700 leading-relaxed">안녕하세요, 부산 수리공의온도입니다. 오늘은 강서구 OO아파트에서 보일러 누수로 연락 주신 사례를 공유드립니다...</div>
+          </div>
+          <div id="p5Published" class="hidden anim-notif mt-4 bg-green-50 border border-green-200 rounded-lg p-3 text-xs">
+            <div class="flex items-center gap-2 text-green-700 font-semibold mb-1">
+              <span>✓</span>
+              <span>발행 완료</span>
+            </div>
+            <div class="text-green-600 break-all">🔗 blog.naver.com/surigong/223847291</div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">🟢 네이버 블로그 자동 발행 → 부산 검색 노출 시작</div>
+    </div>
+
+    <!-- Phase 6: 당근마켓 동네생활 자동 게시 -->
+    <div id="flowPhase6" class="flow-phase hidden py-4">
+      <div class="bg-white rounded-xl border border-stone-200 max-w-md mx-auto overflow-hidden shadow-lg">
+        <div class="bg-karrot text-white px-4 py-3 text-xs flex items-center gap-2">
+          <span class="text-base">🥕</span>
+          <span class="font-bold text-sm">당근 · 동네생활</span>
+          <span class="ml-auto bg-white/20 px-2 py-0.5 rounded text-[10px]">강서구</span>
+        </div>
+        <div class="p-4 bg-white">
+          <div class="flex items-center gap-2 mb-2">
+            <div class="w-8 h-8 rounded-full bg-karrot text-white flex items-center justify-center font-bold text-xs">수</div>
+            <div>
+              <div class="text-xs font-semibold text-stone-800">수리공의온도</div>
+              <div class="text-[10px] text-stone-500">강서구 · 동네 인증 · 방금 전</div>
+            </div>
+          </div>
+          <div class="text-sm font-semibold text-stone-800 mb-1">강서구 보일러 누수 출장 수리 후기 🔧</div>
+          <div class="text-xs text-stone-700 leading-relaxed mb-3">오늘 OO아파트 보일러 누수 교체 마쳤습니다. 부품 8만 + 공임 12만, 2시간 작업. 같은 동네에서 비슷한 증상 있으시면 댓글 주세요~</div>
+          <div class="w-full h-32 rounded-lg flex items-center justify-center text-3xl mb-3" style="background:linear-gradient(135deg,#94a3b8,#475569);">🔧</div>
+          <div class="flex items-center gap-4 text-xs text-stone-500 border-t pt-3">
+            <div class="flex items-center gap-1">
+              <span id="p6HeartIcon">🤍</span>
+              <span>궁금해요 <span id="p6Likes" class="font-semibold text-stone-700">0</span></span>
+            </div>
+            <div class="flex items-center gap-1">
+              <span>💬</span>
+              <span>댓글 <span id="p6Comments" class="font-semibold text-stone-700">0</span></span>
+            </div>
+            <div class="ml-auto flex items-center gap-1">
+              <span>👁</span>
+              <span><span id="p6Views" class="font-semibold text-stone-700">0</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">🥕 당근 동네생활 자동 게시 → 같은 동네 이웃 노출</div>
+    </div>
+
+    <!-- Phase 7: 신규 문의 카톡 -->
+    <div id="flowPhase7" class="flow-phase hidden py-4">
+      <div class="phone-frame">
+        <div class="phone-screen kakao-bg relative">
+          <div class="absolute top-0 left-0 right-0 bg-white/90 backdrop-blur px-4 py-3 flex items-center gap-2 border-b border-stone-200">
+            <span class="text-stone-500">←</span>
+            <div class="w-7 h-7 rounded-full bg-stone-300 text-white flex items-center justify-center text-xs">👤</div>
+            <div class="text-sm font-semibold text-brown">신규 문의 (강서구 김OO)</div>
+            <span class="ml-auto text-xs text-orange-brand pulse-dot">●</span>
+          </div>
+          <div class="pt-14 px-3 space-y-2">
+            <div id="p7Notif" class="hidden anim-notif bg-orange-100 border border-orange-300 rounded-lg p-2 text-[11px] text-orange-800 text-center font-semibold">
+              📩 새 메시지 도착
+            </div>
+            <div id="p7Bubble1" class="hidden anim-msg kakao-bubble-other text-xs text-stone-800">
+              안녕하세요~ 어제 보일러 글 보고 연락드려요
+            </div>
+            <div id="p7Bubble2" class="hidden anim-msg kakao-bubble-other text-xs text-stone-800">
+              저희 집도 누수가 있는 거 같은데<br>한 번 봐주실 수 있나요?
+            </div>
+            <div id="p7Bubble3" class="hidden anim-msg kakao-bubble-other text-xs text-stone-800">
+              강서구 △△아파트인데<br>출장 가능하신지요?
+            </div>
+            <div id="p7Source" class="hidden anim-msg bg-paper rounded-lg p-2 text-[10px] text-brown text-center">
+              유입: 네이버 블로그 검색 "강서구 보일러 누수"
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">📩 어제 자동 발행 글 → 오늘 신규 문의 도착</div>
+    </div>
+
+    <!-- Ending -->
+    <div id="flowEnding" class="hidden py-6 text-center">
+      <div class="text-5xl mb-3">🔧</div>
+      <div class="text-2xl font-bold text-brown mb-2">시공만 잘하면 됩니다</div>
+      <div class="text-stone-600 mb-6">글·홍보·발행은 AI가 매번 자동으로</div>
+      <div class="bg-paper rounded-2xl p-5 inline-block max-w-2xl">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-sm">
+          <div>
+            <div class="text-xl font-bold text-brown">1h→자동</div>
+            <div class="text-xs text-stone-500 mt-1">글 작성 시간</div>
+          </div>
+          <div>
+            <div class="text-xl font-bold" style="color:var(--karrot)">1→2채널</div>
+            <div class="text-xs text-stone-500 mt-1">동시 발행</div>
+          </div>
+          <div>
+            <div class="text-xl font-bold text-orange-brand">우연→AI</div>
+            <div class="text-xs text-stone-500 mt-1">SEO 키워드</div>
+          </div>
+          <div>
+            <div class="text-xl font-bold" style="color:#9a3412">월N→자동</div>
+            <div class="text-xs text-stone-500 mt-1">신규 문의</div>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-stone-300 text-xs text-stone-600 leading-relaxed">
+          <strong class="text-brown">김진완이 하는 것</strong>: 시공 + 사진 1~2장 + 짧은 메모<br>
+          <strong class="text-orange-brand">AI가 하는 것</strong>: 키워드 수집 · 글 작성 · 네이버 블로그 발행 · 당근 동네생활 게시 · 문의 응대 동선
+        </div>
+      </div>
+      <div class="mt-6 flex gap-2 justify-center flex-wrap">
+        <button id="replayFlow" class="bg-brown text-white px-5 py-2.5 rounded-xl font-medium">🔁 다시 보기</button>
+        <button id="closeFlowEnd" class="bg-stone-200 text-stone-700 px-5 py-2.5 rounded-xl font-medium">페이지로 이동 →</button>
+      </div>
+      <p class="mt-4 text-xs text-stone-400">자영업·소상공인 자동화 의뢰: <a href="https://busan-ailab.vercel.app" target="_blank" class="underline">busan-ailab.vercel.app</a> · 담당 김진완 010-9825-8816</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const flowOverlay = document.getElementById('flowOverlay');
+const flowTitle = document.getElementById('flowTitle');
+const phases = ['flowPhase1','flowPhase2','flowPhase3','flowPhase4','flowPhase5','flowPhase6','flowPhase7','flowEnding'];
+const dots = ['flowDot1','flowDot2','flowDot3','flowDot4','flowDot5','flowDot6','flowDot7'];
+
+function showPhase(idx) {
+  phases.forEach(id => document.getElementById(id).classList.add('hidden'));
+  if (idx < phases.length) document.getElementById(phases[idx]).classList.remove('hidden');
+  dots.forEach((id, i) => {
+    const el = document.getElementById(id);
+    el.style.background = i < idx + 1 ? 'var(--brown)' : '#d6d3d1';
+    el.style.transform = i === idx ? 'scale(1.5)' : 'scale(1)';
+  });
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+async function typeInto(el, text, ms) {
+  el.textContent = '';
+  for (const ch of text) { el.textContent += ch; await sleep(ms); }
+}
+
+async function playFlow() {
+  flowOverlay.classList.remove('hidden');
+  flowOverlay.classList.add('flex');
+
+  // Phase 1: 시공 완료 → 카톡
+  flowTitle.textContent = '① 시공 완료 → 사진·메모 카톡 전송';
+  showPhase(0);
+  ['p1Bubble1','p1Bubble2','p1Bubble3','p1Time'].forEach(id => document.getElementById(id).classList.add('hidden'));
+  await sleep(300);
+  document.getElementById('p1Bubble1').classList.remove('hidden');
+  await sleep(400);
+  document.getElementById('p1Bubble2').classList.remove('hidden');
+  await sleep(400);
+  document.getElementById('p1Bubble3').classList.remove('hidden');
+  await sleep(300);
+  document.getElementById('p1Time').classList.remove('hidden');
+  await sleep(700);
+
+  // Phase 2: n8n 트리거
+  flowTitle.textContent = '② n8n 자동 워크플로우 트리거';
+  showPhase(1);
+  ['p2N1','p2N2','p2N3','p2N4','p2N5'].forEach(id => {
+    const el = document.getElementById(id);
+    el.classList.remove('anim-fire');
+    el.style.opacity = '0.4';
+    el.style.borderColor = '#e7e7e3';
+  });
+  ['p2L1','p2L2','p2L3'].forEach(id => document.getElementById(id).classList.remove('done'));
+  await sleep(400);
+  // 첫 노드 점화
+  const n1 = document.getElementById('p2N1');
+  n1.style.opacity = '1';
+  n1.style.borderColor = 'var(--orange)';
+  n1.classList.add('anim-fire');
+  await sleep(900);
+  // 라인 → 노드 순차
+  const seq = [['p2L1','p2N2'], ['p2L2','p2N3']];
+  for (const [lineId, nodeId] of seq) {
+    document.getElementById(lineId).classList.add('done');
+    await sleep(150);
+    document.getElementById(nodeId).style.opacity = '1';
+    document.getElementById(nodeId).style.borderColor = 'var(--orange)';
+    await sleep(200);
+  }
+  await sleep(600);
+
+  // Phase 3: AI 키워드 자동 수집
+  flowTitle.textContent = '③ AI 키워드 자동 수집 (네이버 트렌드)';
+  showPhase(2);
+  const p3Keywords = document.getElementById('p3Keywords');
+  const p3Target = document.getElementById('p3Target');
+  p3Keywords.innerHTML = '';
+  p3Target.textContent = '';
+  await sleep(400);
+  const keywords = [
+    { kw: '강서구 보일러', volume: '월 2,400' },
+    { kw: '보일러 누수 수리', volume: '월 8,100' },
+    { kw: '부산 출장 수리', volume: '월 1,300' },
+    { kw: '24시간 보일러', volume: '월 590' },
+    { kw: 'OO아파트 누수', volume: '월 320' },
+  ];
+  for (const k of keywords) {
+    const card = document.createElement('div');
+    card.className = 'kw-card anim-msg';
+    card.innerHTML = `<span class="font-semibold">${k.kw}</span><span class="text-stone-400 text-[10px]">${k.volume}</span>`;
+    p3Keywords.appendChild(card);
+    await sleep(280);
+  }
+  await sleep(300);
+  await typeInto(p3Target, '"강서구 보일러 누수" + "출장 수리" 조합 → 제목·본문 우선 배치', 18);
+  await sleep(700);
+
+  // Phase 4: AI 블로그 글 자동 작성
+  flowTitle.textContent = '④ AI 시공 사례 블로그 글 자동 작성';
+  showPhase(3);
+  const p4Title = document.getElementById('p4Title');
+  const p4Body = document.getElementById('p4Body');
+  p4Title.textContent = '';
+  p4Body.innerHTML = '';
+  await sleep(400);
+  await typeInto(p4Title, '강서구 보일러 누수, 2시간 만에 해결한 출장 수리 후기', 22);
+  await sleep(300);
+  const bodyLines = [
+    '안녕하세요, 부산 수리공의온도입니다.',
+    '오늘은 강서구 OO아파트에서 보일러 누수로 연락 주신 사례를 공유드립니다.',
+    '',
+    '▎ 증상 — 보일러 하단부 물 고임, 압력 저하',
+    '▎ 원인 — 노후 배관 이음새 균열',
+    '▎ 작업 — 부품 교체 + 누수 테스트, 약 2시간',
+    '▎ 비용 — 부품 8만 + 공임 12만 = 20만원',
+    '',
+    '강서구 인근 비슷한 증상 있으시면 출장 가능합니다.'
+  ];
+  for (const line of bodyLines) {
+    const div = document.createElement('div');
+    div.className = 'anim-msg';
+    div.textContent = line || ' ';
+    p4Body.appendChild(div);
+    await sleep(180);
+  }
+  await sleep(700);
+
+  // Phase 5: 네이버 블로그 자동 발행
+  flowTitle.textContent = '⑤ 네이버 블로그 자동 발행';
+  showPhase(4);
+  document.getElementById('p5Published').classList.add('hidden');
+  await sleep(1200);
+  document.getElementById('p5Published').classList.remove('hidden');
+  await sleep(800);
+
+  // Phase 6: 당근마켓 동네생활 자동 게시
+  flowTitle.textContent = '⑥ 당근마켓 동네생활 자동 게시';
+  showPhase(5);
+  const p6Likes = document.getElementById('p6Likes');
+  const p6Comments = document.getElementById('p6Comments');
+  const p6Views = document.getElementById('p6Views');
+  const p6HeartIcon = document.getElementById('p6HeartIcon');
+  p6Likes.textContent = '0';
+  p6Comments.textContent = '0';
+  p6Views.textContent = '0';
+  p6HeartIcon.textContent = '🤍';
+  await sleep(500);
+  // 카운트 애니메이션
+  const targets = { likes: 12, comments: 3, views: 87 };
+  const steps = 14;
+  for (let i = 1; i <= steps; i++) {
+    p6Likes.textContent = Math.round(targets.likes * i / steps);
+    p6Comments.textContent = Math.round(targets.comments * i / steps);
+    p6Views.textContent = Math.round(targets.views * i / steps);
+    if (i === Math.floor(steps / 2)) {
+      p6HeartIcon.textContent = '❤️';
+      p6HeartIcon.classList.add('anim-like');
+    }
+    await sleep(80);
+  }
+  await sleep(600);
+
+  // Phase 7: 신규 문의 카톡
+  flowTitle.textContent = '⑦ 신규 문의 카톡 도착';
+  showPhase(6);
+  ['p7Notif','p7Bubble1','p7Bubble2','p7Bubble3','p7Source'].forEach(id => document.getElementById(id).classList.add('hidden'));
+  await sleep(400);
+  document.getElementById('p7Notif').classList.remove('hidden');
+  await sleep(500);
+  document.getElementById('p7Bubble1').classList.remove('hidden');
+  await sleep(500);
+  document.getElementById('p7Bubble2').classList.remove('hidden');
+  await sleep(500);
+  document.getElementById('p7Bubble3').classList.remove('hidden');
+  await sleep(400);
+  document.getElementById('p7Source').classList.remove('hidden');
+  await sleep(1100);
+
+  // Ending
+  flowTitle.textContent = '✨ 자동 발행 사이클 완료';
+  showPhase(7);
+  dots.forEach(id => document.getElementById(id).style.background = 'var(--orange)');
+}
+
+document.getElementById('playFlowBtn').addEventListener('click', playFlow);
+document.getElementById('replayFlow').addEventListener('click', playFlow);
+document.getElementById('closeFlow').addEventListener('click', () => {
+  flowOverlay.classList.add('hidden'); flowOverlay.classList.remove('flex');
+});
+document.getElementById('closeFlowEnd').addEventListener('click', () => {
+  flowOverlay.classList.add('hidden'); flowOverlay.classList.remove('flex');
+  document.querySelector('section').scrollIntoView({ behavior: 'smooth' });
+});
+
+const params = new URLSearchParams(location.search);
+if (params.get('autoplay') === '1') {
+  setTimeout(() => playFlow(), 800);
+}
+</script>
+
+</body>
+</html>

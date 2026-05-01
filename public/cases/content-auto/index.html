@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>부산AI코딩스쿨 칼럼 자동 발행 — 강의 끝나면 자동 콘텐츠</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+:root {
+  --navy: #0D1B2A;
+  --navy2: #1a2d45;
+  --blue: #2563EB;
+  --blue2: #3B82F6;
+  --orange: #FF6B35;
+  --cream: #faf7f2;
+  --paper: #f4ede2;
+}
+body { font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; background: var(--cream); color: #1a1a1a; }
+.bg-navy { background: var(--navy); }
+.bg-navy2 { background: var(--navy2); }
+.text-navy { color: var(--navy); }
+.text-blue-brand { color: var(--blue); }
+.text-orange-brand { color: var(--orange); }
+.bg-cream { background: var(--cream); }
+.bg-paper { background: var(--paper); }
+@keyframes slideInRow { from { opacity: 0; transform: translateY(-8px); background: #fef9c3; } to { opacity: 1; transform: translateY(0); background: white; } }
+@keyframes slideInMsg { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes slideInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+@keyframes typing { from { width: 0 } to { width: 100% } }
+@keyframes fingerTap { 0% { transform: translate(-50%, -50%) scale(1); opacity: 0.9 } 50% { transform: translate(-50%, -50%) scale(0.85); opacity: 1 } 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9 } }
+@keyframes notifSlideDown { from { transform: translateY(-100%); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.6); } 50% { box-shadow: 0 0 0 12px rgba(255, 107, 53, 0); } }
+@keyframes barGrow { from { height: 0; } to { height: var(--h, 60%); } }
+.anim-row { animation: slideInRow 1.2s ease forwards; }
+.anim-msg { animation: slideInMsg 0.6s ease forwards; }
+.anim-left { animation: slideInLeft 0.6s ease forwards; }
+.anim-right { animation: slideInRight 0.6s ease forwards; }
+.pulse-dot { animation: pulse-dot 1.5s ease-in-out infinite; }
+.anim-typing { overflow: hidden; white-space: nowrap; animation: typing 1.5s steps(40, end) forwards; }
+.anim-finger { animation: fingerTap 0.6s ease-in-out 2; }
+.anim-notif { animation: notifSlideDown 0.5s ease forwards; }
+.anim-glow { animation: glow 1.5s ease-in-out infinite; }
+.cursor-blink::after { content: '|'; animation: blink 1s infinite; color: var(--blue); }
+.phone-frame { width: 280px; height: 560px; background: #1a1a1a; border-radius: 36px; padding: 10px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); margin: 0 auto; }
+.phone-screen { width: 100%; height: 100%; background: white; border-radius: 28px; overflow: hidden; position: relative; }
+.terminal { background: #0a0a0a; color: #00ff00; font-family: 'Menlo', 'Monaco', monospace; padding: 20px; border-radius: 12px; font-size: 12px; line-height: 1.7; }
+.terminal .prompt { color: #888; }
+.terminal .cmd { color: #fff; }
+.terminal .ok { color: #10b981; }
+.terminal .info { color: #60a5fa; }
+.n8n-node { background: white; border: 2px solid #e7e7e3; border-radius: 8px; padding: 8px 12px; font-size: 11px; display: inline-flex; align-items: center; gap: 6px; }
+.n8n-node.active { border-color: var(--orange); background: #fff7ed; }
+.n8n-line { height: 2px; background: #d6d3d1; flex: 1; position: relative; }
+.n8n-line.active { background: var(--orange); }
+</style>
+</head>
+<body class="min-h-screen">
+
+<!-- 데모 안내 배너 -->
+<div class="bg-navy text-white text-center py-2 text-sm">
+  ☘️ <strong>부산AI코딩스쿨 칼럼 자동 발행 데모</strong> · 강사는 수업·사진만, AI가 매주 후기·결과물 칼럼 자동 작성·발행
+</div>
+
+<div class="max-w-4xl mx-auto px-4 py-10">
+  <header class="mb-8 text-center">
+    <div class="inline-block px-3 py-1 rounded-full bg-paper text-xs tracking-widest mb-4 text-orange-brand">CASE STUDY · 부산AI코딩스쿨</div>
+    <h1 class="text-4xl font-bold text-navy">강의 끝 → 후기 칼럼 → 사이트·블로그 자동 발행<br><span class="text-orange-brand">15초면 끝</span></h1>
+    <p class="mt-3 text-stone-600">강사는 결과물 사진과 짧은 메모만. AI가 칼럼 작성·사이트 게시·네이버 블로그 동시 발행·SEO 노출까지.</p>
+  </header>
+
+  <div class="text-center mb-10">
+    <button id="playFlowBtn" class="bg-navy hover:bg-navy2 text-white px-8 py-4 rounded-2xl font-medium shadow-lg transform hover:scale-105 transition">
+      🎬 콘텐츠 자동화 사이클 보기 <span class="text-xs opacity-75 ml-1">(약 15초)</span>
+    </button>
+    <p class="text-xs text-stone-500 mt-3">사진 업로드 → n8n 트리거 → AI 작성 → 사이트 게시 → 블로그 발행 → 학부모 문의</p>
+  </div>
+
+  <!-- 텍스트 흐름 설명 -->
+  <section class="bg-white rounded-3xl p-7 mb-6 shadow-sm border border-stone-100">
+    <h2 class="text-xl font-semibold text-navy mb-4">📋 6단계 콘텐츠 자동화 사이클</h2>
+    <ol class="space-y-3 text-sm text-stone-700">
+      <li class="flex gap-3"><span class="font-bold text-blue-brand">①</span> 강의 종료 → 강사가 결과물 사진·간단 메모 카톡 업로드</li>
+      <li class="flex gap-3"><span class="font-bold text-blue-brand">②</span> n8n 자동 워크플로우 트리거 (📥 새 강의 결과물 감지)</li>
+      <li class="flex gap-3"><span class="font-bold text-blue-brand">③</span> AI가 칼럼 자동 작성 (제목·본문·태그·SEO 키워드)</li>
+      <li class="flex gap-3"><span class="font-bold text-blue-brand">④</span> 사이트 자동 게시 (<code class="bg-stone-100 px-2 py-0.5 rounded text-xs">busanaicodingschool.com/insight</code>)</li>
+      <li class="flex gap-3"><span class="font-bold text-blue-brand">⑤</span> 네이버 블로그 동시 자동 발행 + 검색 노출</li>
+      <li class="flex gap-3"><span class="font-bold text-blue-brand">⑥</span> 학부모 신규 등록 문의 도착 (카톡)</li>
+    </ol>
+    <div class="mt-5 p-4 bg-paper rounded-xl text-sm text-stone-700">
+      <strong class="text-orange-brand">실제 운영:</strong> 부산AI코딩스쿨 3개 지점(금정·사직·화명) 강의 후 매주 자동.
+      강사가 수업 끝나고 결과물 사진 1장만 카톡으로 보내면 그 다음 모든 단계가 자동.
+    </div>
+  </section>
+
+  <!-- 효과 -->
+  <section class="bg-white rounded-3xl p-7 mb-6 shadow-sm border border-stone-100">
+    <h2 class="text-xl font-semibold text-navy mb-4">📈 효과</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div class="bg-paper rounded-xl p-4 text-center">
+        <div class="text-2xl font-bold text-navy">30분→자동</div>
+        <div class="text-xs text-stone-500 mt-1">칼럼 작성</div>
+      </div>
+      <div class="bg-paper rounded-xl p-4 text-center">
+        <div class="text-2xl font-bold" style="color: var(--blue)">1개→2개</div>
+        <div class="text-xs text-stone-500 mt-1">발행 채널 동시</div>
+      </div>
+      <div class="bg-paper rounded-xl p-4 text-center">
+        <div class="text-2xl font-bold text-orange-brand">수동→매주</div>
+        <div class="text-xs text-stone-500 mt-1">학생 결과물 노출</div>
+      </div>
+      <div class="bg-paper rounded-xl p-4 text-center">
+        <div class="text-2xl font-bold" style="color: #9a3412">월 N건→자동</div>
+        <div class="text-xs text-stone-500 mt-1">학부모 문의</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-navy text-white rounded-3xl p-8 mb-6 text-center">
+    <h2 class="text-2xl font-bold mb-2">학원·교육기관 콘텐츠 자동화 의뢰</h2>
+    <p class="opacity-80 mb-6">강사는 수업에 집중. 학원 마케팅·후기 콘텐츠는 AI가 매주 자동. AX 컨설팅으로 자동화 → 인계까지.</p>
+    <div class="flex gap-3 justify-center flex-wrap">
+      <a href="https://busan-ailab.vercel.app" target="_blank" class="bg-orange-brand hover:opacity-90 text-white px-6 py-3 rounded-xl font-semibold">부산AI랩 둘러보기 →</a>
+      <a href="tel:01098258816" class="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-xl font-semibold">담당 김진완 010-9825-8816</a>
+    </div>
+  </section>
+
+  <footer class="mt-10 text-center text-xs text-stone-400">
+    <p>부산AI코딩스쿨 콘텐츠 자동화 데모 · 2026-05</p>
+    <p class="mt-1">제작: 송병근·진완 · (주)크리플레이</p>
+  </footer>
+</div>
+
+<!-- 🎬 풀스크린 자동 재생 오버레이 -->
+<div id="flowOverlay" class="fixed inset-0 bg-black/85 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+  <div class="bg-cream rounded-3xl max-w-3xl w-full p-6 sm:p-8 relative max-h-[95vh] overflow-y-auto">
+    <button id="closeFlow" class="absolute top-4 right-5 text-stone-400 hover:text-stone-700 text-2xl leading-none">✕</button>
+
+    <div class="text-center mb-5">
+      <div class="text-xs tracking-widest text-stone-500">CONTENT AUTOMATION</div>
+      <div id="flowTitle" class="text-2xl font-semibold mt-2 text-navy">① 강사가 결과물 사진·메모 업로드</div>
+      <div class="flex items-center justify-center gap-1.5 mt-3">
+        <div id="flowDot1" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot2" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot3" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot4" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot5" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot6" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+      </div>
+    </div>
+
+    <!-- Phase 1: 강사 사진·메모 업로드 -->
+    <div id="flowPhase1" class="flow-phase hidden py-4">
+      <div class="phone-frame">
+        <div class="phone-screen relative" style="background:#FAE100;">
+          <div class="absolute top-0 left-0 right-0 bg-yellow-300 px-4 py-3 flex items-center gap-2 text-xs">
+            <span class="text-amber-900">←</span>
+            <span class="font-semibold text-amber-900">화명점 강사방</span>
+            <span class="ml-auto text-amber-700">📞</span>
+          </div>
+          <div class="pt-14 px-3 pb-3 space-y-2 overflow-y-auto" style="height: calc(100% - 50px); background:#a8c4e0;">
+            <div id="p1Msg1" class="hidden anim-msg flex justify-end">
+              <div class="bg-yellow-200 rounded-2xl rounded-tr-sm px-3 py-2 max-w-[85%]">
+                <div class="text-xs text-amber-900 leading-relaxed">선생님 강의 끝났습니다 🎉</div>
+              </div>
+            </div>
+            <div id="p1Msg2" class="hidden anim-msg flex justify-end">
+              <div class="bg-yellow-200 rounded-2xl rounded-tr-sm overflow-hidden max-w-[85%]">
+                <div class="aspect-square w-44 flex items-center justify-center text-5xl" style="background:linear-gradient(135deg,#FF6B35,#FFB088);">
+                  🤖
+                </div>
+                <div class="px-3 py-1.5 text-[10px] text-amber-900">학생 결과물 사진</div>
+              </div>
+            </div>
+            <div id="p1Msg3" class="hidden anim-msg flex justify-end">
+              <div class="bg-yellow-200 rounded-2xl rounded-tr-sm px-3 py-2 max-w-[85%]">
+                <div class="text-xs text-amber-900 leading-relaxed">오늘 5학년 7명 햄스터 로봇 미로 통과 코드 완성! 다들 너무 잘 해줬어요 👏</div>
+              </div>
+            </div>
+            <div id="p1Msg4" class="hidden anim-msg flex justify-start">
+              <div class="bg-white rounded-2xl rounded-tl-sm px-3 py-2 max-w-[85%] flex items-center gap-2">
+                <div class="w-2 h-2 rounded-full bg-orange-500 pulse-dot"></div>
+                <div class="text-[11px] text-stone-600">자동 발행 시스템 수신 완료</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">📲 강사가 강의 끝나고 결과물 사진 + 한 줄 메모만 카톡 업로드</div>
+    </div>
+
+    <!-- Phase 2: n8n 워크플로우 트리거 -->
+    <div id="flowPhase2" class="flow-phase hidden py-4">
+      <div class="bg-white rounded-2xl p-5 max-w-xl mx-auto shadow-lg border border-stone-200">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="text-xl">⚡</div>
+          <div>
+            <div class="font-semibold text-navy">n8n 자동 워크플로우</div>
+            <div class="text-xs text-stone-500">새 강의 결과물 감지 → 자동 트리거</div>
+          </div>
+          <span class="ml-auto text-xs text-orange-brand pulse-dot">● RUNNING</span>
+        </div>
+        <div class="bg-stone-50 rounded-xl p-4 space-y-3">
+          <div class="flex items-center gap-2">
+            <div id="p2Node1" class="n8n-node opacity-30"><span>📥</span><span>새 강의 결과물 감지</span></div>
+            <div id="p2Line1" class="n8n-line"></div>
+            <div id="p2Node2" class="n8n-node opacity-30"><span>🖼️</span><span>이미지 분석</span></div>
+          </div>
+          <div class="flex items-center gap-2">
+            <div id="p2Node3" class="n8n-node opacity-30"><span>✍️</span><span>AI 칼럼 작성</span></div>
+            <div id="p2Line2" class="n8n-line"></div>
+            <div id="p2Node4" class="n8n-node opacity-30"><span>🌐</span><span>사이트 게시</span></div>
+          </div>
+          <div class="flex items-center gap-2">
+            <div id="p2Node5" class="n8n-node opacity-30"><span>📝</span><span>네이버 블로그 발행</span></div>
+            <div id="p2Line3" class="n8n-line"></div>
+            <div id="p2Node6" class="n8n-node opacity-30"><span>📊</span><span>SEO 노출</span></div>
+          </div>
+        </div>
+        <div id="p2Status" class="mt-3 text-xs text-stone-600 text-center">트리거 대기 중...</div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">⚡ n8n 자동 워크플로우 점화 — 모든 후속 단계 자동 실행</div>
+    </div>
+
+    <!-- Phase 3: AI 칼럼 자동 작성 -->
+    <div id="flowPhase3" class="flow-phase hidden py-4">
+      <div class="bg-white rounded-xl border border-stone-200 max-w-2xl mx-auto overflow-hidden shadow-lg">
+        <div class="bg-stone-100 px-4 py-2 text-xs flex items-center gap-2 border-b">
+          <span>✍️</span>
+          <span class="font-medium text-stone-700">AI 칼럼 작성기 · GPT-4 / Claude</span>
+          <span class="ml-auto text-blue-brand pulse-dot">● 작성 중</span>
+        </div>
+        <div class="p-5">
+          <div class="text-xs text-stone-500 mb-1">📰 제목</div>
+          <div id="p3Title" class="text-lg font-bold text-navy mb-4 min-h-[28px]"></div>
+
+          <div class="text-xs text-stone-500 mb-1">🏷️ 태그</div>
+          <div id="p3Tags" class="flex gap-1.5 flex-wrap mb-4 min-h-[24px]"></div>
+
+          <div class="text-xs text-stone-500 mb-1">📝 본문</div>
+          <div id="p3Body" class="bg-stone-50 rounded-lg p-3 text-xs text-stone-700 leading-relaxed min-h-[100px]"></div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">🤖 AI가 사진·메모 분석 → 학부모 검색 키워드 반영한 칼럼 자동 작성</div>
+    </div>
+
+    <!-- Phase 4: 사이트 자동 게시 -->
+    <div id="flowPhase4" class="flow-phase hidden py-4">
+      <div class="bg-white rounded-xl border border-stone-200 max-w-2xl mx-auto overflow-hidden shadow-lg">
+        <div class="bg-navy text-white px-4 py-2 text-xs flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-red-400"></span>
+          <span class="w-2 h-2 rounded-full bg-yellow-400"></span>
+          <span class="w-2 h-2 rounded-full bg-green-400"></span>
+          <span class="ml-3 text-stone-300 font-mono text-[11px]">busanaicodingschool.com/insight</span>
+          <span class="ml-auto text-orange-brand">🔴 LIVE</span>
+        </div>
+        <div class="bg-cream p-4">
+          <div class="text-center mb-4">
+            <div class="text-[10px] tracking-widest text-orange-brand">INSIGHT</div>
+            <div class="text-lg font-bold text-navy">학생 결과물·강의 후기</div>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div class="bg-white rounded-lg p-2 border border-stone-200">
+              <div class="aspect-video bg-stone-200 rounded mb-1.5 flex items-center justify-center text-2xl">📚</div>
+              <div class="text-[10px] font-semibold text-navy line-clamp-2">사직점 4학년 파이썬 첫 게임 만들기</div>
+              <div class="text-[9px] text-stone-400 mt-0.5">2026-04-20</div>
+            </div>
+            <div class="bg-white rounded-lg p-2 border border-stone-200">
+              <div class="aspect-video bg-stone-200 rounded mb-1.5 flex items-center justify-center text-2xl">🎨</div>
+              <div class="text-[10px] font-semibold text-navy line-clamp-2">금정점 6학년 스크래치 애니메이션</div>
+              <div class="text-[9px] text-stone-400 mt-0.5">2026-04-23</div>
+            </div>
+            <div id="p4NewCard" class="hidden anim-msg col-span-2 bg-white rounded-lg p-3 border-2 anim-glow" style="border-color:var(--orange);">
+              <div class="flex gap-3">
+                <div class="aspect-square w-20 rounded flex items-center justify-center text-3xl flex-shrink-0" style="background:linear-gradient(135deg,#FF6B35,#FFB088);">🤖</div>
+                <div class="flex-1 min-w-0">
+                  <div class="inline-block px-1.5 py-0.5 rounded text-[9px] font-bold mb-1" style="background:var(--orange);color:white;">NEW · 방금 발행</div>
+                  <div class="text-xs font-bold text-navy line-clamp-2">초등 5학년 학생들이 만든 햄스터 로봇 미로 통과 코드</div>
+                  <div class="text-[10px] text-stone-500 mt-1">화명점 · 2026-04-30 · 7명 참여</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">🌐 사이트 인사이트 페이지에 새 칼럼 자동 게시 + 학생 작품 갤러리 갱신</div>
+    </div>
+
+    <!-- Phase 5: 네이버 블로그 동시 발행 -->
+    <div id="flowPhase5" class="flow-phase hidden py-4">
+      <div class="grid sm:grid-cols-2 gap-3 max-w-2xl mx-auto">
+        <div class="bg-white rounded-xl border border-stone-200 overflow-hidden shadow-lg">
+          <div class="bg-green-600 text-white px-3 py-2 text-xs flex items-center gap-2">
+            <span class="font-bold">N</span>
+            <span>네이버 블로그 · 부산AI코딩스쿨</span>
+          </div>
+          <div class="p-3">
+            <div id="p5BlogTitle" class="text-sm font-bold text-stone-800 mb-2 min-h-[40px]">초등 5학년 학생들이 만든 햄스터 로봇 미로 통과 코드</div>
+            <div class="aspect-video rounded mb-2 flex items-center justify-center text-3xl" style="background:linear-gradient(135deg,#FF6B35,#FFB088);">🤖</div>
+            <div class="text-[10px] text-stone-600 leading-relaxed">오늘 부산AI코딩스쿨 화명점에서는 초등 5학년 학생 7명이 햄스터 로봇 미로 통과 코드를...</div>
+            <div class="flex gap-1 mt-2 flex-wrap">
+              <span class="text-[9px] px-1.5 py-0.5 bg-green-50 text-green-700 rounded">#부산코딩학원</span>
+              <span class="text-[9px] px-1.5 py-0.5 bg-green-50 text-green-700 rounded">#화명동코딩</span>
+              <span class="text-[9px] px-1.5 py-0.5 bg-green-50 text-green-700 rounded">#초등로봇코딩</span>
+            </div>
+            <div id="p5Published" class="hidden anim-msg mt-2 text-[10px] text-green-600 font-bold flex items-center gap-1">
+              <span>✓</span><span>발행 완료 — 검색 노출 시작</span>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl border border-stone-200 overflow-hidden shadow-lg">
+          <div class="bg-stone-100 px-3 py-2 text-xs flex items-center gap-2 border-b">
+            <span>📊</span>
+            <span class="font-medium text-stone-700">검색 노출 (네이버)</span>
+          </div>
+          <div class="p-4">
+            <div class="text-[10px] text-stone-500 mb-2">"화명동 코딩학원" 검색 노출</div>
+            <div class="flex items-end gap-1.5 h-32 mb-2">
+              <div id="p5Bar1" class="flex-1 bg-stone-300 rounded-t" style="height:15%"></div>
+              <div id="p5Bar2" class="flex-1 bg-stone-300 rounded-t" style="height:20%"></div>
+              <div id="p5Bar3" class="flex-1 bg-stone-300 rounded-t" style="height:18%"></div>
+              <div id="p5Bar4" class="flex-1 bg-stone-300 rounded-t" style="height:22%"></div>
+              <div id="p5Bar5" class="flex-1 bg-stone-300 rounded-t" style="height:25%"></div>
+              <div id="p5Bar6" class="flex-1 bg-stone-300 rounded-t" style="height:30%"></div>
+              <div id="p5Bar7" class="flex-1 rounded-t transition-all duration-1000" style="height:30%;background:var(--orange);"></div>
+            </div>
+            <div class="text-[10px] text-stone-500 mb-1">최근 7일</div>
+            <div id="p5Boost" class="hidden anim-msg bg-orange-50 border border-orange-200 rounded p-2">
+              <div class="text-[10px] font-bold text-orange-700">↑ 노출 3.2배</div>
+              <div class="text-[9px] text-stone-600">매주 자동 발행 효과 누적</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">📝 네이버 블로그 동시 자동 발행 → 학부모 검색 노출</div>
+    </div>
+
+    <!-- Phase 6: 학부모 등록 문의 도착 -->
+    <div id="flowPhase6" class="flow-phase hidden py-4">
+      <div class="phone-frame">
+        <div class="phone-screen relative" style="background:#FAE100;">
+          <div class="absolute top-0 left-0 right-0 bg-yellow-300 px-4 py-3 flex items-center gap-2 text-xs">
+            <span class="text-amber-900">←</span>
+            <span class="font-semibold text-amber-900">부산AI코딩스쿨 화명점</span>
+            <span class="ml-auto text-amber-700">📞</span>
+          </div>
+          <div id="p6NewBadge" class="hidden anim-notif absolute top-12 left-3 right-3 bg-orange-500 text-white text-center py-1.5 rounded-lg text-xs font-bold z-10">
+            🔔 신규 등록 문의 도착
+          </div>
+          <div class="pt-14 px-3 pb-3 space-y-2 overflow-y-auto" style="height: calc(100% - 50px); background:#a8c4e0;">
+            <div id="p6Msg1" class="hidden anim-msg flex justify-start">
+              <div class="bg-white rounded-2xl rounded-tl-sm px-3 py-2 max-w-[85%]">
+                <div class="text-[10px] text-stone-500 mb-0.5">학부모 (010-****-3829)</div>
+                <div class="text-xs text-stone-700 leading-relaxed">안녕하세요, 어제 인스타에서 햄스터 로봇 글 보고 연락드려요</div>
+              </div>
+            </div>
+            <div id="p6Msg2" class="hidden anim-msg flex justify-start">
+              <div class="bg-white rounded-2xl rounded-tl-sm px-3 py-2 max-w-[85%]">
+                <div class="text-xs text-stone-700 leading-relaxed">우리 아이 5학년인데 등록 가능할까요?</div>
+              </div>
+            </div>
+            <div id="p6Msg3" class="hidden anim-msg flex justify-start">
+              <div class="bg-white rounded-2xl rounded-tl-sm px-3 py-2 max-w-[85%]">
+                <div class="text-xs text-stone-700 leading-relaxed">화명동 사는데 토요일 가능 시간대 있나요?</div>
+              </div>
+            </div>
+            <div id="p6Msg4" class="hidden anim-msg flex justify-end">
+              <div class="bg-yellow-200 rounded-2xl rounded-tr-sm px-3 py-2 max-w-[85%]">
+                <div class="text-xs text-amber-900 leading-relaxed">네 안녕하세요! 5학년 토요일반 자리 있습니다 😊</div>
+              </div>
+            </div>
+            <div id="p6Msg5" class="hidden anim-msg flex justify-end">
+              <div class="bg-yellow-200 rounded-2xl rounded-tr-sm px-3 py-2 max-w-[85%]">
+                <div class="text-xs text-amber-900 leading-relaxed">이번 주 토요일 무료 체험 가능하신데, 어떠세요?</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">📞 칼럼 발행 → SEO 노출 → 학부모 신규 등록 문의 자동 도착</div>
+    </div>
+
+    <!-- Ending -->
+    <div id="flowEnding" class="hidden py-6 text-center">
+      <div class="text-5xl mb-3">✅</div>
+      <div class="text-2xl font-bold text-navy mb-2">강의 끝 → 15초, 발행·문의까지 완료</div>
+      <div class="text-stone-600 mb-6">강사는 수업·결과물 사진만, AI가 칼럼 작성·사이트·블로그·SEO 다 처리</div>
+      <div class="bg-paper rounded-2xl p-5 inline-block max-w-2xl">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-sm">
+          <div>
+            <div class="text-xl font-bold text-navy">30분→자동</div>
+            <div class="text-xs text-stone-500 mt-1">칼럼 작성</div>
+          </div>
+          <div>
+            <div class="text-xl font-bold" style="color:var(--blue)">1개→2개</div>
+            <div class="text-xs text-stone-500 mt-1">사이트+블로그</div>
+          </div>
+          <div>
+            <div class="text-xl font-bold text-orange-brand">수동→매주</div>
+            <div class="text-xs text-stone-500 mt-1">결과물 노출</div>
+          </div>
+          <div>
+            <div class="text-xl font-bold" style="color:#9a3412">월 N건→자동</div>
+            <div class="text-xs text-stone-500 mt-1">학부모 문의</div>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-stone-300 text-xs text-stone-600 leading-relaxed">
+          <strong class="text-navy">강사가 하는 것</strong>: 수업 + 결과물 사진 카톡 (단 2가지)<br>
+          <strong class="text-orange-brand">AI가 하는 것</strong>: 이미지 분석 · 칼럼 작성 · 사이트 게시 · 네이버 블로그 발행 · SEO · 학부모 응대 깔때기
+        </div>
+      </div>
+      <div class="mt-5 text-sm text-navy font-semibold italic">"강사는 수업에 집중. 학원 마케팅·후기 콘텐츠는 AI가 매주 자동."</div>
+      <div class="mt-6 flex gap-2 justify-center flex-wrap">
+        <button id="replayFlow" class="bg-navy text-white px-5 py-2.5 rounded-xl font-medium">🔁 다시 보기</button>
+        <button id="closeFlowEnd" class="bg-stone-200 text-stone-700 px-5 py-2.5 rounded-xl font-medium">페이지로 이동 →</button>
+      </div>
+      <p class="mt-4 text-xs text-stone-400">비슷한 학원·교육기관 콘텐츠 자동화 의뢰 → <a href="https://busan-ailab.vercel.app" target="_blank" class="underline">busan-ailab.vercel.app</a> · 담당 김진완 010-9825-8816</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const flowOverlay = document.getElementById('flowOverlay');
+const flowTitle = document.getElementById('flowTitle');
+const phases = ['flowPhase1','flowPhase2','flowPhase3','flowPhase4','flowPhase5','flowPhase6','flowEnding'];
+const dots = ['flowDot1','flowDot2','flowDot3','flowDot4','flowDot5','flowDot6'];
+
+function showPhase(idx) {
+  phases.forEach(id => document.getElementById(id).classList.add('hidden'));
+  if (idx < phases.length) document.getElementById(phases[idx]).classList.remove('hidden');
+  dots.forEach((id, i) => {
+    const el = document.getElementById(id);
+    el.style.background = i < idx + 1 ? 'var(--navy)' : '#d6d3d1';
+    el.style.transform = i === idx ? 'scale(1.5)' : 'scale(1)';
+  });
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+async function typeInto(el, text, ms) {
+  el.textContent = '';
+  for (const ch of text) { el.textContent += ch; await sleep(ms); }
+}
+
+async function playFlow() {
+  flowOverlay.classList.remove('hidden');
+  flowOverlay.classList.add('flex');
+
+  // Phase 1: 강사 사진·메모 카톡 업로드 (~1.5s)
+  flowTitle.textContent = '① 강사가 결과물 사진·메모 카톡 업로드';
+  showPhase(0);
+  ['p1Msg1','p1Msg2','p1Msg3','p1Msg4'].forEach(id => document.getElementById(id).classList.add('hidden'));
+  await sleep(300);
+  document.getElementById('p1Msg1').classList.remove('hidden');
+  await sleep(350);
+  document.getElementById('p1Msg2').classList.remove('hidden');
+  await sleep(400);
+  document.getElementById('p1Msg3').classList.remove('hidden');
+  await sleep(350);
+  document.getElementById('p1Msg4').classList.remove('hidden');
+  await sleep(500);
+
+  // Phase 2: n8n 트리거 (~1.5s)
+  flowTitle.textContent = '② n8n 자동 워크플로우 트리거';
+  showPhase(1);
+  const nodes = ['p2Node1','p2Node2','p2Node3','p2Node4','p2Node5','p2Node6'];
+  const lines = ['p2Line1','p2Line2','p2Line3'];
+  nodes.forEach(id => { const el = document.getElementById(id); el.classList.add('opacity-30'); el.classList.remove('active'); });
+  lines.forEach(id => document.getElementById(id).classList.remove('active'));
+  document.getElementById('p2Status').textContent = '📥 새 강의 결과물 감지...';
+  await sleep(300);
+  // 첫 노드 점화
+  document.getElementById('p2Node1').classList.remove('opacity-30');
+  document.getElementById('p2Node1').classList.add('active');
+  await sleep(200);
+  document.getElementById('p2Line1').classList.add('active');
+  await sleep(150);
+  document.getElementById('p2Node2').classList.remove('opacity-30');
+  document.getElementById('p2Node2').classList.add('active');
+  await sleep(200);
+  document.getElementById('p2Node3').classList.remove('opacity-30');
+  document.getElementById('p2Node3').classList.add('active');
+  await sleep(150);
+  document.getElementById('p2Line2').classList.add('active');
+  await sleep(150);
+  document.getElementById('p2Node4').classList.remove('opacity-30');
+  document.getElementById('p2Node4').classList.add('active');
+  await sleep(150);
+  document.getElementById('p2Node5').classList.remove('opacity-30');
+  document.getElementById('p2Node5').classList.add('active');
+  await sleep(150);
+  document.getElementById('p2Line3').classList.add('active');
+  await sleep(100);
+  document.getElementById('p2Node6').classList.remove('opacity-30');
+  document.getElementById('p2Node6').classList.add('active');
+  document.getElementById('p2Status').textContent = '⚡ 모든 노드 활성화 — 자동 처리 중';
+  await sleep(400);
+
+  // Phase 3: AI 칼럼 작성 (~3s)
+  flowTitle.textContent = '③ AI가 칼럼 자동 작성';
+  showPhase(2);
+  const p3Title = document.getElementById('p3Title');
+  const p3Tags = document.getElementById('p3Tags');
+  const p3Body = document.getElementById('p3Body');
+  p3Title.textContent = '';
+  p3Tags.innerHTML = '';
+  p3Body.textContent = '';
+  await sleep(300);
+  p3Title.classList.add('cursor-blink');
+  await typeInto(p3Title, '초등 5학년 학생들이 만든 햄스터 로봇 미로 통과 코드', 30);
+  p3Title.classList.remove('cursor-blink');
+  await sleep(200);
+  // 태그
+  const tags = ['#부산코딩학원', '#화명동코딩', '#초등로봇코딩', '#햄스터로봇', '#5학년코딩'];
+  for (const tag of tags) {
+    const span = document.createElement('span');
+    span.className = 'anim-msg text-[10px] px-2 py-0.5 bg-blue-50 text-blue-700 rounded-full';
+    span.textContent = tag;
+    p3Tags.appendChild(span);
+    await sleep(120);
+  }
+  await sleep(200);
+  // 본문
+  p3Body.classList.add('cursor-blink');
+  await typeInto(p3Body, '오늘 부산AI코딩스쿨 화명점에서는 초등 5학년 학생 7명이 햄스터 로봇으로 미로 통과 코드를 완성했습니다. 학생들은 직접 알고리즘을 설계하고...', 18);
+  p3Body.classList.remove('cursor-blink');
+  await sleep(500);
+
+  // Phase 4: 사이트 자동 게시 (~2s)
+  flowTitle.textContent = '④ 사이트 자동 게시 (busanaicodingschool.com/insight)';
+  showPhase(3);
+  document.getElementById('p4NewCard').classList.add('hidden');
+  await sleep(700);
+  document.getElementById('p4NewCard').classList.remove('hidden');
+  await sleep(1100);
+
+  // Phase 5: 네이버 블로그 동시 발행 + SEO 그래프 (~2s)
+  flowTitle.textContent = '⑤ 네이버 블로그 동시 자동 발행';
+  showPhase(4);
+  document.getElementById('p5Published').classList.add('hidden');
+  document.getElementById('p5Boost').classList.add('hidden');
+  // 그래프 리셋
+  document.getElementById('p5Bar7').style.height = '30%';
+  await sleep(600);
+  document.getElementById('p5Published').classList.remove('hidden');
+  await sleep(400);
+  // 마지막 막대 자라남 (검색 노출 급증)
+  document.getElementById('p5Bar7').style.height = '92%';
+  await sleep(500);
+  document.getElementById('p5Boost').classList.remove('hidden');
+  await sleep(700);
+
+  // Phase 6: 학부모 등록 문의 (~3s)
+  flowTitle.textContent = '⑥ 학부모 신규 등록 문의 도착';
+  showPhase(5);
+  ['p6Msg1','p6Msg2','p6Msg3','p6Msg4','p6Msg5','p6NewBadge'].forEach(id => document.getElementById(id).classList.add('hidden'));
+  await sleep(300);
+  document.getElementById('p6NewBadge').classList.remove('hidden');
+  await sleep(450);
+  document.getElementById('p6Msg1').classList.remove('hidden');
+  await sleep(450);
+  document.getElementById('p6Msg2').classList.remove('hidden');
+  await sleep(400);
+  document.getElementById('p6Msg3').classList.remove('hidden');
+  await sleep(500);
+  document.getElementById('p6Msg4').classList.remove('hidden');
+  await sleep(400);
+  document.getElementById('p6Msg5').classList.remove('hidden');
+  await sleep(900);
+
+  // Ending
+  flowTitle.textContent = '✨ 콘텐츠 자동화 완료';
+  showPhase(6);
+  dots.forEach(id => document.getElementById(id).style.background = 'var(--orange)');
+}
+
+document.getElementById('playFlowBtn').addEventListener('click', playFlow);
+document.getElementById('replayFlow').addEventListener('click', playFlow);
+document.getElementById('closeFlow').addEventListener('click', () => {
+  flowOverlay.classList.add('hidden'); flowOverlay.classList.remove('flex');
+});
+document.getElementById('closeFlowEnd').addEventListener('click', () => {
+  flowOverlay.classList.add('hidden'); flowOverlay.classList.remove('flex');
+  document.querySelector('section').scrollIntoView({ behavior: 'smooth' });
+});
+
+const params = new URLSearchParams(location.search);
+if (params.get('autoplay') === '1') {
+  setTimeout(() => playFlow(), 800);
+}
+</script>
+
+</body>
+</html>

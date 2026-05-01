@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>소녀방앗간 케이터링 — 자동견적 데모</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+  :root {
+    --brand-navy: #27397d;
+    --brand-navy-deep: #1d2d6a;
+    --brand-teal: #076362;
+    --brand-brown: #2d1c17;
+    --brand-cream: #faf7f2;
+    --brand-paper: #f4ede2;
+  }
+  body { font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; background: var(--brand-cream); color: var(--brand-brown); }
+  .brand-navy { color: var(--brand-navy); }
+  .bg-navy { background: var(--brand-navy); }
+  .bg-navy-deep { background: var(--brand-navy-deep); }
+  .bg-teal { background: var(--brand-teal); }
+  .bg-cream { background: var(--brand-cream); }
+  .bg-paper { background: var(--brand-paper); }
+  .border-navy { border-color: var(--brand-navy); }
+  .ring-navy { --tw-ring-color: var(--brand-navy); }
+  @keyframes slideInRow { from { opacity: 0; transform: translateY(-8px); background: #fef9c3; } to { opacity: 1; transform: translateY(0); background: white; } }
+  @keyframes slideInMsg { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  @keyframes typing { from { width: 0 } to { width: 100% } }
+  @keyframes fingerTap { 0% { transform: translate(-50%, -50%) scale(1); opacity: 0.9 } 50% { transform: translate(-50%, -50%) scale(0.85); opacity: 1 } 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9 } }
+  @keyframes ripple { 0% { transform: translate(-50%, -50%) scale(0); opacity: 0.6 } 100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0 } }
+  @keyframes phoneShake { 0%, 100% { transform: translateX(0) } 25% { transform: translateX(-4px) } 75% { transform: translateX(4px) } }
+  @keyframes notifSlideDown { from { transform: translateY(-100%); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
+  .anim-row { animation: slideInRow 1.5s ease forwards; }
+  .anim-msg { animation: slideInMsg 0.6s ease forwards; }
+  .pulse-dot { animation: pulse-dot 1.5s ease-in-out infinite; }
+  .anim-typing { overflow: hidden; white-space: nowrap; animation: typing 1.2s steps(30, end) forwards; }
+  .anim-finger { animation: fingerTap 0.6s ease-in-out 2; }
+  .anim-ripple { animation: ripple 0.8s ease-out forwards; }
+  .anim-phone-shake { animation: phoneShake 0.4s ease-in-out 2; }
+  .anim-notif { animation: notifSlideDown 0.5s ease forwards; }
+  .phone-frame {
+    width: 280px; height: 560px; background: #1a1a1a; border-radius: 36px; padding: 10px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); margin: 0 auto;
+  }
+  .phone-screen { width: 100%; height: 100%; background: white; border-radius: 28px; overflow: hidden; position: relative; }
+  .kakao-bg { background: #b2c7d9; }
+  .kakao-bubble-receive { background: white; border-radius: 0 14px 14px 14px; padding: 10px 12px; max-width: 80%; box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+  .sheet-grid { background: linear-gradient(to right, #e5e7eb 1px, transparent 1px), linear-gradient(to bottom, #e5e7eb 1px, transparent 1px); background-size: 100px 32px; }
+  @media print {
+    .no-print { display: none !important; }
+    body { background: white; }
+    .print-section { box-shadow: none; border: none; }
+  }
+</style>
+</head>
+<body class="min-h-screen">
+
+<!-- 데모 안내 배너 -->
+<div class="bg-navy text-white text-center py-2 text-sm no-print">
+  ☘️ 이 페이지는 <strong>송병근 컨설턴트가 만든 자동견적 데모</strong>입니다 · 실제 신청은 접수되지 않으며 시뮬레이션만 보여줍니다
+</div>
+
+<div class="max-w-4xl mx-auto px-4 py-10">
+
+  <!-- 헤더 -->
+  <header class="mb-8 text-center no-print">
+    <div class="inline-block px-3 py-1 rounded-full bg-paper text-xs tracking-widest mb-4" style="color:var(--brand-teal)">MILL COMPANY · CATERING</div>
+    <h1 class="text-4xl font-bold brand-navy">소녀방앗간 케이터링</h1>
+    <p class="mt-3 text-stone-600">청정 지역 장인들이 해마다 수확한 청정 재료로<br>인원과 메뉴에 맞춰 즉시 견적을 안내해드립니다.</p>
+  </header>
+
+  <!-- 🎬 전체 흐름 자동 재생 CTA -->
+  <div class="text-center mb-10 no-print">
+    <button id="playFlowBtn" class="bg-navy hover:bg-navy-deep text-white px-8 py-4 rounded-2xl font-medium shadow-lg transform hover:scale-105 transition">
+      🎬 풀 자동화 사이클 보기 <span class="text-xs opacity-75 ml-1">(약 17초)</span>
+    </button>
+    <p class="text-xs text-stone-500 mt-3">신청 → 엑셀 → 알림 → 통화·STT → AI 자동작성 → 검토·승인 → 카톡 발송 → 채널톡 연결</p>
+  </div>
+
+  <!-- 입력 폼 -->
+  <section class="bg-white rounded-3xl shadow-sm p-7 mb-6 no-print border border-stone-100">
+    <div class="flex items-center gap-2 mb-5">
+      <div class="w-1 h-6 bg-navy rounded-full"></div>
+      <h2 class="text-xl font-semibold brand-navy">행사 정보</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <label class="block">
+        <span class="text-sm text-stone-600">행사일</span>
+        <input id="eventDate" type="date" class="mt-1 w-full rounded-xl border-stone-200 border p-2.5 focus:ring-2 ring-navy focus:border-transparent">
+      </label>
+      <label class="block">
+        <span class="text-sm text-stone-600">인원 (명)</span>
+        <input id="people" type="number" min="1" placeholder="예: 50" class="mt-1 w-full rounded-xl border-stone-200 border p-2.5 focus:ring-2 ring-navy focus:border-transparent">
+      </label>
+      <label class="block md:col-span-2">
+        <span class="text-sm text-stone-600">배송지</span>
+        <input id="address" type="text" placeholder="서울 강남구 OO빌딩 OO호" class="mt-1 w-full rounded-xl border-stone-200 border p-2.5 focus:ring-2 ring-navy focus:border-transparent">
+      </label>
+      <label class="block">
+        <span class="text-sm text-stone-600">담당자명</span>
+        <input id="contact" type="text" placeholder="홍길동" class="mt-1 w-full rounded-xl border-stone-200 border p-2.5 focus:ring-2 ring-navy focus:border-transparent">
+      </label>
+      <label class="block">
+        <span class="text-sm text-stone-600">연락처</span>
+        <input id="phone" type="tel" placeholder="010-0000-0000" class="mt-1 w-full rounded-xl border-stone-200 border p-2.5 focus:ring-2 ring-navy focus:border-transparent">
+      </label>
+      <label class="block md:col-span-2">
+        <span class="text-sm text-stone-600">요청사항 (알레르기 · 비건 · VIP 행사 등)</span>
+        <textarea id="memo" rows="2" placeholder="비건 2명 / 새우 알레르기 1명" class="mt-1 w-full rounded-xl border-stone-200 border p-2.5 focus:ring-2 ring-navy focus:border-transparent"></textarea>
+      </label>
+    </div>
+  </section>
+
+  <!-- 메뉴 선택 -->
+  <section class="bg-white rounded-3xl shadow-sm p-7 mb-6 no-print border border-stone-100">
+    <div class="flex items-center gap-2 mb-5">
+      <div class="w-1 h-6 bg-navy rounded-full"></div>
+      <h2 class="text-xl font-semibold brand-navy">메뉴 선택</h2>
+      <span class="text-xs text-stone-400 ml-2">* 데모용 메뉴 10종 · 실제 200여 종 운영 중</span>
+    </div>
+    <div id="menuGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+  </section>
+
+  <!-- 견적 요약 -->
+  <section class="bg-paper rounded-3xl p-7 mb-6 no-print">
+    <div class="flex items-center gap-2 mb-4">
+      <div class="w-1 h-6 bg-teal rounded-full"></div>
+      <h2 class="text-xl font-semibold brand-navy">실시간 자동 견적</h2>
+    </div>
+    <div id="quoteSummary" class="text-stone-600">
+      메뉴와 인원을 선택하시면 견적이 자동 계산됩니다.
+    </div>
+    <div class="mt-6 flex gap-2 flex-wrap">
+      <button id="generateBtn" class="bg-navy hover:bg-navy-deep text-white px-6 py-3 rounded-xl font-medium shadow-sm">📄 견적서 생성</button>
+      <button id="printBtn" class="bg-stone-700 hover:bg-stone-800 text-white px-6 py-3 rounded-xl font-medium">🖨️ PDF 다운로드</button>
+      <button id="submitBtn" class="bg-teal hover:opacity-90 text-white px-6 py-3 rounded-xl font-medium shadow-sm">📤 신청 접수 (시뮬레이션)</button>
+    </div>
+  </section>
+
+  <!-- 견적서 미리보기 -->
+  <section id="quoteSheet" class="print-section bg-white rounded-3xl shadow-sm p-9 mb-6 hidden">
+    <div class="border-b-4 pb-5 mb-7" style="border-color:var(--brand-navy)">
+      <div class="flex justify-between items-start">
+        <div>
+          <h1 class="text-3xl font-bold brand-navy">케이터링 견적서</h1>
+          <p class="text-stone-500 mt-1 tracking-wide">소녀방앗간 · MILL COMPANY</p>
+        </div>
+        <div class="text-right text-sm text-stone-500">
+          <div>견적번호 <span id="quoteNo" class="font-medium text-stone-700"></span></div>
+          <div>발행일 <span id="issueDate" class="font-medium text-stone-700"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-6 mb-6 text-sm">
+      <div>
+        <h3 class="font-semibold brand-navy mb-2">📍 행사 정보</h3>
+        <div class="space-y-1 text-stone-700">
+          <div>행사일: <span id="qEventDate"></span></div>
+          <div>인원: <span id="qPeople"></span>명</div>
+          <div>배송지: <span id="qAddress"></span></div>
+        </div>
+      </div>
+      <div>
+        <h3 class="font-semibold brand-navy mb-2">👤 담당자</h3>
+        <div class="space-y-1 text-stone-700">
+          <div>이름: <span id="qContact"></span></div>
+          <div>연락처: <span id="qPhone"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <table class="w-full mb-6">
+      <thead class="bg-paper">
+        <tr class="text-left text-sm" style="color:var(--brand-navy)">
+          <th class="p-3">메뉴</th>
+          <th class="p-3 text-right">단가</th>
+          <th class="p-3 text-right">인원</th>
+          <th class="p-3 text-right">금액</th>
+        </tr>
+      </thead>
+      <tbody id="qMenuRows" class="text-sm text-stone-700"></tbody>
+    </table>
+
+    <div class="border-t pt-4 space-y-2 text-stone-700">
+      <div class="flex justify-between"><span>식음료 합계</span><span id="qSubtotal"></span></div>
+      <div class="flex justify-between"><span>배송비 (<span id="qZone"></span>)</span><span id="qDelivery"></span></div>
+      <div class="flex justify-between text-2xl font-bold border-t pt-3 mt-2" style="color:var(--brand-navy)">
+        <span>총 견적 금액</span><span id="qTotal"></span>
+      </div>
+    </div>
+
+    <div id="qMemoBlock" class="mt-6 p-4 bg-paper rounded-xl text-sm text-stone-700 hidden">
+      <strong style="color:var(--brand-teal)">요청사항:</strong> <span id="qMemo"></span>
+    </div>
+
+    <div class="mt-8 text-xs text-stone-400 border-t pt-4 leading-relaxed">
+      <p>※ 본 견적은 자동 산출되었으며, 메뉴 커스터마이징·당일 추가 등에 따라 최종 금액이 변동될 수 있습니다.</p>
+      <p>※ 정식 계약은 담당자 확인 후 확정됩니다 · 문의: 소녀방앗간 케이터링팀</p>
+    </div>
+  </section>
+
+  <!-- 🎬 시뮬레이션 섹션 -->
+  <section id="simSection" class="bg-white rounded-3xl shadow-sm p-7 mb-6 hidden no-print border-2 border-dashed" style="border-color:var(--brand-teal)">
+    <div class="flex items-center gap-2 mb-5">
+      <div class="w-1 h-6 bg-teal rounded-full"></div>
+      <h2 class="text-xl font-semibold brand-navy">🎬 자동 처리 시뮬레이션</h2>
+      <span class="text-xs px-2 py-1 rounded ml-2" style="background:var(--brand-paper);color:var(--brand-teal)">DEMO</span>
+    </div>
+    <p class="text-sm text-stone-500 mb-6">
+      실제 시스템에서는 신청 접수 즉시 아래 두 단계가 <strong>자동</strong>으로 진행됩니다.
+      현재는 시각화를 위해 동작을 보여드립니다.
+    </p>
+
+    <!-- 진행 상태 -->
+    <div id="simStatus" class="text-sm font-medium mb-6 text-center brand-navy"></div>
+
+    <!-- 단계 1: 구글 시트 -->
+    <div id="simStep1" class="mb-6 hidden">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="text-2xl">📊</span>
+        <span class="font-semibold brand-navy">Step 1 — 구글 시트에 자동 적재</span>
+      </div>
+      <div class="bg-stone-50 rounded-xl p-4 border border-stone-200 overflow-x-auto">
+        <div class="text-xs text-stone-500 mb-2">📁 소녀방앗간_케이터링_접수.xlsx · 시트1</div>
+        <table class="w-full text-xs">
+          <thead>
+            <tr style="background:#e7eaf6;color:var(--brand-navy)" class="text-left">
+              <th class="p-2 font-semibold">신청일시</th>
+              <th class="p-2 font-semibold">행사일</th>
+              <th class="p-2 font-semibold">인원</th>
+              <th class="p-2 font-semibold">메뉴</th>
+              <th class="p-2 font-semibold">예산</th>
+              <th class="p-2 font-semibold">연락처</th>
+              <th class="p-2 font-semibold">담당자</th>
+              <th class="p-2 font-semibold">상태</th>
+            </tr>
+          </thead>
+          <tbody id="simSheetRows" class="text-stone-700"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 단계 2: 카카오톡 알림 -->
+    <div id="simStep2" class="mb-6 hidden">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="text-2xl">📱</span>
+        <span class="font-semibold brand-navy">Step 2 — 김민영 대표님 카카오톡 즉시 알림</span>
+      </div>
+      <div class="kakao-bg rounded-xl p-4 max-w-md mx-auto">
+        <div class="bg-white rounded-lg p-3 mb-2 flex items-center gap-2 text-xs text-stone-500 border-b">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold" style="background:#fee500">카톡</div>
+          <div>
+            <div class="font-semibold text-stone-700 text-sm">소녀방앗간 알림톡</div>
+            <div class="text-xs text-stone-400">알림톡 채널 · 자동 발송</div>
+          </div>
+        </div>
+        <div id="simTelegramMsg" class="kakao-bubble-receive text-sm text-stone-700 hidden anim-msg"></div>
+      </div>
+    </div>
+
+    <!-- 완료 -->
+    <div id="simComplete" class="hidden text-center py-6 border-t border-stone-200 mt-4">
+      <div class="text-3xl mb-2">✅</div>
+      <div class="text-lg font-semibold brand-navy mb-1">모든 처리 완료</div>
+      <div class="text-sm text-stone-500">신청 접수 → 시트 적재 → 알림 발송 · <strong>총 2.5초</strong></div>
+      <div class="mt-4 p-4 rounded-xl text-sm" style="background:var(--brand-paper);color:var(--brand-brown)">
+        <strong>예상 효과:</strong> 신청 정리 월 약 10시간 → 0시간 · 누락 0건 · 응답 24시간+ → 즉시
+      </div>
+    </div>
+  </section>
+
+  <footer class="mt-16 text-center text-xs text-stone-400 no-print leading-relaxed">
+    <p>소녀방앗간 케이터링 자동견적 데모 v1 · 2026-04</p>
+    <p class="mt-1">제작: 송병근 · 유디임팩트 AX 컨설턴트 코호트 #1</p>
+  </footer>
+
+</div>
+
+<!-- 🎬 풀스크린 자동 재생 오버레이 -->
+<div id="flowOverlay" class="fixed inset-0 bg-black/85 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+  <div class="bg-cream rounded-3xl max-w-3xl w-full p-6 sm:p-8 relative max-h-[95vh] overflow-y-auto">
+    <button id="closeFlow" class="absolute top-4 right-5 text-stone-400 hover:text-stone-700 text-2xl leading-none">✕</button>
+
+    <!-- 진행 헤더 -->
+    <div class="text-center mb-5">
+      <div class="text-xs tracking-widest text-stone-500">SONYEOBANGATGAN · AUTOMATION FLOW</div>
+      <div id="flowTitle" class="text-2xl font-semibold mt-2 brand-navy">손님이 케이터링 신청서를 누릅니다</div>
+      <div class="flex items-center justify-center gap-1.5 mt-3">
+        <div id="flowDot1" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot2" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot3" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot4" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot5" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot6" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot7" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot8" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+      </div>
+    </div>
+
+    <!-- Phase 1: 손님 모바일 신청 -->
+    <div id="flowPhase1" class="flow-phase hidden py-4">
+      <div class="phone-frame relative">
+        <div class="phone-screen relative">
+          <!-- 상단바 -->
+          <div class="bg-white px-5 pt-3 pb-2 text-xs flex justify-between text-stone-700">
+            <span>9:41</span><span>•••</span>
+          </div>
+          <!-- 페이지 헤더 -->
+          <div class="px-5 pt-2 pb-3 border-b border-stone-100">
+            <div class="text-xs tracking-widest" style="color:var(--brand-teal)">MILL COMPANY</div>
+            <div class="font-bold mt-0.5" style="color:var(--brand-navy)">소녀방앗간 케이터링</div>
+          </div>
+          <!-- 폼 영역 -->
+          <div class="p-5 space-y-3">
+            <div>
+              <div class="text-xs text-stone-500 mb-1">행사일</div>
+              <div id="p1Date" class="bg-stone-100 rounded-lg p-2.5 text-sm h-9 overflow-hidden"></div>
+            </div>
+            <div>
+              <div class="text-xs text-stone-500 mb-1">인원</div>
+              <div id="p1People" class="bg-stone-100 rounded-lg p-2.5 text-sm h-9 overflow-hidden"></div>
+            </div>
+            <div>
+              <div class="text-xs text-stone-500 mb-1">연락처</div>
+              <div id="p1Phone" class="bg-stone-100 rounded-lg p-2.5 text-sm h-9 overflow-hidden"></div>
+            </div>
+            <div class="pt-3 relative">
+              <button id="p1SubmitBtn" class="w-full bg-navy text-white py-3 rounded-xl font-medium relative overflow-hidden">
+                케이터링 신청하기
+                <span id="p1Ripple" class="absolute hidden w-4 h-4 bg-white/40 rounded-full" style="top:50%;left:50%"></span>
+              </button>
+              <!-- 손가락 -->
+              <div id="p1Finger" class="absolute hidden text-4xl pointer-events-none" style="top:50%;left:50%;transform:translate(-50%,-50%);filter:drop-shadow(0 4px 8px rgba(0,0,0,0.3))">👆</div>
+            </div>
+            <div id="p1Toast" class="hidden bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm rounded-lg p-2.5 text-center anim-msg">
+              ✓ 신청이 접수되었습니다
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 2: 구글 시트 자동 적재 -->
+    <div id="flowPhase2" class="flow-phase hidden py-4">
+      <div class="bg-white rounded-xl border border-stone-200 shadow-lg overflow-hidden max-w-2xl mx-auto">
+        <!-- 시트 툴바 -->
+        <div class="bg-stone-100 px-4 py-2 border-b border-stone-200 flex items-center gap-2 text-xs">
+          <span class="text-base">📊</span>
+          <span class="font-medium text-stone-700">소녀방앗간_케이터링_접수.xlsx</span>
+          <span class="text-stone-400 ml-auto">자동 저장 중 ●</span>
+        </div>
+        <!-- 시트 본문 -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs">
+            <thead>
+              <tr style="background:#e7eaf6;color:var(--brand-navy)" class="text-left">
+                <th class="p-2 font-semibold whitespace-nowrap">신청일시</th>
+                <th class="p-2 font-semibold whitespace-nowrap">행사일</th>
+                <th class="p-2 font-semibold whitespace-nowrap">인원</th>
+                <th class="p-2 font-semibold whitespace-nowrap">메뉴</th>
+                <th class="p-2 font-semibold whitespace-nowrap">예산</th>
+                <th class="p-2 font-semibold whitespace-nowrap">연락처</th>
+                <th class="p-2 font-semibold whitespace-nowrap">상태</th>
+              </tr>
+            </thead>
+            <tbody id="p2SheetRows" class="text-stone-700">
+              <tr class="border-b border-stone-100"><td class="p-2">2026-04-25 14:30</td><td class="p-2">2026-05-08</td><td class="p-2">30명</td><td class="p-2">한식 도시락</td><td class="p-2">540,000원</td><td class="p-2">010-***-1234</td><td class="p-2"><span class="px-2 py-0.5 rounded text-xs bg-emerald-50 text-emerald-700">완료</span></td></tr>
+              <tr class="border-b border-stone-100"><td class="p-2">2026-04-27 09:15</td><td class="p-2">2026-05-12</td><td class="p-2">80명</td><td class="p-2">한식 뷔페</td><td class="p-2">2,030,000원</td><td class="p-2">010-***-5678</td><td class="p-2"><span class="px-2 py-0.5 rounded text-xs bg-amber-50 text-amber-700">진행중</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">
+        💡 새 신청이 들어오자마자 <strong>자동으로 새 행이 추가</strong>됩니다
+      </div>
+    </div>
+
+    <!-- Phase 3: 카카오톡 알림 -->
+    <div id="flowPhase3" class="flow-phase hidden py-4">
+      <div class="phone-frame relative">
+        <div class="phone-screen relative kakao-bg">
+          <!-- 알림 (상단 슬라이드) -->
+          <div id="p3Notif" class="hidden absolute top-2 left-2 right-2 bg-white/95 backdrop-blur rounded-xl p-3 shadow-lg z-10 anim-notif">
+            <div class="flex items-start gap-2">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0" style="background:#fee500">카톡</div>
+              <div class="flex-1 min-w-0">
+                <div class="flex justify-between items-center">
+                  <span class="text-xs font-semibold text-stone-700">소녀방앗간 알림톡</span>
+                  <span class="text-xs text-stone-400">지금</span>
+                </div>
+                <div class="text-xs text-stone-600 truncate mt-0.5">🍱 새 케이터링 신청이 접수되었습니다</div>
+              </div>
+            </div>
+          </div>
+          <!-- 카톡 채팅방 헤더 -->
+          <div class="bg-white px-4 pt-3 pb-2 border-b border-stone-100 flex items-center gap-2 text-sm">
+            <span class="text-stone-700">←</span>
+            <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs" style="background:#fee500">🍱</div>
+            <div class="flex-1">
+              <div class="font-semibold text-stone-800 text-sm">소녀방앗간 알림톡</div>
+              <div class="text-xs text-stone-400">알림톡 채널</div>
+            </div>
+          </div>
+          <!-- 채팅 영역 -->
+          <div class="kakao-bg p-3 space-y-2 h-[400px] overflow-y-auto">
+            <div class="text-center text-xs text-stone-500 py-1">2026년 4월 30일</div>
+            <div id="p3Bubble" class="hidden anim-msg">
+              <div class="kakao-bubble-receive">
+                <div class="font-semibold text-sm mb-2" style="color:var(--brand-navy)">🍱 새 케이터링 신청</div>
+                <div class="text-xs space-y-1 text-stone-700 leading-relaxed">
+                  <div>📅 행사일: <strong id="p3Date">-</strong></div>
+                  <div>👥 인원: <strong id="p3People">-</strong></div>
+                  <div>🍽️ 메뉴: <strong id="p3Menu">-</strong></div>
+                  <div>💰 견적: <strong id="p3Total">-</strong></div>
+                  <div>📞 연락처: <span id="p3Phone">-</span></div>
+                </div>
+                <div class="mt-2 pt-2 border-t border-stone-100 text-xs text-stone-400">자동 발송 · 2026-04-30</div>
+              </div>
+              <div class="text-xs text-stone-500 mt-1 ml-1">방금 전</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">
+        📱 김민영 대표님 카카오톡으로 <strong>즉시 알림 도착</strong>
+      </div>
+    </div>
+
+    <!-- Phase 4: 김민영 대표 → 손님 전화 상담 + STT 자동 녹음 -->
+    <div id="flowPhase4" class="flow-phase hidden py-4">
+      <div class="phone-frame relative">
+        <div class="phone-screen relative" style="background:linear-gradient(180deg,#1a1a1a 0%,#27397d 100%);">
+          <!-- 녹음 표시 -->
+          <div class="absolute top-3 left-3 right-3 flex items-center justify-between text-xs text-white/90 bg-red-600/90 backdrop-blur rounded-full px-3 py-1.5">
+            <span class="flex items-center gap-1.5"><span class="w-2 h-2 bg-white rounded-full pulse-dot"></span> 🎙️ STT 자동 녹음 중</span>
+            <span class="font-mono">REC</span>
+          </div>
+          <!-- 통화 화면 -->
+          <div class="text-white text-center pt-14 pb-6 px-5">
+            <div class="text-xs tracking-widest opacity-70">전화 상담 중</div>
+            <div class="w-24 h-24 rounded-full mx-auto mt-6 mb-4 flex items-center justify-center text-4xl" style="background:rgba(255,255,255,0.1);">
+              <span id="p4Avatar">👤</span>
+            </div>
+            <div class="text-2xl font-semibold mb-1">손님</div>
+            <div class="text-sm opacity-70">010-9876-5432</div>
+            <div id="p4Timer" class="text-3xl font-mono mt-6 mb-2">00:00</div>
+            <!-- 음파 애니메이션 -->
+            <div class="flex justify-center gap-1 mb-8 mt-4">
+              <div class="w-1 bg-white/60 rounded-full pulse-dot" style="height:12px"></div>
+              <div class="w-1 bg-white/60 rounded-full pulse-dot" style="height:24px;animation-delay:0.2s"></div>
+              <div class="w-1 bg-white/60 rounded-full pulse-dot" style="height:18px;animation-delay:0.4s"></div>
+              <div class="w-1 bg-white/60 rounded-full pulse-dot" style="height:30px;animation-delay:0.6s"></div>
+              <div class="w-1 bg-white/60 rounded-full pulse-dot" style="height:14px;animation-delay:0.8s"></div>
+              <div class="w-1 bg-white/60 rounded-full pulse-dot" style="height:22px;animation-delay:0.3s"></div>
+              <div class="w-1 bg-white/60 rounded-full pulse-dot" style="height:16px;animation-delay:0.5s"></div>
+            </div>
+            <div id="p4Subtitle" class="text-sm opacity-90 italic min-h-[40px] px-3"></div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">
+        ☎️ 카톡 알림 보고 <strong>대표님이 손님에게 즉시 전화 상담</strong>
+      </div>
+    </div>
+
+    <!-- Phase 5: AI가 STT 분석 → 시트 자동 보완 + 견적서 자동 생성 -->
+    <div id="flowPhase5" class="flow-phase hidden py-4">
+      <div class="bg-stone-800 rounded-t-xl p-2 max-w-2xl mx-auto">
+        <div class="flex items-center gap-1.5">
+          <div class="w-3 h-3 rounded-full bg-red-400"></div>
+          <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+          <div class="w-3 h-3 rounded-full bg-green-400"></div>
+          <div class="ml-3 bg-stone-700 text-stone-300 text-xs px-3 py-1 rounded flex-1 truncate">🤖 AI Assistant · STT 분석 중</div>
+        </div>
+      </div>
+      <div class="bg-cream rounded-b-xl p-5 max-w-2xl mx-auto" style="min-height:400px">
+        <!-- AI 상태 -->
+        <div class="text-center mb-4">
+          <div class="inline-flex items-center gap-2 text-xs px-3 py-1.5 rounded-full" style="background:#fef3c7;color:#92400e">
+            <span class="pulse-dot">🤖</span> <span id="p5AIStatus">통화 녹음 분석 중...</span>
+          </div>
+        </div>
+        <!-- 좌우 분할 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <!-- 좌: STT 텍스트 -->
+          <div class="bg-white rounded-xl p-3 text-xs border border-stone-200">
+            <div class="text-stone-500 mb-2 text-[10px] tracking-widest">📝 STT 변환 텍스트</div>
+            <div id="p5STT" class="space-y-1.5 text-stone-700 leading-relaxed"></div>
+          </div>
+          <!-- 우: 시트 자동 보완 -->
+          <div class="bg-white rounded-xl p-3 text-xs border border-stone-200">
+            <div class="text-stone-500 mb-2 text-[10px] tracking-widest">📊 시트 자동 보완</div>
+            <div class="space-y-1.5">
+              <div id="p5F1" class="opacity-30 transition"><span class="text-stone-500">행사일:</span> <strong>2026-05-15</strong></div>
+              <div id="p5F2" class="opacity-30 transition"><span class="text-stone-500">인원:</span> <strong>50명</strong></div>
+              <div id="p5F3" class="opacity-30 transition"><span class="text-stone-500">메뉴:</span> <strong>한식 도시락 + 디저트 + 비건</strong></div>
+              <div id="p5F4" class="opacity-30 transition"><span class="text-stone-500">요청:</span> <strong>비건 2명, 새우 알레르기 1명</strong></div>
+              <div id="p5F5" class="opacity-30 transition"><span class="text-stone-500">배송지:</span> <strong>서울 강남구</strong></div>
+            </div>
+          </div>
+        </div>
+        <!-- 견적 카드 (생성 후 등장) -->
+        <div id="p5Result" class="hidden anim-msg mt-3 rounded-xl p-4 text-white" style="background:linear-gradient(135deg,#27397d 0%,#076362 100%)">
+          <div class="text-xs opacity-80 mb-1">🤖 AI가 자동 산출한 견적</div>
+          <div class="text-3xl font-bold">1,930,000원</div>
+          <div class="text-xs opacity-80 mt-1">한식 900,000 + 디저트 600,000 + 비건 440,000 + 배송 30,000</div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">
+        🤖 <strong>대표님이 따로 입력할 필요 없이 AI가 통화 듣고 시트·견적서 자동 작성</strong>
+      </div>
+    </div>
+
+    <!-- Phase 6: 김민영 대표 검토 → 승인 -->
+    <div id="flowPhase6" class="flow-phase hidden py-4">
+      <div class="bg-stone-800 rounded-t-xl p-2 max-w-2xl mx-auto">
+        <div class="flex items-center gap-1.5">
+          <div class="w-3 h-3 rounded-full bg-red-400"></div>
+          <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+          <div class="w-3 h-3 rounded-full bg-green-400"></div>
+          <div class="ml-3 bg-stone-700 text-stone-300 text-xs px-3 py-1 rounded flex-1 truncate">👤 대표님 대시보드 · 검토</div>
+        </div>
+      </div>
+      <div class="bg-cream rounded-b-xl p-5 max-w-2xl mx-auto" style="min-height:400px">
+        <div class="text-center mb-4">
+          <div class="text-xs tracking-widest" style="color:var(--brand-navy)">REVIEW · APPROVE</div>
+          <div class="text-base font-semibold brand-navy mt-1">AI가 작성한 견적서를 확인해주세요</div>
+        </div>
+        <!-- 견적서 미리보기 -->
+        <div class="bg-white rounded-xl p-4 border-2 border-stone-200 text-xs mb-4">
+          <div class="flex justify-between border-b pb-2 mb-2" style="border-color:var(--brand-navy)">
+            <strong class="brand-navy">케이터링 견적서</strong>
+            <span class="text-stone-400">Q12345678</span>
+          </div>
+          <div class="space-y-1 text-stone-700">
+            <div class="flex justify-between"><span>한식 도시락 18,000 × 50</span><strong>900,000원</strong></div>
+            <div class="flex justify-between"><span>디저트 박스 12,000 × 50</span><strong>600,000원</strong></div>
+            <div class="flex justify-between"><span>비건 도시락 22,000 × 20</span><strong>440,000원</strong></div>
+            <div class="flex justify-between border-t pt-1 mt-1"><span>배송비</span><strong>30,000원</strong></div>
+            <div class="flex justify-between text-base pt-2 mt-2 border-t font-bold brand-navy"><span>합계</span><span>1,930,000원</span></div>
+          </div>
+        </div>
+        <!-- 액션 버튼 -->
+        <div class="flex gap-2 justify-center relative">
+          <button class="bg-stone-200 text-stone-600 px-4 py-2.5 rounded-lg text-sm">✏️ 수정</button>
+          <button id="p6ApproveBtn" class="bg-emerald-600 text-white px-5 py-2.5 rounded-lg text-sm font-semibold relative overflow-hidden">
+            ✓ 승인하고 손님께 발송
+            <span id="p6Ripple" class="absolute hidden w-4 h-4 bg-white/40 rounded-full" style="top:50%;left:50%"></span>
+          </button>
+          <div id="p6Finger" class="absolute hidden text-3xl pointer-events-none" style="top:50%;right:60px;transform:translateY(-50%);filter:drop-shadow(0 4px 8px rgba(0,0,0,0.3))">👆</div>
+        </div>
+        <div id="p6ApproveMsg" class="hidden mt-4 text-center anim-msg">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm" style="background:#dcfce7;color:#076362">
+            <span>✓</span> 승인 완료 · 손님께 견적서 발송 중...
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">
+        ✋ <strong>대표님은 검토하고 승인 버튼만 누르면 끝</strong> — 입력·작성 시간 0
+      </div>
+    </div>
+
+    <!-- Phase 7: 손님에게 견적서 카톡 도착 -->
+    <div id="flowPhase7" class="flow-phase hidden py-4">
+      <div class="phone-frame relative">
+        <div class="phone-screen relative kakao-bg">
+          <!-- 알림 -->
+          <div id="p7Notif" class="hidden absolute top-2 left-2 right-2 bg-white/95 backdrop-blur rounded-xl p-3 shadow-lg z-10 anim-notif">
+            <div class="flex items-start gap-2">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0" style="background:#fee500">카톡</div>
+              <div class="flex-1 min-w-0">
+                <div class="flex justify-between items-center">
+                  <span class="text-xs font-semibold text-stone-700">소녀방앗간 알림톡</span>
+                  <span class="text-xs text-stone-400">지금</span>
+                </div>
+                <div class="text-xs text-stone-600 truncate mt-0.5">📄 견적서가 도착했습니다</div>
+              </div>
+            </div>
+          </div>
+          <!-- 채널 헤더 -->
+          <div class="bg-white px-4 pt-3 pb-2 border-b border-stone-100 flex items-center gap-2 text-sm">
+            <span class="text-stone-700">←</span>
+            <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs" style="background:#fee500">🍱</div>
+            <div class="flex-1">
+              <div class="font-semibold text-stone-800 text-sm">소녀방앗간 알림톡</div>
+              <div class="text-xs text-stone-400">손님(홍길동)께 발송</div>
+            </div>
+          </div>
+          <!-- 채팅 -->
+          <div class="kakao-bg p-3 space-y-2 h-[400px] overflow-y-auto">
+            <div class="text-center text-xs text-stone-500 py-1">2026년 4월 30일</div>
+            <div id="p7Bubble" class="hidden anim-msg">
+              <div class="kakao-bubble-receive">
+                <div class="font-semibold text-sm mb-2" style="color:var(--brand-navy)">📄 케이터링 견적서가 도착했습니다</div>
+                <div class="text-xs space-y-1 text-stone-700 leading-relaxed">
+                  <div>안녕하세요, 홍길동 고객님.</div>
+                  <div>요청하신 케이터링 견적서를 보내드립니다.</div>
+                </div>
+                <!-- PDF 첨부 카드 -->
+                <div class="mt-3 p-2.5 rounded-lg border border-stone-200 bg-stone-50 flex items-center gap-2">
+                  <div class="text-2xl">📎</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="text-xs font-semibold text-stone-700 truncate">소녀방앗간_견적서_Q12345678.pdf</div>
+                    <div class="text-xs text-stone-400">142KB · 견적금액 1,930,000원</div>
+                  </div>
+                </div>
+                <div class="mt-2 pt-2 border-t border-stone-100 text-xs text-stone-400">자동 발송 · 2026-04-30</div>
+              </div>
+              <div class="text-xs text-stone-500 mt-1 ml-1">방금 전</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">
+        📩 <strong>손님 카카오톡으로 견적서 PDF 자동 발송</strong> · 응답 24시간+ → <strong style="color:var(--brand-teal)">즉시</strong>
+      </div>
+    </div>
+
+    <!-- Phase 8: 손님이 견적서 보고 [채널톡 상담] 1버튼 → 채널톡 연결 -->
+    <div id="flowPhase8" class="flow-phase hidden py-4">
+      <div class="phone-frame relative">
+        <div id="p8Screen" class="phone-screen relative kakao-bg">
+          <!-- 단계 8a: 카톡 견적서 + [채널톡 상담] 버튼 + 손가락 -->
+          <div id="p8KakaoView" class="absolute inset-0 transition-opacity">
+            <div class="bg-white px-4 pt-3 pb-2 border-b border-stone-100 flex items-center gap-2 text-sm">
+              <span class="text-stone-700">←</span>
+              <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs" style="background:#fee500">🍱</div>
+              <div class="flex-1">
+                <div class="font-semibold text-stone-800 text-sm">소녀방앗간 알림톡</div>
+              </div>
+            </div>
+            <div class="kakao-bg p-3 space-y-2 h-[400px] overflow-y-auto">
+              <div class="text-center text-xs text-stone-500 py-1">2026년 4월 30일</div>
+              <div class="kakao-bubble-receive">
+                <div class="font-semibold text-sm mb-2" style="color:var(--brand-navy)">📄 견적서가 도착했습니다</div>
+                <div class="mt-2 p-2.5 rounded-lg border border-stone-200 bg-stone-50 flex items-center gap-2">
+                  <div class="text-2xl">📎</div>
+                  <div class="flex-1 min-w-0">
+                    <div class="text-xs font-semibold text-stone-700 truncate">견적서 Q12345678.pdf</div>
+                    <div class="text-xs text-stone-400">142KB · 1,930,000원</div>
+                  </div>
+                </div>
+                <div class="mt-3 relative">
+                  <button id="p8ChatBtn" class="w-full text-white text-sm font-semibold py-2.5 rounded-lg relative overflow-hidden" style="background:#076362">
+                    💬 자세히 상담하기 (채널톡)
+                    <span id="p8Ripple" class="absolute hidden w-4 h-4 bg-white/40 rounded-full" style="top:50%;left:50%"></span>
+                  </button>
+                  <div id="p8Finger" class="absolute hidden text-3xl pointer-events-none" style="top:50%;left:50%;transform:translate(-50%,-50%);filter:drop-shadow(0 4px 8px rgba(0,0,0,0.3))">👆</div>
+                </div>
+              </div>
+              <div class="text-xs text-stone-500 mt-1 ml-1">방금 전</div>
+            </div>
+          </div>
+          <!-- 단계 8b: 채널톡 화면 -->
+          <div id="p8ChannelView" class="absolute inset-0 hidden transition-opacity bg-white">
+            <!-- 채널톡 헤더 -->
+            <div class="px-4 pt-3 pb-2 border-b border-stone-100 flex items-center gap-2 text-sm" style="background:linear-gradient(135deg,#076362 0%,#27397d 100%);color:white">
+              <span>←</span>
+              <div class="w-7 h-7 rounded-full flex items-center justify-center text-xs bg-white/20">🍱</div>
+              <div class="flex-1">
+                <div class="font-semibold text-sm">소녀방앗간 케이터링</div>
+                <div class="text-xs opacity-80">● 평균 5분 내 답변</div>
+              </div>
+            </div>
+            <!-- 채팅 -->
+            <div class="p-3 h-[420px] overflow-y-auto bg-stone-50 space-y-3">
+              <div class="text-center text-xs text-stone-400 py-1">채널톡 상담 시작</div>
+              <!-- Bot 메시지 -->
+              <div id="p8BotMsg" class="flex gap-2 hidden">
+                <div class="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center text-xs" style="background:#076362;color:white">🍱</div>
+                <div class="flex-1">
+                  <div class="text-xs text-stone-500 mb-1">소녀방앗간</div>
+                  <div class="bg-white rounded-2xl rounded-tl-sm px-4 py-2.5 text-sm text-stone-700 shadow-sm">
+                    안녕하세요 ☺️ 견적서 확인하시고 상담 요청 주셨군요.<br/>편하게 문의 남겨주세요!
+                  </div>
+                </div>
+              </div>
+              <!-- 손님 메시지 -->
+              <div id="p8UserMsg" class="flex gap-2 justify-end hidden">
+                <div class="text-right">
+                  <div class="text-white rounded-2xl rounded-tr-sm px-4 py-2.5 text-sm shadow-sm inline-block" style="background:var(--brand-navy)">
+                    견적 좋습니다! 비건 옵션도 확실한지요?
+                  </div>
+                </div>
+              </div>
+              <!-- 입력 중 -->
+              <div id="p8Typing" class="flex gap-2 hidden">
+                <div class="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center text-xs" style="background:#076362;color:white">🍱</div>
+                <div class="bg-white rounded-2xl px-4 py-3 shadow-sm">
+                  <span class="pulse-dot inline-block w-2 h-2 rounded-full bg-stone-400 mr-1"></span>
+                  <span class="pulse-dot inline-block w-2 h-2 rounded-full bg-stone-400 mr-1" style="animation-delay:0.2s"></span>
+                  <span class="pulse-dot inline-block w-2 h-2 rounded-full bg-stone-400" style="animation-delay:0.4s"></span>
+                </div>
+              </div>
+            </div>
+            <!-- 입력창 -->
+            <div class="px-3 py-2 border-t bg-white flex items-center gap-2">
+              <input type="text" placeholder="메시지 입력" class="flex-1 bg-stone-100 rounded-full px-4 py-1.5 text-xs" disabled>
+              <button class="text-xs text-white px-3 py-1.5 rounded-full" style="background:#076362">전송</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">
+        💬 <strong>손님이 마음에 들면 1버튼으로 채널톡 상담 → 즉시 대화 가능</strong>
+      </div>
+    </div>
+
+    <!-- Ending -->
+    <div id="flowEnding" class="hidden py-6 text-center">
+      <div class="text-5xl mb-3">✅</div>
+      <div class="text-2xl font-bold brand-navy mb-2">신청 → 통화 → 견적 → 상담 풀 자동화</div>
+      <div class="text-stone-600 mb-6">대표님은 통화 + 검토·승인만, 나머지는 AI가 다 처리</div>
+      <div class="bg-paper rounded-2xl p-5 inline-block max-w-3xl">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-sm">
+          <div>
+            <div class="text-2xl font-bold" style="color:var(--brand-navy)">10h→0h</div>
+            <div class="text-xs text-stone-500 mt-1">월 정리 시간</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold" style="color:var(--brand-teal)">24h→즉시</div>
+            <div class="text-xs text-stone-500 mt-1">응답 사이클</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold" style="color:#9a3412">30분→1분</div>
+            <div class="text-xs text-stone-500 mt-1">견적서 작성</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold" style="color:#92400e">0건</div>
+            <div class="text-xs text-stone-500 mt-1">누락·재작업</div>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-stone-300 text-xs text-stone-600 leading-relaxed text-left">
+          <strong style="color:var(--brand-navy)">대표님이 하시는 것</strong>: 통화 상담 · 검토·승인 (단 2가지)<br/>
+          <strong style="color:var(--brand-teal)">AI가 하는 것</strong>: 신청 적재 · 알림 · 통화 STT · 시트 보완 · 견적서 작성 · 카톡 발송 · 채널톡 라우팅
+        </div>
+      </div>
+      <div class="mt-7 flex gap-2 justify-center flex-wrap">
+        <button id="replayFlow" class="bg-navy text-white px-5 py-2.5 rounded-xl font-medium">🔁 다시 보기</button>
+        <button id="closeFlowEnd" class="bg-stone-200 text-stone-700 px-5 py-2.5 rounded-xl font-medium">페이지로 이동 →</button>
+      </div>
+      <p class="mt-4 text-xs text-stone-400">아래에서 실제로 메뉴 선택하시고 견적까지 만들어보실 수 있습니다.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const MENUS = [
+  { id: 1, name: '한식 도시락',   desc: '잡곡밥 · 제철 반찬 5종 · 국',  price: 18000, tag: '한식' },
+  { id: 2, name: '한식 뷔페',     desc: '주메뉴 3 · 반찬 6 · 국 · 디저트', price: 25000, tag: '한식' },
+  { id: 3, name: '한정식',         desc: '12첩 정찬 · 전통 한식',       price: 45000, tag: '프리미엄' },
+  { id: 4, name: '비건 도시락',   desc: '식물성 단백질 · 제철 채소',    price: 22000, tag: '비건' },
+  { id: 5, name: '양식 코스',     desc: '샐러드 · 메인 2 · 디저트',     price: 32000, tag: '양식' },
+  { id: 6, name: '샌드위치 박스', desc: '클럽 · 치킨 · 에그 + 음료',    price: 15000, tag: '간편' },
+  { id: 7, name: '핑거푸드 박스', desc: '카나페 6종 · 미니 디저트',     price: 16000, tag: '리셉션' },
+  { id: 8, name: '디저트 박스',   desc: '쿠키 · 마들렌 · 과일 4종',     price: 12000, tag: '디저트' },
+  { id: 9, name: '베이커리 박스', desc: '스콘 · 페이스트리 · 잼 · 버터', price: 11000, tag: '디저트' },
+  { id:10, name: '다과 세트',     desc: '전통 떡 · 강정 · 차',          price:  8000, tag: '전통' }
+];
+
+const TAG_STYLE = {
+  '한식':     'background:#e7eaf6;color:#27397d',
+  '프리미엄': 'background:#fef3c7;color:#92400e',
+  '비건':     'background:#dcfce7;color:#076362',
+  '양식':     'background:#dbeafe;color:#1e40af',
+  '간편':     'background:#f5f5f4;color:#44403c',
+  '리셉션':   'background:#fce7f3;color:#9d174d',
+  '디저트':   'background:#fee2e2;color:#991b1b',
+  '전통':     'background:#fed7aa;color:#9a3412'
+};
+
+const grid = document.getElementById('menuGrid');
+MENUS.forEach(m => {
+  const el = document.createElement('label');
+  el.className = 'flex gap-3 items-start p-4 border border-stone-200 rounded-xl hover:border-navy hover:bg-cream cursor-pointer transition';
+  el.innerHTML = `
+    <input type="checkbox" class="menu-check mt-1 accent-current" data-id="${m.id}">
+    <div class="flex-1">
+      <div class="flex items-center gap-2 flex-wrap">
+        <span class="font-medium" style="color:var(--brand-brown)">${m.name}</span>
+        <span class="text-xs px-2 py-0.5 rounded" style="${TAG_STYLE[m.tag]}">${m.tag}</span>
+      </div>
+      <div class="text-xs text-stone-500 mt-0.5">${m.desc}</div>
+      <div class="text-sm font-semibold mt-1" style="color:var(--brand-navy)">${m.price.toLocaleString()}원/인</div>
+    </div>
+  `;
+  grid.appendChild(el);
+});
+
+function calcDelivery(addr) {
+  if (!addr) return { fee: 0, zone: '-' };
+  if (/서울/.test(addr)) return { fee: 30000, zone: '서울권' };
+  if (/(경기|인천)/.test(addr)) return { fee: 50000, zone: '수도권' };
+  return { fee: 70000, zone: '그 외 지역' };
+}
+
+function gatherData() {
+  const people = parseInt(document.getElementById('people').value) || 0;
+  const checked = [...document.querySelectorAll('.menu-check:checked')];
+  const items = checked.map(cb => MENUS.find(m => m.id === parseInt(cb.dataset.id)));
+  const subtotal = items.reduce((sum, m) => sum + m.price * people, 0);
+  const { fee, zone } = calcDelivery(document.getElementById('address').value);
+  return {
+    people, items, subtotal, fee, zone,
+    total: subtotal + fee,
+    eventDate: document.getElementById('eventDate').value,
+    address:   document.getElementById('address').value,
+    contact:   document.getElementById('contact').value,
+    phone:     document.getElementById('phone').value,
+    memo:      document.getElementById('memo').value
+  };
+}
+
+function updateSummary() {
+  const d = gatherData();
+  const el = document.getElementById('quoteSummary');
+  if (d.people === 0 || d.items.length === 0) {
+    el.innerHTML = '<span class="text-stone-400">메뉴와 인원을 선택하시면 견적이 자동 계산됩니다.</span>';
+    return;
+  }
+  el.innerHTML = `
+    <div class="space-y-1.5 text-sm">
+      <div>선택 메뉴: <strong>${d.items.length}종</strong> <span class="text-stone-500">(${d.items.map(m=>m.name).join(' · ')})</span></div>
+      <div>인원: <strong>${d.people}명</strong></div>
+      <div>식음료 합계: <strong>${d.subtotal.toLocaleString()}원</strong></div>
+      <div>배송비 (${d.zone}): <strong>${d.fee.toLocaleString()}원</strong></div>
+      <div class="text-2xl font-bold mt-3" style="color:var(--brand-navy)">총 ${d.total.toLocaleString()}원</div>
+    </div>
+  `;
+}
+document.querySelectorAll('input, textarea').forEach(el => {
+  el.addEventListener('input', updateSummary);
+  el.addEventListener('change', updateSummary);
+});
+
+document.getElementById('generateBtn').addEventListener('click', () => {
+  const d = gatherData();
+  if (d.people === 0 || d.items.length === 0) { alert('메뉴와 인원을 입력해주세요.'); return; }
+  const now = new Date();
+  document.getElementById('quoteNo').textContent = 'Q' + now.getTime().toString().slice(-8);
+  document.getElementById('issueDate').textContent = now.toISOString().slice(0,10);
+  document.getElementById('qEventDate').textContent = d.eventDate || '-';
+  document.getElementById('qPeople').textContent = d.people;
+  document.getElementById('qAddress').textContent = d.address || '-';
+  document.getElementById('qContact').textContent = d.contact || '-';
+  document.getElementById('qPhone').textContent = d.phone || '-';
+  document.getElementById('qZone').textContent = d.zone;
+  document.getElementById('qDelivery').textContent = d.fee.toLocaleString() + '원';
+  document.getElementById('qSubtotal').textContent = d.subtotal.toLocaleString() + '원';
+  document.getElementById('qTotal').textContent = d.total.toLocaleString() + '원';
+  document.getElementById('qMenuRows').innerHTML = d.items.map(m => `
+    <tr class="border-b border-stone-100">
+      <td class="p-3">${m.name} <span class="text-xs text-stone-400">(${m.desc})</span></td>
+      <td class="p-3 text-right">${m.price.toLocaleString()}원</td>
+      <td class="p-3 text-right">${d.people}</td>
+      <td class="p-3 text-right font-medium">${(m.price * d.people).toLocaleString()}원</td>
+    </tr>
+  `).join('');
+  if (d.memo) {
+    document.getElementById('qMemoBlock').classList.remove('hidden');
+    document.getElementById('qMemo').textContent = d.memo;
+  } else {
+    document.getElementById('qMemoBlock').classList.add('hidden');
+  }
+  document.getElementById('quoteSheet').classList.remove('hidden');
+  document.getElementById('quoteSheet').scrollIntoView({ behavior: 'smooth' });
+});
+
+document.getElementById('printBtn').addEventListener('click', () => {
+  if (document.getElementById('quoteSheet').classList.contains('hidden')) {
+    alert('먼저 [견적서 생성]을 눌러주세요.');
+    return;
+  }
+  window.print();
+});
+
+// 🎬 시뮬레이션
+document.getElementById('submitBtn').addEventListener('click', async () => {
+  const d = gatherData();
+  if (d.people === 0 || d.items.length === 0 || !d.phone) {
+    alert('필수 항목(인원·메뉴·연락처)을 입력해주세요.');
+    return;
+  }
+
+  const sim = document.getElementById('simSection');
+  const status = document.getElementById('simStatus');
+  const step1 = document.getElementById('simStep1');
+  const step2 = document.getElementById('simStep2');
+  const complete = document.getElementById('simComplete');
+  const sheetRows = document.getElementById('simSheetRows');
+  const tgMsg = document.getElementById('simTelegramMsg');
+
+  // 초기화
+  sim.classList.remove('hidden');
+  step1.classList.add('hidden');
+  step2.classList.add('hidden');
+  complete.classList.add('hidden');
+  sheetRows.innerHTML = '';
+  tgMsg.classList.add('hidden');
+  tgMsg.innerHTML = '';
+  sim.scrollIntoView({ behavior: 'smooth' });
+
+  // 0초: 시작 알림
+  status.innerHTML = '<span class="pulse-dot">●</span> 신청서 데이터 정리 중...';
+  await sleep(700);
+
+  // 1초: 구글 시트 적재
+  status.innerHTML = '<span class="pulse-dot">●</span> 📊 구글 시트에 자동 적재 중...';
+  step1.classList.remove('hidden');
+  const now = new Date();
+  const ts = now.toISOString().slice(0,16).replace('T',' ');
+  const newRow = document.createElement('tr');
+  newRow.className = 'anim-row border-b border-stone-200';
+  newRow.innerHTML = `
+    <td class="p-2">${ts}</td>
+    <td class="p-2">${d.eventDate || '-'}</td>
+    <td class="p-2 font-medium">${d.people}명</td>
+    <td class="p-2">${d.items.map(m=>m.name).join(', ')}</td>
+    <td class="p-2 font-medium">${d.total.toLocaleString()}원</td>
+    <td class="p-2">${d.phone}</td>
+    <td class="p-2">${d.contact || '-'}</td>
+    <td class="p-2"><span class="px-2 py-0.5 rounded text-xs" style="background:#fef3c7;color:#92400e">신규</span></td>
+  `;
+  sheetRows.appendChild(newRow);
+  await sleep(1500);
+
+  // 2.5초: 카카오톡 알림
+  status.innerHTML = '<span class="pulse-dot">●</span> 📱 김민영 대표님께 카카오톡 알림 발송...';
+  step2.classList.remove('hidden');
+  tgMsg.classList.remove('hidden');
+  tgMsg.innerHTML = `
+    <div class="font-semibold mb-2 text-sm" style="color:var(--brand-navy)">🍱 새 케이터링 신청</div>
+    <div class="space-y-1 text-sm leading-relaxed">
+      <div>📅 행사일: <strong>${d.eventDate || '-'}</strong></div>
+      <div>👥 인원: <strong>${d.people}명</strong></div>
+      <div>🍽️ 메뉴: <strong>${d.items.map(m=>m.name).join(', ')}</strong></div>
+      <div>💰 견적: <strong>${d.total.toLocaleString()}원</strong></div>
+      <div>📞 연락처: ${d.phone}</div>
+      <div>📍 배송지: ${d.address || '-'}</div>
+      ${d.memo ? `<div>📝 요청: ${d.memo}</div>` : ''}
+    </div>
+    <div class="mt-3 pt-3 border-t border-stone-100 text-xs text-stone-400">${ts} · 자동 발송</div>
+  `;
+  await sleep(1300);
+
+  // 완료
+  status.innerHTML = '<strong style="color:var(--brand-teal)">✅ 모든 처리가 자동으로 완료되었습니다</strong>';
+  complete.classList.remove('hidden');
+});
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+// 🎬 풀스크린 자동 재생 시퀀스
+const flowOverlay = document.getElementById('flowOverlay');
+const flowTitle = document.getElementById('flowTitle');
+const phases = ['flowPhase1','flowPhase2','flowPhase3','flowPhase4','flowPhase5','flowPhase6','flowPhase7','flowPhase8','flowEnding'];
+const dots = ['flowDot1','flowDot2','flowDot3','flowDot4','flowDot5','flowDot6','flowDot7','flowDot8'];
+
+function showPhase(idx) {
+  phases.forEach(id => document.getElementById(id).classList.add('hidden'));
+  if (idx < phases.length) document.getElementById(phases[idx]).classList.remove('hidden');
+  dots.forEach((id, i) => {
+    const el = document.getElementById(id);
+    el.style.background = i < idx + 1 ? 'var(--brand-navy)' : '#d6d3d1';
+    el.style.transform = i === idx ? 'scale(1.5)' : 'scale(1)';
+  });
+}
+
+async function playFlow() {
+  flowOverlay.classList.remove('hidden');
+  flowOverlay.classList.add('flex');
+
+  // ===== Phase 1: 손님 모바일 신청 =====
+  flowTitle.textContent = '① 손님이 케이터링 신청서를 누릅니다';
+  showPhase(0);
+
+  // 입력 자동 타이핑
+  const p1Date = document.getElementById('p1Date');
+  const p1People = document.getElementById('p1People');
+  const p1Phone = document.getElementById('p1Phone');
+  const p1Finger = document.getElementById('p1Finger');
+  const p1Ripple = document.getElementById('p1Ripple');
+  const p1Toast = document.getElementById('p1Toast');
+  p1Date.textContent = ''; p1People.textContent = ''; p1Phone.textContent = '';
+  p1Toast.classList.add('hidden');
+  p1Finger.classList.add('hidden');
+
+  await sleep(500);
+  await typeInto(p1Date, '2026-05-15', 50);
+  await sleep(200);
+  await typeInto(p1People, '50명', 80);
+  await sleep(200);
+  await typeInto(p1Phone, '010-9876-5432', 40);
+  await sleep(400);
+
+  // 손가락 등장 + 버튼 클릭
+  p1Finger.classList.remove('hidden');
+  p1Finger.classList.add('anim-finger');
+  await sleep(300);
+  // 리플 효과
+  p1Ripple.classList.remove('hidden');
+  p1Ripple.classList.add('anim-ripple');
+  await sleep(700);
+  p1Finger.classList.add('hidden');
+  p1Ripple.classList.add('hidden');
+
+  // 토스트
+  p1Toast.classList.remove('hidden');
+  await sleep(900);
+
+  // ===== Phase 2: 시트 적재 =====
+  flowTitle.textContent = '② 엑셀 시트에 자동으로 정보 입력';
+  showPhase(1);
+  const p2Rows = document.getElementById('p2SheetRows');
+  await sleep(500);
+  const newRow = document.createElement('tr');
+  newRow.className = 'anim-row border-b border-stone-100';
+  const ts = new Date().toISOString().slice(0,16).replace('T',' ');
+  newRow.innerHTML = `
+    <td class="p-2"><strong>${ts}</strong></td>
+    <td class="p-2"><strong>2026-05-15</strong></td>
+    <td class="p-2"><strong>50명</strong></td>
+    <td class="p-2"><strong>한식 도시락</strong></td>
+    <td class="p-2"><strong>930,000원</strong></td>
+    <td class="p-2"><strong>010-***-5432</strong></td>
+    <td class="p-2"><span class="px-2 py-0.5 rounded text-xs bg-amber-100 text-amber-700 font-medium">신규</span></td>
+  `;
+  p2Rows.appendChild(newRow);
+  await sleep(2200);
+
+  // ===== Phase 3: 카톡 알림 =====
+  flowTitle.textContent = '③ 김민영 대표님 카카오톡으로 즉시 알림';
+  showPhase(2);
+  const p3Notif = document.getElementById('p3Notif');
+  const p3Bubble = document.getElementById('p3Bubble');
+  document.getElementById('p3Date').textContent = '2026-05-15';
+  document.getElementById('p3People').textContent = '50명';
+  document.getElementById('p3Menu').textContent = '한식 도시락';
+  document.getElementById('p3Total').textContent = '930,000원';
+  document.getElementById('p3Phone').textContent = '010-9876-5432';
+  p3Notif.classList.add('hidden');
+  p3Bubble.classList.add('hidden');
+
+  await sleep(400);
+  // 알림 슬라이드 다운
+  p3Notif.classList.remove('hidden');
+  document.querySelector('#flowPhase3 .phone-frame').classList.add('anim-phone-shake');
+  await sleep(1300);
+  p3Notif.classList.add('hidden');
+  // 채팅 말풍선 등장
+  p3Bubble.classList.remove('hidden');
+  await sleep(1800);
+
+  // ===== Phase 4: 전화 상담 =====
+  flowTitle.textContent = '④ 대표님이 손님에게 즉시 전화 상담';
+  showPhase(3);
+  const p4Timer = document.getElementById('p4Timer');
+  const p4Subtitle = document.getElementById('p4Subtitle');
+  p4Timer.textContent = '00:00';
+  p4Subtitle.textContent = '';
+  await sleep(400);
+  p4Subtitle.textContent = '"안녕하세요, 소녀방앗간입니다 ☺️"';
+  // 타이머 빠르게 회전
+  let sec = 0;
+  const timerInterval = setInterval(() => {
+    sec++;
+    const m = String(Math.floor(sec/60)).padStart(2,'0');
+    const s = String(sec%60).padStart(2,'0');
+    p4Timer.textContent = `${m}:${s}`;
+  }, 60); // 60ms마다 1초 = 빠른 시각화
+  await sleep(700);
+  p4Subtitle.textContent = '"행사 내용 자세히 들어볼게요..."';
+  await sleep(700);
+  p4Subtitle.textContent = '"메뉴는 한식 도시락 + 디저트 박스 + 비건 도시락으로요!"';
+  await sleep(900);
+  clearInterval(timerInterval);
+  p4Subtitle.textContent = '✓ 상담 완료';
+
+  // ===== Phase 5: AI가 STT 분석 → 시트 자동 보완 + 견적서 생성 =====
+  flowTitle.textContent = '⑤ AI가 통화 분석 → 시트·견적서 자동 작성';
+  showPhase(4);
+  const p5STT = document.getElementById('p5STT');
+  const p5AIStatus = document.getElementById('p5AIStatus');
+  const p5Result = document.getElementById('p5Result');
+  p5STT.innerHTML = '';
+  p5Result.classList.add('hidden');
+  ['p5F1','p5F2','p5F3','p5F4','p5F5'].forEach(id => document.getElementById(id).style.opacity = '0.3');
+  await sleep(400);
+
+  // STT 텍스트 + 시트 보완 동시 진행
+  const sttScript = [
+    { text: '"행사일은 5월 15일이고요"', fillId: 'p5F1' },
+    { text: '"인원은 50명 정도 됩니다"', fillId: 'p5F2' },
+    { text: '"메뉴는 한식 도시락이랑 디저트 박스, 비건 도시락도 같이요"', fillId: 'p5F3' },
+    { text: '"비건 2분이고 새우 알레르기 1분 있어요"', fillId: 'p5F4' },
+    { text: '"강남구로 배송 부탁드립니다"', fillId: 'p5F5' }
+  ];
+  for (const item of sttScript) {
+    const div = document.createElement('div');
+    div.className = 'anim-msg text-[10px] sm:text-xs';
+    div.innerHTML = `<span class="text-stone-400">▸</span> ${item.text}`;
+    p5STT.appendChild(div);
+    await sleep(250);
+    document.getElementById(item.fillId).style.opacity = '1';
+    document.getElementById(item.fillId).style.background = '#fef9c3';
+    await sleep(280);
+    document.getElementById(item.fillId).style.background = 'transparent';
+  }
+  p5AIStatus.textContent = '✓ 분석 완료 · 견적서 생성 중...';
+  await sleep(600);
+  p5Result.classList.remove('hidden');
+  p5AIStatus.textContent = '✓ 견적서 자동 작성 완료';
+  await sleep(1200);
+
+  // ===== Phase 6: 김민영 대표 검토 + 승인 =====
+  flowTitle.textContent = '⑥ 대표님이 검토하고 [승인] 클릭';
+  showPhase(5);
+  const p6Finger = document.getElementById('p6Finger');
+  const p6Ripple = document.getElementById('p6Ripple');
+  const p6ApproveMsg = document.getElementById('p6ApproveMsg');
+  p6Finger.classList.add('hidden');
+  p6Ripple.classList.add('hidden');
+  p6ApproveMsg.classList.add('hidden');
+  await sleep(800);
+  p6Finger.classList.remove('hidden');
+  p6Finger.classList.add('anim-finger');
+  await sleep(400);
+  p6Ripple.classList.remove('hidden');
+  p6Ripple.classList.add('anim-ripple');
+  await sleep(600);
+  p6Finger.classList.add('hidden');
+  p6Ripple.classList.add('hidden');
+  p6ApproveMsg.classList.remove('hidden');
+  await sleep(1200);
+
+  // ===== Phase 7: 손님에게 견적서 카톡 도착 =====
+  flowTitle.textContent = '⑦ 손님 카카오톡으로 견적서 PDF 자동 발송';
+  showPhase(6);
+  const p7Notif = document.getElementById('p7Notif');
+  const p7Bubble = document.getElementById('p7Bubble');
+  p7Notif.classList.add('hidden');
+  p7Bubble.classList.add('hidden');
+  await sleep(300);
+  p7Notif.classList.remove('hidden');
+  document.querySelector('#flowPhase7 .phone-frame').classList.add('anim-phone-shake');
+  await sleep(1100);
+  p7Notif.classList.add('hidden');
+  p7Bubble.classList.remove('hidden');
+  await sleep(1500);
+
+  // ===== Phase 8: 손님 [채널톡 상담] 1버튼 → 채널톡 연결 =====
+  flowTitle.textContent = '⑧ 손님 1버튼 클릭 → 채널톡 상담 즉시 연결';
+  showPhase(7);
+  const p8KakaoView = document.getElementById('p8KakaoView');
+  const p8ChannelView = document.getElementById('p8ChannelView');
+  const p8Finger = document.getElementById('p8Finger');
+  const p8Ripple = document.getElementById('p8Ripple');
+  const p8BotMsg = document.getElementById('p8BotMsg');
+  const p8Typing = document.getElementById('p8Typing');
+  const p8UserMsg = document.getElementById('p8UserMsg');
+  p8KakaoView.classList.remove('hidden');
+  p8ChannelView.classList.add('hidden');
+  p8Finger.classList.add('hidden');
+  p8Ripple.classList.add('hidden');
+  p8BotMsg.classList.add('hidden');
+  p8Typing.classList.add('hidden');
+  p8UserMsg.classList.add('hidden');
+  await sleep(700);
+  // 채널톡 버튼 클릭 시뮬레이션
+  p8Finger.classList.remove('hidden');
+  p8Finger.classList.add('anim-finger');
+  await sleep(400);
+  p8Ripple.classList.remove('hidden');
+  p8Ripple.classList.add('anim-ripple');
+  await sleep(500);
+  // 채널톡 화면 전환
+  p8KakaoView.classList.add('hidden');
+  p8ChannelView.classList.remove('hidden');
+  await sleep(500);
+  p8BotMsg.classList.remove('hidden');
+  await sleep(900);
+  p8UserMsg.classList.remove('hidden');
+  await sleep(700);
+  p8Typing.classList.remove('hidden');
+  await sleep(900);
+
+  // ===== Ending =====
+  flowTitle.textContent = '✨ 풀 자동화 사이클 완료';
+  showPhase(8);
+  dots.forEach(id => document.getElementById(id).style.background = 'var(--brand-teal)');
+}
+
+async function typeInto(el, text, ms) {
+  el.textContent = '';
+  for (const ch of text) {
+    el.textContent += ch;
+    await sleep(ms);
+  }
+}
+
+document.getElementById('playFlowBtn').addEventListener('click', playFlow);
+document.getElementById('replayFlow').addEventListener('click', playFlow);
+document.getElementById('closeFlow').addEventListener('click', () => {
+  flowOverlay.classList.add('hidden'); flowOverlay.classList.remove('flex');
+});
+document.getElementById('closeFlowEnd').addEventListener('click', () => {
+  flowOverlay.classList.add('hidden'); flowOverlay.classList.remove('flex');
+  document.querySelector('section').scrollIntoView({ behavior: 'smooth' });
+});
+
+// 자동재생: ?autoplay=1 또는 ?demo=1 시 페이지 로드 1초 후 자동 시작
+const params = new URLSearchParams(location.search);
+if (params.get('autoplay') === '1' || params.get('demo') === '1') {
+  setTimeout(() => playFlow(), 1000);
+}
+
+// 데모 편의: 첫 방문자 위해 샘플 자동 입력 (URL에 ?demo=1 있을 때만)
+if (params.get('demo') === '1' || params.get('autofill') === '1') {
+  document.getElementById('eventDate').value = new Date(Date.now()+15*864e5).toISOString().slice(0,10);
+  document.getElementById('people').value = 50;
+  document.getElementById('address').value = '서울 강남구 테헤란로 OO빌딩';
+  document.getElementById('contact').value = '홍길동';
+  document.getElementById('phone').value = '010-1234-5678';
+  document.getElementById('memo').value = '비건 2명 · 새우 알레르기 1명';
+  document.querySelector('.menu-check[data-id="1"]').checked = true;
+  document.querySelector('.menu-check[data-id="8"]').checked = true;
+  updateSummary();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>부산AI코딩스쿨 영업·견적 자동화 — 풀 사이클 데모</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+:root {
+  --navy: #0D1B2A;
+  --navy2: #1a2d45;
+  --blue: #2563EB;
+  --blue2: #3B82F6;
+  --orange: #FF6B35;
+  --cream: #faf7f2;
+  --paper: #f4ede2;
+}
+body { font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif; background: var(--cream); color: #1a1a1a; }
+.bg-navy { background: var(--navy); }
+.bg-navy2 { background: var(--navy2); }
+.text-navy { color: var(--navy); }
+.text-blue-brand { color: var(--blue); }
+.text-orange-brand { color: var(--orange); }
+.bg-cream { background: var(--cream); }
+.bg-paper { background: var(--paper); }
+@keyframes slideInRow { from { opacity: 0; transform: translateY(-8px); background: #fef9c3; } to { opacity: 1; transform: translateY(0); background: white; } }
+@keyframes slideInMsg { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+@keyframes typing { from { width: 0 } to { width: 100% } }
+@keyframes fingerTap { 0% { transform: translate(-50%, -50%) scale(1); opacity: 0.9 } 50% { transform: translate(-50%, -50%) scale(0.85); opacity: 1 } 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9 } }
+@keyframes notifSlideDown { from { transform: translateY(-100%); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
+@keyframes blink { 50% { opacity: 0; } }
+.anim-row { animation: slideInRow 1.2s ease forwards; }
+.anim-msg { animation: slideInMsg 0.6s ease forwards; }
+.pulse-dot { animation: pulse-dot 1.5s ease-in-out infinite; }
+.anim-typing { overflow: hidden; white-space: nowrap; animation: typing 1.5s steps(40, end) forwards; }
+.anim-finger { animation: fingerTap 0.6s ease-in-out 2; }
+.anim-notif { animation: notifSlideDown 0.5s ease forwards; }
+.cursor-blink::after { content: '|'; animation: blink 1s infinite; color: var(--blue); }
+.phone-frame { width: 280px; height: 560px; background: #1a1a1a; border-radius: 36px; padding: 10px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); margin: 0 auto; }
+.phone-screen { width: 100%; height: 100%; background: white; border-radius: 28px; overflow: hidden; position: relative; }
+.terminal { background: #0a0a0a; color: #00ff00; font-family: 'Menlo', 'Monaco', monospace; padding: 20px; border-radius: 12px; font-size: 12px; line-height: 1.7; }
+.terminal .prompt { color: #888; }
+.terminal .cmd { color: #fff; }
+.terminal .ok { color: #10b981; }
+.terminal .info { color: #60a5fa; }
+.notion-row { background: white; border: 1px solid #e7e7e3; border-radius: 8px; padding: 14px; }
+.notion-prop { display: flex; gap: 8px; padding: 4px 0; font-size: 12px; }
+.notion-prop .label { color: #9b9b97; min-width: 70px; }
+.notion-prop .val { color: #37352f; font-weight: 500; }
+</style>
+</head>
+<body class="min-h-screen">
+
+<!-- 데모 안내 배너 -->
+<div class="bg-navy text-white text-center py-2 text-sm">
+  ☘️ <strong>부산AI코딩스쿨 영업·견적 자동화 데모</strong> · 진완(영업)이 통화하면 AI가 나머지 다 처리하는 풀 사이클
+</div>
+
+<div class="max-w-4xl mx-auto px-4 py-10">
+  <header class="mb-8 text-center">
+    <div class="inline-block px-3 py-1 rounded-full bg-paper text-xs tracking-widest mb-4 text-orange-brand">CASE STUDY · 부산AI코딩스쿨</div>
+    <h1 class="text-4xl font-bold text-navy">통화 한 번 → 제안서·견적서·배포까지<br><span class="text-orange-brand">5분이면 끝</span></h1>
+    <p class="mt-3 text-stone-600">진완(영업)이 통화하고, 폰 STT가 자동 변환, Claude Code 한 줄로 노션 정리·제안서·견적서·도장·배포까지 일괄.</p>
+  </header>
+
+  <div class="text-center mb-10">
+    <button id="playFlowBtn" class="bg-navy hover:bg-navy2 text-white px-8 py-4 rounded-2xl font-medium shadow-lg transform hover:scale-105 transition">
+      🎬 풀 자동화 사이클 보기 <span class="text-xs opacity-75 ml-1">(약 17초)</span>
+    </button>
+    <p class="text-xs text-stone-500 mt-3">통화 → STT → 노션 → Claude → 제안서·견적서 → push → 라이브</p>
+  </div>
+
+  <!-- 텍스트 흐름 설명 -->
+  <section class="bg-white rounded-3xl p-7 mb-6 shadow-sm border border-stone-100">
+    <h2 class="text-xl font-semibold text-navy mb-4">📋 8단계 풀 사이클</h2>
+    <ol class="space-y-3 text-sm text-stone-700">
+      <li class="flex gap-3"><span class="font-bold text-blue-brand">①</span> 진완(영업)이 기관과 통화 — 폰 자동 녹음·STT</li>
+      <li class="flex gap-3"><span class="font-bold text-blue-brand">②</span> 통화 종료 → 폰 자동 STT 변환 (텍스트 즉시)</li>
+      <li class="flex gap-3"><span class="font-bold text-blue-brand">③</span> 노션 거래 row 만들고 STT 그대로 붙여넣기</li>
+      <li class="flex gap-3"><span class="font-bold text-blue-brand">④</span> Claude Code 한 줄: <code class="bg-stone-100 px-2 py-0.5 rounded text-xs">"이 STT로 제안서·견적서 만들어줘"</code></li>
+      <li class="flex gap-3"><span class="font-bold text-blue-brand">⑤</span> 노션 row가 자동으로 표준 템플릿으로 정리 (거래개요·할일·STT 풀텍스트·운영설계)</li>
+      <li class="flex gap-3"><span class="font-bold text-blue-brand">⑥</span> 제안서 HTML 4~5p 자동 작성 (단성고 톤)</li>
+      <li class="flex gap-3"><span class="font-bold text-blue-brand">⑦</span> 견적서 HTML + (주)크리플레이 도장 자동 (강사료 + 교구비 분리)</li>
+      <li class="flex gap-3"><span class="font-bold text-blue-brand">⑧</span> git push → Vercel 자동 배포 → 라이브 URL 즉시</li>
+    </ol>
+    <div class="mt-5 p-4 bg-paper rounded-xl text-sm text-stone-700">
+      <strong class="text-orange-brand">실제 사례:</strong> 2026-04-30 덕천도서관·한국주택금융공사 통화 → 다음 날 라이브
+      (<a href="https://busanaicodingschool.com/proposal/deokcheon" target="_blank" class="text-blue-brand underline">덕천도서관</a> ·
+      <a href="https://busanaicodingschool.com/proposal/khfc" target="_blank" class="text-blue-brand underline">한국주택금융공사</a>)
+    </div>
+  </section>
+
+  <!-- 효과 -->
+  <section class="bg-white rounded-3xl p-7 mb-6 shadow-sm border border-stone-100">
+    <h2 class="text-xl font-semibold text-navy mb-4">📈 효과</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div class="bg-paper rounded-xl p-4 text-center">
+        <div class="text-2xl font-bold text-navy">30분→5분</div>
+        <div class="text-xs text-stone-500 mt-1">견적서 작성</div>
+      </div>
+      <div class="bg-paper rounded-xl p-4 text-center">
+        <div class="text-2xl font-bold" style="color: var(--blue)">1시간→자동</div>
+        <div class="text-xs text-stone-500 mt-1">강의 계획서</div>
+      </div>
+      <div class="bg-paper rounded-xl p-4 text-center">
+        <div class="text-2xl font-bold text-orange-brand">1~2일→즉시</div>
+        <div class="text-xs text-stone-500 mt-1">영업 응답</div>
+      </div>
+      <div class="bg-paper rounded-xl p-4 text-center">
+        <div class="text-2xl font-bold" style="color: #9a3412">종종→0건</div>
+        <div class="text-xs text-stone-500 mt-1">인적 오류</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-navy text-white rounded-3xl p-8 mb-6 text-center">
+    <h2 class="text-2xl font-bold mb-2">비슷한 자동화 의뢰</h2>
+    <p class="opacity-80 mb-6">학원·교육기관·기업의 영업·견적·제안서·계약 흐름. AX 컨설팅으로 자동화 → 인계까지.</p>
+    <div class="flex gap-3 justify-center flex-wrap">
+      <a href="https://busan-ailab.vercel.app" target="_blank" class="bg-orange-brand hover:opacity-90 text-white px-6 py-3 rounded-xl font-semibold">부산AI랩 둘러보기 →</a>
+      <a href="tel:01098258816" class="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-xl font-semibold">담당 김진완 010-9825-8816</a>
+    </div>
+  </section>
+
+  <footer class="mt-10 text-center text-xs text-stone-400">
+    <p>부산AI코딩스쿨 영업·견적 자동화 데모 · 2026-05</p>
+    <p class="mt-1">제작: 송병근·진완 · (주)크리플레이</p>
+  </footer>
+</div>
+
+<!-- 🎬 풀스크린 자동 재생 오버레이 -->
+<div id="flowOverlay" class="fixed inset-0 bg-black/85 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+  <div class="bg-cream rounded-3xl max-w-3xl w-full p-6 sm:p-8 relative max-h-[95vh] overflow-y-auto">
+    <button id="closeFlow" class="absolute top-4 right-5 text-stone-400 hover:text-stone-700 text-2xl leading-none">✕</button>
+
+    <div class="text-center mb-5">
+      <div class="text-xs tracking-widest text-stone-500">PROPOSAL · QUOTE AUTOMATION</div>
+      <div id="flowTitle" class="text-2xl font-semibold mt-2 text-navy">① 진완이 기관과 통화</div>
+      <div class="flex items-center justify-center gap-1.5 mt-3">
+        <div id="flowDot1" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot2" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot3" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot4" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot5" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot6" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot7" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+        <div id="flowDot8" class="w-2 h-2 rounded-full bg-stone-300 transition"></div>
+      </div>
+    </div>
+
+    <!-- Phase 1: 통화 + STT 녹음 -->
+    <div id="flowPhase1" class="flow-phase hidden py-4">
+      <div class="phone-frame">
+        <div class="phone-screen relative" style="background:linear-gradient(180deg,#1a1a1a 0%,var(--navy) 100%);">
+          <div class="absolute top-3 left-3 right-3 flex items-center justify-between text-xs text-white/90 bg-red-600/90 backdrop-blur rounded-full px-3 py-1.5">
+            <span class="flex items-center gap-1.5"><span class="w-2 h-2 bg-white rounded-full pulse-dot"></span> 🎙️ STT 자동 녹음</span>
+            <span class="font-mono">REC</span>
+          </div>
+          <div class="text-white text-center pt-14 pb-6 px-5">
+            <div class="text-xs tracking-widest opacity-70">통화 중</div>
+            <div class="w-24 h-24 rounded-full mx-auto mt-6 mb-4 flex items-center justify-center text-4xl" style="background:rgba(255,255,255,0.1);">🏛️</div>
+            <div class="text-2xl font-semibold mb-1">덕천도서관</div>
+            <div class="text-sm opacity-70">051-309-5581</div>
+            <div id="p1Timer" class="text-3xl font-mono mt-6 mb-2">00:00</div>
+            <div class="flex justify-center gap-1 mb-6 mt-2">
+              <div class="w-1 bg-white/60 rounded-full pulse-dot" style="height:12px"></div>
+              <div class="w-1 bg-white/60 rounded-full pulse-dot" style="height:24px;animation-delay:0.2s"></div>
+              <div class="w-1 bg-white/60 rounded-full pulse-dot" style="height:18px;animation-delay:0.4s"></div>
+              <div class="w-1 bg-white/60 rounded-full pulse-dot" style="height:30px;animation-delay:0.6s"></div>
+              <div class="w-1 bg-white/60 rounded-full pulse-dot" style="height:14px;animation-delay:0.8s"></div>
+              <div class="w-1 bg-white/60 rounded-full pulse-dot" style="height:22px;animation-delay:0.3s"></div>
+            </div>
+            <div id="p1Subtitle" class="text-sm opacity-90 italic min-h-[40px] px-3"></div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">📞 진완(영업)이 기관 통화 — 폰이 STT로 자동 녹음</div>
+    </div>
+
+    <!-- Phase 2: STT 텍스트 변환 완료 -->
+    <div id="flowPhase2" class="flow-phase hidden py-4">
+      <div class="bg-white rounded-2xl p-5 max-w-xl mx-auto shadow-lg border border-stone-200">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="text-xl">📝</div>
+          <div>
+            <div class="font-semibold text-navy">통화 STT 자동 변환 완료</div>
+            <div class="text-xs text-stone-500">진완 폰에서 텍스트 즉시 사용 가능</div>
+          </div>
+        </div>
+        <div class="bg-stone-50 rounded-xl p-4 text-xs text-stone-700 max-h-[280px] overflow-hidden space-y-1.5 leading-relaxed" id="p2STT">
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">📲 통화 끝나자마자 폰이 자동으로 텍스트 변환</div>
+    </div>
+
+    <!-- Phase 3: 노션 거래 row + STT 붙여넣기 -->
+    <div id="flowPhase3" class="flow-phase hidden py-4">
+      <div class="bg-white rounded-xl border border-stone-200 max-w-2xl mx-auto overflow-hidden shadow-lg">
+        <div class="bg-stone-100 px-4 py-2 text-xs flex items-center gap-2 border-b">
+          <span>📊</span>
+          <span class="font-medium text-stone-700">부코딩 교육 문의 (출강·교습소)</span>
+          <span class="text-stone-400 ml-auto">새 row 추가됨</span>
+        </div>
+        <div class="p-4">
+          <div class="notion-row mb-3">
+            <div class="font-semibold text-stone-800 mb-2 flex items-center gap-2">
+              <span class="text-lg">🏛️</span>
+              <span>덕천도서관</span>
+            </div>
+            <div class="notion-prop"><span class="label">상담일</span><span class="val">2026-04-30</span></div>
+            <div class="notion-prop"><span class="label">연락처</span><span class="val">051-309-5581</span></div>
+            <div class="notion-prop"><span class="label">예상 단가</span><span class="val">₩1,040,000</span></div>
+            <div class="notion-prop"><span class="label">단계</span><span class="val">협상</span></div>
+          </div>
+          <div class="text-xs text-stone-500 mb-1">본문</div>
+          <div id="p3STT" class="bg-stone-50 rounded-lg p-3 text-xs text-stone-700 leading-relaxed min-h-[60px]"></div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">🗂️ 노션 거래 DB에 새 row 만들고 STT 붙여넣기 (정리 X, 그대로)</div>
+    </div>
+
+    <!-- Phase 4: Claude Code 한 줄 -->
+    <div id="flowPhase4" class="flow-phase hidden py-4">
+      <div class="terminal max-w-2xl mx-auto">
+        <div><span class="prompt">$</span> <span class="cmd">cd ~/Documents/ai_studio/projects/2026-01\(부산AI코딩스쿨\)/edu-site</span></div>
+        <div><span class="prompt">$</span> <span class="cmd">claude</span></div>
+        <div class="text-stone-400 mt-2">Claude Code v2.0 · proposal-create 스킬 로드됨</div>
+        <div class="mt-4 flex items-baseline gap-2">
+          <span class="text-blue-300">›</span>
+          <span id="p4Cmd" class="text-white"></span>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">⌨️ Claude Code에 한 줄 입력 — proposal-create 스킬 자동 호출</div>
+    </div>
+
+    <!-- Phase 5: 노션 row 자동 정리 -->
+    <div id="flowPhase5" class="flow-phase hidden py-4">
+      <div class="bg-white rounded-xl border border-stone-200 max-w-2xl mx-auto overflow-hidden shadow-lg">
+        <div class="bg-stone-100 px-4 py-2 text-xs flex items-center gap-2 border-b">
+          <span>📊</span>
+          <span class="font-medium text-stone-700">덕천도서관 거래 row · 자동 정리 중</span>
+          <span class="ml-auto text-blue-brand pulse-dot">●</span>
+        </div>
+        <div class="p-4 max-h-[380px] overflow-y-auto space-y-2">
+          <div id="p5Section1" class="hidden anim-msg p-3 rounded-lg" style="background:#dbeafe">
+            <div class="text-xs font-semibold mb-1" style="color:var(--navy)">📞 callout</div>
+            <div class="text-xs text-stone-700">덕천도서관 · 토요일 로봇코딩 8회 · 12명 · ₩1,040,000</div>
+          </div>
+          <div id="p5Section2" class="hidden anim-msg p-3 rounded-lg" style="background:#fef3c7">
+            <div class="text-xs font-semibold mb-1" style="color:#92400e">📋 거래 개요</div>
+            <div class="text-xs text-stone-700">기관·연락처·대상·기간·시간·강사료·지급방식 13개 항목 표 정리</div>
+          </div>
+          <div id="p5Section3" class="hidden anim-msg p-3 rounded-lg" style="background:#dcfce7">
+            <div class="text-xs font-semibold mb-1" style="color:#076362">✅ 할 일</div>
+            <div class="text-xs text-stone-700">7개 체크박스 (통화 ✓ · STT ✓ · 송부 · 양식 · 제안서 · 견적서)</div>
+          </div>
+          <div id="p5Section4" class="hidden anim-msg p-3 rounded-lg" style="background:#fce7f3">
+            <div class="text-xs font-semibold mb-1" style="color:#9d174d">🎙️ 통화 STT 풀텍스트</div>
+            <div class="text-xs text-stone-700">발화자 분리 + 핵심 합의 7개 자동 추출 + 전체 STT 펼치기 토글</div>
+          </div>
+          <div id="p5Section5" class="hidden anim-msg p-3 rounded-lg" style="background:#fed7aa">
+            <div class="text-xs font-semibold mb-1" style="color:#9a3412">📐 운영 설계</div>
+            <div class="text-xs text-stone-700">8주 커리큘럼 표 자동 생성 (5/30 첫 만남 → 7/25 발표·시상)</div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">🤖 노션 row가 자동으로 표준 템플릿으로 정리됨</div>
+    </div>
+
+    <!-- Phase 6: 제안서 HTML 자동 작성 -->
+    <div id="flowPhase6" class="flow-phase hidden py-4">
+      <div class="bg-white rounded-xl border border-stone-200 max-w-2xl mx-auto overflow-hidden shadow-lg">
+        <div class="bg-navy text-white px-4 py-2 text-xs flex items-center gap-2">
+          <span class="text-yellow-400">📄</span>
+          <span class="font-medium">deokcheon-proposal.html · 자동 작성 중</span>
+          <span class="ml-auto">4페이지</span>
+        </div>
+        <div class="grid grid-cols-2 gap-2 p-4">
+          <div id="p6Pg1" class="hidden anim-msg aspect-[3/4] rounded-lg flex flex-col items-center justify-center text-white text-xs p-3" style="background:linear-gradient(135deg,var(--navy),var(--navy2));">
+            <div class="text-orange-brand text-xl font-bold">P1</div>
+            <div class="mt-2 text-center">덕천도서관<br>토요일 로봇코딩</div>
+            <div class="mt-2 text-[10px] opacity-70">8회 · 12명 · 90분</div>
+          </div>
+          <div id="p6Pg2" class="hidden anim-msg aspect-[3/4] rounded-lg flex flex-col items-center justify-center text-navy text-xs p-3 border-2 border-stone-200 bg-white">
+            <div class="text-blue-brand text-xl font-bold">P2</div>
+            <div class="mt-2 text-center">사업 개요<br>차별화 포인트</div>
+            <div class="mt-2 text-[10px] text-stone-500">4개 카드</div>
+          </div>
+          <div id="p6Pg3" class="hidden anim-msg aspect-[3/4] rounded-lg flex flex-col items-center justify-center text-navy text-xs p-3 border-2 border-stone-200 bg-white">
+            <div class="text-blue-brand text-xl font-bold">P3</div>
+            <div class="mt-2 text-center">8주 커리큘럼<br>매트릭스</div>
+            <div class="mt-2 text-[10px] text-stone-500">로봇과 첫만남 → 발표회</div>
+          </div>
+          <div id="p6Pg4" class="hidden anim-msg aspect-[3/4] rounded-lg flex flex-col items-center justify-center text-white text-xs p-3" style="background:linear-gradient(135deg,var(--orange),#FF8C5A);">
+            <div class="text-white text-xl font-bold">P4</div>
+            <div class="mt-2 text-center">강사진·예산<br>CTA</div>
+            <div class="mt-2 text-[10px] opacity-90">담당 김진완</div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">📑 제안서 HTML 4페이지 자동 작성 (단성고 톤)</div>
+    </div>
+
+    <!-- Phase 7: 견적서 HTML + 도장 -->
+    <div id="flowPhase7" class="flow-phase hidden py-4">
+      <div class="bg-white rounded-xl border border-stone-200 max-w-md mx-auto overflow-hidden shadow-lg p-6">
+        <div class="border-b-2 pb-3 mb-4" style="border-color:var(--navy)">
+          <div class="text-xl font-bold text-navy" style="letter-spacing:6px">견 적 서</div>
+          <div class="text-xs text-stone-500 mt-1">QUOTATION · (주)크리플레이</div>
+        </div>
+        <div id="p7Lines" class="space-y-1.5 text-xs text-stone-700 mb-4 min-h-[120px]"></div>
+        <div id="p7Total" class="hidden anim-msg bg-navy text-white p-3 rounded-lg flex justify-between items-center mb-4">
+          <span class="text-sm">합계 (VAT 포함)</span>
+          <span class="text-lg font-bold text-orange-brand">₩1,673,600</span>
+        </div>
+        <div class="flex justify-end items-center gap-3 pt-3 border-t border-stone-200">
+          <div class="text-right">
+            <div class="text-xs text-stone-500">2026년 5월 1일</div>
+            <div class="text-sm font-semibold mt-1" style="letter-spacing:2px">대표이사 송 병 근</div>
+          </div>
+          <div id="p7Stamp" class="hidden anim-msg w-14 h-14 rounded-full flex items-center justify-center text-2xl border-2 border-red-600 text-red-600" style="background:rgba(220,38,38,0.05)">印</div>
+        </div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">🏛️ 견적서 + (주)크리플레이 법인 도장 자동</div>
+    </div>
+
+    <!-- Phase 8: git push → Vercel 배포 -->
+    <div id="flowPhase8" class="flow-phase hidden py-4">
+      <div class="terminal max-w-2xl mx-auto">
+        <div><span class="prompt">$</span> <span class="cmd">git add public/cases/proposal-auto/...</span></div>
+        <div id="p8L1" class="hidden"><span class="prompt">$</span> <span class="cmd">git commit -m "feat: 덕천도서관 제안서·견적서 추가"</span></div>
+        <div id="p8L2" class="hidden text-stone-400"> [main bafb12b] 5 files changed, 1213 insertions</div>
+        <div id="p8L3" class="hidden"><span class="prompt">$</span> <span class="cmd">git push origin main</span></div>
+        <div id="p8L4" class="hidden text-stone-400"> To github.com/bksong772/edu-site.git</div>
+        <div id="p8L5" class="hidden text-stone-400">    main → main</div>
+        <div id="p8L6" class="hidden mt-3"><span class="info">▲ Vercel</span> <span class="text-stone-400">Building...</span></div>
+        <div id="p8L7" class="hidden"><span class="info">▲ Vercel</span> <span class="ok">✓ Deployed in 47s</span></div>
+        <div id="p8L8" class="hidden mt-3 text-orange-300">🌐 https://busanaicodingschool.com/proposal/deokcheon</div>
+        <div id="p8L9" class="hidden text-orange-300">🌐 https://busanaicodingschool.com/proposal/deokcheon/quote</div>
+      </div>
+      <div class="text-center mt-4 text-sm text-stone-500">🚀 git push → Vercel 자동 배포 → 라이브 URL 즉시</div>
+    </div>
+
+    <!-- Ending -->
+    <div id="flowEnding" class="hidden py-6 text-center">
+      <div class="text-5xl mb-3">✅</div>
+      <div class="text-2xl font-bold text-navy mb-2">통화 후 5분, 라이브까지 완료</div>
+      <div class="text-stone-600 mb-6">진완은 통화만, AI가 정리·작성·도장·배포 다 처리</div>
+      <div class="bg-paper rounded-2xl p-5 inline-block max-w-2xl">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-sm">
+          <div>
+            <div class="text-xl font-bold text-navy">30분→5분</div>
+            <div class="text-xs text-stone-500 mt-1">견적서 작성</div>
+          </div>
+          <div>
+            <div class="text-xl font-bold" style="color:var(--blue)">1h→자동</div>
+            <div class="text-xs text-stone-500 mt-1">강의 계획서</div>
+          </div>
+          <div>
+            <div class="text-xl font-bold text-orange-brand">1~2일→즉시</div>
+            <div class="text-xs text-stone-500 mt-1">영업 응답</div>
+          </div>
+          <div>
+            <div class="text-xl font-bold" style="color:#9a3412">종종→0건</div>
+            <div class="text-xs text-stone-500 mt-1">인적 오류</div>
+          </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-stone-300 text-xs text-stone-600 leading-relaxed">
+          <strong class="text-navy">진완이 하는 것</strong>: 통화 (단 1가지)<br>
+          <strong class="text-orange-brand">AI가 하는 것</strong>: STT 정리 · 노션 분류 · 제안서 작성 · 견적서 작성 · 도장 · git push · Vercel 배포
+        </div>
+      </div>
+      <div class="mt-6 flex gap-2 justify-center flex-wrap">
+        <button id="replayFlow" class="bg-navy text-white px-5 py-2.5 rounded-xl font-medium">🔁 다시 보기</button>
+        <button id="closeFlowEnd" class="bg-stone-200 text-stone-700 px-5 py-2.5 rounded-xl font-medium">페이지로 이동 →</button>
+      </div>
+      <p class="mt-4 text-xs text-stone-400">실제 라이브: <a href="https://busanaicodingschool.com/proposal/deokcheon" target="_blank" class="underline">덕천도서관</a> · <a href="https://busanaicodingschool.com/proposal/khfc" target="_blank" class="underline">한국주택금융공사</a></p>
+    </div>
+  </div>
+</div>
+
+<script>
+const flowOverlay = document.getElementById('flowOverlay');
+const flowTitle = document.getElementById('flowTitle');
+const phases = ['flowPhase1','flowPhase2','flowPhase3','flowPhase4','flowPhase5','flowPhase6','flowPhase7','flowPhase8','flowEnding'];
+const dots = ['flowDot1','flowDot2','flowDot3','flowDot4','flowDot5','flowDot6','flowDot7','flowDot8'];
+
+function showPhase(idx) {
+  phases.forEach(id => document.getElementById(id).classList.add('hidden'));
+  if (idx < phases.length) document.getElementById(phases[idx]).classList.remove('hidden');
+  dots.forEach((id, i) => {
+    const el = document.getElementById(id);
+    el.style.background = i < idx + 1 ? 'var(--navy)' : '#d6d3d1';
+    el.style.transform = i === idx ? 'scale(1.5)' : 'scale(1)';
+  });
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+async function typeInto(el, text, ms) {
+  el.textContent = '';
+  for (const ch of text) { el.textContent += ch; await sleep(ms); }
+}
+
+async function playFlow() {
+  flowOverlay.classList.remove('hidden');
+  flowOverlay.classList.add('flex');
+
+  // Phase 1: 통화
+  flowTitle.textContent = '① 진완이 기관과 통화 (STT 자동 녹음)';
+  showPhase(0);
+  const p1Timer = document.getElementById('p1Timer');
+  const p1Subtitle = document.getElementById('p1Subtitle');
+  p1Timer.textContent = '00:00';
+  p1Subtitle.textContent = '';
+  await sleep(400);
+  p1Subtitle.textContent = '"덕천도서관 6~7월 코딩 수업 진행하려고요"';
+  let sec = 0;
+  const t = setInterval(() => {
+    sec++;
+    p1Timer.textContent = `${String(Math.floor(sec/60)).padStart(2,'0')}:${String(sec%60).padStart(2,'0')}`;
+  }, 60);
+  await sleep(700);
+  p1Subtitle.textContent = '"5/30~7/25 매주 토요일, 8회"';
+  await sleep(700);
+  p1Subtitle.textContent = '"초등 2~5학년 12명, 90분"';
+  await sleep(700);
+  clearInterval(t);
+  p1Subtitle.textContent = '✓ 통화 종료 → 폰 STT 자동 변환 시작';
+
+  // Phase 2: STT 변환 완료
+  flowTitle.textContent = '② 폰이 자동으로 STT 텍스트 변환';
+  showPhase(1);
+  const p2STT = document.getElementById('p2STT');
+  p2STT.innerHTML = '';
+  const sttLines = [
+    '<strong class="text-navy">[발화자 2 — 덕천도서관]</strong> 안녕하세요, 6월 7월에 코딩 수업 아마 진행하려고 하거든요.',
+    '<strong class="text-navy">[발화자 1 — 진완]</strong> 네 가능합니다.',
+    '<strong class="text-navy">[발화자 2]</strong> 5월 30일 토요일부터 7월 25일까지 매주 토요일 8번이거든요.',
+    '<strong class="text-navy">[발화자 1]</strong> 매주 토요일 8회 가능합니다. 학년이 어떻게 될까요?',
+    '<strong class="text-navy">[발화자 2]</strong> 초등 2학년에서 5학년 12명, 10시~11시 30분.',
+    '<strong class="text-navy">[발화자 1]</strong> 로봇코딩 수업으로 알차게 진행할 수 있습니다.',
+    '<strong class="text-navy">[발화자 2]</strong> 강의료는 1시간 30분에 13만원, 8회 총 104만원...'
+  ];
+  for (const line of sttLines) {
+    const div = document.createElement('div');
+    div.className = 'anim-msg';
+    div.innerHTML = line;
+    p2STT.appendChild(div);
+    await sleep(280);
+  }
+  await sleep(800);
+
+  // Phase 3: 노션 row 만들고 STT 붙여넣기
+  flowTitle.textContent = '③ 노션 거래 row 만들고 STT 그대로 붙여넣기';
+  showPhase(2);
+  const p3STT = document.getElementById('p3STT');
+  p3STT.textContent = '';
+  await sleep(500);
+  p3STT.classList.add('anim-typing');
+  await typeInto(p3STT, '[STT 풀텍스트 그대로 붙여넣기 — 정리 X]', 30);
+  await sleep(700);
+
+  // Phase 4: Claude Code 한 줄
+  flowTitle.textContent = '④ Claude Code 한 줄로 호출';
+  showPhase(3);
+  const p4Cmd = document.getElementById('p4Cmd');
+  p4Cmd.textContent = '';
+  p4Cmd.classList.add('cursor-blink');
+  await sleep(500);
+  await typeInto(p4Cmd, '이 노션 row STT로 제안서·견적서 만들어줘', 35);
+  await sleep(800);
+
+  // Phase 5: 노션 row 자동 정리
+  flowTitle.textContent = '⑤ 노션 row 표준 템플릿 자동 정리';
+  showPhase(4);
+  ['p5Section1','p5Section2','p5Section3','p5Section4','p5Section5'].forEach(id => document.getElementById(id).classList.add('hidden'));
+  await sleep(400);
+  for (const id of ['p5Section1','p5Section2','p5Section3','p5Section4','p5Section5']) {
+    document.getElementById(id).classList.remove('hidden');
+    await sleep(350);
+  }
+  await sleep(700);
+
+  // Phase 6: 제안서 4페이지 자동 작성
+  flowTitle.textContent = '⑥ 제안서 HTML 4페이지 자동 작성';
+  showPhase(5);
+  ['p6Pg1','p6Pg2','p6Pg3','p6Pg4'].forEach(id => document.getElementById(id).classList.add('hidden'));
+  await sleep(400);
+  for (const id of ['p6Pg1','p6Pg2','p6Pg3','p6Pg4']) {
+    document.getElementById(id).classList.remove('hidden');
+    await sleep(400);
+  }
+  await sleep(700);
+
+  // Phase 7: 견적서 + 도장
+  flowTitle.textContent = '⑦ 견적서 + (주)크리플레이 도장 자동';
+  showPhase(6);
+  const p7Lines = document.getElementById('p7Lines');
+  const p7Total = document.getElementById('p7Total');
+  const p7Stamp = document.getElementById('p7Stamp');
+  p7Lines.innerHTML = '';
+  p7Total.classList.add('hidden');
+  p7Stamp.classList.add('hidden');
+  await sleep(400);
+  const lines = [
+    '<div class="flex justify-between"><span>강사료 (8회)</span><strong>₩1,040,000</strong></div>',
+    '<div class="flex justify-between"><span>로봇 교구 렌탈 (12명×8주, VAT)</span><strong>₩633,600</strong></div>',
+    '<div class="flex justify-between text-stone-500"><span>태블릿 (도서관 보유)</span><span>₩0</span></div>'
+  ];
+  for (const l of lines) {
+    const div = document.createElement('div');
+    div.className = 'anim-msg';
+    div.innerHTML = l;
+    p7Lines.appendChild(div);
+    await sleep(350);
+  }
+  await sleep(300);
+  p7Total.classList.remove('hidden');
+  await sleep(700);
+  p7Stamp.classList.remove('hidden');
+  await sleep(900);
+
+  // Phase 8: push + 배포
+  flowTitle.textContent = '⑧ git push → Vercel 자동 배포';
+  showPhase(7);
+  const lines8 = ['p8L1','p8L2','p8L3','p8L4','p8L5','p8L6','p8L7','p8L8','p8L9'];
+  lines8.forEach(id => document.getElementById(id).classList.add('hidden'));
+  const delays = [400, 200, 400, 200, 200, 600, 800, 200, 200];
+  for (let i = 0; i < lines8.length; i++) {
+    document.getElementById(lines8[i]).classList.remove('hidden');
+    await sleep(delays[i]);
+  }
+  await sleep(1200);
+
+  // Ending
+  flowTitle.textContent = '✨ 풀 자동화 완료';
+  showPhase(8);
+  dots.forEach(id => document.getElementById(id).style.background = 'var(--orange)');
+}
+
+document.getElementById('playFlowBtn').addEventListener('click', playFlow);
+document.getElementById('replayFlow').addEventListener('click', playFlow);
+document.getElementById('closeFlow').addEventListener('click', () => {
+  flowOverlay.classList.add('hidden'); flowOverlay.classList.remove('flex');
+});
+document.getElementById('closeFlowEnd').addEventListener('click', () => {
+  flowOverlay.classList.add('hidden'); flowOverlay.classList.remove('flex');
+  document.querySelector('section').scrollIntoView({ behavior: 'smooth' });
+});
+
+const params = new URLSearchParams(location.search);
+if (params.get('autoplay') === '1') {
+  setTimeout(() => playFlow(), 800);
+}
+</script>
+
+</body>
+</html>
