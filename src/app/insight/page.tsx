@@ -20,8 +20,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function InsightListPage() {
-  const items = getAllInsights();
+export const revalidate = 3600; // ISR — 매 1시간 노션 자동 sync
+
+export default async function InsightListPage() {
+  const items = await getAllInsights();
 
   return (
     <>

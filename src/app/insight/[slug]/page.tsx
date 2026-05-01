@@ -9,8 +9,11 @@ import { getAllInsights, getInsightBySlug } from "@/lib/insights";
 
 type Params = { slug: string };
 
+export const revalidate = 3600; // ISR — 매 1시간 노션 자동 sync
+
 export async function generateStaticParams(): Promise<Params[]> {
-  return getAllInsights().map((i) => ({ slug: i.slug }));
+  const all = await getAllInsights();
+  return all.map((i) => ({ slug: i.slug }));
 }
 
 export async function generateMetadata({
@@ -18,7 +21,7 @@ export async function generateMetadata({
 }: {
   params: Params;
 }): Promise<Metadata> {
-  const item = getInsightBySlug(params.slug);
+  const item = await getInsightBySlug(params.slug);
   if (!item) return { title: "인사이트를 찾을 수 없습니다" };
 
   const url = `https://busan-ailab.vercel.app/insight/${item.slug}`;
@@ -42,8 +45,8 @@ export async function generateMetadata({
   };
 }
 
-export default function InsightDetailPage({ params }: { params: Params }) {
-  const item = getInsightBySlug(params.slug);
+export default async function InsightDetailPage({ params }: { params: Params }) {
+  const item = await getInsightBySlug(params.slug);
   if (!item) notFound();
 
   const jsonLd = {

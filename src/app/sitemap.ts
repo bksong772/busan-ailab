@@ -3,8 +3,9 @@ import { getAllInsights } from "@/lib/insights";
 
 const BASE = "https://busan-ailab.vercel.app";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const insightPages: MetadataRoute.Sitemap = getAllInsights().map((i) => ({
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const all = await getAllInsights();
+  const insightPages: MetadataRoute.Sitemap = all.map((i) => ({
     url: `${BASE}/insight/${i.slug}`,
     lastModified: new Date(i.publishedAt),
     changeFrequency: "monthly",

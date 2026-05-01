@@ -1,3 +1,5 @@
+import { fetchNaverUrlsFromNotion } from "./notion-sync";
+
 export interface InsightItem {
   slug: string;
   title: string;
@@ -236,12 +238,42 @@ AX는 기술의 문제가 아니라 **의사결정과 습관의 문제**입니�
   },
 ];
 
-export function getInsightBySlug(slug: string): InsightItem | undefined {
-  return insights.find((i) => i.slug === slug);
+function applyNaverUrlOverrides(
+  items: InsightItem[],
+  naverMap: Map<string, { slug: string; naverBlogUrl: string }>
+): InsightItem[] {
+  return items.map((item) => {
+    const overrideUrl = naverMap.get(item.slug)?.naverBlogUrl;
+    if (!overrideUrl) return item;
+
+    // body markdown 의 base 네이버 링크도 specific URL 로 교체
+    const baseUrlPattern = /https:\/\/blog\.naver\.com\/rlaworlawo321(?!\/\d)/g;
+    const updatedBody = item.body.replace(baseUrlPattern, overrideUrl);
+
+    return {
+      ...item,
+      naverBlogUrl: overrideUrl,
+      body: updatedBody,
+    };
+  });
 }
 
-export function getAllInsights(): InsightItem[] {
-  return [...insights].sort(
-    (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+export async function getInsightBySlug(
+  slug: string
+): Promise<InsightItem | undefined> {
+  const item = insights.find((i) => i.slug === slug);
+  if (!item) return undefined;
+
+  const naverMap = await fetchNaverUrlsFromNotion();
+  const [overridden] = applyNaverUrlOverrides([item], naverMap);
+  return overridden;
+}
+
+export async function getAllInsights(): Promise<InsightItem[]> {
+  const sorted = [...insights].sort(
+    (a, b) =>
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
   );
+  const naverMap = await fetchNaverUrlsFromNotion();
+  return applyNaverUrlOverrides(sorted, naverMap);
 }
