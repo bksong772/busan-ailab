@@ -207,7 +207,7 @@ export default function CaseGallerySection() {
         >
           <div className="inline-block bg-[#13131A] border border-[#2A2A35] rounded-2xl px-7 py-5 text-left">
             <div className="text-sm text-[#F5F5F5]/50 mb-2 tracking-wider">
-              CONSULTANT'S MOAT
+              CONSULTANT&apos;S MOAT
             </div>
             <p className="text-base sm:text-lg text-[#F5F5F5]/85 leading-relaxed">
               외부 컨설턴트가 절대 못 가지는 자산 —{" "}
