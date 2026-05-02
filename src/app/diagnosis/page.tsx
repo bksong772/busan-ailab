@@ -91,7 +91,7 @@ export default function DiagnosisPage() {
               <span className="shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#3B82F6] text-white font-extrabold text-sm">2</span>
               <div>
                 <div className="font-bold text-[#F5F5F5]">24시간 내 맞춤 PDF</div>
-                <div className="text-sm text-[#F5F5F5]/60 mt-1 leading-6">송병근이 직접 진단 → "어떤 업무부터·어떤 도구로·얼마 걸릴지" 정리한 1~2장 PDF 이메일 발송.</div>
+                <div className="text-sm text-[#F5F5F5]/60 mt-1 leading-6">송병근이 직접 진단 → &ldquo;어떤 업무부터·어떤 도구로·얼마 걸릴지&rdquo; 정리한 1~2장 PDF 이메일 발송.</div>
               </div>
             </li>
             <li className="rounded-2xl border border-[#2A2A35] bg-[#13131B] p-5 flex gap-4 items-start">
