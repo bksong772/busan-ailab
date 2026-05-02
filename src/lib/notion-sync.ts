@@ -84,7 +84,7 @@ export async function fetchNaverUrlsFromNotion(): Promise<
     for (const page of data.results) {
       const props = page.properties as Record<string, unknown> & {
         특이사항?: { rich_text?: unknown[] };
-        "userDefined:URL"?: { url?: string };
+        URL?: { url?: string };
         게시일?: { date?: { start?: string } };
       };
 
@@ -93,8 +93,8 @@ export async function fetchNaverUrlsFromNotion(): Promise<
       const slug = extractSlugFromNote(note);
       if (!slug) continue;
 
-      // URL 추출
-      const naverBlogUrl: string = props["userDefined:URL"]?.url || "";
+      // URL 추출 (노션 REST API 필드명은 "URL" — MCP의 "userDefined:URL"이 아님)
+      const naverBlogUrl: string = props["URL"]?.url || "";
       if (!naverBlogUrl) continue;
 
       const publishedAt: string | undefined =
