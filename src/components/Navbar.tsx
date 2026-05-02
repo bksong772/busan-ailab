@@ -20,6 +20,7 @@ export default function Navbar() {
           <a href="/#proof" className="hover:text-[#F5F5F5] transition-colors">운영 사례</a>
           <a href="/#audience" className="hover:text-[#F5F5F5] transition-colors">교육 대상</a>
           <a href="/insight" className="hover:text-[#F5F5F5] transition-colors">인사이트</a>
+          <a href="/diagnosis" className="hover:text-[#3B82F6] transition-colors font-semibold">무료 진단</a>
         </div>
         <div className="flex items-center gap-2">
           <a
