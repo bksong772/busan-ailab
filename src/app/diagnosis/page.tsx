@@ -6,7 +6,7 @@ import DiagnosisForm from "./DiagnosisForm";
 export const metadata: Metadata = {
   title: "30초 AX 자가진단 — 24시간 안에 맞춤 진단 결과 받기 | AX팩토리",
   description:
-    "직원 수·반복 업무·현재 도구 몇 가지만 답하면, 부산·울산·경남 100+ 기관 출강 4년차 송병근이 직접 24시간 안에 맞춤 AX 진단 결과 PDF를 보내드립니다. 무료.",
+    "직원 수·반복 업무·현재 도구 몇 가지만 답하면, 28개 공간을 직접 운영하며 자동화를 쌓아온 컨설턴트가 24시간 안에 맞춤 AX 진단 결과 PDF를 보내드립니다. 무료.",
   alternates: { canonical: "https://axfactory.vercel.app/diagnosis" },
   openGraph: {
     title: "30초 AX 자가진단 — 24시간 안에 맞춤 진단 결과",
@@ -51,7 +51,7 @@ export default function DiagnosisPage() {
           <p className="mt-6 text-base sm:text-lg text-[#F5F5F5]/70 leading-8 break-keep">
             ChatGPT는 써봤는데 뭐부터 시작해야 할지 막막하다면.
             <br className="hidden sm:block" />
-            30초 자가진단 응답하면, 부산·울산·경남 <strong className="text-[#F5F5F5]">100+ 기관 출강 4년차</strong>가
+            30초 자가진단 응답하면, <strong className="text-[#F5F5F5]">공간·교육 사업을 직접 굴리는 운영자</strong>가
             우리 회사 맞춤 AX 진단 결과를 <strong className="text-[#F5F5F5]">24시간 안에</strong> 이메일로 보내드립니다.
           </p>
         </section>
@@ -91,7 +91,7 @@ export default function DiagnosisPage() {
               <span className="shrink-0 inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#3B82F6] text-white font-extrabold text-sm">2</span>
               <div>
                 <div className="font-bold text-[#F5F5F5]">24시간 내 맞춤 PDF</div>
-                <div className="text-sm text-[#F5F5F5]/60 mt-1 leading-6">송병근이 직접 진단 → &ldquo;어떤 업무부터·어떤 도구로·얼마 걸릴지&rdquo; 정리한 1~2장 PDF 이메일 발송.</div>
+                <div className="text-sm text-[#F5F5F5]/60 mt-1 leading-6">현장 운영자가 1:1로 분석 → &ldquo;어떤 업무부터·어떤 도구로·얼마 걸릴지&rdquo; 정리한 1~2장 PDF 이메일 발송.</div>
               </div>
             </li>
             <li className="rounded-2xl border border-[#2A2A35] bg-[#13131B] p-5 flex gap-4 items-start">
