@@ -6,7 +6,9 @@ export async function POST(req: NextRequest) {
     role,
     headcount,
     industry,
+    businessDesc,
     painPoint,
+    reduceWant,
     tools,
     stage,
     saveHours,
@@ -24,11 +26,13 @@ export async function POST(req: NextRequest) {
     `직책: ${role || "(미입력)"}`,
     `직원 수: ${headcount || "(미입력)"}`,
     `업종: ${industry || "(미입력)"}`,
+    `사업 내용: ${businessDesc || "(미입력)"}`,
     `현재 AX 도입 단계: ${stage || "(미입력)"}`,
     `사용 중 AI 도구: ${
       Array.isArray(tools) && tools.length ? tools.join(", ") : "없음"
     }`,
-    `가장 답답한 반복 업무: ${painPoint || "(미입력)"}`,
+    `시간 가장 많이 드는 업무: ${painPoint || "(미입력)"}`,
+    `줄이고 싶은 업무: ${reduceWant || "(미입력)"}`,
     `절감 희망 시간(주): ${saveHours || "(미입력)"}`,
     `이메일: ${email}`,
   ].join("\n");

@@ -26,9 +26,11 @@ export default function DiagnosisForm() {
     role: ROLES[0],
     headcount: HEADCOUNTS[0],
     industry: INDUSTRIES[0],
+    businessDesc: "",
     stage: STAGES[0],
     tools: [] as string[],
     painPoint: "",
+    reduceWant: "",
     saveHours: "",
     name: "",
     contact: "",
@@ -68,9 +70,11 @@ export default function DiagnosisForm() {
           직책: form.role,
           직원수: form.headcount,
           업종: form.industry,
+          사업내용: form.businessDesc || "(미입력)",
           도입단계: form.stage,
           현재도구: form.tools.length ? form.tools.join(", ") : "없음",
-          반복업무: form.painPoint || "(미입력)",
+          시간많이드는업무: form.painPoint || "(미입력)",
+          줄이고싶은업무: form.reduceWant || "(미입력)",
           절감희망시간: form.saveHours || "(미입력)",
           _subject: `[AX 자가진단] ${form.company} — ${form.name || form.contact}`,
           _template: "table",
@@ -154,13 +158,27 @@ export default function DiagnosisForm() {
               ))}
             </select>
           </div>
+          <div className="sm:col-span-2">
+            <label className={labelCls}>주로 어떤 일을 하시나요? ★</label>
+            <textarea
+              required
+              rows={3}
+              className={inputCls}
+              placeholder="예: 부산 동래구에서 학원 2개 운영. 초·중등 영어·수학 가르치고, 학부모 상담·시간표·결제 관리도 직접 함."
+              value={form.businessDesc}
+              onChange={(e) => setForm((f) => ({ ...f, businessDesc: e.target.value }))}
+            />
+            <p className="mt-2 text-xs text-[#F5F5F5]/40 leading-5">
+              사업·업무 흐름을 짧게 적어주세요. 진단 정확도가 크게 올라갑니다.
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* Section 2 — 현재 상황 */}
+      {/* Section 2 — 현재 AI 사용 상황 */}
       <div className={sectionCls}>
         <h3 className="text-base font-extrabold text-[#F5F5F5] mb-5">
-          2️⃣ 현재 상황
+          2️⃣ 현재 AI 사용 상황
         </h3>
         <div className="space-y-5">
           <div>
@@ -207,18 +225,47 @@ export default function DiagnosisForm() {
               })}
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Section 3 — 자동화하고 싶은 업무 */}
+      <div className={sectionCls}>
+        <h3 className="text-base font-extrabold text-[#F5F5F5] mb-2">
+          3️⃣ 자동화하고 싶은 업무
+        </h3>
+        <p className="text-xs text-[#F5F5F5]/50 mb-5 leading-5">
+          답변하신 내용대로 진단 결과 PDF에 1순위 자동화 후보를 추천드립니다.
+        </p>
+        <div className="space-y-5">
           <div>
-            <label className={labelCls}>가장 시간 많이 드는 반복 업무 1가지 (선택)</label>
+            <label className={labelCls}>① 시간이 가장 많이 드는 반복 업무 ★</label>
             <textarea
+              required
               rows={3}
               className={inputCls}
-              placeholder="예: 매주 학부모 안내 카톡 30건 작성, 주간 매출 정리 2시간"
+              placeholder="예: 매주 학부모 안내 카톡 30건 작성 (주 3시간), 주간 매출 정리 (주 2시간), 견적서 수동 작성 (건당 30분)"
               value={form.painPoint}
               onChange={(e) => setForm((f) => ({ ...f, painPoint: e.target.value }))}
             />
+            <p className="mt-2 text-xs text-[#F5F5F5]/40 leading-5">
+              지금 어떤 일에 시간이 가장 많이 들어가는지 솔직하게 적어주세요.
+            </p>
           </div>
           <div>
-            <label className={labelCls}>30일 후 절감하고 싶은 시간 (시간/주, 선택)</label>
+            <label className={labelCls}>② 가장 줄이고 싶은 업무</label>
+            <textarea
+              rows={3}
+              className={inputCls}
+              placeholder="예: 직원 출퇴근 정리·급여 계산·리뷰 답글 작성 등 — 솔직히 안 하고 싶은데 매번 해야 하는 일"
+              value={form.reduceWant}
+              onChange={(e) => setForm((f) => ({ ...f, reduceWant: e.target.value }))}
+            />
+            <p className="mt-2 text-xs text-[#F5F5F5]/40 leading-5">
+              ①과 같은 업무라면 비워두셔도 됩니다.
+            </p>
+          </div>
+          <div>
+            <label className={labelCls}>30일 후 줄이고 싶은 시간 (시간/주, 선택)</label>
             <input
               className={inputCls}
               placeholder="예: 5"
@@ -230,10 +277,10 @@ export default function DiagnosisForm() {
         </div>
       </div>
 
-      {/* Section 3 — 연락처 */}
+      {/* Section 4 — 연락처 */}
       <div className={sectionCls}>
         <h3 className="text-base font-extrabold text-[#F5F5F5] mb-5">
-          3️⃣ 진단 결과 받을 곳
+          4️⃣ 진단 결과 받을 곳
         </h3>
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
