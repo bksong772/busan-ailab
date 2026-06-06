@@ -8,6 +8,7 @@ import SaaSDevelopmentSection from "@/components/SaaSDevelopmentSection";
 import CaseGallerySection from "@/components/CaseGallerySection";
 import HowWeWorkSection from "@/components/HowWeWorkSection";
 import ProofSection from "@/components/ProofSection";
+import FounderSection from "@/components/FounderSection";
 import ReferencesSection from "@/components/ReferencesSection";
 import IndividualCasesSection from "@/components/IndividualCasesSection";
 import AudienceSection from "@/components/AudienceSection";
@@ -47,6 +48,9 @@ export default function Home() {
 
         {/* 6. 왜 믿을 수 있나 — 직접 구현한 AI 스킬 */}
         <ProofSection />
+
+        {/* 6.5 누가 하나 — 대표 코치 프로필 (실전 운영자) */}
+        <FounderSection />
 
         {/* 7. 어디서 검증됐나 — 기관 레퍼런스 */}
         <ReferencesSection />
