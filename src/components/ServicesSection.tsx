@@ -21,7 +21,7 @@ const services = [
     label: "AX CONSULTING",
     title: "AX 컨설팅",
     sub: "소녀방앗간식 진단 → 자동화 → 인계 · 외부 컨설턴트 떠나도 직원이 운영 가능",
-    pricing: "₩99만 / ₩350만 / ₩800만+",
+    pricing: "규모별 맞춤 견적",
     pricingNote: "Lite · Standard · Premium",
     cta: "패키지 보기",
     href: "/consulting",
@@ -34,7 +34,7 @@ const services = [
     label: "SAAS DEVELOPMENT",
     title: "SaaS 개발",
     sub: "AX로 검증된 자동화를 멀티테넌트 SaaS로 · academy-manager식",
-    pricing: "₩500만~ / ₩1,500만~ / 월 9.9만원",
+    pricing: "PoC → 구독 확장",
     pricingNote: "PoC · 멀티테넌트 · 구독",
     cta: "케이스 보기",
     href: "/saas",
@@ -46,7 +46,7 @@ const services = [
     label: "FREE DIAGNOSIS",
     title: "무료 AX 진단",
     sub: "현재 업무·반복 작업을 진단하고 자동화 가능 영역을 짚어드립니다 · 24시간 내 맞춤 리포트",
-    pricing: "₩0",
+    pricing: "무료",
     pricingNote: "30초 신청 · 비대면·대면",
     cta: "무료 진단 신청",
     href: "/diagnosis",
@@ -154,7 +154,7 @@ export default function ServicesSection() {
                         className="text-[10px] font-semibold tracking-wider opacity-70 mb-0.5"
                         style={{ color: s.accent }}
                       >
-                        PRICE
+                        안내
                       </div>
                       <div
                         className="text-base font-bold"

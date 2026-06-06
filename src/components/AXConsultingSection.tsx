@@ -14,7 +14,7 @@ const beforeAfter = [
 const packages = [
   {
     name: "AX Lite",
-    price: "₩990,000",
+    price: "맞춤 견적",
     priceNote: "1회 진단 + 자동화 1건",
     summary: "30분 무료 진단 → 자동화 1건 적용",
     target: "자영업자 · 소상공인 (블로그·SNS·고객 응대 자동화)",
@@ -28,7 +28,7 @@ const packages = [
   },
   {
     name: "AX Standard",
-    price: "₩3,500,000",
+    price: "맞춤 견적",
     priceNote: "진단 + 자동화 3~5건 + 1개월 인계",
     summary: "진단 + 자동화 3~5건 + 1개월 운영 인계",
     target: "중소기업 · 기관 (업무 프로세스 자동화)",
@@ -43,7 +43,7 @@ const packages = [
   },
   {
     name: "AX Premium",
-    price: "₩8,000,000+",
+    price: "맞춤 견적",
     priceNote: "풀 시스템 설계 + 3개월 사후 지원",
     summary: "풀 시스템 설계 + SaaS 연계 + 3개월 사후 지원",
     target: "공공기관 · 중견기업 (다부서·다채널 자동화)",

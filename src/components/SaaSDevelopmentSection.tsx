@@ -55,7 +55,7 @@ const funnel = [
   {
     step: "3단계",
     title: "멀티테넌트 SaaS 정식 출시",
-    desc: "월 ₩99,000 구독 모델로 확장",
+    desc: "구독 모델로 확장",
     color: "#10B981",
   },
 ];
@@ -63,20 +63,20 @@ const funnel = [
 const pricing = [
   {
     name: "PoC SaaS 개발",
-    price: "₩5,000,000~",
+    price: "맞춤 견적",
     period: "1~3개월",
     desc: "검증된 자동화를 PoC SaaS로",
   },
   {
     name: "멀티테넌트 SaaS",
-    price: "₩15,000,000~",
+    price: "맞춤 견적",
     period: "3~6개월",
     desc: "여러 기관·기업이 함께 쓰는 정식 SaaS",
     featured: true,
   },
   {
     name: "SaaS 구독",
-    price: "월 ₩99,000~",
+    price: "맞춤 견적",
     period: "B2B · 개발 후",
     desc: "완성된 SaaS를 같은 업종 다른 곳도 사용",
   },
@@ -285,10 +285,10 @@ export default function SaaSDevelopmentSection() {
         <FadeInSection delay={0.1}>
           <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 text-xs text-[#F5F5F5]/40 border border-[#2A2A35] rounded-full px-4 py-1.5 mb-5">
-              가격 안내
+              진행 단계
             </div>
             <h3 className="text-2xl sm:text-3xl font-bold mb-3">
-              단계별 명확한 가격
+              단계별 진행 방식
             </h3>
           </div>
         </FadeInSection>
