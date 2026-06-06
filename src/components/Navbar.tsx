@@ -15,10 +15,12 @@ export default function Navbar() {
         <a href="/" className="font-bold text-xl text-[#F5F5F5] hover:opacity-80 transition-opacity">
           AX<span className="text-[#3B82F6]">그라운드</span>
         </a>
-        <div className="hidden sm:flex items-center gap-7 text-sm font-medium text-[#F5F5F5]/70">
-          <a href="/#programs" className="hover:text-[#F5F5F5] transition-colors">프로그램</a>
-          <a href="/#proof" className="hover:text-[#F5F5F5] transition-colors">운영 사례</a>
-          <a href="/#audience" className="hover:text-[#F5F5F5] transition-colors">교육 대상</a>
+        <div className="hidden md:flex items-center gap-5 text-sm font-medium text-[#F5F5F5]/70">
+          <a href="/education" className="hover:text-[#F5F5F5] transition-colors">교육</a>
+          <a href="/consulting" className="hover:text-[#F5F5F5] transition-colors">AX컨설팅</a>
+          <a href="/saas" className="hover:text-[#F5F5F5] transition-colors">SaaS</a>
+          <a href="/cases" className="hover:text-[#F5F5F5] transition-colors">사례</a>
+          <a href="/about" className="hover:text-[#F5F5F5] transition-colors">회사소개</a>
           <a href="/insight" className="hover:text-[#F5F5F5] transition-colors">인사이트</a>
           <a href="/diagnosis" className="hover:text-[#3B82F6] transition-colors font-semibold">무료 진단</a>
         </div>
