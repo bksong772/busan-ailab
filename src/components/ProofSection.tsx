@@ -37,7 +37,7 @@ const skills = [
     result: "제안서 제작 시간 75% 단축",
     icon: "📄",
     color: "#F59E0B",
-    cases: [{ name: "부산AI코딩스쿨", link: "https://busanaicodingschool.vercel.app/" }],
+    cases: [{ name: "부산AI코딩스쿨", link: "https://busanaicodingschool.com/" }],
   },
 ];
 

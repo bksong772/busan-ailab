@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>AX그라운드 회사소개서</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body {
+    font-family: "Apple SD Gothic Neo", "Pretendard", -apple-system, sans-serif;
+    color: #1A1A22;
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    width: 210mm; min-height: 297mm; padding: 18mm 16mm;
+    position: relative; page-break-after: always; overflow: hidden;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ===== COVER ===== */
+  .cover { background: #0A0A0F; color: #F5F5F5; display: flex; flex-direction: column; justify-content: center; padding: 0 18mm; }
+  .cover .brand { font-size: 13pt; letter-spacing: 4px; color: #3B82F6; font-weight: 700; margin-bottom: 14px; }
+  .cover h1 { font-size: 40pt; font-weight: 800; line-height: 1.15; letter-spacing: -1px; margin-bottom: 18px; }
+  .cover h1 .accent { color: #3B82F6; }
+  .cover .tag { font-size: 13pt; color: rgba(245,245,245,0.65); line-height: 1.7; margin-bottom: 40px; }
+  .cover .meta { font-size: 9.5pt; color: rgba(245,245,245,0.45); border-top: 1px solid #2A2A35; padding-top: 16px; }
+  .cover .meta b { color: rgba(245,245,245,0.8); }
+  .cover .dot { position: absolute; border-radius: 50%; background: #3B82F6; opacity: 0.12; filter: blur(40px); }
+
+  /* ===== CONTENT ===== */
+  .sec-tag { display: inline-block; font-size: 8pt; letter-spacing: 2px; font-weight: 700; color: #3B82F6; background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.25); border-radius: 20px; padding: 4px 12px; margin-bottom: 12px; }
+  h2.sec { font-size: 20pt; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; line-height: 1.25; }
+  h2.sec .accent { color: #3B82F6; }
+  .lead { font-size: 10.5pt; color: #4A4A55; line-height: 1.7; margin-bottom: 24px; }
+
+  /* stats */
+  .stats { display: flex; gap: 10px; margin: 22px 0 30px; }
+  .stat { flex: 1; border: 1px solid #E5E5EA; border-radius: 12px; padding: 16px 10px; text-align: center; background: #FAFAFB; }
+  .stat .n { font-size: 19pt; font-weight: 800; color: #3B82F6; }
+  .stat .l { font-size: 7.8pt; color: #6A6A75; margin-top: 5px; line-height: 1.35; }
+
+  /* service cards */
+  .svc { border: 1px solid #E5E5EA; border-radius: 14px; padding: 18px 20px; margin-bottom: 12px; }
+  .svc .h { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+  .svc .h .t { font-size: 13pt; font-weight: 800; }
+  .svc .h .p { font-size: 9.5pt; font-weight: 700; margin-left: auto; }
+  .svc .d { font-size: 9.5pt; color: #5A5A66; line-height: 1.6; }
+  .svc .pk { display: flex; gap: 8px; margin-top: 10px; }
+  .svc .pk span { flex: 1; font-size: 8pt; text-align: center; border: 1px solid #E5E5EA; border-radius: 8px; padding: 7px 4px; color: #4A4A55; }
+  .svc .pk b { display: block; font-size: 9pt; color: #1A1A22; margin-bottom: 2px; }
+  .c-blue { color: #3B82F6; } .c-orange { color: #FF6B35; } .c-purple { color: #8B5CF6; }
+  .bd-blue { border-left: 3px solid #3B82F6; } .bd-orange { border-left: 3px solid #FF6B35; } .bd-purple { border-left: 3px solid #8B5CF6; }
+
+  /* portfolio table */
+  .pf { width: 100%; border-collapse: collapse; margin-top: 10px; }
+  .pf th, .pf td { text-align: left; padding: 9px 10px; font-size: 8.8pt; border-bottom: 1px solid #ECECF0; vertical-align: top; }
+  .pf th { background: #F4F4F6; color: #4A4A55; font-weight: 700; font-size: 8pt; letter-spacing: 0.5px; }
+  .pf td .nm { font-weight: 700; color: #1A1A22; }
+  .pf td .ef { color: #3B82F6; font-weight: 700; }
+  .badge-ext { font-size: 7pt; background: rgba(255,107,53,0.1); color: #FF6B35; border-radius: 6px; padding: 2px 6px; font-weight: 700; }
+  .badge-int { font-size: 7pt; background: rgba(59,130,246,0.1); color: #3B82F6; border-radius: 6px; padding: 2px 6px; font-weight: 700; }
+
+  /* founder */
+  .founder { display: flex; gap: 18px; border: 1px solid #E5E5EA; border-radius: 14px; padding: 20px; background: #FAFAFB; margin-bottom: 14px; }
+  .founder .info .nm { font-size: 15pt; font-weight: 800; }
+  .founder .info .ti { font-size: 10pt; color: #3B82F6; font-weight: 700; margin: 3px 0 4px; }
+  .founder .info .su { font-size: 8.8pt; color: #6A6A75; }
+  .career { margin-bottom: 10px; }
+  .career h4 { font-size: 9.5pt; font-weight: 800; margin-bottom: 5px; color: #1A1A22; }
+  .career li { font-size: 8.8pt; color: #5A5A66; line-height: 1.6; list-style: none; padding-left: 12px; position: relative; }
+  .career li::before { content: "·"; color: #3B82F6; position: absolute; left: 2px; font-weight: 700; }
+
+  /* contact */
+  .contact { background: #0A0A0F; color: #F5F5F5; border-radius: 16px; padding: 28px 30px; margin-top: 8px; }
+  .contact h3 { font-size: 16pt; font-weight: 800; margin-bottom: 6px; }
+  .contact .s { font-size: 9.5pt; color: rgba(245,245,245,0.6); line-height: 1.7; margin-bottom: 16px; }
+  .contact .row { display: flex; gap: 28px; font-size: 9.5pt; }
+  .contact .row .k { color: rgba(245,245,245,0.45); font-size: 8pt; margin-bottom: 3px; letter-spacing: 1px; }
+  .contact .row .v { color: #F5F5F5; font-weight: 700; }
+  .contact .v .hl { color: #3B82F6; }
+
+  .foot { position: absolute; bottom: 12mm; left: 16mm; right: 16mm; display: flex; justify-content: space-between; font-size: 7.5pt; color: #A0A0AA; border-top: 1px solid #ECECF0; padding-top: 8px; }
+</style>
+</head>
+<body>
+
+<!-- ========== PAGE 1: COVER ========== -->
+<div class="page cover">
+  <div class="dot" style="width:300px;height:300px;top:-60px;right:-60px;"></div>
+  <div class="dot" style="width:240px;height:240px;bottom:40px;left:-80px;opacity:0.08;"></div>
+  <div class="brand">AXGROUND</div>
+  <h1>AI를 <span class="accent">가르치기만</span><br>하지 않습니다</h1>
+  <p class="tag">
+    부산에서 직접 5개 사업을 AI로 운영하는 팀이,<br>
+    그 운영 노하우 그대로 <b style="color:#F5F5F5">교육 · AX 컨설팅 · 업무 자동화</b>를 제공합니다.
+  </p>
+  <div class="meta">
+    <b>AX그라운드 (AXGROUND)</b> · 회사소개서<br>
+    부울경 기업 · 공공기관 · 소상공인 AI 전환(AX) 파트너 &nbsp;|&nbsp; axground.vercel.app
+  </div>
+</div>
+
+<!-- ========== PAGE 2: 우리는 + 숫자 + 서비스 ========== -->
+<div class="page">
+  <span class="sec-tag">ABOUT · 우리는</span>
+  <h2 class="sec">강의실 밖에서 <span class="accent">직접 합니다</span></h2>
+  <p class="lead">
+    AX그라운드는 부산AI코딩스쿨 운영팀이 만든 기업 전문 브랜드입니다.
+    10년간 28개 공간을 창업·운영하고 그 사업을 직접 AI로 자동화한 실전 운영자가,
+    이론이 아닌 <b>현장에서 검증한 방법</b>으로 교육하고 컨설팅합니다.
+  </p>
+
+  <div class="stats">
+    <div class="stat"><div class="n">100+</div><div class="l">누적 교육 기관</div></div>
+    <div class="stat"><div class="n">310회+</div><div class="l">2025년 기관 출강</div></div>
+    <div class="stat"><div class="n">28개</div><div class="l">직접 운영 공간 (10년)</div></div>
+    <div class="stat"><div class="n">40억+</div><div class="l">누적 매출</div></div>
+    <div class="stat"><div class="n">500+</div><div class="l">창업 코칭 팀</div></div>
+  </div>
+
+  <span class="sec-tag">SERVICES · 제공 서비스</span>
+  <h2 class="sec" style="font-size:16pt;margin-bottom:14px;">무엇을 살 수 있나요?</h2>
+
+  <div class="svc bd-blue">
+    <div class="h"><span class="t">🎓 AI 실무 교육</span><span class="p c-blue">반나절~하루 · 기관 맞춤</span></div>
+    <div class="d">콘텐츠·홈페이지·챗봇 — 직원이 교육 당일 직접 만들고 바로 쓰는 결과물 중심. 워크숍 4종 + 패키지 1종.</div>
+  </div>
+
+  <div class="svc bd-orange">
+    <div class="h"><span class="t">🎯 AX 컨설팅</span><span class="p c-orange">진단 → 자동화 → 인계</span></div>
+    <div class="d">현장 진단 후 반복 업무를 자동화하고, 외부 컨설턴트가 떠나도 직원이 그대로 돌릴 수 있는 형태로 인계합니다.</div>
+    <div class="pk">
+      <span><b>AX Lite</b>₩99만<br>진단+자동화 1건</span>
+      <span><b>AX Standard</b>₩350만<br>자동화 3~5건+인계</span>
+      <span><b>AX Premium</b>₩800만+<br>풀 시스템+사후지원</span>
+    </div>
+  </div>
+
+  <div class="svc bd-purple">
+    <div class="h"><span class="t">💻 SaaS 개발</span><span class="p c-purple">PoC · 멀티테넌트 · 구독</span></div>
+    <div class="d">AX로 검증된 자동화를 멀티테넌트 SaaS로 확장합니다. (academy-manager식) PoC ₩500만~ / 멀티테넌트 ₩1,500만~ / 구독 월 9.9만원.</div>
+  </div>
+
+  <div class="foot"><span>AX그라운드 회사소개서</span><span>02</span></div>
+</div>
+
+<!-- ========== PAGE 3: 자동화 포트폴리오 ========== -->
+<div class="page">
+  <span class="sec-tag">PORTFOLIO · 자동화 실적</span>
+  <h2 class="sec">말이 아니라 <span class="accent">돌아가는 시스템</span>으로</h2>
+  <p class="lead">
+    외부 고객 컨설팅과 우리가 직접 운영하는 사업에서 매일 실제로 돌아가는 자동화입니다.
+    각 사례는 사이트에서 십수 초 영상으로 풀 사이클을 확인할 수 있습니다.
+  </p>
+
+  <table class="pf">
+    <thead>
+      <tr><th style="width:22%">사례</th><th style="width:40%">자동화 흐름</th><th style="width:38%">효과 · 절감 환산</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge-ext">외부 고객</span><br><span class="nm">소녀방앗간 케이터링</span></td>
+        <td>신청 → 시트 → 알림 → 통화·STT → AI 견적 → 카톡 → 채널톡</td>
+        <td><span class="ef">응답 24h+ → 즉시</span><br>월 ~10시간 응대 절감 · 견적 누락 0건</td>
+      </tr>
+      <tr>
+        <td><span class="badge-int">직접 운영</span><br><span class="nm">부산코딩스쿨 영업·견적</span></td>
+        <td>통화 STT → 노션 → 제안서·견적서 → 도장 → Vercel 배포</td>
+        <td><span class="ef">견적 30분 → 5분</span><br>건당 25분 · 월 ~15시간 절감</td>
+      </tr>
+      <tr>
+        <td><span class="badge-int">직접 운영</span><br><span class="nm">고개서동 숙박</span></td>
+        <td>새벽 4시 자동 → 체크인 정리 → 텔레그램 → 손님 카톡</td>
+        <td><span class="ef">정리 1h → 0분</span><br>매일 1시간 · 월 ~30시간 절감</td>
+      </tr>
+      <tr>
+        <td><span class="badge-int">직접 운영</span><br><span class="nm">수리공의온도 콘텐츠</span></td>
+        <td>시공 사진·메모 → AI 글 → 블로그·당근 동시 자동 발행</td>
+        <td><span class="ef">글쓰기 1h → 자동</span><br>글당 ~1시간 절감 · 발행 채널 2배</td>
+      </tr>
+      <tr>
+        <td><span class="badge-int">직접 운영</span><br><span class="nm">부산코딩스쿨 칼럼</span></td>
+        <td>강의 결과 → AI 칼럼 → 사이트·네이버 블로그 동시 자동</td>
+        <td><span class="ef">칼럼 30분 → 자동</span><br>건당 ~30분 절감 · 발행 누락 0건</td>
+      </tr>
+      <tr>
+        <td><span class="badge-int">직접 운영</span><br><span class="nm">런칠리 창업교육</span></td>
+        <td>창업 인사이트 → AI 초안 → 쓰레드·링크드인·브런치 다채널 발행</td>
+        <td><span class="ef">SNS 운영 자동화</span><br>채널 3곳 발행 · 창업 코칭 500+ 팀 운영</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:7.8pt;color:#A0A0AA;margin-top:12px;">
+    * 절감 효과는 실제 운영 데이터 기반 환산이며 업무량에 따라 달라집니다.
+  </p>
+
+  <div style="margin-top:24px;border:1px solid #E5E5EA;border-radius:12px;padding:16px 20px;background:#FAFAFB;">
+    <div style="font-size:8pt;letter-spacing:1px;color:#6A6A75;margin-bottom:6px;">CONSULTANT'S MOAT · 우리만의 자산</div>
+    <p style="font-size:9.5pt;color:#3A3A45;line-height:1.6;">
+      외부 컨설턴트가 갖기 어려운 세 가지 —
+      <b style="color:#3B82F6;">현장 언어 이해 · 도구 능숙 · 인계 가능한 구조 설계</b>.
+      사업을 직접 굴리며 다듬었기에 가능합니다.
+    </p>
+  </div>
+
+  <div class="foot"><span>AX그라운드 회사소개서</span><span>03</span></div>
+</div>
+
+<!-- ========== PAGE 4: 대표 + 연락처 ========== -->
+<div class="page">
+  <span class="sec-tag">FOUNDER · 대표 코치</span>
+  <h2 class="sec">송병근 <span style="font-size:12pt;font-weight:600;color:#6A6A75;">코치</span></h2>
+  <p class="lead" style="margin-bottom:16px;">AX(AI 전환) 코치 · 창업 코치 — 현직 창업가로서 소상공인 · 공간 · 교육 현장을 직접 운영합니다.</p>
+
+  <div class="career">
+    <h4>지금 직접 운영합니다</h4>
+    <ul>
+      <li>부산AI코딩스쿨 — 2개 지점 (초·중·고·기관 AI·코딩 교육)</li>
+      <li>고개서동 — 6개 공간 로컬 공간사업 (숙소·공유주방·OTT룸)</li>
+      <li>(전) 공유독서실 블루닷라운지 15개 · 쉐어하우스 송스빌 4개</li>
+    </ul>
+  </div>
+  <div class="career">
+    <h4>AX(AI 전환) 실적</h4>
+    <ul>
+      <li>소녀방앗간 업무 대시보드 구축 — 카카오 알림톡·견적서 자동발행</li>
+      <li>학원 통합관리·재무·예약·정산·SNS 자동화 시스템 자체 개발</li>
+      <li>Claude·OpenAI API·n8n으로 본인 사업 전반에 AI 자동화 직접 적용</li>
+    </ul>
+  </div>
+  <div class="career">
+    <h4>강의 · 심사 (선별)</h4>
+    <ul>
+      <li>언더독스(UD) 임팩트 파트너 코치 — 2022·2024·2025 우수파트너 선정</li>
+      <li>하나 소셜벤처 최종 심사위원 · 하나유니버시티 창업강의 (부산대·동아대·대구가톨릭대)</li>
+      <li>서울시 50플러스재단·대구문화재단·경상국립대·전남·울산창조경제혁신센터 등</li>
+    </ul>
+  </div>
+
+  <div class="contact">
+    <h3>📩 강의 · 컨설팅 의뢰</h3>
+    <p class="s">강의·출강·AX 컨설팅·업무 자동화 — 무엇이든 받습니다. 보통 영업일 1일 내에 연락드립니다.<br>처음이시면 <span style="color:#3B82F6;font-weight:700;">30초 무료 진단</span>부터 가볍게 시작하세요.</p>
+    <div class="row">
+      <div><div class="k">CALL</div><div class="v">010-9825-8816 <span style="color:rgba(245,245,245,0.5);font-weight:400;">(김진완)</span></div></div>
+      <div><div class="k">WEB</div><div class="v"><span class="hl">axground.vercel.app</span></div></div>
+      <div><div class="k">무료 진단</div><div class="v">axground.vercel.app/diagnosis</div></div>
+    </div>
+  </div>
+
+  <div class="foot"><span>AX그라운드 · 부산AI코딩스쿨 운영팀 · 부산광역시 금정구 금정로 63-1 청년창조발전소 4층</span><span>04</span></div>
+</div>
+
+</body>
+</html>

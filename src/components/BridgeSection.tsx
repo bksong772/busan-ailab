@@ -22,7 +22,7 @@ export default function BridgeSection() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <motion.a
               whileHover={{ y: -2 }}
-              href="https://busanaicodingschool.vercel.app/"
+              href="https://busanaicodingschool.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-[#13131A] border border-[#2A2A35] hover:border-[#3B82F6] text-[#F5F5F5]/80 hover:text-[#F5F5F5] font-medium px-6 py-3 rounded-xl transition-all text-sm"

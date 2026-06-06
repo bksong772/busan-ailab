@@ -13,9 +13,17 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="flex gap-6 text-sm text-[#F5F5F5]/50">
+          <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-[#F5F5F5]/50">
             <a
-              href="https://busanaicodingschool.vercel.app/"
+              href="/axground-company-profile.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#3B82F6] hover:text-[#60A5FA] font-semibold transition-colors"
+            >
+              📄 회사소개서 (PDF)
+            </a>
+            <a
+              href="https://busanaicodingschool.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#F5F5F5] transition-colors"

@@ -138,7 +138,7 @@ export default function FounderSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center"
+          className="text-center flex flex-col sm:flex-row gap-3 justify-center items-center"
         >
           <button
             onClick={() => openInquiry()}
@@ -146,6 +146,14 @@ export default function FounderSection() {
           >
             💬 강의·컨설팅 의뢰하기
           </button>
+          <a
+            href="/axground-company-profile.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 border border-[#2A2A35] hover:border-[#3B82F6] text-[#F5F5F5]/80 hover:text-[#F5F5F5] font-semibold px-8 py-3.5 rounded-xl transition-all text-base"
+          >
+            📄 회사소개서 (PDF)
+          </a>
         </motion.div>
       </div>
     </section>
