@@ -13,7 +13,7 @@ export default function MobileStickyCTA() {
     >
       <div className="flex gap-2">
         <button
-          onClick={openInquiry}
+          onClick={() => openInquiry()}
           className="flex-1 flex items-center justify-center gap-1.5 bg-[#3B82F6] text-white font-semibold py-3 rounded-xl text-sm"
         >
           💬 맞춤 상담 신청

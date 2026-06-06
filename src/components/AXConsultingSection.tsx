@@ -284,7 +284,7 @@ export default function AXConsultingSection() {
 
                   <div className="mt-auto">
                     <button
-                      onClick={openInquiry}
+                      onClick={() => openInquiry("AX 컨설팅·업무 자동화 의뢰")}
                       className="w-full inline-flex items-center justify-center gap-2 font-semibold px-5 py-3 rounded-xl transition-all text-sm"
                       style={{
                         backgroundColor: p.featured ? p.color : `${p.color}15`,
@@ -371,7 +371,7 @@ export default function AXConsultingSection() {
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
               <button
-                onClick={openInquiry}
+                onClick={() => openInquiry("AX 컨설팅·업무 자동화 의뢰")}
                 className="inline-flex items-center justify-center gap-2 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-semibold px-8 py-3.5 rounded-xl transition-all text-base"
               >
                 💬 30분 무료 진단 신청

@@ -177,7 +177,7 @@ export default function ProgramsSection() {
         <FadeInSection delay={0.4}>
           <div className="mt-10 text-center">
             <button
-              onClick={openInquiry}
+              onClick={() => openInquiry("기관/공공기관 출강 교육")}
               className="inline-flex items-center gap-2 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-semibold px-8 py-3.5 rounded-xl transition-all text-base"
             >
               💬 프로그램 문의하기

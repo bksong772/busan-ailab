@@ -6,10 +6,13 @@ import { motion, AnimatePresence } from "framer-motion";
 const TYPES = [
   "기관/공공기관 출강 교육",
   "기업 맞춤 AI 교육",
+  "강의·연사 섭외 의뢰",
+  "AX 컨설팅·업무 자동화 의뢰",
   "AI 콘텐츠 자동화 워크숍",
   "AI 챗봇 구축 워크숍",
   "AI 홈페이지·소개서 제작",
   "AI 업무 자동화 패키지",
+  "제휴·협업 제안",
   "기타 문의",
 ];
 
@@ -25,7 +28,11 @@ export default function InquiryModal() {
   });
 
   useEffect(() => {
-    const handler = () => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.type && TYPES.includes(detail.type)) {
+        setForm((f) => ({ ...f, type: detail.type }));
+      }
       setOpen(true);
       setStatus("idle");
     };
@@ -118,8 +125,8 @@ export default function InquiryModal() {
                 {/* 헤더 */}
                 <div className="flex items-start justify-between">
                   <div>
-                    <h2 className="text-xl font-bold text-[#F5F5F5] mb-1">교육 문의</h2>
-                    <p className="text-sm text-[#F5F5F5]/50">작성하신 내용을 바탕으로 빠르게 연락드립니다.</p>
+                    <h2 className="text-xl font-bold text-[#F5F5F5] mb-1">문의 · 의뢰하기</h2>
+                    <p className="text-sm text-[#F5F5F5]/50">강의·출강·컨설팅·자동화 — 무엇이든 받습니다. 보통 영업일 1일 내 연락드립니다.</p>
                   </div>
                   <button type="button" onClick={close} className="text-[#F5F5F5]/40 hover:text-[#F5F5F5] transition-colors text-2xl leading-none mt-0.5">×</button>
                 </div>
@@ -190,7 +197,7 @@ export default function InquiryModal() {
                   disabled={status === "loading"}
                   className="w-full bg-[#3B82F6] hover:bg-[#2563EB] disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3.5 rounded-xl transition-colors text-base"
                 >
-                  {status === "loading" ? "전송 중..." : "문의 보내기"}
+                  {status === "loading" ? "전송 중..." : "무료 상담 요청하기"}
                 </button>
               </form>
             ) : (

@@ -2,7 +2,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { openInquiry } from "@/lib/openInquiry";
 
 const services = [
   {
@@ -35,7 +34,7 @@ const services = [
     label: "SAAS DEVELOPMENT",
     title: "SaaS 개발",
     sub: "AX로 검증된 자동화를 멀티테넌트 SaaS로 · academy-manager식",
-    pricing: "₩500만~ / ₩1,500만~ / 월 ₩99K",
+    pricing: "₩500만~ / ₩1,500만~ / 월 9.9만원",
     pricingNote: "PoC · 멀티테넌트 · 구독",
     cta: "케이스 보기",
     href: "#saas-development",
@@ -46,11 +45,11 @@ const services = [
     emoji: "📞",
     label: "FREE DIAGNOSIS",
     title: "무료 AX 진단",
-    sub: "30분 1:1 · 현재 업무·반복 작업 진단 + 자동화 가능 영역 짚어드림",
+    sub: "현재 업무·반복 작업을 진단하고 자동화 가능 영역을 짚어드립니다 · 24시간 내 맞춤 리포트",
     pricing: "₩0",
-    pricingNote: "30분 무료 · 비대면·대면",
-    cta: "진단 신청",
-    onClick: true,
+    pricingNote: "30초 신청 · 비대면·대면",
+    cta: "무료 진단 신청",
+    href: "/diagnosis",
     accent: "#10B981",
     accentBg: "rgba(16,185,129,0.1)",
   },
@@ -82,20 +81,15 @@ export default function ServicesSection() {
             <span className="text-[#FF6B35]">살 수 있나요?</span>
           </h2>
           <p className="text-base sm:text-lg text-[#F5F5F5]/60 max-w-2xl mx-auto leading-relaxed">
-            교육 → AX 컨설팅 → SaaS — 깔때기 구조로 단계별 진입.
+            교육부터 AX 컨설팅·SaaS까지 — 필요한 단계부터 고르면 됩니다.
             <br />
-            처음이면 무료 진단 30분부터.
+            처음이면 무료 진단부터 가볍게.
           </p>
         </motion.div>
 
         {/* 4개 카드 그리드 */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {services.map((s, i) => {
-            const Wrapper = s.onClick ? "button" : "a";
-            const wrapperProps = s.onClick
-              ? { onClick: openInquiry, type: "button" as const }
-              : { href: s.href };
-
             return (
               <motion.div
                 key={s.title}
@@ -105,9 +99,8 @@ export default function ServicesSection() {
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 whileHover={{ y: -4 }}
               >
-                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                <Wrapper
-                  {...(wrapperProps as any)}
+                <a
+                  href={s.href}
                   className={`group relative bg-[#13131A] border rounded-2xl p-6 transition-all overflow-hidden block w-full text-left ${
                     s.featured
                       ? "border-[#FF6B35]/40 shadow-[0_0_40px_rgba(255,107,53,0.08)]"
@@ -194,7 +187,7 @@ export default function ServicesSection() {
                       </svg>
                     </div>
                   </div>
-                </Wrapper>
+                </a>
               </motion.div>
             );
           })}
@@ -209,7 +202,7 @@ export default function ServicesSection() {
           className="text-center mt-10"
         >
           <p className="text-sm text-[#F5F5F5]/50">
-            처음이세요? <button onClick={openInquiry} className="text-[#10B981] hover:underline font-semibold">무료 진단 30분</button>부터 가볍게 — 어떤 자동화가 가능한지 짚어드립니다.
+            처음이세요? <a href="/diagnosis" className="text-[#10B981] hover:underline font-semibold">무료 진단</a>부터 가볍게 — 어떤 자동화가 가능한지 짚어드립니다.
           </p>
         </motion.div>
       </div>

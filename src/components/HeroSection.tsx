@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { openInquiry } from "@/lib/openInquiry";
 
 const badges = [
-  { icon: "🔨", text: "매달 AI 결과물 직접 제작·운영" },
+  { icon: "🏛️", text: "누적 100+ 기관 · 2025년 310회 출강" },
   { icon: "📦", text: "교육 당일 결과물 완성" },
-  { icon: "🎓", text: "부산AI코딩스쿨 교육팀의 AI 실무 브랜드" },
+  { icon: "🔨", text: "직접 사업을 AI로 운영하는 팀" },
 ];
 
 export default function HeroSection() {
@@ -45,10 +45,10 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-base sm:text-lg text-[#F5F5F5]/60 mb-10 max-w-2xl mx-auto leading-relaxed"
         >
-          교육으로 <span className="text-[#3B82F6]">배우고</span> ·
-          AX 컨설팅으로 <span className="text-[#3B82F6]">자동화하고</span> ·
-          SaaS로 <span className="text-[#3B82F6]">확장합니다</span>.<br />
-          교육 당일, 직원이 직접 만들고 바로 쓰는 결과물 그대로.
+          AI를 <span className="text-[#3B82F6]">가르치기만</span> 하지 않습니다.
+          부산에서 직접 사업을 AI로 운영하는 팀이,
+          그 시스템을 그대로 <span className="text-[#3B82F6]">교육</span>하고 <span className="text-[#3B82F6]">자동화</span>해 드립니다.<br />
+          부산·울산·경남 기업·공공기관 대상 — 교육 당일, 직원이 만든 결과물을 다음 날부터 씁니다.
         </motion.p>
 
         {/* 뱃지 */}
@@ -77,16 +77,16 @@ export default function HeroSection() {
           className="flex flex-col sm:flex-row gap-3 justify-center"
         >
           <button
-            onClick={openInquiry}
+            onClick={() => openInquiry()}
             className="inline-flex items-center justify-center gap-2 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-semibold px-8 py-3.5 rounded-xl transition-all text-base"
           >
-            💬 교육 문의하기
+            💬 교육·컨설팅 문의
           </button>
           <a
-            href="#programs"
+            href="/diagnosis"
             className="inline-flex items-center justify-center gap-2 border border-[#2A2A35] hover:border-[#3B82F6] text-[#F5F5F5]/80 hover:text-[#F5F5F5] font-semibold px-8 py-3.5 rounded-xl transition-all text-base"
           >
-            프로그램 보기 →
+            🔍 30초 무료 진단 →
           </a>
         </motion.div>
       </div>

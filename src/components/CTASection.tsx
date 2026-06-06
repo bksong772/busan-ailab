@@ -50,7 +50,7 @@ export default function CTASection() {
               <motion.button
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={openInquiry}
+                onClick={() => openInquiry()}
                 className="inline-flex items-center justify-center gap-2 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-semibold px-8 py-4 rounded-xl transition-all text-base"
               >
                 💬 맞춤 상담 신청하기

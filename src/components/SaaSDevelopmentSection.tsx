@@ -370,7 +370,7 @@ export default function SaaSDevelopmentSection() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <button
-                onClick={openInquiry}
+                onClick={() => openInquiry("AI 업무 자동화 패키지")}
                 className="inline-flex items-center justify-center gap-2 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-semibold px-8 py-3.5 rounded-xl transition-all text-base"
               >
                 💬 SaaS 개발 상담 신청

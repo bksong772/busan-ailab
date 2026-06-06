@@ -30,7 +30,7 @@ export default function Navbar() {
             📞 전화 문의
           </a>
           <button
-            onClick={openInquiry}
+            onClick={() => openInquiry()}
             className="text-sm bg-[#3B82F6] hover:bg-[#2563EB] text-white px-5 py-2 rounded-full transition-colors font-semibold"
           >
             맞춤 상담
