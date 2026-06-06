@@ -24,7 +24,7 @@ export async function generateMetadata({
   const item = await getInsightBySlug(params.slug);
   if (!item) return { title: "인사이트를 찾을 수 없습니다" };
 
-  const url = `https://axfactory.vercel.app/insight/${item.slug}`;
+  const url = `https://axground.vercel.app/insight/${item.slug}`;
   return {
     title: item.title,
     description: item.summary,
@@ -59,9 +59,9 @@ export default async function InsightDetailPage({ params }: { params: Params }) 
     publisher: {
       "@type": "Organization",
       name: "AX그라운드",
-      url: "https://axfactory.vercel.app",
+      url: "https://axground.vercel.app",
     },
-    mainEntityOfPage: `https://axfactory.vercel.app/insight/${item.slug}`,
+    mainEntityOfPage: `https://axground.vercel.app/insight/${item.slug}`,
     keywords: item.tags.join(", "),
   };
 

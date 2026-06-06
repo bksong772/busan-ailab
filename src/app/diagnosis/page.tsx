@@ -7,11 +7,11 @@ export const metadata: Metadata = {
   title: "30초 AX 자가진단 — 24시간 안에 맞춤 진단 결과 받기 | AX그라운드",
   description:
     "직원 수·반복 업무·현재 도구 몇 가지만 답하면, 28개 공간을 직접 운영하며 자동화를 쌓아온 컨설턴트가 24시간 안에 맞춤 AX 진단 결과 PDF를 보내드립니다. 무료.",
-  alternates: { canonical: "https://axfactory.vercel.app/diagnosis" },
+  alternates: { canonical: "https://axground.vercel.app/diagnosis" },
   openGraph: {
     title: "30초 AX 자가진단 — 24시간 안에 맞춤 진단 결과",
     description: "직원 수·반복 업무·현재 도구 답변 → 24h 내 맞춤 PDF. 무료.",
-    url: "https://axfactory.vercel.app/diagnosis",
+    url: "https://axground.vercel.app/diagnosis",
     type: "website",
   },
 };
@@ -24,7 +24,7 @@ export default function DiagnosisPage() {
     provider: {
       "@type": "Organization",
       name: "AX그라운드",
-      url: "https://axfactory.vercel.app",
+      url: "https://axground.vercel.app",
     },
     description: "30초 자가진단 응답 후 24시간 안에 맞춤 AX 진단 결과 PDF 무료 제공",
     areaServed: ["부산", "울산", "경남"],

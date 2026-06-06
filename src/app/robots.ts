@@ -12,7 +12,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://axfactory.vercel.app/sitemap.xml",
-    host: "https://axfactory.vercel.app",
+    sitemap: "https://axground.vercel.app/sitemap.xml",
+    host: "https://axground.vercel.app",
   };
 }

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import InquiryModal from "@/components/InquiryModal";
 
-const BASE_URL = "https://axfactory.vercel.app";
+const BASE_URL = "https://axground.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

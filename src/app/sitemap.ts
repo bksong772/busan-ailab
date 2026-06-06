@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { getAllInsights } from "@/lib/insights";
 
-const BASE = "https://axfactory.vercel.app";
+const BASE = "https://axground.vercel.app";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const all = await getAllInsights();
