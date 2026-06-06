@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import DiagnosisForm from "./DiagnosisForm";
 
 export const metadata: Metadata = {
-  title: "30초 AX 자가진단 — 24시간 안에 맞춤 진단 결과 받기 | AX팩토리",
+  title: "30초 AX 자가진단 — 24시간 안에 맞춤 진단 결과 받기 | AX그라운드",
   description:
     "직원 수·반복 업무·현재 도구 몇 가지만 답하면, 28개 공간을 직접 운영하며 자동화를 쌓아온 컨설턴트가 24시간 안에 맞춤 AX 진단 결과 PDF를 보내드립니다. 무료.",
   alternates: { canonical: "https://axfactory.vercel.app/diagnosis" },
@@ -23,7 +23,7 @@ export default function DiagnosisPage() {
     name: "무료 AX 자가진단",
     provider: {
       "@type": "Organization",
-      name: "AX팩토리",
+      name: "AX그라운드",
       url: "https://axfactory.vercel.app",
     },
     description: "30초 자가진단 응답 후 24시간 안에 맞춤 AX 진단 결과 PDF 무료 제공",

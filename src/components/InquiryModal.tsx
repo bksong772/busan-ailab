@@ -75,7 +75,7 @@ export default function InquiryModal() {
           "기관·기업명": form.org || "(미입력)",
           문의유형: form.type,
           내용: form.message || "(미입력)",
-          _subject: `[AX팩토리 문의] ${form.type} — ${form.name}`,
+          _subject: `[AX그라운드 문의] ${form.type} — ${form.name}`,
           _template: "table",
           _captcha: "false",
         }),

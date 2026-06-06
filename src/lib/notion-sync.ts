@@ -1,5 +1,5 @@
 /**
- * Notion 콘텐츠 허브 ↔ AX팩토리 insights 자동 동기화.
+ * Notion 콘텐츠 허브 ↔ AX그라운드 insights 자동 동기화.
  *
  * 노션 콘텐츠 허브의 [Insight] 카테고리 row 들 중 "특이사항" 필드에
  * `slug: <slug-name>` 형식으로 매핑된 항목을 찾아, 게시 완료된 글의

@@ -327,10 +327,10 @@ export default function SaaSDevelopmentSection() {
         <FadeInSection delay={0.1}>
           <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 text-xs text-[#F5F5F5]/40 border border-[#2A2A35] rounded-full px-4 py-1.5 mb-5">
-              AX팩토리 SaaS 개발의 4가지 차별점
+              AX그라운드 SaaS 개발의 4가지 차별점
             </div>
             <h3 className="text-2xl sm:text-3xl font-bold mb-3">
-              왜 AX팩토리인가
+              왜 AX그라운드인가
             </h3>
           </div>
         </FadeInSection>

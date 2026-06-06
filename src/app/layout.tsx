@@ -7,8 +7,8 @@ const BASE_URL = "https://axfactory.vercel.app";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "AX팩토리 | 부산·울산·경남 AI교육 AX교육 전문",
-    template: "%s | AX팩토리",
+    default: "AX그라운드 | 부산·울산·경남 AI교육 AX교육 전문",
+    template: "%s | AX그라운드",
   },
   description:
     "부산·울산·경남(부울경) 기업·공공기관·소상공인 대상 AI 실무 교육 전문. AI 콘텐츠 자동화, AI 챗봇 구축, AI 홈페이지 제작, AX(AI 전환) 교육. 교육 당일 결과물 완성, 100+ 기관 출강 검증.",
@@ -30,34 +30,34 @@ export const metadata: Metadata = {
     "ChatGPT교육", "Claude교육", "AI챗봇구축", "AI콘텐츠자동화",
     "AI홈페이지제작", "바이브코딩교육",
     // 브랜드
-    "AX팩토리", "부산AI코딩스쿨", "AI출강",
+    "AX그라운드", "부산AI코딩스쿨", "AI출강",
   ],
-  authors: [{ name: "AX팩토리", url: BASE_URL }],
-  creator: "AX팩토리",
-  publisher: "AX팩토리",
+  authors: [{ name: "AX그라운드", url: BASE_URL }],
+  creator: "AX그라운드",
+  publisher: "AX그라운드",
   alternates: {
     canonical: BASE_URL,
   },
   openGraph: {
-    title: "AX팩토리 | 부산·울산·경남 AI교육 AX교육 전문",
+    title: "AX그라운드 | 부산·울산·경남 AI교육 AX교육 전문",
     description:
       "부산·울산·경남 기업·공공기관 대상 AI 실무 교육. AI 콘텐츠 자동화·챗봇·홈페이지 제작·AX 전환 — 교육 당일 결과물 완성.",
     type: "website",
     url: BASE_URL,
-    siteName: "AX팩토리",
+    siteName: "AX그라운드",
     locale: "ko_KR",
     images: [
       {
         url: `${BASE_URL}/og.png`,
         width: 1200,
         height: 630,
-        alt: "AX팩토리 — 부산·울산·경남 AI교육 AX교육 전문",
+        alt: "AX그라운드 — 부산·울산·경남 AI교육 AX교육 전문",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AX팩토리 | 부산·울산·경남 AI교육 AX교육 전문",
+    title: "AX그라운드 | 부산·울산·경남 AI교육 AX교육 전문",
     description:
       "부산·울산·경남 기업·공공기관 대상 AI 실무 교육. 교육 당일 결과물 완성.",
     images: [`${BASE_URL}/og.png`],
@@ -87,7 +87,7 @@ const jsonLd = {
     {
       "@type": "EducationalOrganization",
       "@id": `${BASE_URL}/#organization`,
-      name: "AX팩토리",
+      name: "AX그라운드",
       alternateName: ["AX Factory", "AXFactory"],
       url: BASE_URL,
       logo: {
@@ -146,7 +146,7 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": `${BASE_URL}/#website`,
       url: BASE_URL,
-      name: "AX팩토리",
+      name: "AX그라운드",
       publisher: { "@id": `${BASE_URL}/#organization` },
       inLanguage: "ko-KR",
     },
@@ -154,7 +154,7 @@ const jsonLd = {
       "@type": "WebPage",
       "@id": `${BASE_URL}/#webpage`,
       url: BASE_URL,
-      name: "AX팩토리 | 부산·울산·경남 AI교육 AX교육 전문",
+      name: "AX그라운드 | 부산·울산·경남 AI교육 AX교육 전문",
       isPartOf: { "@id": `${BASE_URL}/#website` },
       about: { "@id": `${BASE_URL}/#organization` },
       description:
@@ -176,7 +176,7 @@ const jsonLd = {
       mainEntity: [
         {
           "@type": "Question",
-          name: "AX팩토리은 어디서 교육하나요?",
+          name: "AX그라운드는 어디서 교육하나요?",
           acceptedAnswer: {
             "@type": "Answer",
             text: "부산·울산·경남(부울경) 전역 기업·공공기관·학교에 직접 출강합니다.",
@@ -187,7 +187,7 @@ const jsonLd = {
           name: "AI 교육 당일 결과물을 만들 수 있나요?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "네. AX팩토리의 모든 프로그램은 교육 당일 실제로 사용 가능한 결과물(블로그 글, 챗봇, 홈페이지 등)을 완성하는 것을 목표로 합니다.",
+            text: "네. AX그라운드의 모든 프로그램은 교육 당일 실제로 사용 가능한 결과물(블로그 글, 챗봇, 홈페이지 등)을 완성하는 것을 목표로 합니다.",
           },
         },
         {
@@ -195,7 +195,7 @@ const jsonLd = {
           name: "기업·공공기관 출강 교육도 가능한가요?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "가능합니다. AX팩토리은 100+ 기관에 출강한 경험을 바탕으로 기업·공공기관 맞춤 AI 교육을 제공합니다. 카카오톡으로 문의해주세요.",
+            text: "가능합니다. AX그라운드는 100+ 기관에 출강한 경험을 바탕으로 기업·공공기관 맞춤 AI 교육을 제공합니다. 카카오톡으로 문의해주세요.",
           },
         },
         {

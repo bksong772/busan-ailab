@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "자가진단 신청 완료 — AX팩토리",
+  title: "자가진단 신청 완료 — AX그라운드",
   description: "AX 자가진단 신청이 완료되었습니다. 24시간 안에 맞춤 진단 결과 PDF를 이메일로 보내드립니다.",
   robots: { index: false, follow: false },
 };

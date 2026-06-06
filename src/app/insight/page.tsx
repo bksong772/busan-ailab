@@ -7,12 +7,12 @@ import { getAllInsights } from "@/lib/insights";
 export const metadata: Metadata = {
   title: "인사이트 | AX 전환·AI 실무 전문가 칼럼",
   description:
-    "AX팩토리 전문가가 4년간 100+ 기관에 출강하며 확인한 AX(AI 전환) 현장 인사이트. AI 실무 교육, 업무 자동화, 챗봇 구축, 홈페이지 제작 등 실전 노하우를 공유합니다.",
+    "AX그라운드 전문가가 4년간 100+ 기관에 출강하며 확인한 AX(AI 전환) 현장 인사이트. AI 실무 교육, 업무 자동화, 챗봇 구축, 홈페이지 제작 등 실전 노하우를 공유합니다.",
   alternates: {
     canonical: "https://axfactory.vercel.app/insight",
   },
   openGraph: {
-    title: "인사이트 | AX팩토리",
+    title: "인사이트 | AX그라운드",
     description:
       "부산·울산·경남 기업·공공기관을 위한 AX 전환 실전 인사이트",
     url: "https://axfactory.vercel.app/insight",

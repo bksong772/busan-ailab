@@ -40,7 +40,7 @@ export default function AudienceSection() {
         <FadeInSection>
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              이런 상황이라면, AX팩토리이 맞습니다
+              이런 상황이라면, AX그라운드가 맞습니다
             </h2>
             <p className="text-[#F5F5F5]/50 text-base sm:text-lg">
               부산·울산·경남 기업·공공기관·소상공인 대상 AI실무교육 · AX실무교육 출강
@@ -67,7 +67,7 @@ export default function AudienceSection() {
 
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: a.color }}>
-                    AX팩토리의 솔루션
+                    AX그라운드의 솔루션
                   </p>
                   <p className="text-sm text-[#F5F5F5]/80 leading-relaxed">{a.solution}</p>
                 </div>

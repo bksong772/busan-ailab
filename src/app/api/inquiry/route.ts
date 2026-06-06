@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
         "기관·기업명": org || "(미입력)",
         문의유형: type,
         내용: message || "(미입력)",
-        _subject: `[AX팩토리 문의] ${type} — ${name}`,
+        _subject: `[AX그라운드 문의] ${type} — ${name}`,
         _template: "table",
         _captcha: "false",
       }),

@@ -55,10 +55,10 @@ export default async function InsightDetailPage({ params }: { params: Params }) 
     headline: item.title,
     description: item.summary,
     datePublished: item.publishedAt,
-    author: { "@type": "Organization", name: "AX팩토리" },
+    author: { "@type": "Organization", name: "AX그라운드" },
     publisher: {
       "@type": "Organization",
-      name: "AX팩토리",
+      name: "AX그라운드",
       url: "https://axfactory.vercel.app",
     },
     mainEntityOfPage: `https://axfactory.vercel.app/insight/${item.slug}`,
@@ -103,7 +103,7 @@ export default async function InsightDetailPage({ params }: { params: Params }) 
               <span>·</span>
               <span>읽는 시간 {item.readingMinutes}분</span>
               <span>·</span>
-              <span>AX팩토리</span>
+              <span>AX그라운드</span>
             </div>
             <p className="mt-6 text-base sm:text-lg text-[#F5F5F5]/70 leading-7 break-keep">
               {item.summary}
