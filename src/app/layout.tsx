@@ -7,11 +7,11 @@ const BASE_URL = "https://axfactory.vercel.app";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "AX그라운드 | 부산·울산·경남 AI교육 AX교육 전문",
+    default: "AX그라운드 | 부산·울산·경남 AI 업무자동화·AX 전환·실무교육",
     template: "%s | AX그라운드",
   },
   description:
-    "부산·울산·경남(부울경) 기업·공공기관·소상공인 대상 AI 실무 교육 전문. AI 콘텐츠 자동화, AI 챗봇 구축, AI 홈페이지 제작, AX(AI 전환) 교육. 교육 당일 결과물 완성, 100+ 기관 출강 검증.",
+    "부산·울산·경남(부울경) 기업·공공기관·소상공인의 AI 업무 자동화·AI 도입·AX(AI 전환) 전문. 실무 교육부터 AI 챗봇·홈페이지 구축, 업무 자동화 컨설팅까지 — 교육 당일 결과물 완성, 100+ 기관 검증.",
   keywords: [
     // 핵심 서비스
     "AI교육", "AI실무교육", "AX교육", "AX실무교육",
@@ -29,6 +29,10 @@ export const metadata: Metadata = {
     // 도구·기술
     "ChatGPT교육", "Claude교육", "AI챗봇구축", "AI콘텐츠자동화",
     "AI홈페이지제작", "바이브코딩교육",
+    // AI 도입·자동화·컨설팅 (업무 적용)
+    "AI도입", "AI업무도입", "AX컨설팅", "부산AX컨설팅", "AI도입컨설팅",
+    "AI자동화구축", "업무자동화솔루션", "기업AI도입", "소상공인AI자동화",
+    "AI챗봇제작", "AI홈페이지제작부산", "n8n자동화",
     // 브랜드
     "AX그라운드", "부산AI코딩스쿨", "AI출강",
   ],
@@ -39,7 +43,7 @@ export const metadata: Metadata = {
     canonical: BASE_URL,
   },
   openGraph: {
-    title: "AX그라운드 | 부산·울산·경남 AI교육 AX교육 전문",
+    title: "AX그라운드 | 부산·울산·경남 AI 업무자동화·AX 전환·실무교육",
     description:
       "부산·울산·경남 기업·공공기관 대상 AI 실무 교육. AI 콘텐츠 자동화·챗봇·홈페이지 제작·AX 전환 — 교육 당일 결과물 완성.",
     type: "website",
@@ -57,7 +61,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AX그라운드 | 부산·울산·경남 AI교육 AX교육 전문",
+    title: "AX그라운드 | 부산·울산·경남 AI 업무자동화·AX 전환·실무교육",
     description:
       "부산·울산·경남 기업·공공기관 대상 AI 실무 교육. 교육 당일 결과물 완성.",
     images: [`${BASE_URL}/og.png`],
@@ -85,17 +89,17 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "EducationalOrganization",
+      "@type": ["EducationalOrganization", "ProfessionalService"],
       "@id": `${BASE_URL}/#organization`,
       name: "AX그라운드",
-      alternateName: ["AX Factory", "AXFactory"],
+      alternateName: ["AXGROUND", "AX Ground", "에이엑스그라운드"],
       url: BASE_URL,
       logo: {
         "@type": "ImageObject",
         url: `${BASE_URL}/og.png`,
       },
       description:
-        "부산·울산·경남(부울경) 기업·공공기관·소상공인 대상 AI 실무 교육 전문. AI 콘텐츠 자동화, AI 챗봇 구축, AI 홈페이지 제작, AX 교육.",
+        "부산·울산·경남(부울경) 기업·공공기관·소상공인의 AI 업무 자동화·AI 도입·AX(AI 전환) 전문. 실무 교육, AI 챗봇·홈페이지 구축, 업무 자동화 컨설팅을 제공합니다.",
       areaServed: [
         { "@type": "City", name: "부산" },
         { "@type": "City", name: "울산" },
@@ -133,6 +137,24 @@ const jsonLd = {
               "반복 업무를 AI로 자동화하는 기업 맞춤 AX 전환 교육",
             provider: { "@id": `${BASE_URL}/#organization` },
           },
+          {
+            "@type": "Service",
+            name: "AX 전환 컨설팅",
+            serviceType: "AI 도입·업무 자동화 컨설팅",
+            description:
+              "기업·공공기관·소상공인의 업무를 진단해 AI 도입·자동화 로드맵을 설계하고 실제 적용까지 돕는 AX 컨설팅",
+            areaServed: "부산·울산·경남",
+            provider: { "@id": `${BASE_URL}/#organization` },
+          },
+          {
+            "@type": "Service",
+            name: "AI 자동화·홈페이지·챗봇 구축",
+            serviceType: "AI 솔루션 제작",
+            description:
+              "주문·예약·견적 등 반복 업무 자동화, 홈페이지·랜딩페이지, 매장·기업 전용 AI 챗봇을 직접 제작·배포",
+            areaServed: "부산·울산·경남",
+            provider: { "@id": `${BASE_URL}/#organization` },
+          },
         ],
       },
       contactPoint: {
@@ -154,7 +176,7 @@ const jsonLd = {
       "@type": "WebPage",
       "@id": `${BASE_URL}/#webpage`,
       url: BASE_URL,
-      name: "AX그라운드 | 부산·울산·경남 AI교육 AX교육 전문",
+      name: "AX그라운드 | 부산·울산·경남 AI 업무자동화·AX 전환·실무교육",
       isPartOf: { "@id": `${BASE_URL}/#website` },
       about: { "@id": `${BASE_URL}/#organization` },
       description:
@@ -204,6 +226,22 @@ const jsonLd = {
           acceptedAnswer: {
             "@type": "Answer",
             text: "네. AI 업무 자동화 패키지를 통해 기업의 반복 업무를 AI로 전환하는 AX(AI Transformation) 교육을 진행합니다.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "교육 말고 AI 도입·업무 자동화 컨설팅도 의뢰할 수 있나요?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "네. AX그라운드는 교육뿐 아니라 기업·소상공인의 업무를 진단해 AI 도입·자동화 로드맵을 설계하고 실제 적용까지 돕는 AX 컨설팅을 제공합니다.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "홈페이지나 AI 챗봇을 직접 만들어 주나요?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "네. 주문·예약·견적 자동화, 홈페이지·랜딩페이지 제작, 매장·기업 전용 AI 챗봇 구축까지 직접 제작·배포해 드립니다.",
           },
         },
       ],
