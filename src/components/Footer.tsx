@@ -5,7 +5,7 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row justify-between gap-8">
           <div>
             <p className="text-lg font-bold mb-1">
-              AX<span className="text-[#3B82F6]">팩토리</span>
+              AX<span className="text-[#3B82F6]">그라운드</span>
             </p>
             <p className="text-sm text-[#F5F5F5]/40 mb-1">운영: 부산AI코딩스쿨 운영팀</p>
             <p className="text-sm text-[#F5F5F5]/40">
