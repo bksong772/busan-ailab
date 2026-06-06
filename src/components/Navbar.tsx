@@ -1,9 +1,22 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { openInquiry } from "@/lib/openInquiry";
 
+const MENU = [
+  { href: "/education", label: "교육" },
+  { href: "/consulting", label: "AX컨설팅" },
+  { href: "/saas", label: "SaaS" },
+  { href: "/cases", label: "사례" },
+  { href: "/about", label: "회사소개" },
+  { href: "/insight", label: "인사이트" },
+  { href: "/diagnosis", label: "무료 진단", accent: true },
+];
+
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+
   return (
     <motion.nav
       initial={{ y: -20, opacity: 0 }}
@@ -15,15 +28,20 @@ export default function Navbar() {
         <a href="/" className="font-bold text-xl text-[#F5F5F5] hover:opacity-80 transition-opacity">
           AX<span className="text-[#3B82F6]">그라운드</span>
         </a>
+
+        {/* 데스크탑 메뉴 */}
         <div className="hidden md:flex items-center gap-5 text-sm font-medium text-[#F5F5F5]/70">
-          <a href="/education" className="hover:text-[#F5F5F5] transition-colors">교육</a>
-          <a href="/consulting" className="hover:text-[#F5F5F5] transition-colors">AX컨설팅</a>
-          <a href="/saas" className="hover:text-[#F5F5F5] transition-colors">SaaS</a>
-          <a href="/cases" className="hover:text-[#F5F5F5] transition-colors">사례</a>
-          <a href="/about" className="hover:text-[#F5F5F5] transition-colors">회사소개</a>
-          <a href="/insight" className="hover:text-[#F5F5F5] transition-colors">인사이트</a>
-          <a href="/diagnosis" className="hover:text-[#3B82F6] transition-colors font-semibold">무료 진단</a>
+          {MENU.map((m) => (
+            <a
+              key={m.href}
+              href={m.href}
+              className={`transition-colors ${m.accent ? "hover:text-[#3B82F6] font-semibold" : "hover:text-[#F5F5F5]"}`}
+            >
+              {m.label}
+            </a>
+          ))}
         </div>
+
         <div className="flex items-center gap-2">
           <a
             href="tel:010-9825-8816"
@@ -33,12 +51,44 @@ export default function Navbar() {
           </a>
           <button
             onClick={() => openInquiry()}
-            className="text-sm bg-[#3B82F6] hover:bg-[#2563EB] text-white px-5 py-2 rounded-full transition-colors font-semibold"
+            className="hidden sm:inline-flex text-sm bg-[#3B82F6] hover:bg-[#2563EB] text-white px-5 py-2 rounded-full transition-colors font-semibold"
           >
             맞춤 상담
           </button>
+          {/* 모바일 햄버거 */}
+          <button
+            onClick={() => setOpen(!open)}
+            aria-label="메뉴 열기"
+            className="md:hidden text-[#F5F5F5] text-2xl leading-none w-9 h-9 flex items-center justify-center rounded-lg hover:bg-[#13131A] transition-colors"
+          >
+            {open ? "×" : "☰"}
+          </button>
         </div>
       </div>
+
+      {/* 모바일 메뉴 드롭다운 */}
+      {open && (
+        <div className="md:hidden border-t border-[#2A2A35] bg-[#0A0A0F]/98 backdrop-blur-sm">
+          <div className="px-4 py-3 flex flex-col">
+            {MENU.map((m) => (
+              <a
+                key={m.href}
+                href={m.href}
+                onClick={() => setOpen(false)}
+                className={`py-3 px-2 text-base font-medium border-b border-[#1A1A22] last:border-0 transition-colors ${m.accent ? "text-[#3B82F6] font-semibold" : "text-[#F5F5F5]/80 hover:text-[#F5F5F5]"}`}
+              >
+                {m.label}
+              </a>
+            ))}
+            <button
+              onClick={() => { setOpen(false); openInquiry(); }}
+              className="mt-3 w-full bg-[#3B82F6] hover:bg-[#2563EB] text-white font-semibold py-3 rounded-xl transition-colors"
+            >
+              💬 맞춤 상담
+            </button>
+          </div>
+        </div>
+      )}
     </motion.nav>
   );
 }
