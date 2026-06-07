@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import StorySection from "@/components/StorySection";
 import ServicesSection from "@/components/ServicesSection";
 import StatsSection from "@/components/StatsSection";
 import BridgeSection from "@/components/BridgeSection";
@@ -16,6 +17,9 @@ export default function Home() {
       <main>
         {/* 1. 후킹 */}
         <HeroSection />
+
+        {/* 1.5 스토리 — 고통→전환 */}
+        <StorySection />
 
         {/* 2. 서비스 4개 — 각 상세 페이지로 분기하는 허브 */}
         <ServicesSection />

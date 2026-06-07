@@ -25,7 +25,7 @@ export default function HeroSection() {
           className="inline-flex items-center gap-2 bg-[#13131A] border border-[#2A2A35] rounded-full px-4 py-1.5 text-sm text-[#3B82F6] mb-8"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6] animate-pulse" />
-          부산·울산·경남 AI 실무교육 · AX 컨설팅 · SaaS 개발 전문
+          부산·울산·경남 · AI 실무교육 · 업무 자동화 · 맞춤 프로그램 개발
         </motion.div>
 
         <motion.h1
@@ -34,9 +34,9 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6"
         >
-          반복 업무에 쓰던 시간,
+          반복 업무에 뺏기던 시간,
           <br />
-          <span className="text-[#3B82F6]">AI한테 넘겼습니다</span>
+          <span className="text-[#3B82F6]">직원에게 돌려드립니다</span>
         </motion.h1>
 
         <motion.p
@@ -45,10 +45,10 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-base sm:text-lg text-[#F5F5F5]/60 mb-10 max-w-2xl mx-auto leading-relaxed"
         >
-          AI를 <span className="text-[#3B82F6]">가르치기만</span> 하지 않습니다.
-          부산에서 직접 사업을 AI로 운영하는 팀이,
-          그 시스템을 그대로 <span className="text-[#3B82F6]">교육</span>하고 <span className="text-[#3B82F6]">자동화</span>해 드립니다.<br />
-          부산·울산·경남 기업·공공기관 대상 — 교육 당일, 직원이 만든 결과물을 다음 날부터 씁니다.
+          매주 반복되는 보고서·정산·문서 작업에 직원들이 시간을 뺏기고 있다면 —
+          그 일을 <span className="text-[#3B82F6]">AI가 대신하도록</span> 만들어 드립니다.<br />
+          부산에서 직접 AI로 사업을 운영하는 팀이, 그 방법을 직원에게 그대로 가르치고
+          <span className="text-[#3B82F6]"> 교육 당일 만든 결과물을 다음 날부터</span> 쓰게 합니다.
         </motion.p>
 
         {/* 뱃지 */}
