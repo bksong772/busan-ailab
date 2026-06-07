@@ -233,7 +233,7 @@ export default function CaseGallerySection() {
               ① 외부 고객 컨설팅
             </span>
             <span className="text-xs text-[#F5F5F5]/40">
-              — 의뢰받아 구축하고 인계한 케이스
+              — 의뢰받아 구축하고 직원에게 넘겨드린 케이스
             </span>
             <div className="flex-1 h-px bg-[#2A2A35]" />
           </div>
@@ -308,7 +308,7 @@ export default function CaseGallerySection() {
               .
               <br />
               <span className="text-[#F5F5F5]/60 text-sm">
-                현장 언어 이해 · 도구 능숙 · 인계 가능 구조 설계 — 한 사람이 이 셋을 갖추기는 쉽지 않습니다.
+                현장 언어 이해 · 도구 능숙 · 직원이 이어받는 구조 설계 — 한 사람이 이 셋을 갖추기는 쉽지 않습니다.
               </span>
             </p>
           </div>

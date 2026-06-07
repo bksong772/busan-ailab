@@ -29,14 +29,14 @@ const packages = [
   {
     name: "AX Standard",
     price: "맞춤 견적",
-    priceNote: "진단 + 자동화 3~5건 + 1개월 인계",
-    summary: "진단 + 자동화 3~5건 + 1개월 운영 인계",
+    priceNote: "진단 + 자동화 3~5건 + 1개월 직원 인수인계",
+    summary: "진단 + 자동화 3~5건 + 1개월 운영 넘겨드림",
     target: "중소기업 · 기관 (업무 프로세스 자동화)",
-    example: "예: 소녀방앗간 케이터링 풀 사이클",
+    example: "예: 소녀방앗간 케이터링 주문~정산 전 과정",
     features: [
       "현장 진단 + 자동화 설계",
-      "자동화 3~5건 구축 (n8n · Claude API · SaaS)",
-      "1개월 운영 인계 + 직원 교육",
+      "자동화 3~5건 구축",
+      "1개월 운영 넘겨드림 + 직원 교육",
     ],
     color: "#F59E0B",
     featured: true,
@@ -47,11 +47,11 @@ const packages = [
     priceNote: "풀 시스템 설계 + 3개월 사후 지원",
     summary: "풀 시스템 설계 + SaaS 연계 + 3개월 사후 지원",
     target: "공공기관 · 중견기업 (다부서·다채널 자동화)",
-    example: "예: 다부서 워크플로우 + 외부 SaaS 통합",
+    example: "예: 여러 부서 업무 흐름 + 외부 프로그램 연동",
     features: [
-      "전사 업무 진단 + 시스템 아키텍처 설계",
-      "다부서 자동화 + SaaS 연계 구축",
-      "3개월 사후 지원 + 운영팀 인계",
+      "전사 업무 진단 + 전체 시스템 구조 설계",
+      "여러 부서 자동화 + 프로그램 연계 구축",
+      "3개월 사후 지원 + 운영팀에게 넘겨드림",
     ],
     color: "#8B5CF6",
   },
@@ -75,13 +75,13 @@ const flow = [
   {
     step: "03",
     title: "구축 · 검증",
-    desc: "1~4주 단위로 PoC를 만들고 운영 환경에서 검증합니다.\n실제 업무 데이터로 돌려봅니다.",
+    desc: "1~4주 단위로 시범 버전을 만들고 실제 업무 환경에서 검증합니다.\n실제 업무 데이터로 돌려봅니다.",
     icon: "⚙️",
     color: "#10B981",
   },
   {
     step: "04",
-    title: "인계",
+    title: "넘겨드림",
     desc: "매뉴얼 · 운영자 교육 · 3개월 사후 지원.\n외부 컨설턴트 없이 직원이 그대로 돌릴 수 있게.",
     icon: "📦",
     color: "#F59E0B",
@@ -113,7 +113,7 @@ export default function AXConsultingSection() {
               <span className="text-[#3B82F6]">실제 업무를 자동화</span>해 드립니다.
             </h2>
             <p className="text-[#F5F5F5]/60 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-              소녀방앗간식 진단 · 자동화 · 인계 —
+              소녀방앗간처럼 진단 · 자동화 · 직원에게 넘기기 —
               <br className="sm:hidden" />
               {" "}외부 컨설턴트가 떠나도 직원이 그대로 돌릴 수 있는 형태로.
             </p>
@@ -313,7 +313,7 @@ export default function AXConsultingSection() {
               이렇게 진행합니다
             </h3>
             <p className="text-sm sm:text-base text-[#F5F5F5]/50">
-              진단부터 인계까지 4단계 — 직원이 그대로 돌릴 수 있는 형태로
+              진단부터 넘겨드림까지 4단계 — 직원이 그대로 돌릴 수 있는 형태로
             </p>
           </div>
 

@@ -42,19 +42,19 @@ const fields = [
 const funnel = [
   {
     step: "1단계",
-    title: "AX Lite/Standard 컨설팅",
+    title: "업무 자동화 컨설팅 (소·중규모)",
     desc: "한 곳에서 자동화 검증",
     color: "#3B82F6",
   },
   {
     step: "2단계",
-    title: "PoC SaaS 1버전",
-    desc: "같은 업종 2~3곳 적용 — 다중 검증",
+    title: "시범 버전(1차)",
+    desc: "같은 업종 2~3곳에 적용해 한 번 더 검증",
     color: "#8B5CF6",
   },
   {
     step: "3단계",
-    title: "멀티테넌트 SaaS 정식 출시",
+    title: "여러 회사용 정식 출시",
     desc: "구독 모델로 확장",
     color: "#10B981",
   },
@@ -62,23 +62,23 @@ const funnel = [
 
 const pricing = [
   {
-    name: "PoC SaaS 개발",
+    name: "시범 버전 개발",
     price: "맞춤 견적",
     period: "1~3개월",
-    desc: "검증된 자동화를 PoC SaaS로",
+    desc: "검증된 자동화를 먼저 시범 프로그램으로",
   },
   {
-    name: "멀티테넌트 SaaS",
+    name: "여러 회사용 프로그램",
     price: "맞춤 견적",
     period: "3~6개월",
-    desc: "여러 기관·기업이 함께 쓰는 정식 SaaS",
+    desc: "여러 기관·기업이 함께 쓰는 정식 프로그램",
     featured: true,
   },
   {
-    name: "SaaS 구독",
+    name: "구독형 사용",
     price: "맞춤 견적",
     period: "B2B · 개발 후",
-    desc: "완성된 SaaS를 같은 업종 다른 곳도 사용",
+    desc: "완성된 프로그램을 같은 업종 다른 곳도 사용",
   },
 ];
 
@@ -100,8 +100,8 @@ const differentiators = [
   },
   {
     icon: "🔑",
-    title: "인계 가능한 구조",
-    desc: "클라이언트가 직접 운영 가능한 형태로 인계. 락인 없이 코드·데이터 전부 넘깁니다.",
+    title: "직원이 이어받는 구조",
+    desc: "직원이 직접 운영할 수 있는 형태로 넘겨드립니다. 특정 업체에 묶이지 않게 코드·데이터 전부 드립니다.",
   },
 ];
 
@@ -114,15 +114,15 @@ export default function SaaSDevelopmentSection() {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 text-xs text-[#F5F5F5]/40 border border-[#2A2A35] rounded-full px-4 py-1.5 mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6] animate-pulse" />
-              SAAS DEVELOPMENT · SaaS 개발
+              SAAS · 맞춤 프로그램 개발
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 leading-tight">
-              AX로 검증된 자동화,
+              검증된 자동화를,
               <br />
-              <span className="text-[#3B82F6]">SaaS로 확장</span>합니다
+              <span className="text-[#3B82F6]">맞춤 프로그램으로 확장</span>합니다
             </h2>
             <p className="text-[#F5F5F5]/50 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-              한 곳에서 검증한 솔루션을 멀티테넌트 SaaS로.
+              한 곳에서 검증한 자동화를 여러 회사가 함께 쓰는 프로그램으로.
               <br />
               같은 업종의 다른 기관·기업도 그대로 쓸 수 있는 형태로.
             </p>
@@ -154,7 +154,7 @@ export default function SaaSDevelopmentSection() {
                 <ul className="space-y-2 text-sm text-[#F5F5F5]/70">
                   <li className="flex items-start gap-2">
                     <span className="text-[#3B82F6] mt-0.5 shrink-0">▸</span>
-                    Next.js + Supabase 멀티테넌트 구조
+                    Next.js + Supabase 기반 (여러 지점 동시 운영)
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-[#3B82F6] mt-0.5 shrink-0">▸</span>
@@ -171,7 +171,7 @@ export default function SaaSDevelopmentSection() {
                 {[
                   { value: "3", label: "운영 지점", unit: "개" },
                   { value: "100+", label: "관리 학생", unit: "" },
-                  { value: "12", label: "자동화 워크플로우", unit: "개" },
+                  { value: "12", label: "자동화 흐름", unit: "개" },
                 ].map((m) => (
                   <div
                     key={m.label}

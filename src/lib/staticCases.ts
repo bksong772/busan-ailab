@@ -104,8 +104,8 @@ export const staticCases: StaticCase[] = [
   },
   {
     id: "s-per-4",
-    title: "바이브코딩과 AI Agent를 활용한 AI챗봇 교육",
-    summary: "RAG 기반으로 실무자가 직접 AI Agent를 설계·구현",
+    title: "바이브코딩과 AI 비서를 활용한 AI 챗봇 교육",
+    summary: "회사 자료를 학습한 AI 챗봇을 실무자가 직접 설계·구현",
     link: "https://blog.naver.com/rlaworlawo321/224173833821",
     image: "personal-05.png",
     imageUrl: null,
