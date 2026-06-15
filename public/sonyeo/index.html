@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>소녀방앗간 AX 컨설팅 — 워크샵 #1</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reset.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+
+<style>
+:root {
+  --bg: #F5F5F0;
+  --card: #FFFFFF;
+  --text: #1A1A1A;
+  --muted: #555;
+  --border: #E0E0E0;
+  --gold: #C8A063;
+  --gold-bg: #FFFAF0;
+  --red: #C8595E;
+  --green: #2D7D5F;
+  --blue: #5B7B9A;
+}
+
+html, body {
+  background: var(--bg);
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.reveal {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text);
+}
+.reveal .slides {
+  text-align: center;
+  width: 100%;
+}
+.reveal .slides section {
+  padding: 40px 80px;
+  background: var(--card);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+}
+.reveal .slides section > * {
+  max-width: 1080px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box;
+  text-align: left;
+}
+.reveal .slides section > .bignum-grid { display: grid; }
+.reveal .slides section > .metric-grid { display: grid; }
+.reveal .slides section > .flow { display: flex; }
+.reveal .slides section > .tbl { width: 100%; display: table; }
+
+.reveal .slides section > h1,
+.reveal .slides section > h2,
+.reveal .slides section > h3,
+.reveal .slides section > .closing-line {
+  text-align: center;
+}
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  font-family: inherit;
+  text-transform: none;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 20px 0;
+  color: var(--text);
+}
+.reveal h1 { font-size: 44px; line-height: 1.25; }
+.reveal h2 { font-size: 30px; line-height: 1.3; }
+.reveal h3 { font-size: 22px; line-height: 1.4; font-weight: 600; }
+.reveal p, .reveal li { font-size: 19px; line-height: 1.7; color: var(--text); margin: 0 0 10px 0; }
+.reveal small { font-size: 14px; color: var(--muted); }
+.reveal strong { color: var(--text); font-weight: 700; }
+.reveal ul { padding-left: 22px; }
+
+/* HERO 슬라이드 — 표지용 강력한 디자인 */
+.hero-section {
+  text-align: center !important;
+  padding: 60px 80px !important;
+}
+.hero-section > * {
+  text-align: center !important;
+}
+.hero-line {
+  width: 80px;
+  height: 4px;
+  background: var(--gold);
+  margin: 0 auto 32px auto !important;
+}
+.hero-line.bottom { margin: 32px auto 0 auto !important; }
+.hero-badge {
+  display: inline-block !important;
+  background: var(--text);
+  color: #FFF;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  padding: 8px 18px;
+  font-weight: 600;
+  margin: 0 auto 36px auto !important;
+  width: auto !important;
+  max-width: none !important;
+}
+.hero-title {
+  font-size: 56px !important;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin: 0 0 20px 0 !important;
+  color: var(--text);
+}
+.hero-divider {
+  width: 60px;
+  height: 1px;
+  background: var(--border);
+  margin: 36px auto !important;
+}
+.hero-quote {
+  font-size: 28px !important;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  line-height: 1.5;
+  margin: 0 auto 18px auto !important;
+  max-width: 800px !important;
+}
+.hero-quote .gold { color: var(--gold); }
+.hero-speaker {
+  font-size: 14px !important;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  margin: 0 0 8px 0 !important;
+  font-weight: 500;
+}
+.hero-info {
+  font-size: 13px !important;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  margin: 32px 0 0 0 !important;
+}
+.hero-info span { margin: 0 14px; }
+.hero-info .dot { color: var(--gold); }
+
+.sec-header {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--text);
+}
+.sec-header .num {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--gold);
+  letter-spacing: 0;
+}
+.sec-header h2 { margin: 0; flex: 1; }
+.sec-header .tag {
+  background: var(--gold-bg);
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.card {
+  background: var(--gold-bg);
+  border-left: 4px solid var(--gold);
+  padding: 20px 26px;
+  margin-bottom: 16px;
+}
+.card-dark {
+  background: var(--text);
+  color: #FFF;
+  padding: 22px 28px;
+}
+.card-dark p, .card-dark li, .card-dark strong { color: #F0EDE5; }
+
+.bignum-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.bignum {
+  background: var(--gold-bg);
+  border-top: 3px solid var(--gold);
+  padding: 18px 20px;
+}
+.bignum .label {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.bignum .value {
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.bignum .sub-label {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+.quote {
+  background: var(--gold-bg);
+  border-left: 4px solid var(--gold);
+  padding: 20px 28px;
+  font-size: 19px;
+  line-height: 1.65;
+  font-style: italic;
+  color: var(--text);
+  margin: 14px 0;
+}
+.quote .speaker {
+  display: block;
+  margin-top: 10px;
+  font-size: 13px;
+  font-style: normal;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.tbl { width: 100%; border-collapse: collapse; font-size: 16px; }
+.tbl th, .tbl td { padding: 10px 14px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+.tbl th { background: var(--text); color: #FFF; font-weight: 600; font-size: 12px; letter-spacing: 0.05em; }
+.tbl tr:hover { background: var(--gold-bg); }
+
+.priority {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-right: 8px;
+}
+.p1 { background: var(--red); color: #FFF; }
+.p2 { background: #B58652; color: #FFF; }
+.p3 { background: var(--gold); color: #FFF; }
+.p4 { background: #888; color: #FFF; }
+
+.closing-line {
+  text-align: center;
+  padding-top: 20px;
+}
+.closing-line .big {
+  font-size: 44px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.3;
+  color: var(--text);
+}
+.closing-line .small {
+  font-size: 16px;
+  color: var(--muted);
+  margin-top: 24px;
+  letter-spacing: 0.1em;
+}
+
+.text-red { color: var(--red); }
+.text-green { color: var(--green); }
+.text-gold { color: var(--gold); }
+
+/* 형광펜 강조 (발표 시 청중 시선 유도) */
+.reveal mark {
+  background: linear-gradient(transparent 55%, #FFE082 55%);
+  padding: 0 3px;
+  color: var(--text);
+  font-weight: 700;
+}
+.reveal .card-dark mark {
+  background: linear-gradient(transparent 55%, rgba(200, 160, 99, 0.45) 55%);
+  color: #FFF;
+}
+.reveal .quote mark {
+  background: linear-gradient(transparent 55%, #FFE082 55%);
+  font-style: normal;
+}
+
+/* 5단계 STEP 슬라이드 */
+.step-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--text);
+}
+.step-head .num {
+  background: var(--text);
+  color: #FFF;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.step-head h2 { margin: 0; flex: 1; font-size: 26px; }
+.step-head .focus {
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  text-align: right;
+}
+
+/* 5-Step 흐름도 */
+.flow-5step {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.flow-5step-item {
+  background: var(--gold-bg);
+  border-top: 3px solid var(--gold);
+  padding: 16px 14px;
+  text-align: center;
+}
+.flow-5step-item .step-label {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.flow-5step-item .step-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+.flow-5step-item .step-en {
+  font-size: 12px;
+  color: var(--gold);
+  margin-top: 4px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* 다이어그램 — 워크플로우 */
+.flow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+  margin: 12px 0;
+}
+.flow-step {
+  flex: 1;
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.4;
+  border-radius: 4px;
+  min-width: 0;
+}
+.flow-step strong { display: block; font-size: 10px; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 4px; font-weight: 600; }
+.flow-step.bad { background: #FFF0F0; border-color: var(--red); color: #722; }
+.flow-step.bad strong { color: var(--red); }
+.flow-step.good { background: #F0F8F2; border-color: var(--green); color: #1a4a32; }
+.flow-step.good strong { color: var(--green); }
+.flow-step.center-bold { background: var(--gold-bg); border-color: var(--gold); }
+.flow-step.center-bold strong { color: var(--gold); }
+.flow-arrow {
+  flex-shrink: 0;
+  font-size: 18px;
+  color: var(--muted);
+  font-weight: 300;
+}
+.flow-label {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.flow-label.as-is { color: var(--red); }
+.flow-label.to-be { color: var(--green); }
+
+/* 효율성 메트릭 */
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 12px 0;
+}
+.metric {
+  background: var(--gold-bg);
+  border-top: 3px solid var(--gold);
+  padding: 14px 16px;
+  text-align: center;
+}
+.metric .label { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; font-weight: 600; margin-bottom: 6px; }
+.metric .value {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.metric .value.up { color: var(--green); }
+.metric .value.down { color: var(--red); }
+.metric .sub-label { font-size: 11px; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+
+.reveal .progress { color: var(--gold); }
+.reveal .controls { color: var(--gold); }
+
+/* 모킹업 — 모바일 견적서 */
+.mockup-row {
+  display: flex !important;
+  gap: 24px;
+  align-items: flex-start;
+  margin: 12px 0;
+}
+.mockup-mobile {
+  width: 280px;
+  flex-shrink: 0;
+  background: #1A1A1A;
+  border-radius: 24px;
+  padding: 8px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+}
+.mockup-mobile .screen {
+  background: #FFF;
+  border-radius: 18px;
+  overflow: hidden;
+  font-size: 11px;
+}
+.mockup-mobile .status {
+  background: #F5F5F0;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.mockup-mobile .header {
+  background: var(--text);
+  color: #FFF;
+  padding: 10px 14px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: -0.01em;
+}
+.mockup-mobile .header .sub {
+  font-size: 9px;
+  color: var(--gold);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  margin-bottom: 2px;
+}
+.mockup-mobile .body {
+  padding: 12px 14px;
+}
+.mockup-mobile .body h4 {
+  font-size: 13px;
+  margin: 0 0 4px 0;
+  color: var(--text);
+  font-weight: 700;
+}
+.mockup-mobile .body .muted {
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.mockup-mobile .body .info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  padding: 5px 0;
+  border-bottom: 1px solid #F0EDE5;
+}
+.mockup-mobile .body .info-row .label { color: var(--muted); }
+.mockup-mobile .body .info-row .value { font-weight: 600; }
+.mockup-mobile .body .total {
+  background: var(--gold-bg);
+  margin: 10px -14px;
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mockup-mobile .body .total .lbl {
+  font-size: 10px;
+  color: var(--muted);
+  font-weight: 600;
+}
+.mockup-mobile .body .total .amt {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text);
+}
+.mockup-mobile .body .btn {
+  background: #FAE100;
+  color: #381E1F;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 12px;
+  margin-top: 8px;
+}
+.mockup-mobile .body .btn-secondary {
+  background: #F5F5F0;
+  color: var(--muted);
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+  font-size: 10px;
+  margin-top: 4px;
+}
+
+/* 모킹업 — 대시보드 */
+.mockup-dash {
+  flex: 1;
+  background: #FFF;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  font-size: 11px;
+}
+.mockup-dash .dash-header {
+  background: var(--text);
+  color: #FFF;
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+}
+.mockup-dash .dash-header .title { font-weight: 700; letter-spacing: -0.01em; }
+.mockup-dash .dash-header .meta { color: var(--gold); font-size: 10px; letter-spacing: 0.05em; }
+.mockup-dash .kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--gold-bg);
+}
+.mockup-dash .kpi {
+  padding: 10px 12px;
+  border-right: 1px solid var(--border);
+}
+.mockup-dash .kpi:last-child { border-right: none; }
+.mockup-dash .kpi .lbl { font-size: 9px; color: var(--muted); letter-spacing: 0.05em; font-weight: 600; }
+.mockup-dash .kpi .val { font-size: 18px; font-weight: 800; color: var(--text); margin-top: 2px; }
+.mockup-dash .kpi .val.up { color: var(--green); }
+.mockup-dash .dash-section {
+  padding: 12px 14px;
+  border-top: 1px solid var(--border);
+}
+.mockup-dash .dash-section h5 {
+  font-size: 11px;
+  color: var(--text);
+  margin: 0 0 8px 0;
+  font-weight: 700;
+}
+.mockup-dash .bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 56px;
+  margin-bottom: 4px;
+}
+.mockup-dash .bar {
+  flex: 1;
+  background: var(--gold);
+  border-radius: 2px 2px 0 0;
+  position: relative;
+}
+.mockup-dash .bar.peak { background: var(--red); }
+.mockup-dash .bar-labels {
+  display: flex;
+  gap: 2px;
+  font-size: 8px;
+  color: var(--muted);
+}
+.mockup-dash .bar-labels span { flex: 1; text-align: center; }
+.mockup-dash .lead-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: var(--gold-bg);
+  border-left: 3px solid var(--gold);
+  margin-bottom: 4px;
+  font-size: 10px;
+}
+.mockup-dash .lead-card .name { font-weight: 700; }
+.mockup-dash .lead-card .badge { background: var(--green); color: #FFF; font-size: 8px; padding: 2px 6px; border-radius: 8px; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- =========================
+     SLIDE 1: HERO
+========================= -->
+<section class="hero-section">
+  <div class="hero-line"></div>
+  <div class="hero-badge">AX CONSULTING · WORKSHOP #1</div>
+  <h1 class="hero-title">소녀방앗간 AX 컨설팅<br/>인터뷰 요약 보고서</h1>
+
+  <div class="hero-divider"></div>
+
+  <p class="hero-quote">
+    "부티크적인 방식을 유지하면서<br/><span class="gold">생산성을 높이고 싶다.</span>"
+  </p>
+  <p class="hero-speaker">— 김민영 대표 (소녀방앗간 창업자)</p>
+
+  <p class="hero-info">
+    <span>2026 · 04 · 29</span>
+    <span class="dot">●</span>
+    <span>10분</span>
+    <span class="dot">●</span>
+    <span>발표 송병근</span>
+  </p>
+
+  <div class="hero-line bottom"></div>
+</section>
+
+<!-- =========================
+     SECTION 01: 기업 현황 진단 초안 (3분)
+========================= -->
+
+<!-- SLIDE 2: 기업 개요 + 핵심 지표 -->
+<section>
+  <div class="sec-header">
+    <span class="num">01</span>
+    <h2>기업 현황 진단 초안</h2>
+    <span class="tag">DIAGNOSE</span>
+  </div>
+
+  <div class="bignum-grid">
+    <div class="bignum">
+      <div class="label">2024 매출</div>
+      <div class="value">30<small style="font-size:18px;">억</small></div>
+      <div class="sub-label">3년간 +82% 성장</div>
+    </div>
+    <div class="bignum">
+      <div class="label">케이터링 비중</div>
+      <div class="value">40<small style="font-size:18px;">%</small></div>
+      <div class="sub-label">매장 60% : B2B 40%</div>
+    </div>
+    <div class="bignum">
+      <div class="label">B2B 재구매율</div>
+      <div class="value text-green">80<small style="font-size:18px;">%</small></div>
+      <div class="sub-label">압도적 충성도</div>
+    </div>
+    <div class="bignum">
+      <div class="label">상담 전환율</div>
+      <div class="value text-green">~100<small style="font-size:18px;">%</small></div>
+      <div class="sub-label">전화 상담 시</div>
+    </div>
+  </div>
+
+  <table class="tbl">
+    <tr><th>연도</th><th>매출액</th><th>YoY</th><th>비고</th></tr>
+    <tr><td>2021</td><td>15.4억</td><td>—</td><td>코로나 직후</td></tr>
+    <tr><td>2022</td><td>22.3억</td><td><span class="text-green">+44.8%</span></td><td>사회적기업 인증</td></tr>
+    <tr><td>2023</td><td>27.6억</td><td><span class="text-green">+23.8%</span></td><td>케이터링 본격 확장</td></tr>
+    <tr><td>2024</td><td>30.0억</td><td><span class="text-red">+8.7% (둔화)</span></td><td>매장 60% : B2B 40% 달성</td></tr>
+  </table>
+
+  <div class="card-dark" style="margin-top:14px;">
+    <strong class="text-gold">한 줄 정의:</strong> "<strong style="color:#FFF;">지역 생산자 공급망을 기반으로 B2B 식문화 경험을 제공하는 하이브리드 F&amp;B 플랫폼</strong>" / <strong>현 단계:</strong> 3년 +82% 성장 후 <strong style="color:#FFF;">둔화 초기 신호</strong>
+  </div>
+</section>
+
+<!-- SLIDE 2-1: BM 전환 흐름 (매장 → B2B) -->
+<section>
+  <h2>BM 전환 흐름 — 매장 중심 → B2B 케이터링·선물세트</h2>
+  <p style="font-size:14px; color:var(--muted); margin-bottom:14px;"><mark><strong>코로나 이후 매장 영업 직격</strong></mark> → B2B 비중 확대로 4년째 무게중심 이동 중</p>
+
+  <div class="flow">
+    <div class="flow-step">
+      <strong>2014~2019</strong>매장 중심<br/>한식밥집
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step bad">
+      <strong>2020 코로나</strong>매장 영업 직격<br/>매출 위기
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step center-bold">
+      <strong>2021~ 전환 시작</strong>B2B 케이터링·<br/>명절선물 확대
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step good">
+      <strong>2024 현재</strong>매장 60% : B2B 40%<br/>케이터링 수익률 ×2
+    </div>
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:18px;">
+    <div class="card">
+      <strong>매장 (60%)</strong> — 5개 직영<br/>
+      <span style="font-size:13px; color:var(--muted);">성수동·디큐브시티·이화여대·고속터미널·용산아이파크몰 / 한 끼 9,800원 / 임대료 압박 ×4</span>
+    </div>
+    <div class="card" style="border-left-color:var(--green);">
+      <strong style="color:var(--green);">B2B 케이터링·선물세트 (40%)</strong> — 성장 축<br/>
+      <span style="font-size:13px; color:var(--muted);">1인당 3~5만원 / 재구매율 80% / 8년차 충성 고객 (DB손보·대법원·KB·현대해상)</span>
+    </div>
+  </div>
+
+  <div class="card-dark" style="margin-top:14px;">
+    <strong class="text-gold">BM 전환 핵심:</strong>
+    <span style="color:#F0EDE5;"><mark><strong style="color:#FFF;">매장 중심 → B2B 케이터링·선물세트로 무게중심 이동 중</strong></mark> — 코로나 직후 시작된 전환이 4년째 진행. <strong>임대료 압박 + 케이터링 수익률 ×2 = 전환 가속 동기</strong>.</span>
+  </div>
+</section>
+
+<!-- SLIDE 9: 시장 위치 (4-Lens) -->
+<section>
+  <h2>시장 위치 — 압도적 빅5가 없는 분산 시장</h2>
+
+  <div class="card" style="margin-bottom:14px;">
+    <strong>전략 프레임:</strong> B2B 케이터링 시장엔 <mark><strong class="text-gold">압도적 빅5가 없음</strong></mark>. 단체급식·도시락 같은 인접 카테고리에서 진입자들이 일부 영역을 가져가는 상황. 소녀방앗간은 그들이 못 다루는 <mark><strong class="text-gold">'한식·농가·이야기' 자리에서 차별화 1등</strong></mark>을 노린다.
+  </div>
+
+  <table class="tbl">
+    <tr><th>플레이어</th><th>2024 매출</th><th>핵심 무기</th><th>못 파는 것</th></tr>
+    <tr><td>단체급식 빅5 (삼성웰스토리·아워홈·현대그린푸드·CJ프레시웨이·신세계푸드)</td><td>각 1.5~3조</td><td>가격·물량·단체급식</td><td><span class="text-red">스토리·진짜 음식 품질</span></td></tr>
+    <tr><td>본도시락 (B2B 도시락 1위)</td><td>매장 340+</td><td>1만 박스 동시·콜센터</td><td><span class="text-red">건강·ESG·농가</span></td></tr>
+    <tr style="background:#FFFAF0;"><td><strong>소녀방앗간</strong></td><td>30억</td><td><strong>스토리·농가·재구매 80%</strong></td><td>인지도·영업 인력·디지털 견적</td></tr>
+  </table>
+
+  <div class="card-dark" style="margin-top:12px;">
+    <strong class="text-gold">한 줄 진단:</strong> "<strong style="color:#FFF;">단체급식 빅5는 가격</strong>, <strong style="color:#FFF;">본도시락은 물량</strong>으로 일부 영역을 가져갔다. 둘 다 <strong style="color:#FFF;">'진짜 음식의 질'</strong>을 핵심으로 안 판다. 시장이 분산돼 있는 지금이 소녀방앗간이 <strong style="color:#FFF;">'한식·농가·이야기'</strong>로 차별화 1등 자리를 못 박을 타이밍."
+  </div>
+</section>
+
+<!-- SLIDE 10: 2026 골든타임 -->
+<section>
+  <h2>2026 상반기 = 케이터링 확장 변곡점</h2>
+
+  <div class="bignum-grid" style="grid-template-columns:repeat(3,1fr);">
+    <div class="bignum">
+      <div class="label">3년간 매출 성장</div>
+      <div class="value text-green">+82%</div>
+      <div class="sub-label">15.4억 → 30억 / 단, 2024 +8.7%로 둔화 신호</div>
+    </div>
+    <div class="bignum" style="border-top-color:var(--red);">
+      <div class="label">매장 임대료 압박</div>
+      <div class="value text-red">×4</div>
+      <div class="sub-label">성수동 4배 상승 / 용산 월 2천만 → <strong>케이터링 비중 확대 필요</strong></div>
+    </div>
+    <div class="bignum" style="border-top-color:var(--gold);">
+      <div class="label">케이터링 수익률</div>
+      <div class="value text-gold">×2</div>
+      <div class="sub-label">매장 대비 (임대료 부담 X) / B2B 재구매율 80%</div>
+    </div>
+  </div>
+
+  <div class="card-dark" style="margin-top:14px;">
+    <strong class="text-gold">왜 지금인가?</strong> <span style="color:#F0EDE5;">3년 +82% 성장 후 2024 둔화 신호. 매장 임대료 4배 상승. 반면 케이터링 수익률은 매장의 <strong style="color:#FFF;">2배</strong> + 재구매율 <strong style="color:#FFF;">80%</strong>. <mark><strong style="color:#FFF;">"매장 비중을 케이터링으로 옮길 시간"</strong></mark>이지만, 매장 고객이 누군지 모르면 옮길 자산이 없음.</span>
+  </div>
+</section>
+
+<!-- =========================
+     SECTION 02: 5단계 인터뷰 구조 기반 정리 (4분)
+========================= -->
+
+<!-- SLIDE 6: 5-Step 한눈에 -->
+<section>
+  <div class="sec-header">
+    <span class="num">02</span>
+    <h2>5단계 인터뷰 구조 기반 정리</h2>
+    <span class="tag">유입 → 입력 → 로직 → 결과 → 확보</span>
+  </div>
+
+  <div class="card">
+    <strong>핵심 요약:</strong> 케이터링이 매출의 40%·수익률은 매장 대비 2배. <strong>재구매율 80% · 전화 상담 전환율 거의 100%</strong>인 <mark>강력한 BM</mark>을 보유한 상태이며, 견적·상담·정리 전 과정이 <strong class="text-red">대표 + 10년차 팀 리더 <mark>단 2인</mark></strong>에 집중. <mark>구조적 레버 포인트가 명확하다.</mark>
+  </div>
+
+  <div class="flow-5step">
+    <div class="flow-5step-item">
+      <div class="step-label">STEP 1</div>
+      <div class="step-name">유입</div>
+      <div class="step-en">Entry</div>
+    </div>
+    <div class="flow-5step-item">
+      <div class="step-label">STEP 2</div>
+      <div class="step-name">입력</div>
+      <div class="step-en">Input</div>
+    </div>
+    <div class="flow-5step-item">
+      <div class="step-label">STEP 3</div>
+      <div class="step-name">로직</div>
+      <div class="step-en">Logic</div>
+    </div>
+    <div class="flow-5step-item">
+      <div class="step-label">STEP 4</div>
+      <div class="step-name">결과</div>
+      <div class="step-en">Output</div>
+    </div>
+    <div class="flow-5step-item">
+      <div class="step-label">STEP 5</div>
+      <div class="step-name">확보</div>
+      <div class="step-en">Retention</div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 3: STEP 1 유입 (Entry) -->
+<section>
+  <div class="step-head">
+    <span class="num">1</span>
+    <h2>유입 (Entry) — 채널·진입 경로</h2>
+    <span class="focus">고객은 어디로 들어오는가</span>
+  </div>
+
+  <ul>
+    <li><strong>오프라인 매장 (60%)</strong>: 성수동·디큐브시티·이화여대·고속터미널·용산아이파크몰 5개 직영. 유동인구 거점 입점이 유입 전략. <strong class="text-red">⚠️ 워크인 손님이 매장 → 케이터링 고객으로 전환되는 사례 다수</strong> (인터뷰: 웨딩 케이터링 손님이 알고 보니 매장 고객) — 그러나 <strong>매장 손님 데이터 0</strong>이라 깔때기 측정 불가</li>
+    <li><strong>케이터링·명절 B2B (40%)</strong>: 거의 100% <strong>바이럴 유입</strong>. DB손해보험·대법원·KB·현대해상 등 8년차 재구매 고객 다수</li>
+    <li><strong>케이터링 신청 채널</strong>: 자사 홈페이지(아임웹) 신청서 → 단일 진입점</li>
+    <li><strong>SNS·디지털 마케팅</strong>: 거의 0. 작년 임팩트프랜차이즈로 SNS 에이전시 월 100만원 시도 (효과 불투명)</li>
+  </ul>
+
+  <div class="card">
+    <strong>유입 진단:</strong> <mark>매장 ↔ 케이터링 깔때기는 명백히 작동 중</mark> — 단, <strong class="text-red">측정 불가</strong>. 디지털 마케팅 시도 1회 후 효과 미검증.
+  </div>
+</section>
+
+<!-- SLIDE 4: STEP 2 입력 (Input) -->
+<section>
+  <div class="step-head">
+    <span class="num">2</span>
+    <h2>입력 (Input) — 어떤 정보를 수집해야 하는가</h2>
+    <span class="focus">DB 필드·컬럼 정의</span>
+  </div>
+
+  <ul>
+    <li><strong>케이터링 신청서 (아임웹)</strong>: 회사명·담당자·행사일·인원·예산·메뉴 요청·장소·연락처 — <span class="text-green">충실</span></li>
+    <li><strong>견적서 (구글시트)</strong>: 인원·메뉴 구성·출장 인력·현장 운영비·총액 — 단, <strong class="text-red">전화 상담 통해 수동 정제 필수</strong></li>
+    <li><strong>채널톡</strong>: 고객 ID·대화 히스토리 <strong>영구 보관</strong> — 재구매 자산</li>
+    <li><strong>구글시트 (2017~)</strong>: 8년치 케이터링 누적 DB / <strong>ERP 카운트</strong>: 물류·재고</li>
+    <li><strong>POS</strong>: 매장 <strong class="text-red">매출만 기록</strong> (고객 정보 X)</li>
+    <li><strong class="text-red">⚠️ 매장 워크인 필드 = 0</strong> — 시간대·고객군·동행수·단골 여부 모두 미수집</li>
+    <li><strong class="text-red">⚠️ 매장 → 케이터링 전환 추적 = 0</strong> — 워크인 ID ↔ 케이터링 신청자 매칭 불가</li>
+  </ul>
+
+  <div class="card">
+    <strong>입력 진단:</strong> <mark>케이터링 쪽 필드는 8년치 누적으로 충실</mark>. 매장 쪽은 <strong class="text-red">매출만 있고 운영 데이터 0</strong> — 누가·언제·어떻게 들어오는지 안 잡힘. (매장 데이터 활용 가설은 검증 안 됨 → P3 장기 과제로 별도 분리)
+  </div>
+</section>
+
+<!-- SLIDE 5: STEP 3 로직 (Logic) -->
+<section>
+  <div class="step-head">
+    <span class="num">3</span>
+    <h2>로직 (Logic) — 데이터 출처 + 처리 규칙</h2>
+    <span class="focus">출처·룰의 사람 의존도</span>
+  </div>
+
+  <p style="font-size:13px; color:var(--muted); letter-spacing:0.1em; font-weight:700; margin-bottom:8px;">▼ 데이터 출처 (6)</p>
+  <p style="font-size:15px; margin-bottom:14px;">아임웹 (신청서) · 구글시트 (케이터링 8년치) · 채널톡 (소통 히스토리·영구) · KT비즈메카 (메일) · ERP 카운트 (물류·재고) · <strong class="text-red">POS (매장 매출만)</strong></p>
+
+  <p style="font-size:13px; color:var(--muted); letter-spacing:0.1em; font-weight:700; margin-bottom:8px;">▼ 처리 규칙·분기</p>
+  <ul>
+    <li><strong>금액 분기</strong>: 800만원 이상 → 현장 사전 방문 / 그 이하 → 사진 대체</li>
+    <li><strong>재구매 B2B 분기</strong>: 신청서·견적 메일 생략 → 채널톡 직행</li>
+    <li><strong>가격 룰</strong>: <strong>매장 1만원 사수 (9,800원)</strong> — 12년간 6천→9.8천 단계적 인상 / <strong>케이터링 1인당 3~5만원</strong> (프리미엄)</li>
+    <li><strong>메뉴 결정 룰</strong>: "지역 식재료·본연의 맛" 우선, 트렌드 후순위 / 저염·무조미료</li>
+    <li><strong>농가 조달 룰</strong>: 시니어클럽 거점 단위 (개인 농가 X — 법인 증빙 필수) / 시니어클럽 가공품 월 4~5천만 + <strong>가락시장(서울 송파 농수산물도매)</strong>·육류 월 3천만</li>
+    <li><strong class="text-red">⚠️ 커스터마이징 룰 = 룰북 미정립</strong>: 대표 + 10년차 팀 리더의 경험·감 기반. 팀원은 "이건 우리가 받아도 되는 건가?" 판단 어려움 → 표준 외 요청은 보류 → <mark>모든 케이스가 결국 대표·팀리더의 최종 판단으로 모임 (레버 핵심)</mark></li>
+  </ul>
+
+  <div class="quote">
+    "구글시트 쓰기 권한은 저랑 팀리더만요. <strong>커스터마이징 판단이 필요해서.</strong>"
+    <span class="speaker">— 김민영 대표 (룰의 사람 의존)</span>
+  </div>
+</section>
+
+<!-- SLIDE 6: STEP 4 결과 (Output) -->
+<section>
+  <div class="step-head">
+    <span class="num">4</span>
+    <h2>결과 (Output) — 산출물·KPI·핵심가치</h2>
+    <span class="focus">고객이 받는 최종 가치</span>
+  </div>
+
+  <ul>
+    <li><strong>차별점 1</strong>: <strong>매장 1만 원 사수</strong> — 한 끼 9,800원 (12년 동안 6천→9.8천 단계적 인상) / <strong>케이터링 1인당 3~5만원</strong> 프리미엄</li>
+    <li><strong>차별점 2</strong>: <strong>"지역 식재료 → 본연의 맛"</strong> + 저염·무조미료. MSG·소금·설탕 없는 된장찌개 / 단체급식 대기업·본도시락이 1년 안에 못 따라옴</li>
+    <li><strong>차별점 3</strong>: 케이터링 <strong>200가지 메뉴 가능</strong> — "예쁘면서 맛있는, 실속 케이터링" (김민영 대표 자체 정의)</li>
+    <li><strong>케이터링 전환율</strong>: 전화 상담 시 <strong class="text-green">거의 100%</strong> — *"여러 데 전화해 봤는데 이렇게 상세한 상담이 처음"* (고객 피드백)</li>
+    <li><strong>케이터링 재구매율</strong>: <strong class="text-green">80%</strong> — "재구매 만드는 방법: 똑같은 거 받으시면 지루하시니 계속 바꾼다"</li>
+  </ul>
+
+  <div class="quote">
+    "<mark><strong>부티크적인 방식을 유지하면서 생산성을 높이고 싶다.</strong></mark><br/>
+    매번 고객 맞춤으로 고려해서 제안드리는 — 그게 우리 부티크의 핵심이에요."
+    <span class="speaker">— 김민영 대표 ⭐ (발표 메인 메시지)</span>
+  </div>
+</section>
+
+<!-- SLIDE 7: STEP 5 확보 (Retention) -->
+<section>
+  <div class="step-head">
+    <span class="num">5</span>
+    <h2>확보 (Retention) — 어떻게 돈 벌고 묶어두는가</h2>
+    <span class="focus">수익화 + 리텐션 구조</span>
+  </div>
+
+  <p style="font-size:13px; color:var(--muted); letter-spacing:0.1em; font-weight:700; margin-bottom:8px;">▼ 수익화 구조</p>
+  <ul style="margin-bottom:14px;">
+    <li><strong>매장 60% : 케이터링 40%</strong> / 케이터링 수익률 = 매장의 약 <strong class="text-green">2배</strong> (임대료 부담 X)</li>
+    <li><strong>임대료 압박</strong>: 용산 월 2천만 / 성수동 4배 상승 → <strong>케이터링 비중 확대 압력</strong></li>
+  </ul>
+
+  <p style="font-size:13px; color:var(--muted); letter-spacing:0.1em; font-weight:700; margin-bottom:8px;">▼ 리텐션 (작동 중) <span class="text-green">✓</span></p>
+  <ul style="margin-bottom:14px;">
+    <li><strong>B2B 재구매율 <span class="text-green">80%</span></strong> — 비결: "지루하지 않게 매번 메뉴 변경"</li>
+    <li><strong>전화 상담 전환율 <span class="text-green">~100%</span></strong> — 부티크 1:1 응대</li>
+    <li><strong>8년차 충성 고객</strong>: DB손해보험·대법원·KB·현대해상</li>
+    <li><strong>채널톡 영구 히스토리</strong> — 재구매 시 신청서·견적 단계 생략</li>
+  </ul>
+
+  <p style="font-size:13px; color:var(--muted); letter-spacing:0.1em; font-weight:700; margin-bottom:8px;">▼ 리텐션 (누락 = 검증 후 결정) <span class="text-red">✗</span></p>
+  <ul>
+    <li><strong class="text-red">매장 멤버십 ✗</strong> — 매장 고객 식별·관리 시스템 부재 (POS 외주라 카드 데이터도 추출 불가)</li>
+    <li><strong class="text-red">매장 운영 통계 ✗</strong> — 시간대·고객군·동행수 등 운영 의사결정용 데이터 자체가 없음</li>
+  </ul>
+
+  <div class="card-dark" style="margin-top:14px;">
+    <strong class="text-gold">확보 진단 (4줄로 풀어쓰기):</strong>
+    <ul style="color:#F0EDE5; padding-left:18px; margin:10px 0 0 0; line-height:1.7;">
+      <li><strong style="color:#FFF;">B2B 케이터링 리텐션은 이미 천장</strong> — 재구매 <mark>80%</mark> + 전환율 <mark>~100%</mark>. 손볼 곳 없음.</li>
+      <li><strong style="color:#FFF;">매장 쪽은 운영 데이터 0</strong> — 누가·언제·어떻게 오는지 안 잡힘.</li>
+      <li>"매장 고객이 케이터링으로 넘어온다"는 가설은 <strong style="color:#FFF;">검증 안 됨</strong> (페르소나 다를 수 있음 + POS 외주로 추출 불가) → 장기 검증 과제로 분리.</li>
+      <li><mark><strong style="color:var(--gold);">확보 단계의 적정 방향 = 신규 시스템보다 효율 개선 우선</strong></mark> (구체적 AX 과제는 다음 섹션에서).</li>
+    </ul>
+  </div>
+</section>
+
+<!-- SLIDE 11: 6대 병목 + CTS 종합 진단 -->
+<section>
+  <h2>6대 병목 매핑 + 종합 진단</h2>
+
+  <table class="tbl">
+    <tr><th>현장 발언·진단</th><th>구조적 병목</th></tr>
+    <tr><td>"매장에 누가 언제 오는지 데이터 0"</td><td>① 측정 부재 (장기 과제)</td></tr>
+    <tr><td>"10년차 팀 리더 나가면 진행 못 해요"</td><td>② 데이터 비자산화 (룰북 부재)</td></tr>
+    <tr><td>"구글시트·아임웹·채널톡·ERP·KT비즈메카에 데이터가 다 흩어져 있어요"</td><td>③ 데이터 파편화 ⭐</td></tr>
+    <tr><td>"전화 상담 안 하면 견적이 나오질 않아서…"</td><td>④ 느린 의사결정 (대표 의존) ⭐</td></tr>
+    <tr><td>"메뉴 시즌별·맞춤형 200가지 — 강점이지만 복잡도 + 대표 의존도 ↑"</td><td>⑤ 복잡도 비용</td></tr>
+    <tr><td>아임웹→구글시트 자동 연동 시도 후 수동 회귀 (정제 룰이 사람 의존)</td><td>⑥ 변화 정착 마찰 ⭐</td></tr>
+  </table>
+
+  <div class="card-dark" style="margin-top:14px;">
+    <strong class="text-gold">한 줄 진단:</strong> "<strong style="color:#FFF;">돈보다 시간이 더 많이 새고 있는 구조</strong>" — 5주 안에 풀 ⭐ 병목 3개: <strong style="color:#FFF;">데이터 파편화 · 느린 의사결정 · 변화 정착 마찰</strong>
+    <p style="margin-top:10px; font-size:14px; color:#F0EDE5;">
+      → <strong style="color:var(--gold);">셋 다 케이터링 견적·신청 흐름의 시간·수동 작업 누적 지점</strong>. <mark>자동화 솔루션으로 정면 해결 가능 (구체적 AX 과제는 다음 섹션)</mark>. 측정 부재(매장)는 5주 후 검증 단계로 이월.
+    </p>
+  </div>
+</section>
+
+<!-- =========================
+     SECTION 03: 핵심 AX 과제 (3분)
+========================= -->
+
+<!-- SLIDE 12: P2~P6 한눈에 -->
+<section>
+  <div class="sec-header">
+    <span class="num">03</span>
+    <h2>핵심 AX 과제 도출 (6건)</h2>
+    <span class="tag">3건 이상 ✓</span>
+  </div>
+
+  <div class="card-dark" style="margin-bottom:16px;">
+    <strong class="text-gold">왜 P1+P2가 메인? — <mark>강한 BM의 적정 솔루션 = 효율 개선</mark></strong>
+    <p style="margin-top:8px; font-size:15px; color:#F0EDE5;">
+      전환율 <strong style="color:#FFF;">~100%</strong> · 재구매율 <strong style="color:#FFF;">80%</strong> — <mark>이미 천장에 닿은 강한 BM</mark>. 이 단계에서 <strong>검증 가능한 효과</strong>는 신규 솔루션이 아니라 <strong style="color:var(--gold);">효율 개선(P1+P2): 응답 24h+ → 즉시 / 입력 월 10h → 0h / 월 50만원 절감</strong>. 8년 DB의 맞춤 제안서·SaaS화는 효율 개선 후 <strong style="color:#FFF;">신규 모객 단계(P5)</strong>에서 진행.
+    </p>
+    <p style="margin-top:10px; font-size:14px; color:#D8D2BE;">
+      → 대표 직접 호응 + 진단 결과 + 정량 검증 가능 = <strong style="color:var(--gold);">3박자 일치</strong>한 5주 메인.
+    </p>
+  </div>
+
+  <table class="tbl">
+    <tr><th>우선순위</th><th>과제</th><th>기간</th><th>핵심 임팩트</th></tr>
+    <tr style="background:#FFFAE5;"><td><span class="priority p1">P1 ⭐</span></td><td><strong>아임웹 → 구글시트 자동 연동</strong></td><td>2주</td><td>입력 월 10h → 0h / 누락 0건</td></tr>
+    <tr style="background:#FFFAE5;"><td><span class="priority p1">P2 ⭐</span></td><td><strong>케이터링 견적서 웹화</strong> (모바일+채널톡)</td><td>5주</td><td>응답 사이클 24h+ → 즉시 / 대표 직접 호응</td></tr>
+    <tr><td><span class="priority p2">P4</span></td><td>재무 정리 AI (Claude) — PoC</td><td>4주</td><td>대표 직접 발언 ("재무 클로드 전환 좋겠다")</td></tr>
+    <tr><td><span class="priority p3">P3</span></td><td>매장 워크인 데이터 시스템</td><td>장기 (검증)</td><td>가설 검증 후 결정 — 워크샵 #2~3 재논의</td></tr>
+    <tr><td><span class="priority p4">P5</span></td><td>케이터링 통합 대시보드 SaaS</td><td>3개월</td><td>대표 의존도 경량화</td></tr>
+    <tr><td><span class="priority p4">P6</span></td><td>SNS 콘텐츠 AI 반자동화</td><td>6주</td><td>외주비 월 100만 → 0원</td></tr>
+  </table>
+</section>
+
+<!-- SLIDE 11-2: 6대 병목 → P1+P2 매핑 -->
+<section>
+  <h2>⭐ 3개 핵심 병목 → P1+P2가 어떻게 푸는가</h2>
+  <p style="font-size:14px; color:var(--muted); margin-bottom:14px;"><mark><strong>3개 병목 모두 "전화 상담 전·후의 수작업"에서 발생</strong></mark> · 강한 부분(전화 상담)은 보존하고 그 주변만 자동화</p>
+
+  <table class="tbl">
+    <tr><th>⭐ 병목</th><th>증상</th><th>P1+P2 솔루션</th><th>정량 효과</th></tr>
+    <tr style="background:#FFFAF0;">
+      <td><strong style="color:var(--red);">③ 데이터 파편화</strong></td>
+      <td>아임웹 → 구글시트 수동 적재 / 6개 도구 흩어짐</td>
+      <td><strong style="color:var(--gold);">P1 자동 연동</strong><br/>(Webhook + n8n)</td>
+      <td>월 10h → 0h<br/>누락 0건</td>
+    </tr>
+    <tr style="background:#FFFAF0;">
+      <td><strong style="color:var(--red);">④ 느린 의사결정</strong><br/>(응답 시간)</td>
+      <td>견적서 엑셀+이메일 → 답신 24h+ 발생</td>
+      <td><strong style="color:var(--gold);">P2 견적서 웹화</strong><br/>(모바일 + 채널톡 1버튼)</td>
+      <td>24h+ → 즉시<br/>모바일 가독성 100%</td>
+    </tr>
+    <tr style="background:#FFFAF0;">
+      <td><strong style="color:var(--red);">⑥ 변화 정착 마찰</strong></td>
+      <td>예전 자동 연동 시도 후 회귀 (큰 변화에 거부감)</td>
+      <td><strong style="color:var(--gold);">P1+P2 점진 도입</strong><br/>(작은 단위부터 검증)</td>
+      <td>5주 안 단계별 가동<br/>(1차 P1 → 2차 P2)</td>
+    </tr>
+  </table>
+
+  <div class="card-dark" style="margin-top:14px;">
+    <strong class="text-gold">매핑 핵심:</strong>
+    <span style="color:#F0EDE5;"><mark><strong style="color:#FFF;">전화 상담의 부티크 강점(전환율 100%)은 보존</strong></mark> + 그 전·후의 수작업만 P1+P2로 풀어준다 → <strong>병목 정면 해결 + 강점 무손상</strong>.</span>
+  </div>
+</section>
+
+<!-- SLIDE 13: P1 + P2 메인 -->
+<section>
+  <div style="display:flex; align-items:center; gap:14px; margin-bottom:8px;">
+    <span class="priority p1" style="font-size:13px; padding:6px 14px;">P1 + P2 ⭐ 5주 메인 · 케이터링 효율화</span>
+  </div>
+  <h2>케이터링 견적·신청 흐름 자동화</h2>
+  <p style="font-size:16px; color:var(--muted); margin-bottom:14px;">대표 직접 호응 + 정량 효과 검증 가능 / 가장 수동 작업·시간 많이 드는 지점 정면 해결</p>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+    <!-- P1 박스 with Before/After -->
+    <div style="background:var(--gold-bg); border-left:4px solid var(--gold); padding:16px 18px;">
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+        <span style="background:var(--gold); color:#FFF; font-size:11px; padding:3px 10px; font-weight:700; letter-spacing:0.1em;">P1 · 2주</span>
+        <strong style="font-size:15px;">아임웹 → 구글시트 자동 연동</strong>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr auto 1fr; gap:8px; align-items:center; font-size:12px;">
+        <div style="background:#FFF3F3; padding:10px 12px; border-radius:4px; border:1px solid #F5C6CB;">
+          <div style="font-weight:700; color:#C8595E; margin-bottom:4px;">✋ Before</div>
+          대표 수동 입력<br/>
+          <span style="color:#C8595E; font-weight:700;">월 10h 소요</span>
+        </div>
+        <div style="font-size:18px; color:var(--gold); font-weight:700;">→</div>
+        <div style="background:#F0F8F2; padding:10px 12px; border-radius:4px; border:1px solid #C3E6CB;">
+          <div style="font-weight:700; color:#2D7D5F; margin-bottom:4px;">⚡ After</div>
+          Webhook + n8n 자동<br/>
+          <span style="color:#2D7D5F; font-weight:700;">0h · 누락 0건</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- P2 박스 with Before/After -->
+    <div style="background:var(--gold-bg); border-left:4px solid var(--gold); padding:16px 18px;">
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+        <span style="background:var(--gold); color:#FFF; font-size:11px; padding:3px 10px; font-weight:700; letter-spacing:0.1em;">P2 · 5주</span>
+        <strong style="font-size:15px;">케이터링 견적서 웹화</strong>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr auto 1fr; gap:8px; align-items:center; font-size:12px;">
+        <div style="background:#FFF3F3; padding:10px 12px; border-radius:4px; border:1px solid #F5C6CB;">
+          <div style="font-weight:700; color:#C8595E; margin-bottom:4px;">📎 Before</div>
+          엑셀 + 이메일<br/>
+          <span style="color:#C8595E; font-weight:700;">응답 24h+</span>
+        </div>
+        <div style="font-size:18px; color:var(--gold); font-weight:700;">→</div>
+        <div style="background:#F0F8F2; padding:10px 12px; border-radius:4px; border:1px solid #C3E6CB;">
+          <div style="font-weight:700; color:#2D7D5F; margin-bottom:4px;">📱 After</div>
+          모바일 웹 + 채널톡 1버튼<br/>
+          <span style="color:#2D7D5F; font-weight:700;">응답 즉시</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote" style="margin-top:14px;">
+    "<strong>너무 좋을 것 같아요.</strong> 핸드폰으로 바로 채널톡 연결도 되고."
+    <span class="speaker">— 김민영 대표 (P2 견적서 시연 후 즉답)</span>
+  </div>
+
+  <div class="metric-grid" style="margin-top:14px;">
+    <div class="metric">
+      <div class="label">견적 응답 사이클</div>
+      <div class="value up">24h+ → 즉시</div>
+      <div class="sub-label">모바일 반응형 + 채널톡 1버튼</div>
+    </div>
+    <div class="metric">
+      <div class="label">대표·팀리더 입력 시간</div>
+      <div class="value up">월 10h → 0h</div>
+      <div class="sub-label">아임웹 → 구글시트 자동 (n8n)</div>
+    </div>
+    <div class="metric">
+      <div class="label">시간 가치 환산</div>
+      <div class="value up">월 50만원</div>
+      <div class="sub-label">10h × 시급 5만 절감</div>
+    </div>
+  </div>
+
+  <div class="card-dark" style="margin-top:12px;">
+    <strong class="text-gold">왜 이게 메인인가?</strong>
+    <span style="color:#F0EDE5;">① <strong style="color:#FFF;">대표 직접 호응</strong> — 시연 후 즉답 ② 정량 효과 검증 가능 (응답 시간·입력 시간) ③ B2B 재구매율 80%인 강한 깔때기의 모바일 경험을 직접 개선 ④ <mark><strong style="color:#FFF;">대표·팀리더 시간을 새 고객 확보에 재투자할 첫 도구</strong></mark></span>
+  </div>
+</section>
+
+<!-- SLIDE 13-3: P1+P2 결합 전체 흐름 (As-Is / To-Be) -->
+<section>
+  <h2>P1+P2 결합 흐름 — Before / After</h2>
+  <p style="font-size:14px; color:var(--muted); margin-bottom:14px;"><mark><strong>전화 상담은 그대로 유지</strong></mark> · 그 전·후 수작업만 자동화 (전환율 100% 강점은 손대지 않음)</p>
+
+  <div class="flow-label as-is">▼ AS-IS · 수동 흐름 (응답 24h+)</div>
+  <div class="flow">
+    <div class="flow-step"><strong>① 고객</strong>아임웹 신청</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step bad"><strong>② 대표·팀리더</strong>구글시트 수동 입력 (월 10h)</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step center-bold"><strong>📞 ③ 전화 상담</strong>대표·팀리더 (강점)</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step bad"><strong>④ 견적서 작성</strong>엑셀 + 이메일</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step bad"><strong>⑤ 고객</strong>이메일 24h+ 후 확인</div>
+  </div>
+
+  <div class="flow-label to-be" style="margin-top:14px;">▼ TO-BE · 자동 흐름 (응답 즉시)</div>
+  <div class="flow">
+    <div class="flow-step"><strong>① 고객</strong>아임웹 신청</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step good"><strong>② P1 자동</strong>구글시트 적재 + 알림</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step center-bold"><strong>📞 ③ 전화 상담</strong>대표·팀리더 (그대로!)</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step good"><strong>④ P2 자동</strong>모바일 견적서 URL 생성</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step good"><strong>⑤ 고객</strong>폰 즉시 + 채널톡 1버튼</div>
+  </div>
+
+  <div class="metric-grid" style="margin-top:18px;">
+    <div class="metric">
+      <div class="label">② 신청서 입력 시간</div>
+      <div class="value up">월 10h → 0h</div>
+      <div class="sub-label">P1 자동 적재</div>
+    </div>
+    <div class="metric">
+      <div class="label">③ 전화 상담</div>
+      <div class="value">✓ 유지</div>
+      <div class="sub-label">전환율 100% 강점 보존</div>
+    </div>
+    <div class="metric">
+      <div class="label">④⑤ 견적 응답 사이클</div>
+      <div class="value up">24h+ → 즉시</div>
+      <div class="sub-label">P2 모바일 + 채널톡 1버튼</div>
+    </div>
+  </div>
+
+  <div class="card-dark" style="margin-top:14px;">
+    <strong class="text-gold">핵심 원칙:</strong>
+    <span style="color:#F0EDE5;"><mark><strong style="color:#FFF;">"잘 되는 것은 그대로, 시간 새는 곳만 자동화"</strong></mark> — 전화 상담의 부티크 강점은 보존하면서 그 전(②)·후(④⑤)의 수작업만 P1+P2로 풀어준다.</span>
+  </div>
+</section>
+
+<!-- SLIDE 16-1: P1 자동 연동 시각화 (데이터 흐름 + 채널톡 알림) -->
+<section>
+  <h2>P1 — 자동 연동 흐름 미리보기</h2>
+  <p style="font-size:14px; color:var(--muted); margin-bottom:14px;">고객 신청 즉시 → 자동 적재 + 대표·팀리더 채널톡 알림 (2주 구축)</p>
+
+  <div class="mockup-row" style="justify-content:center; gap:32px; align-items:flex-start;">
+    <!-- 좌: 데이터 흐름 다이어그램 -->
+    <div style="flex:1; max-width:480px;">
+      <div style="background:#FFF; border:1px solid var(--border); border-radius:8px; padding:20px;">
+        <div style="font-size:11px; color:var(--gold); letter-spacing:0.15em; font-weight:600; margin-bottom:14px;">DATA FLOW</div>
+
+        <div style="background:var(--gold-bg); padding:12px 14px; border-radius:6px; border-left:3px solid var(--gold); margin-bottom:6px;">
+          <div style="font-weight:700; font-size:13px;">① 고객 아임웹 신청서</div>
+          <div style="font-size:11px; color:var(--muted);">회사명·인원·날짜·메뉴</div>
+        </div>
+        <div style="text-align:center; color:var(--gold); font-size:14px; font-weight:700;">↓ Webhook</div>
+
+        <div style="background:var(--text); color:#FFF; padding:12px 14px; border-radius:6px; margin:6px 0;">
+          <div style="font-weight:700; font-size:13px; color:var(--gold);">② n8n 자동 워크플로우</div>
+          <div style="font-size:11px; color:#D8D2BE;">데이터 정제 + 분기 + 라우팅</div>
+        </div>
+        <div style="text-align:center; color:var(--gold); font-size:14px; font-weight:700;">↓ 동시 발송</div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:6px;">
+          <div style="background:#F0F8F2; padding:10px 12px; border-radius:6px; border-left:3px solid var(--green);">
+            <div style="font-weight:700; font-size:12px; color:var(--green);">③ 구글시트</div>
+            <div style="font-size:10px; color:var(--muted);">raw 시트 자동 적재</div>
+          </div>
+          <div style="background:#F0F8F2; padding:10px 12px; border-radius:6px; border-left:3px solid var(--green);">
+            <div style="font-weight:700; font-size:12px; color:var(--green);">📱 채널톡 알림</div>
+            <div style="font-size:10px; color:var(--muted);">대표·팀리더 즉시 알림</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:var(--gold-bg); border-left:4px solid var(--gold); padding:14px 18px; margin-top:14px;">
+        <div style="font-size:11px; color:var(--gold); letter-spacing:0.15em; font-weight:600; margin-bottom:6px;">P1 SOLUTION</div>
+        <div style="font-size:13px; line-height:1.6;">
+          ✓ 신청 → 시트 자동 적재 (수동 0)<br/>
+          ✓ 동시에 채널톡 푸시 (즉시 인지)<br/>
+          ✓ 누락 0건 (Webhook 보장)<br/>
+          ✓ 정제 컬럼은 사람이 (전화 상담 후)
+        </div>
+      </div>
+    </div>
+
+    <!-- 우: 채널톡 알림 모킹업 -->
+    <div class="mockup-mobile">
+      <div class="screen">
+        <div class="status">9:41 · 5G</div>
+        <div class="header" style="background:#FAE100; color:#1A1A1A;">
+          <div class="sub" style="color:#666;">카카오 채널톡</div>
+          <div>소녀방앗간 케이터링</div>
+        </div>
+        <div class="body">
+          <div style="background:var(--gold-bg); border-radius:8px; padding:10px 12px; margin-bottom:10px; border-left:3px solid var(--gold);">
+            <div style="font-size:9px; color:var(--gold); font-weight:700; letter-spacing:0.05em; margin-bottom:4px;">📩 신규 케이터링 신청</div>
+            <h4 style="font-size:13px; margin:0 0 6px 0;">법무법인 세종 / 워크숍</h4>
+            <div style="font-size:11px; color:var(--muted); line-height:1.5;">
+              · 4월 30일 (수) 12:00<br/>
+              · 50인 · 한정식 8종<br/>
+              · 담당: 김 ○○ 차장
+            </div>
+          </div>
+
+          <div style="font-size:10px; color:var(--muted); margin-bottom:6px; font-weight:600;">자동 처리 결과</div>
+          <div class="info-row"><span class="label">구글시트 적재</span><span class="value" style="color:var(--green);">✓ 완료</span></div>
+          <div class="info-row"><span class="label">채널톡 알림</span><span class="value" style="color:var(--green);">✓ 발송</span></div>
+          <div class="info-row"><span class="label">대표 인지 시간</span><span class="value" style="color:var(--green);">즉시</span></div>
+
+          <div class="btn">📊 구글시트 raw 보기</div>
+          <div class="btn-secondary">✏️ 정제 컬럼 채우기</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px;">
+    <strong>핵심:</strong> 신청서가 들어오는 순간 <mark><strong>자동 적재 + 동시 알림</strong></mark> → 대표·팀리더는 채널톡 한 번 클릭으로 raw 데이터 확인 → 정제 컬럼만 채우면 끝. <strong>월 10시간 수동 입력이 0시간으로</strong>.
+  </div>
+</section>
+
+<!-- SLIDE 15-1: P2 모바일 견적서 모킹업 -->
+<section>
+  <h2>P2 — 모바일 견적서 미리보기</h2>
+  <p style="font-size:14px; color:var(--muted); margin-bottom:14px;">고객 휴대폰에서 즉시 확인 + 채널톡 1버튼 연결 + PDF 다운로드 (5주 구축)</p>
+
+  <div class="mockup-row" style="justify-content:center; gap:32px; align-items:center;">
+    <div class="mockup-mobile">
+      <div class="screen">
+        <div class="status">9:41 · 5G</div>
+        <div class="header">
+          <div class="sub">소녀방앗간 케이터링</div>
+          <div>법무법인 세종 행사 견적서</div>
+        </div>
+        <div class="body">
+          <h4>4월 30일 (수) · 12:00</h4>
+          <div class="muted">방문형 케이터링 · 50인</div>
+
+          <div class="info-row"><span class="label">행사 유형</span><span class="value">기업 워크숍</span></div>
+          <div class="info-row"><span class="label">인원</span><span class="value">50인</span></div>
+          <div class="info-row"><span class="label">메뉴 구성</span><span class="value">한정식 8종</span></div>
+          <div class="info-row"><span class="label">출장 인력</span><span class="value">4인</span></div>
+          <div class="info-row"><span class="label">현장 운영비</span><span class="value">300,000원</span></div>
+
+          <div class="total">
+            <div>
+              <div class="lbl">총 견적 (VAT 별도)</div>
+              <div style="font-size:9px; color:var(--muted);">1인당 30,000원 × 50</div>
+            </div>
+            <div class="amt">1,800,000원</div>
+          </div>
+
+          <div class="btn">💬 채널톡으로 바로 문의</div>
+          <div class="btn-secondary">📄 PDF 다운로드</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex:1; max-width:500px;">
+      <div style="background:var(--text); color:#FFF; padding:18px 22px; border-radius:6px; margin-bottom:14px;">
+        <div style="font-size:11px; color:var(--gold); letter-spacing:0.15em; font-weight:600; margin-bottom:8px;">CURRENT (AS-IS)</div>
+        <div style="font-size:14px; line-height:1.6;">엑셀 견적서를 이메일에 첨부 → 모바일 가독성 ✗ → 답신 24h+</div>
+      </div>
+      <div style="background:var(--gold-bg); border-left:4px solid var(--gold); padding:18px 22px;">
+        <div style="font-size:11px; color:var(--gold); letter-spacing:0.15em; font-weight:600; margin-bottom:8px;">P2 SOLUTION (TO-BE)</div>
+        <div style="font-size:14px; line-height:1.7;">
+          ✓ 고유 URL 견적서 (모바일 반응형)<br/>
+          ✓ "채널톡 바로 문의" 버튼 1번<br/>
+          ✓ PDF 다운로드<br/>
+          ✓ URL 갱신만으로 재발송
+        </div>
+      </div>
+      <div class="quote" style="margin-top:14px;">
+        "<mark><strong>너무 좋을 것 같아요.</strong></mark><br/>
+        핸드폰으로 바로 채널톡 연결도 되고."
+        <span class="speaker">— 김민영 대표 (병근 견적서 시연 후)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 15-2: 발견된 인사이트 (매장 → 케이터링 전환 가설) -->
+<section>
+  <h2>💡 인터뷰에서 발견된 큰 가설</h2>
+  <p style="font-size:16px; color:var(--muted); margin-bottom:14px;">5단계 분석 후반에 도출된 패턴 — 5주 메인엔 안 들어가지만 워크샵 #2~3 검증 후보</p>
+
+  <div class="card" style="margin-bottom:14px;">
+    <strong class="text-gold">현장 관찰:</strong> "케이터링·명절 선물 고객 다수가 <mark><strong>알고 보면 매장 고객</strong></mark>" — 인터뷰에서 김민영 대표 직접 발언 (예: 웨딩 케이터링 손님이 알고 보니 매장 고객). 즉 <mark><strong>매장이 케이터링의 영업 깔때기 입구</strong></mark>로 작동 중인데, <strong class="text-red">실제 그 데이터는 0</strong>.
+  </div>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+    <div style="background:#FFF3F3; border-left:4px solid var(--red); padding:16px 20px;">
+      <div style="font-size:12px; color:var(--red); letter-spacing:0.1em; font-weight:600; margin-bottom:8px;">⚠️ 현실적 한계</div>
+      <ul style="font-size:13px; padding-left:18px; line-height:1.65; margin:0;">
+        <li><strong>POS 외주</strong> → 커스터마이징 불가</li>
+        <li><strong>매장 회원제 X</strong> → 직원이 매번 캐치 어려움</li>
+        <li>매장 적자 운영 → <strong>구조적 문제 가능성</strong></li>
+        <li>매장 고객 페르소나 ≠ 케이터링 담당자 가능성</li>
+      </ul>
+    </div>
+    <div style="background:var(--gold-bg); border-left:4px solid var(--gold); padding:16px 20px;">
+      <div style="font-size:12px; color:var(--gold); letter-spacing:0.1em; font-weight:600; margin-bottom:8px;">🔍 검증 방법 2가지 (P3 장기)</div>
+      <ul style="font-size:13px; padding-left:18px; line-height:1.65; margin:0;">
+        <li><mark><strong>① 매장 고객 점검</strong></mark> — 1개 매장 + 1주 수기 기록부터 (직원 부담 최소화)</li>
+        <li><mark><strong>② 케이터링 고객 역인터뷰</strong></mark> — 8년치 DB 고객에게 "매장 이용 경험 있나요?" → 매장-케이터링 연관성 정량 측정</li>
+      </ul>
+      <p style="font-size:12px; color:var(--muted); margin-top:8px; font-style:italic;">→ 두 방향 동시 검증 후 P3 시스템 투자 결정 (워크샵 #2~3)</p>
+    </div>
+  </div>
+
+  <div class="card-dark" style="margin-top:14px;">
+    <strong class="text-gold">왜 5주 메인이 아닌가?</strong>
+    <span style="color:#F0EDE5;">① 가설 자체가 검증 안 됨 + 매장 데이터 수집의 현실적 한계 4가지 ② 5주 안엔 P1+P2 효율 개선이 정량 효과 검증 가능 ③ <strong style="color:#FFF;">P3는 위 2가지 방법으로 가설 검증 후 결정</strong> — <mark><strong style="color:#FFF;">가설 단계의 솔루션을 인프라로 먼저 깔지 않는다</strong></mark>.</span>
+  </div>
+</section>
+
+<!-- SLIDE 16: 5주 집중안 + 다음 단계 -->
+<section>
+  <h2>5주 컨설팅 집중 제안</h2>
+
+  <div class="card-dark" style="margin-bottom:14px;">
+    <strong class="text-gold">고객 요청 = 우리 결론</strong>
+    <p style="margin-top:8px; font-size:14px; color:#F0EDE5;">
+      ⓘ <strong style="color:#FFF;">대표 호응:</strong> P2 견적서 웹화 ("너무 좋을 것 같아요") /
+      <strong style="color:var(--gold);">우리 결론:</strong> 동일 — P1+P2 = 메인.
+      <mark><strong style="color:#FFF;">→ 검증 가능한 정량 효과 + 대표·팀리더 시간 즉시 절감.</strong></mark>
+    </p>
+  </div>
+
+  <table class="tbl">
+    <tr><th>구분</th><th>과제</th><th>왜</th></tr>
+    <tr style="background:#FFFAE5;"><td><strong>메인 ⭐</strong></td><td>P2 케이터링 견적서 웹화</td><td>응답 24h+ → 즉시 / 대표 직접 호응</td></tr>
+    <tr style="background:#FFFAE5;"><td><strong>메인 ⭐</strong></td><td>P1 아임웹 → 구글시트 자동 연동</td><td>입력 월 10h → 0h / 누락 0건</td></tr>
+    <tr><td>PoC</td><td>P4 재무 정리 AI (Claude)</td><td>대표 직접 발언 ("재무 클로드 전환 좋겠다")</td></tr>
+    <tr><td>로드맵</td><td>P3 매장 데이터 시스템</td><td>가설 검증 — 워크샵 #2~3 재논의 (장기)</td></tr>
+    <tr><td>로드맵</td><td>P5 · P6</td><td>5/27 최종 발표 시 "확장 로드맵"</td></tr>
+  </table>
+
+  <div class="card" style="margin-top:14px;">
+    <strong>다음 단계 (5/6 코호트 #1):</strong> P1·P2 솔루션 명세서 작성. <strong>5/14 워크샵 #2까지 P1·P2 프로토타입 v1</strong>. P4(재무 AI)·P5·P6은 <strong>5/27 최종 발표 시 확장 로드맵</strong>으로.
+  </div>
+</section>
+
+<!-- =========================
+     CLOSING
+========================= -->
+<section>
+  <div class="closing-line">
+    <p class="big">
+      "부티크 방식을 유지하면서<br/>
+      <span style="color:var(--gold);">생산성을 높이고 싶다."</span>
+    </p>
+    <p class="small" style="margin-top:16px; color:var(--muted); font-style:italic;">— 김민영 대표</p>
+    <p class="small" style="margin-top:32px; max-width:760px; margin-left:auto; margin-right:auto; line-height:1.6;">
+      그 첫 답은 <mark><strong style="color:var(--text);">케이터링 견적·신청 흐름의 자동화 (P1+P2)</strong></mark>.<br/>
+      24시간+ 응답 사이클을 즉시로 / 월 10시간 입력을 0시간으로.<br/>
+      <strong style="color:var(--gold);">대표·팀리더의 시간을 새 고객 확보에 재투자한다.</strong>
+    </p>
+
+    <div style="margin-top:48px;">
+      <a href="/sonyeo/quote/?autoplay=1" target="_blank" style="display:inline-block;background:#27397d;color:white;padding:18px 36px;border-radius:16px;font-weight:600;font-size:18px;text-decoration:none;box-shadow:0 8px 24px rgba(39,57,125,0.3);">
+        🎬 자동견적 데모 보기 (9초)
+      </a>
+      <p class="small" style="margin-top:14px; color:var(--muted);">손님 신청 → 엑셀 자동 적재 → 카카오톡 즉시 알림 — 전체 흐름 영상 + 실제 견적 만들어보기</p>
+    </div>
+
+    <p class="small" style="margin-top:48px;">소녀방앗간 AX 컨설팅 · 워크샵 #1 · 2026-04-29</p>
+  </div>
+</section>
+
+<!-- =========================
+     DEMO INVITATION
+========================= -->
+<section data-background-color="#27397d" data-transition="zoom">
+  <div style="text-align:center; padding:60px 20px;">
+    <p class="small" style="color:rgba(255,255,255,0.7); letter-spacing:2px; margin-bottom:20px;">P1 + P2 · 작동하는 데모</p>
+    <p class="big" style="color:white; margin-bottom:24px;">말 대신,<br/><span style="color:#fee500;">한 번 만져보시죠.</span></p>
+    <p class="small" style="color:rgba(255,255,255,0.85); margin-bottom:48px; max-width:700px; margin-left:auto; margin-right:auto; line-height:1.6;">
+      손님이 케이터링 신청서를 누르면<br/>
+      엑셀에 자동으로 정보가 들어가고<br/>
+      대표님 카카오톡에 즉시 알림이 가는 흐름.<br/>
+      <strong style="color:#fee500;">총 3초.</strong>
+    </p>
+    <a href="/sonyeo/quote/?autoplay=1" target="_blank" style="display:inline-block;background:white;color:#27397d;padding:22px 44px;border-radius:18px;font-weight:700;font-size:20px;text-decoration:none;box-shadow:0 12px 32px rgba(0,0,0,0.3);">
+      🎬 데모 페이지 열기 →
+    </a>
+    <p class="small" style="margin-top:24px; color:rgba(255,255,255,0.6);">
+      직접 메뉴 선택 · 견적서 PDF 다운로드 · 신청 시뮬레이션 가능
+    </p>
+  </div>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  controls: true,
+  progress: true,
+  history: false,
+  width: 1280,
+  height: 800,
+  margin: 0.04,
+  transition: 'slide',
+});
+</script>
+
+</body>
+</html>

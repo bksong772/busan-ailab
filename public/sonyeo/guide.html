@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>소녀방앗간 케이터링 대시보드 — 사용 가이드</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --cream: #F3F0EB;
+  --paper: #FBF7F1;
+  --linen: #E1D7CA;
+  --espresso: #2D1C17;
+  --bark: #7A5C3E;
+  --ink: #1F1A14;
+  --muted: #8C857B;
+  --glow: #D4A95A;
+  --leaf: #6B8E5A;
+  --leafLight: #EEF4E7;
+  --spice: #C9883D;
+  --spiceLight: #FBEFDA;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--cream);
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--ink);
+  line-height: 1.75;
+  font-size: 17px;
+}
+
+.serif { font-family: 'Noto Serif KR', serif; letter-spacing: -0.02em; }
+
+.wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 50px 24px 80px;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 36px 0 50px;
+  border-bottom: 1px solid var(--linen);
+  margin-bottom: 50px;
+}
+.hero .label {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: var(--bark);
+  background: var(--paper);
+  padding: 7px 16px;
+  border: 1px solid var(--linen);
+  border-radius: 30px;
+  margin-bottom: 22px;
+  font-weight: 600;
+}
+.hero h1 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+.hero p.lead {
+  font-size: 19px;
+  color: var(--ink);
+  max-width: 560px;
+  margin: 0 auto 22px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+.hero p.sub {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 500px;
+  margin: 0 auto;
+}
+.hero .url {
+  margin-top: 22px;
+  display: inline-block;
+  font-size: 13px;
+  color: var(--bark);
+  background: var(--paper);
+  padding: 9px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--linen);
+  font-family: 'SF Mono', Menlo, monospace;
+}
+
+/* "가장 먼저 알아두실 3가지" */
+.intro-box {
+  background: var(--espresso);
+  color: #F5EFE6;
+  border-radius: 14px;
+  padding: 28px 30px;
+  margin-bottom: 50px;
+}
+.intro-box h2 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 22px;
+  color: var(--glow);
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+.intro-box ol {
+  list-style: none;
+  padding: 0;
+  counter-reset: intro;
+}
+.intro-box ol li {
+  counter-increment: intro;
+  padding: 12px 0 12px 44px;
+  position: relative;
+  font-size: 16px;
+  line-height: 1.65;
+  border-bottom: 1px solid rgba(245,239,230,0.1);
+  color: #F5EFE6;
+}
+.intro-box ol li:last-child { border-bottom: 0; }
+.intro-box ol li::before {
+  content: counter(intro);
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 32px;
+  height: 32px;
+  background: var(--glow);
+  color: var(--espresso);
+  border-radius: 50%;
+  text-align: center;
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 32px;
+  font-family: 'Pretendard', sans-serif;
+}
+.intro-box ol li strong {
+  color: #FFF;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 2px;
+  font-size: 17px;
+}
+.intro-box ol li .sub {
+  color: #C8BFB1;
+  font-size: 14px;
+}
+
+/* SECTION */
+section { margin-bottom: 56px; }
+section > h2 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--espresso);
+  display: inline-block;
+}
+section > .section-sub {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+/* FLOW (5단계 한눈에) */
+.flow-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin: 20px 0 14px;
+}
+.flow-step {
+  background: var(--paper);
+  border: 2px solid var(--linen);
+  border-radius: 10px;
+  padding: 16px 8px;
+  text-align: center;
+  transition: all 0.2s;
+}
+.flow-step:hover {
+  border-color: var(--bark);
+  transform: translateY(-2px);
+}
+.flow-step .icon {
+  font-size: 28px;
+  margin-bottom: 6px;
+  display: block;
+}
+.flow-step .num {
+  font-size: 10px;
+  color: var(--bark);
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.flow-step .label {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.flow-step .desc {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* STEP CARDS — 단순화된 */
+.step-card {
+  background: white;
+  border: 1px solid var(--linen);
+  border-radius: 14px;
+  padding: 30px 32px;
+  margin-bottom: 22px;
+  box-shadow: 0 1px 3px rgba(45,28,23,0.04);
+}
+.step-card .step-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--linen);
+}
+.step-card .step-icon {
+  width: 52px;
+  height: 52px;
+  background: var(--paper);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  flex-shrink: 0;
+  border: 1px solid var(--linen);
+}
+.step-card .step-meta {
+  flex: 1;
+}
+.step-card .step-num {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--bark);
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.step-card h3 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.3;
+}
+.step-card .time-badge {
+  background: var(--leafLight);
+  color: var(--leaf);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.do-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 4px;
+}
+.do-card {
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+.do-card.mine {
+  background: var(--spiceLight);
+  border-left: 4px solid var(--spice);
+}
+.do-card.auto {
+  background: var(--leafLight);
+  border-left: 4px solid var(--leaf);
+}
+.do-card .head {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.do-card.mine .head { color: var(--spice); }
+.do-card.auto .head { color: var(--leaf); }
+.do-card ul {
+  list-style: none;
+  padding: 0;
+}
+.do-card li {
+  font-size: 14px;
+  color: var(--ink);
+  padding: 4px 0 4px 18px;
+  position: relative;
+  line-height: 1.55;
+}
+.do-card.mine li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--spice);
+  font-weight: 700;
+}
+.do-card.auto li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--leaf);
+  font-weight: 700;
+}
+
+/* 실제 버튼 모양 미니 시각화 */
+.button-mock {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--spice);
+  color: white;
+  padding: 3px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  vertical-align: middle;
+  margin: 0 2px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+.button-mock.outline {
+  background: white;
+  color: var(--bark);
+  border: 1px solid var(--bark);
+  box-shadow: none;
+}
+.button-mock.dark {
+  background: var(--espresso);
+  color: #F5EFE6;
+}
+
+.tip {
+  background: var(--paper);
+  border-left: 4px solid var(--glow);
+  padding: 14px 18px;
+  border-radius: 6px;
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.65;
+}
+.tip strong { color: var(--bark); display: block; margin-bottom: 4px; font-weight: 700; }
+
+/* 막혔을 때 — 트러블슈팅 */
+.trouble {
+  background: white;
+  border: 1px solid var(--linen);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 14px;
+}
+.trouble .q {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.trouble .q::before {
+  content: "Q";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: var(--spice);
+  color: white;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.trouble .a {
+  font-size: 15px;
+  color: var(--ink);
+  padding-left: 32px;
+  line-height: 1.7;
+}
+.trouble .a strong { color: var(--bark); font-weight: 700; }
+
+/* 한 줄 요약 */
+.summary-line {
+  background: var(--espresso);
+  color: var(--glow);
+  border-radius: 14px;
+  padding: 38px 32px;
+  text-align: center;
+  margin: 50px 0 40px;
+}
+.summary-line .big {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #FFF;
+  line-height: 1.45;
+  margin-bottom: 10px;
+}
+.summary-line .big .glow { color: var(--glow); }
+.summary-line .small {
+  font-size: 14px;
+  color: #C8BFB1;
+  letter-spacing: 0.05em;
+}
+
+.cta-wrap {
+  text-align: center;
+  margin: 40px 0;
+}
+.cta {
+  display: inline-block;
+  background: var(--spice);
+  color: white;
+  padding: 16px 36px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  box-shadow: 0 2px 8px rgba(201,136,61,0.3);
+  transition: all 0.2s;
+}
+.cta:hover {
+  background: #B5762B;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(201,136,61,0.4);
+}
+
+/* FOOTER */
+.footer {
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 1px solid var(--linen);
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+.footer .brand {
+  font-family: 'Noto Serif KR', serif;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 720px) {
+  html, body { font-size: 15px; }
+  .wrap { padding: 36px 18px 60px; }
+  .hero h1 { font-size: 30px; }
+  .hero p.lead { font-size: 16px; }
+  .flow-grid { grid-template-columns: repeat(2, 1fr); }
+  section > h2 { font-size: 22px; }
+  .step-card { padding: 22px 20px; }
+  .step-card h3 { font-size: 18px; }
+  .do-row { grid-template-columns: 1fr; }
+  .summary-line .big { font-size: 20px; }
+  .intro-box { padding: 22px 20px; }
+  .intro-box h2 { font-size: 19px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HERO -->
+<div class="hero">
+  <span class="label">사용 가이드 · 김민영 대표님께</span>
+  <h1>5단계만 따라하시면<br/>됩니다</h1>
+  <p class="lead">
+    신청 받기 · 통화 · 견적서 · 발송 · 결제 확인 —<br/>한 화면에서 순서대로 클릭만 하시면 됩니다.
+  </p>
+  <p class="sub">대시보드를 처음 여실 때 이 페이지를 옆에 두고 보시면 편하세요.</p>
+  <div class="url">https://sonyeo-dashboard.vercel.app</div>
+  <div style="margin-top: 14px; background: rgba(255,255,255,0.92); border: 1px dashed var(--spice); border-radius: 10px; padding: 14px 18px; max-width: 540px; margin-left: auto; margin-right: auto; text-align: left;">
+    <div style="font-size: 13px; color: var(--muted); margin-bottom: 4px; font-weight: 600; letter-spacing: 0.3px;">🔑 로그인 안내</div>
+    <div style="font-size: 15px; color: var(--ink); line-height: 1.6;">
+      대시보드 접속 시 암호 입력 화면이 나오면 <strong style="color: var(--spice); font-size: 17px;">0 0 0 0</strong> 입력해 주세요.<br/>
+      <span style="font-size: 13px; color: var(--muted);">→ 나중에 원하시는 암호로 변경 원하시면 말씀해 주세요. 병근이 바로 바꿔드립니다.</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- 가장 먼저 알아두실 3가지 -->
+<div class="intro-box">
+  <h2>🌿 가장 먼저 알아두실 3가지</h2>
+  <ol>
+    <li>
+      <strong>한 화면에서 끝납니다</strong>
+      <span class="sub">시트·메일·PDF — 따로 열 필요 없어요. 대시보드 한 곳에서 5단계만 따라가시면 됩니다.</span>
+    </li>
+    <li>
+      <strong>실수해도 되돌릴 수 있어요</strong>
+      <span class="sub">각 단계마다 "← 이전 단계로" 버튼이 있어요. 잘못 누르셔도 다시 돌아가서 고치실 수 있습니다.</span>
+    </li>
+    <li>
+      <strong>주황색은 대표님 할 일, 초록색은 자동으로 됨</strong>
+      <span class="sub">화면에서 <span style="color:var(--spice); font-weight:700;">주황색 버튼·박스</span>는 대표님이 클릭·입력하셔야 진행됩니다. <span style="color:var(--leaf); font-weight:700;">초록색 박스</span>는 시스템이 알아서 처리하는 부분이라 손대지 않으셔도 돼요.<br/><br/>
+      <strong style="color:var(--spice);">예: 주황색</strong> — "통화 메모 붙여넣기" / "1인 단가 입력" / "📨 견적서 발송" 클릭<br/>
+      <strong style="color:var(--leaf);">예: 초록색</strong> — "아임웹 신청 자동 적재" / "AI 인사이트 자동 요약" / "견적서 PDF 자동 발급"</span>
+    </li>
+  </ol>
+</div>
+
+
+<!-- 한눈에 보는 흐름 -->
+<section>
+  <h2>한눈에 보는 흐름</h2>
+  <p class="section-sub">신청자가 신청서를 보내면 → 5단계를 거쳐 → 행사가 완료됩니다.</p>
+
+  <div class="flow-grid">
+    <div class="flow-step">
+      <span class="icon">📥</span>
+      <div class="num">01</div>
+      <div class="label">신청 받기</div>
+      <div class="desc">자동으로<br/>들어와요</div>
+    </div>
+    <div class="flow-step">
+      <span class="icon">📞</span>
+      <div class="num">02</div>
+      <div class="label">통화 + 메모</div>
+      <div class="desc">통화 후<br/>붙여넣기</div>
+    </div>
+    <div class="flow-step">
+      <span class="icon">📋</span>
+      <div class="num">03</div>
+      <div class="label">견적서</div>
+      <div class="desc">시트에서<br/>수정</div>
+    </div>
+    <div class="flow-step">
+      <span class="icon">📨</span>
+      <div class="num">04</div>
+      <div class="label">고객 발송</div>
+      <div class="desc">1버튼으로<br/>완료</div>
+    </div>
+    <div class="flow-step">
+      <span class="icon">💰</span>
+      <div class="num">05</div>
+      <div class="label">결제 확인</div>
+      <div class="desc">입금 들어오면<br/>기록</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- STEP 1~5 단계별 사용법 -->
+<section>
+  <h2>단계별 사용법</h2>
+  <p class="section-sub">
+    <span style="background:var(--spiceLight); color:var(--spice); font-weight:700; padding:2px 8px; border-radius:4px; font-size:13px;">주황 → 대표님이 하실 일</span>
+    &nbsp;
+    <span style="background:var(--leafLight); color:var(--leaf); font-weight:700; padding:2px 8px; border-radius:4px; font-size:13px;">초록 ✓ 자동으로 되는 일</span>
+  </p>
+
+  <!-- STEP 1 -->
+  <div class="step-card">
+    <div class="step-head">
+      <div class="step-icon">📥</div>
+      <div class="step-meta">
+        <div class="step-num">STEP 01</div>
+        <h3>신청 받기</h3>
+      </div>
+      <span class="time-badge">대표님 1분</span>
+    </div>
+
+    <div class="do-row">
+      <div class="do-card mine">
+        <div class="head">대표님이 하실 일</div>
+        <ul>
+          <li><strong>① 카드 리스트에서</strong> <span class="button-mock">📧 고객 메일 발송</span> 직접 클릭 → 접수 안내 메일 자동 발송</li>
+          <li><strong>② 신청 카드 클릭</strong> → 상세 내용 확인 (담당자·인원·예산·협의)</li>
+          <li><strong>③</strong> <span class="button-mock dark">📞 통화 상담 시작 → Step 02</span> 클릭 후 <strong>통화하면서</strong> Step 02 진행</li>
+        </ul>
+      </div>
+      <div class="do-card auto">
+        <div class="head">자동으로 되는 일</div>
+        <ul>
+          <li>아임웹 신청 → 5분 안에 시트에 자동 적재</li>
+          <li>대시보드 좌측 사이드바에 "신규 ●" 표시</li>
+          <li>임박한 행사는 빨간색 D-day 뱃지</li>
+          <li><strong>✅ 신청자에게 SMS 자동 발송</strong> — "접수 완료 + 카톡 채널 링크" (아임웹 자체)</li>
+          <li style="color: var(--muted);"><strong>(선택)</strong> SMS 대신 카톡 알림톡으로 받게 하기 — 솔라피 연결 시 (영업일 2~3일)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tip">
+      <strong>💡 흐름 요약</strong>
+      <strong>메일 발송(카드 리스트)</strong> → <strong>카드 클릭(내용 확인)</strong> → <strong>통화 상담 시작 클릭 → 통화 시작 + Step 02 동시 진행</strong>
+    </div>
+
+    <div class="tip" style="border-left-color: var(--leaf); background: var(--leafLight);">
+      <strong style="color: var(--leaf);">📌 도움말</strong>
+      신청자가 적은 정보 중 빠진 게 있으면 — 통화하면서 직접 입력하시고 <span class="button-mock outline">💾 원본 시트에 저장</span> 누르시면 됩니다.
+    </div>
+  </div>
+
+
+  <!-- STEP 2 -->
+  <div class="step-card">
+    <div class="step-head">
+      <div class="step-icon">📞</div>
+      <div class="step-meta">
+        <div class="step-num">STEP 02</div>
+        <h3>통화 + 메모 정리</h3>
+      </div>
+      <span class="time-badge">대표님 2분</span>
+    </div>
+
+    <div class="do-row">
+      <div class="do-card mine">
+        <div class="head">대표님이 하실 일</div>
+        <ul>
+          <li>통화 내용을 적은 메모를 textarea에 붙여넣기</li>
+          <li><span class="button-mock">✨ AI 인사이트 추출</span> 클릭 후 10초 대기</li>
+          <li>확정 인원 / 1인 단가 직접 입력</li>
+          <li><span class="button-mock dark">📥 시트 저장 → Step 3</span></li>
+        </ul>
+      </div>
+      <div class="do-card auto">
+        <div class="head">자동으로 되는 일</div>
+        <ul>
+          <li>통화 핵심 / 추천 메뉴 / 고객 니즈 자동 요약</li>
+          <li>1인 단가는 Step 3·4까지 자동 따라옴</li>
+          <li>통화 메모도 시트에 자동 저장</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tip">
+      <strong>💡 도움말</strong>
+      1인 단가 한 번만 정확히 입력하시면 — 견적서·메일·PDF에 모두 자동으로 반영됩니다.
+    </div>
+  </div>
+
+
+  <!-- STEP 3 -->
+  <div class="step-card">
+    <div class="step-head">
+      <div class="step-icon">📋</div>
+      <div class="step-meta">
+        <div class="step-num">STEP 03</div>
+        <h3>견적서 만들기</h3>
+      </div>
+      <span class="time-badge">대표님 3~5분</span>
+    </div>
+
+    <div class="do-row">
+      <div class="do-card mine">
+        <div class="head">대표님이 하실 일</div>
+        <ul>
+          <li><span class="button-mock">📋 견적서 시트 자동 생성</span></li>
+          <li><span class="button-mock outline">📋 견적서 시트 열기</span> — 새 탭에서 시트 열림</li>
+          <li>시트에서 단가 / 메뉴 / 수량 자유롭게 수정</li>
+          <li>수정 끝나면 <span class="button-mock dark">→ Step 4 (발송)</span></li>
+        </ul>
+      </div>
+      <div class="do-card auto">
+        <div class="head">자동으로 되는 일</div>
+        <ul>
+          <li>김민영 대표님 마스터 시트를 그대로 복제</li>
+          <li>회사명·날짜·1인 단가·인원 자동 채움</li>
+          <li>견적서·메뉴리스트 두 탭 같이 생성</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tip">
+      <strong>⚠️ 꼭 기억해주세요</strong>
+      Step 4 발송 버튼은 <strong>시트를 한 번이라도 여셔야</strong> 활성화됩니다. 시트 안 보고 발송하는 실수를 막기 위한 안전장치예요.
+    </div>
+  </div>
+
+
+  <!-- STEP 4 -->
+  <div class="step-card">
+    <div class="step-head">
+      <div class="step-icon">📨</div>
+      <div class="step-meta">
+        <div class="step-num">STEP 04</div>
+        <h3>고객 발송</h3>
+      </div>
+      <span class="time-badge">대표님 30초</span>
+    </div>
+
+    <div class="do-row">
+      <div class="do-card mine">
+        <div class="head">대표님이 하실 일</div>
+        <ul>
+          <li>이메일 미리보기 확인 (수정 가능)</li>
+          <li><span class="button-mock">📨 견적서 확정 + 자동 발송</span></li>
+          <li>완료 안내 보고 <span class="button-mock dark">→ 완료 단계로</span></li>
+        </ul>
+      </div>
+      <div class="do-card auto">
+        <div class="head">자동으로 되는 일</div>
+        <ul>
+          <li>견적서 PDF + 메뉴리스트 PDF 자동 발급</li>
+          <li>sobang@millcompany.co.kr 발신으로 메일 전송</li>
+          <li>시트 상태도 "발송 완료"로 자동 변경</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tip">
+      <strong>💡 도움말</strong>
+      메일 본문은 김민영 대표님 평소 양식 그대로예요. 단가·할인·시간 같은 건 그 자리에서 수정 후 발송 가능합니다.
+    </div>
+  </div>
+
+
+  <!-- STEP 5 -->
+  <div class="step-card">
+    <div class="step-head">
+      <div class="step-icon">💰</div>
+      <div class="step-meta">
+        <div class="step-num">STEP 05</div>
+        <h3>결제 확인</h3>
+      </div>
+      <span class="time-badge">대표님 1분</span>
+    </div>
+
+    <div class="do-row">
+      <div class="do-card mine">
+        <div class="head">대표님이 하실 일</div>
+        <ul>
+          <li><strong>1차 입금일</strong> (계약금·선급금·일시불 — 행사별 자유) 입력 (<span class="button-mock outline">오늘</span> 버튼)</li>
+          <li><strong>2차/최종 입금일</strong> (잔금·중도금 — 행사별 자유) 입력</li>
+          <li>사업자등록증 회신 여부 / 세금계산서 발급일</li>
+          <li><strong>최종 매출 (₩, 부가세 포함)</strong> + 작년 대비 성장률</li>
+          <li><span class="button-mock dark">💾 시트에 저장</span></li>
+        </ul>
+      </div>
+      <div class="do-card auto">
+        <div class="head">자동으로 되는 일</div>
+        <ul>
+          <li>시트 K~P 컬럼에 6가지 자동 기록</li>
+          <li>매출 합계 자동 업데이트</li>
+          <li>완료된 신청은 카드 색이 회색으로 변경</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tip">
+      <strong>📝 N차 견적이 필요할 때</strong>
+      고객이 수정을 요청하면 → 카드 클릭 → <span class="button-mock">📝 견적 다시 보내기</span> 누르시면 Step 3으로 자동 복귀합니다. <strong>1차 견적은 그대로 보존</strong>되고 2차·3차가 새로 만들어져요.
+    </div>
+  </div>
+</section>
+
+
+<!-- 막혔을 때 -->
+<section>
+  <h2>막혔을 때 — 자주 있는 상황</h2>
+  <p class="section-sub">대표님이 실제로 헷갈리실 수 있는 3가지만 정리했어요.</p>
+
+  <div class="trouble">
+    <div class="q">단계 사이 이동은 어떻게 하나요?</div>
+    <div class="a">
+      <strong>4가지 액션만 기억하세요</strong><br/><br/>
+
+      <div style="background: var(--leafLight); border-radius: 6px; padding: 12px 14px; margin: 10px 0; line-height: 1.7;">
+        <strong style="color: var(--leaf);">🟢 ① 보기 — 상단 STEP 01~05 카드</strong><br/>
+        <span style="font-size: 13px; color: var(--muted);">
+          다른 단계 화면 잠깐 보고 싶을 때. <strong>시트 안 바뀜, 신청자 모름.</strong> 안전.<br/>
+          예시: "발송 끝났는데 통화 메모 다시 보고 싶다" → STEP 02 카드 클릭
+        </span>
+      </div>
+
+      <div style="background: #FFF7EE; border-radius: 6px; padding: 12px 14px; margin: 10px 0; line-height: 1.7;">
+        <strong style="color: var(--spice);">🟠 ② 재발송 — Step 5 화면 맨 아래 "📝 견적 다시 보내기 (2차)" 큰 주황 버튼</strong><br/>
+        <span style="font-size: 13px; color: var(--muted);">
+          신청자한테 N차 견적 메일 다시 보낼 때. 클릭 한 방으로 자동 처리 (시트 상태 변경 + 차수 prefill + Step 3 화면 진입).<br/>
+          예시: "단가 잘못 보냈다, 수정해서 다시 보내야" → 큰 주황 버튼
+        </span>
+      </div>
+
+      <div style="background: #FFEEEE; border: 1px solid #E8B4B4; border-radius: 6px; padding: 12px 14px; margin: 10px 0; line-height: 1.7;">
+        <strong style="color: #C44;">⚠️ ③ 단계 변경 — 각 화면 상단 "⚠️ 단계 변경 ▾" 드롭다운</strong><br/>
+        <span style="font-size: 13px; color: var(--muted);">
+          진행 중인 신청을 <strong>완전히 이전 단계로 돌릴 때만</strong> 사용. 시트 "상태" 컬럼 변경 + 사이드바 카드 위치 이동.<br/>
+          드롭다운 클릭 → 원하는 Step 선택 → 확인 모달 한 번 뜸 (실수 방지).<br/>
+          예시: "이 신청 취소·재시작해야 함" → 드롭다운 → "Step 1 신청 받기"<br/>
+          <strong style="color: #C44;">자주 쓰지 마세요.</strong> 보기만 하려면 ①번 (상단 STEP 카드) 사용.
+        </span>
+      </div>
+
+      <div style="background: var(--paper); border-radius: 6px; padding: 12px 14px; margin: 10px 0; line-height: 1.7;">
+        <strong style="color: var(--bark);">🗑 ④ 정리 — 신청 카드 우상단 "정리" 버튼</strong><br/>
+        <span style="font-size: 13px; color: var(--muted);">
+          중복·오입력 신청 정리할 때. 시트 row는 보존, 대시보드에서만 숨김.<br/>
+          예시: "신청자가 똑같은 신청 두 번 보냈다" → 잘못된 카드 정리
+        </span>
+      </div>
+
+      <div style="background: var(--linen); border-radius: 6px; padding: 10px 14px; margin-top: 8px; font-size: 13px; line-height: 1.6;">
+        💡 <strong>가장 헷갈리는 ① vs ③</strong>: <strong style="color: var(--leaf);">🟢 ①번(상단 STEP 카드)</strong>은 <strong>잠깐 보기만</strong> — 시트 안 바뀜. <strong style="color: #C44;">⚠️ ③번(단계 변경)</strong>은 <strong>진짜로 단계 자체를 되돌림</strong> — 시트 상태 변경. 모르면 무조건 ①번 사용 (안전).
+      </div>
+    </div>
+  </div>
+
+  <div class="trouble">
+    <div class="q">실수로 다음 단계로 넘어갔어요. 되돌릴 수 있나요?</div>
+    <div class="a">
+      네, 됩니다. 각 화면 상단의 <strong>"⚠️ 단계 변경 ▾" 드롭다운</strong>을 누르시고 돌아가실 Step을 선택하시면 — 시트 상태까지 같이 되돌아갑니다. 확인 모달이 한 번 뜨니 실수로 누르셔도 안전해요.
+    </div>
+  </div>
+
+  <div class="trouble">
+    <div class="q">알림톡(카톡 풍선)으로는 왜 자동 발송이 안 되나요?</div>
+    <div class="a">
+      케이터링 신청자분들이 <strong>회원가입 없이 폼만 작성</strong>하시는 구조라, 아임웹 자체 알림톡 기능으로는 자동 발송이 막혀 있어요 (아임웹 알림톡은 "회원" 대상으로만 작동).<br/><br/>
+      <strong>대신 신청 접수 시점에는 SMS(문자)가 자동으로 나가고 있습니다</strong> — "케이터링 접수가 완료되었습니다 + 소녀방앗간 카카오톡 채널 링크" 메시지가 신청자에게 발송되는 거 5/20에 확인했어요. 카카오톡 채널 링크가 들어있어서 신청자가 누르면 바로 대표님 채널로 들어옵니다.<br/><br/>
+      <strong>견적서 발송 알림은 지금 메일로만 작동 중</strong>이에요 (PDF 첨부 + 본문 안내). 카톡 알림톡 연동(솔라피 솔루션)은 아직 안 붙여둔 상태라, 이관 시점에는 메일만 가는 구조입니다. <strong>알림톡으로 받게 하실지 여부는 대표님 운영 판단 영역</strong>이고, 원하시면 "솔라피"(카카오 공식 인증 발송 서비스) 연결로 가능합니다 (영업일 2~3일 작업). 자세한 건 아래 <strong>"앞으로 보완 예정 ①"</strong> 참고해주세요.
+    </div>
+  </div>
+
+  <div class="trouble">
+    <div class="q">AI가 추출한 내용이 좀 이상한데요?</div>
+    <div class="a">
+      AI 인사이트는 <strong>참고용</strong>이에요. 100% 믿지 않으셔도 됩니다. 텍스트 칸에서 직접 수정하시거나, 1인 단가·인원은 대표님이 확정값을 그대로 입력하시면 됩니다.
+    </div>
+  </div>
+
+  <div class="trouble">
+    <div class="q">PDF는 어디 저장되나요?</div>
+    <div class="a">
+      현재는 병근 Google Drive에 자동 저장돼요. 메일에는 PDF가 첨부로 전달됩니다. 추후 <strong>김민영 대표님 Drive로 이관</strong>도 병근이 도와드립니다.
+    </div>
+  </div>
+</section>
+
+
+<!-- 앞으로 보완 예정 -->
+<section>
+  <h2>앞으로 보완 예정 (대표님 확인·결정 필요)</h2>
+  <p class="section-sub">대표님께서 결정·승인해주셔야 추가로 자동화 가능한 부분 3가지입니다.</p>
+
+  <!-- 1. 알림 발송 -->
+  <div style="background: white; border: 1px solid var(--linen); border-left: 4px solid var(--leaf); border-radius: 10px; padding: 22px 26px; margin-bottom: 16px;">
+    <div style="font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 10px;">
+      ① 신청자에게 가는 알림 — 지금 어디까지 되고 있나
+    </div>
+    <p style="font-size: 14px; line-height: 1.7; color: var(--muted); margin-bottom: 14px;">
+      신청자가 받는 알림에는 두 시점이 있어요: <strong>① 신청 접수 직후</strong>, <strong>② 견적서 발송 후</strong>. 각각 어떻게 작동하는지 정리했습니다.
+    </p>
+
+    <!-- ① 신청 접수 직후 -->
+    <div style="background: var(--leafLight); border-radius: 6px; padding: 14px 16px; font-size: 13.5px; line-height: 1.65; margin-bottom: 12px;">
+      <strong style="color: var(--leaf); font-size: 14.5px;">✅ ① 신청 접수 직후 — 문자(SMS) 자동 발송 중</strong><br/><br/>
+      신청자가 케이터링 폼 제출하면 <strong>아임웹이 자동으로 SMS</strong>를 보내고 있어요. 메시지 내용은 이렇게 갑니다:<br/>
+      <div style="background: white; border: 1px solid #E0EBDD; border-radius: 6px; padding: 10px 12px; margin: 8px 0; font-family: monospace; font-size: 12.5px; color: var(--ink);">
+        "케이터링 접수가 완료되었습니다.<br/>
+        궁금하신 사항은 소녀방앗간 카카오톡을 통해 문의 부탁드립니다.<br/>
+        http://pf.kakao.com/_xbZlSM/chat"
+      </div>
+      → 신청자가 링크 누르면 <strong>대표님 카카오톡 채널로 바로 들어와요</strong>. 즉, 카톡 알림톡은 아니지만 신청자가 카톡으로 대표님과 대화할 수 있는 다리가 이미 깔려 있는 셈입니다. (5/20 발송 이력 직접 확인)
+    </div>
+
+    <!-- ② 견적서 발송 후 -->
+    <div style="background: #FDF8EE; border-radius: 6px; padding: 14px 16px; font-size: 13.5px; line-height: 1.65; margin-bottom: 12px;">
+      <strong style="color: var(--bark); font-size: 14.5px;">📨 ② 견적서 발송 후 — 지금은 메일로만 작동 (알림톡 미연동)</strong><br/><br/>
+      대시보드 Step 04에서 "최종 발송" 누르시면 <strong>견적서 PDF가 신청자 메일함에 자동 첨부 전송</strong>됩니다. 메일 본문에도 안내 문구·총금액·일정이 포함되어 있어요. <strong>카톡 알림톡 연동(솔라피)은 아직 안 붙여둔 상태</strong>라, 이관 시점에는 메일만 가는 구조입니다. 알림톡까지 같이 보낼지 여부는 <strong>대표님 운영 판단</strong>에 따라 아래 옵션에서 선택해주세요.
+    </div>
+
+    <!-- 카톡 알림톡으로 업그레이드하고 싶다면 -->
+    <div style="background: #FFF7EE; border: 1px dashed var(--spice); border-radius: 6px; padding: 14px 16px; font-size: 13.5px; line-height: 1.7;">
+      <strong style="color: var(--spice); font-size: 14.5px;">💛 카톡 풍선(알림톡)으로 받게 하고 싶으시다면</strong><br/><br/>
+      "<strong>솔라피</strong>"라는 카카오 공식 인증 메시지 발송 서비스를 연결하면 됩니다. 카카오가 직접 인정한 사업자라 안전하고, <strong>회원가입 안 한 신청자에게도 알림톡이 정상적으로 갑니다</strong> (카카오 정책상 알림톡은 채널 추가 안 한 분께도 발송 가능).<br/><br/>
+      <strong>적용 시 이렇게 바뀝니다:</strong><br/>
+      <span style="color: var(--muted);">
+        · 신청 접수 직후 → <strong>SMS 대신 카톡 알림톡</strong>으로 발송 (또는 둘 다)<br/>
+        · 견적서 발송 후 → <strong>"견적서가 메일로 발송되었습니다"</strong> 카톡 알림톡 자동 발송<br/>
+        · 비용: 알림톡 1건 ≈ 7~10원 (SMS보다 저렴), 월 100건이면 1,000원 안팎
+      </span><br/><br/>
+      <strong>준비 기간:</strong> 영업일 2~3일 정도면 전환 가능합니다.<br/>
+      <span style="color: var(--muted);">
+        · 솔라피 가입 + 우리 카카오 채널(<code style="background: #F4EBDD; padding: 1px 5px; border-radius: 3px;">_xbZlSM</code>) 연동 → 당일<br/>
+        · 알림톡 메시지 양식(템플릿) 2개 카카오 재검수 → 1~2영업일 (이미 한 번 통과한 양식이라 재통과 거의 확실)<br/>
+        · 자동 발송 연결 코드 작업 → 2~3시간 (병근 작업)
+      </span><br/><br/>
+      <span style="background: var(--paper); padding: 6px 10px; border-radius: 4px; display: inline-block; font-size: 12.5px; color: var(--muted);">
+        💡 <strong>현재 셋업 = 신청 접수 SMS + 견적서 메일</strong>까지 작동. 알림톡 연동은 미적용 상태로 이관됩니다. 운영해보시고 "카톡으로 가야겠다" 판단되시면 그때 말씀해주세요.
+      </span>
+    </div>
+  </div>
+
+  <!-- 2. 견적서 Drive 이관 -->
+  <div style="background: white; border: 1px solid var(--linen); border-left: 4px solid var(--spice); border-radius: 10px; padding: 22px 26px; margin-bottom: 16px;">
+    <div style="font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 10px;">
+      ② 견적서 PDF — 김민영 대표 Google Drive에 직접 저장
+    </div>
+    <p style="font-size: 14.5px; line-height: 1.7; margin-bottom: 12px;">
+      현재는 견적서 PDF가 <strong>병근의 Google Drive</strong>에 자동 저장됩니다. 메일에는 첨부로 정상 전달되지만, 원본 PDF 보관·검색은 병근 계정에서만 가능한 상태.
+    </p>
+    <div style="background: #FDF8EE; border-radius: 6px; padding: 12px 14px; font-size: 13.5px; line-height: 1.65;">
+      <strong style="color: var(--bark);">필요한 작업:</strong>
+      대표님 Google Drive에 <strong>전용 폴더</strong>(예: "케이터링 견적서") 만들고 권한 공유<br/>
+      → 그 폴더에 자동 저장되도록 셋업 (병근 1줄 코드 수정)<br/>
+      → 이후 모든 견적서 PDF가 대표님 Drive에 월별로 자동 정리됨
+    </div>
+  </div>
+
+  <!-- 3. 메일 본문 이미지 풍부화 -->
+  <div style="background: white; border: 1px solid var(--linen); border-left: 4px solid var(--spice); border-radius: 10px; padding: 22px 26px; margin-bottom: 16px;">
+    <div style="font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 10px;">
+      ③ 견적서 메일 본문 — 이미지 풍부화
+    </div>
+    <p style="font-size: 14.5px; line-height: 1.7; margin-bottom: 12px;">
+      현재는 메일 본문이 텍스트 위주 + PDF 첨부. 보다 신뢰감 있는 인상을 위해 <strong>메뉴 사진·서비스 소개 이미지</strong>를 메일 본문에 함께 보여주는 구조로 개선 가능.
+    </p>
+    <div style="background: #FDF8EE; border-radius: 6px; padding: 12px 14px; font-size: 13.5px; line-height: 1.65;">
+      <strong style="color: var(--bark);">필요한 작업:</strong>
+      대표님 Drive에 <strong>메뉴 사진 폴더</strong> 공유 → 메일 발송 시 자동으로 본문에 inline 이미지 삽입<br/>
+      → 신청자가 메일 열자마자 "어떤 케이터링인지" 시각적으로 인식
+    </div>
+  </div>
+
+  <!-- 4. AI 인사이트 정확도 -->
+  <div style="background: white; border: 1px solid var(--linen); border-left: 4px solid var(--leaf); border-radius: 10px; padding: 22px 26px; margin-bottom: 16px;">
+    <div style="font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 10px;">
+      ④ AI 인사이트 정확도 — 운영하시면서 단계 업그레이드 가능
+    </div>
+    <p style="font-size: 14.5px; line-height: 1.7; margin-bottom: 14px;">
+      대시보드 <strong>Step 02에서 통화 녹취·운영자 메모를 분석하는 AI</strong>는 3단계 옵션이 있어요. 김민영 대표님께 이관하면서 <strong style="color: var(--leaf);">빠른 보급형 (현재 적용 중)</strong>으로 셋업해 두었습니다 — 빠른 응답·낮은 비용·충분한 정확도. 운영 자리잡고 더 풍부한 분석이 필요하시면 균형형/최고급으로 한 단계 올릴 수 있어요.
+    </p>
+
+    <div style="overflow-x: auto;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 13.5px; line-height: 1.6; margin-bottom: 14px;">
+        <thead>
+          <tr style="background: #FDF8EE; color: var(--bark);">
+            <th style="padding: 10px 12px; text-align: left; border: 1px solid var(--linen); font-weight: 700;">단계</th>
+            <th style="padding: 10px 12px; text-align: left; border: 1px solid var(--linen); font-weight: 700;">특징</th>
+            <th style="padding: 10px 12px; text-align: right; border: 1px solid var(--linen); font-weight: 700;">1건 비용</th>
+            <th style="padding: 10px 12px; text-align: right; border: 1px solid var(--linen); font-weight: 700;">월 100건</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 10px 12px; border: 1px solid var(--linen); color: var(--muted);">균형형</td>
+            <td style="padding: 10px 12px; border: 1px solid var(--linen); color: var(--muted);">더 풍부·정확 (단, 요청량 많으면 서버 응답 한도 초과 우려 — 운영 자리잡은 후 검토 권장)</td>
+            <td style="padding: 10px 12px; border: 1px solid var(--linen); text-align: right; color: var(--muted);">약 ₩140</td>
+            <td style="padding: 10px 12px; border: 1px solid var(--linen); text-align: right; color: var(--muted);">약 ₩14,000</td>
+          </tr>
+          <tr style="background: var(--leafLight);">
+            <td style="padding: 10px 12px; border: 1px solid var(--linen);"><strong style="color: var(--leaf);">빠른 보급형 (현재)</strong></td>
+            <td style="padding: 10px 12px; border: 1px solid var(--linen);"><strong>빠르고 합리적인 비용 + 충분히 풍부한 분석 — 일반 운영 권장</strong></td>
+            <td style="padding: 10px 12px; border: 1px solid var(--linen); text-align: right;"><strong>약 ₩30</strong></td>
+            <td style="padding: 10px 12px; border: 1px solid var(--linen); text-align: right;"><strong>약 ₩3,000</strong></td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 12px; border: 1px solid var(--linen);">최고급 정밀형</td>
+            <td style="padding: 10px 12px; border: 1px solid var(--linen); color: var(--muted);">통화 뉘앙스·복잡 요청까지 깊이 파악 — 대형·고가 행사에 적합</td>
+            <td style="padding: 10px 12px; border: 1px solid var(--linen); text-align: right; color: var(--muted);">약 ₩500~700</td>
+            <td style="padding: 10px 12px; border: 1px solid var(--linen); text-align: right; color: var(--muted);">약 ₩50,000~70,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="background: #FFF7EE; border: 1px dashed var(--spice); border-radius: 6px; padding: 12px 14px; font-size: 13.5px; line-height: 1.7;">
+      <strong style="color: var(--spice);">💡 운영하시면서 결정하세요</strong><br/>
+      1~2개월 운영해보시고 "AI 분석이 좀 더 깊었으면 좋겠다", "통화 내용을 더 정확히 잡아냈으면" 하는 느낌이 오시면 병근에게 <strong>"AI 한 단계 올려달라"</strong> 한 마디만 주세요. <strong>코드 한 줄 수정 + 즉시 전환</strong>됩니다 (배포 약 1~2분). 반대로 비용 줄이고 싶으시면 한 단계 내리는 것도 가능합니다.
+    </div>
+  </div>
+
+  <div class="tip" style="margin-top: 18px;">
+    <strong>💡 진행 안내</strong>
+    ① 신청 접수 SMS는 이미 자동으로 작동 중이고, 견적서는 메일로 발송됩니다. ②·③·④는 <strong>대표님께서 운영하시면서 필요 여부·우선순위를 직접 판단</strong>해주시면 그에 맞춰 진행하겠습니다.
+  </div>
+</section>
+
+
+<!-- 한 줄 요약 -->
+<div class="summary-line">
+  <div class="big">
+    어렵게 생각하지 마시고<br/>
+    <span class="glow">5단계 순서대로 따라가시면 됩니다.</span>
+  </div>
+  <div class="small">막히시면 병근에게 카톡 주세요 · 010-3548-4572</div>
+</div>
+
+
+<!-- CTA -->
+<div class="cta-wrap">
+  <a href="https://sonyeo-dashboard.vercel.app" target="_blank" class="cta">
+    🚀 지금 대시보드 열기
+  </a>
+</div>
+
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="brand">소녀방앗간 케이터링 AX PoC</div>
+  <div>운영 · 개발 — 송병근 · bksong772.bgs@gmail.com</div>
+  <div style="margin-top: 6px;">
+    Made with 🌿 in Seoul · 2026-05
+  </div>
+</div>
+
+</div>
+</body>
+</html>

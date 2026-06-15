@@ -6,10 +6,12 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
+        disallow: "/sonyeo/",
       },
       {
         userAgent: "Yeti", // Naver bot
         allow: "/",
+        disallow: "/sonyeo/",
       },
     ],
     sitemap: "https://axground.vercel.app/sitemap.xml",

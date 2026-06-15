@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>소녀방앗간 케이터링 AX PoC — 코호트 #2 (5/13)</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reset.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+
+<style>
+:root {
+  --bg: #F5F5F0;
+  --card: #FFFFFF;
+  --text: #1A1A1A;
+  --muted: #555;
+  --border: #E0E0E0;
+  --gold: #C8A063;
+  --gold-bg: #FFFAF0;
+  --red: #C8595E;
+  --green: #2D7D5F;
+  --blue: #5B7B9A;
+}
+
+html, body {
+  background: var(--bg);
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.reveal {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text);
+}
+.reveal .slides { text-align: center; width: 100%; }
+.reveal .slides section {
+  padding: 40px 80px;
+  background: var(--card);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+}
+.reveal .slides section > * {
+  max-width: 1080px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box;
+  text-align: left;
+}
+.reveal .slides section > .bignum-grid { display: grid; }
+.reveal .slides section > .metric-grid { display: grid; }
+.reveal .slides section > .flow { display: flex; }
+.reveal .slides section > .tbl { width: 100%; display: table; }
+.reveal .slides section > h1,
+.reveal .slides section > h2,
+.reveal .slides section > h3,
+.reveal .slides section > .closing-line { text-align: center; }
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  font-family: inherit;
+  text-transform: none;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 20px 0;
+  color: var(--text);
+}
+.reveal h1 { font-size: 44px; line-height: 1.25; }
+.reveal h2 { font-size: 30px; line-height: 1.3; }
+.reveal h3 { font-size: 22px; line-height: 1.4; font-weight: 600; }
+.reveal p, .reveal li { font-size: 19px; line-height: 1.7; color: var(--text); margin: 0 0 10px 0; }
+.reveal small { font-size: 14px; color: var(--muted); }
+.reveal strong { color: var(--text); font-weight: 700; }
+.reveal ul { padding-left: 22px; }
+
+/* HERO */
+.hero-section { text-align: center !important; padding: 60px 80px !important; }
+.hero-section > * { text-align: center !important; }
+.hero-line { width: 80px; height: 4px; background: var(--gold); margin: 0 auto 32px auto !important; }
+.hero-line.bottom { margin: 32px auto 0 auto !important; }
+.hero-badge {
+  display: inline-block !important;
+  background: var(--text); color: #FFF;
+  font-size: 11px; letter-spacing: 0.2em;
+  padding: 8px 18px; font-weight: 600;
+  margin: 0 auto 36px auto !important;
+  width: auto !important; max-width: none !important;
+}
+.hero-title {
+  font-size: 52px !important; font-weight: 800;
+  letter-spacing: -0.03em; line-height: 1.2;
+  margin: 0 0 20px 0 !important; color: var(--text);
+}
+.hero-divider { width: 60px; height: 1px; background: var(--border); margin: 36px auto !important; }
+.hero-quote {
+  font-size: 26px !important; font-weight: 600; font-style: italic;
+  color: var(--text); letter-spacing: -0.02em; line-height: 1.5;
+  margin: 0 auto 18px auto !important; max-width: 800px !important;
+}
+.hero-quote .gold { color: var(--gold); }
+.hero-speaker { font-size: 14px !important; color: var(--muted); letter-spacing: 0.05em; margin: 0 0 8px 0 !important; font-weight: 500; }
+.hero-info { font-size: 13px !important; color: var(--muted); letter-spacing: 0.1em; font-weight: 500; margin: 32px 0 0 0 !important; }
+.hero-info span { margin: 0 14px; }
+.hero-info .dot { color: var(--gold); }
+
+/* SECTION HEADER */
+.sec-header { display: flex; align-items: baseline; gap: 14px; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 2px solid var(--text); }
+.sec-header .num { font-size: 36px; font-weight: 800; color: var(--gold); }
+.sec-header h2 { margin: 0; flex: 1; }
+.sec-header .tag { background: var(--gold-bg); color: var(--gold); border: 1px solid var(--gold); padding: 4px 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; }
+
+/* CARDS */
+.card { background: var(--gold-bg); border-left: 4px solid var(--gold); padding: 20px 26px; margin-bottom: 16px; }
+.card-dark { background: var(--text); color: #FFF; padding: 22px 28px; }
+.card-dark p, .card-dark li, .card-dark strong { color: #F0EDE5; }
+.card-red { background: #FFF0F0; border-left: 4px solid var(--red); padding: 20px 26px; margin-bottom: 16px; }
+.card-green { background: #F0F8F2; border-left: 4px solid var(--green); padding: 20px 26px; margin-bottom: 16px; }
+.card-blue { background: #EFF6FF; border-left: 4px solid var(--blue); padding: 20px 26px; margin-bottom: 16px; }
+
+/* BIGNUMS */
+.bignum-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 18px; }
+.bignum { background: var(--gold-bg); border-top: 3px solid var(--gold); padding: 18px 20px; }
+.bignum .label { font-size: 11px; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 8px; font-weight: 600; }
+.bignum .value { font-size: 30px; font-weight: 800; color: var(--text); letter-spacing: -0.02em; line-height: 1; }
+.bignum .sub-label { font-size: 11px; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+
+/* TABLE */
+.tbl { width: 100%; border-collapse: collapse; font-size: 16px; }
+.tbl th, .tbl td { padding: 10px 14px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+.tbl th { background: var(--text); color: #FFF; font-weight: 600; font-size: 12px; letter-spacing: 0.05em; }
+.tbl tr:hover { background: var(--gold-bg); }
+
+/* STATUS BADGES */
+.badge { display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; border-radius: 2px; }
+.badge-done { background: var(--green); color: #FFF; }
+.badge-wip { background: #B58652; color: #FFF; }
+.badge-todo { background: #888; color: #FFF; }
+.badge-block { background: var(--red); color: #FFF; }
+
+/* QUOTE */
+.quote { background: var(--gold-bg); border-left: 4px solid var(--gold); padding: 20px 28px; font-size: 19px; line-height: 1.65; font-style: italic; color: var(--text); margin: 14px 0; }
+.quote .speaker { display: block; margin-top: 10px; font-size: 13px; font-style: normal; color: var(--muted); font-weight: 600; }
+
+/* FLOW */
+.flow { display: flex; align-items: center; gap: 6px; flex-wrap: nowrap; margin: 12px 0; }
+.flow-step { flex: 1; background: var(--card); border: 1px solid var(--border); padding: 10px 12px; font-size: 12px; text-align: center; line-height: 1.4; border-radius: 4px; min-width: 0; }
+.flow-step strong { display: block; font-size: 10px; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 4px; font-weight: 600; }
+.flow-step.bad { background: #FFF0F0; border-color: var(--red); color: #722; }
+.flow-step.bad strong { color: var(--red); }
+.flow-step.good { background: #F0F8F2; border-color: var(--green); color: #1a4a32; }
+.flow-step.good strong { color: var(--green); }
+.flow-step.center-bold { background: var(--gold-bg); border-color: var(--gold); }
+.flow-step.center-bold strong { color: var(--gold); }
+.flow-arrow { flex-shrink: 0; font-size: 18px; color: var(--muted); font-weight: 300; }
+
+/* architecture */
+.arch-flow { display: flex; align-items: center; gap: 8px; margin: 18px 0; }
+.arch-node {
+  flex: 1; border-radius: 10px; padding: 14px 16px; text-align: center;
+  border: 2px solid var(--border); background: #FFF;
+}
+.arch-node .node-num { font-size: 10px; color: var(--muted); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 4px; }
+.arch-node .node-name { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.3; }
+.arch-node .node-sub { font-size: 11px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+.arch-node.imweb { border-color: #E97316; background: #FFF7ED; }
+.arch-node.imweb .node-num { color: #E97316; }
+.arch-node.next { border-color: var(--text); background: #F4F4F4; }
+.arch-node.next .node-num { color: var(--text); }
+.arch-node.gas { border-color: var(--blue); background: #EFF6FF; }
+.arch-node.gas .node-num { color: var(--blue); }
+.arch-node.sheets { border-color: var(--green); background: #F0F8F2; }
+.arch-node.sheets .node-num { color: var(--green); }
+.arch-node.kakao { border-color: #FAE100; background: #FFFDE0; }
+.arch-node.kakao .node-num { color: #B8860B; }
+.arch-arrow { flex-shrink: 0; font-size: 20px; color: var(--muted); }
+
+/* CLOSING */
+.closing-line { text-align: center; padding-top: 20px; }
+.closing-line .big { font-size: 44px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.3; color: var(--text); }
+.closing-line .small { font-size: 16px; color: var(--muted); margin-top: 24px; letter-spacing: 0.1em; }
+
+/* UTILS */
+.text-red { color: var(--red); }
+.text-green { color: var(--green); }
+.text-gold { color: var(--gold); }
+
+.reveal mark {
+  background: linear-gradient(transparent 55%, #FFE082 55%);
+  padding: 0 3px; color: var(--text); font-weight: 700;
+}
+.reveal .card-dark mark { background: linear-gradient(transparent 55%, rgba(200,160,99,0.45) 55%); color: #FFF; }
+
+.reveal .progress { color: var(--gold); }
+.reveal .controls { color: var(--gold); }
+
+/* 2컬럼 / 3컬럼 그리드 */
+.two-col { display: grid !important; grid-template-columns: 1fr 1fr; gap: 16px; }
+.three-col { display: grid !important; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+
+/* 타임라인 (Day1~5) */
+.day-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 14px 0; }
+.day-card { background: #FFF; border: 1px solid var(--border); border-radius: 8px; padding: 14px 14px; }
+.day-card .day-num { font-size: 11px; font-weight: 800; color: var(--gold); letter-spacing: 0.1em; }
+.day-card .day-date { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.day-card .day-title { font-size: 14px; font-weight: 700; color: var(--text); margin: 8px 0 4px; line-height: 1.3; }
+.day-card .day-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.day-card.today { background: var(--gold-bg); border-color: var(--gold); }
+
+/* 기술 스택 박스 */
+.tech-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 12px 0; }
+.tech-item { background: #FFF; border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 12px 16px; border-radius: 4px; }
+.tech-item .tech-label { font-size: 11px; color: var(--muted); font-weight: 700; letter-spacing: 0.08em; margin-bottom: 4px; }
+.tech-item .tech-value { font-size: 14px; color: var(--text); font-weight: 600; line-height: 1.5; }
+
+/* URL 카드 (closing) */
+.url-card { display: block; background: var(--gold-bg); border: 2px solid var(--gold); border-radius: 8px; padding: 16px 22px; margin-bottom: 12px; text-decoration: none; color: var(--text); }
+.url-card:hover { background: #FFF4D6; }
+.url-card .url-label { font-size: 12px; color: var(--muted); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 6px; }
+.url-card .url-link { font-size: 17px; color: var(--text); font-weight: 700; word-break: break-all; }
+.url-card .url-link .icon { color: var(--gold); margin-right: 8px; }
+</style>
+</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- ===========================
+     SLIDE 1: HERO
+=========================== -->
+<section class="hero-section">
+  <div class="hero-line"></div>
+  <div class="hero-badge">코호트 #2 · 2026.05.13</div>
+  <h1 class="hero-title">소녀방앗간 케이터링<br/>운영 자동화 PoC 결과</h1>
+
+  <div class="hero-divider"></div>
+
+  <p class="hero-quote">
+    소녀방앗간 케이터링 운영 자동화<br/><span class="gold">테스트 빌드 결과 공유</span>
+  </p>
+  <p class="hero-speaker">— 8년 운영 양식은 그대로, 수기 업무만 자동화</p>
+
+  <p class="hero-info">
+    <span>발표 송병근</span>
+    <span class="dot">●</span>
+    <span>2026.05.13 10:00</span>
+    <span class="dot">●</span>
+    <span>코호트 #2 · 소녀방앗간</span>
+  </p>
+
+  <div class="hero-line bottom"></div>
+</section>
+
+<!-- ===========================
+     SLIDE 2: 클라이언트 (발표자 슬라이드 삭제)
+=========================== -->
+<section>
+  <div class="sec-header">
+    <span class="num">01</span>
+    <h2>클라이언트 — 소녀방앗간</h2>
+    <span class="tag">CLIENT</span>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="card">
+        <strong>소녀방앗간 (밀컴퍼니)</strong><br/>
+        <ul style="font-size:15px; margin-top:8px; line-height:1.8;">
+          <li>대표: <strong>김민영</strong> (30대)</li>
+          <li>8년 운영 청정 케이터링 사회적기업</li>
+          <li>주요 고객: 기업·기관·단체 행사</li>
+          <li>강점: 신뢰 기반 재구매 + 후기 자산</li>
+        </ul>
+      </div>
+      <div class="card-blue">
+        <strong>핵심 인사이트:</strong>
+        <span style="display:block; margin-top:6px; font-size:15px;">
+          8년 동안 누적된 <strong>고객 DB</strong>와 <strong>김민영 대표만의 견적서 양식</strong>이 진짜 자산.<br/>
+          신규 시스템이 이걸 못 따라가면 컨설팅은 실패.
+        </span>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:18px; margin-bottom:10px;">⚠️ 절대 건드리지 않는 핵심 자산 2개</h3>
+      <div class="card-red" style="margin-bottom:12px;">
+        <strong>① 8년 누적 고객 DB</strong>
+        <ul style="font-size:14px; margin-top:6px;">
+          <li>기존 구글시트 그대로 유지</li>
+          <li>새 신청만 자동으로 행 추가</li>
+          <li>형식·컬럼 변경 ❌</li>
+        </ul>
+      </div>
+      <div class="card-red">
+        <strong>② 김민영 대표 견적서 양식</strong>
+        <ul style="font-size:14px; margin-top:6px;">
+          <li>8년간 검증된 단가·계산식·문구</li>
+          <li>시트 양식 그대로 복제 사용</li>
+          <li>자동 채움만 추가, 양식 변경 ❌</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <a class="url-card" href="https://sonyeo-dashboard.vercel.app/" target="_blank" style="margin-top:14px;">
+    <div class="url-label">🌐 라이브 사이트 — 지금 클릭해서 확인</div>
+    <div class="url-link"><span class="icon">→</span>https://sonyeo-dashboard.vercel.app/</div>
+  </a>
+</section>
+
+<!-- ===========================
+     SLIDE 3 (신규): 발표자 시작점 — 솔직한 고충
+=========================== -->
+<section>
+  <div class="sec-header">
+    <span class="num">02</span>
+    <h2>제가 시작한 자리 — 솔직히 말하면</h2>
+    <span class="tag">STARTING POINT</span>
+  </div>
+
+  <div class="card-red" style="margin-bottom:16px;">
+    <strong>고충 1:</strong> <span style="font-size:16px;">바이브코딩으로 웹페이지 정도 만드는 수준에서, <mark>클라이언트의 진짜 니즈에 하나씩 맞추는 게 쉽지 않다.</mark></span>
+  </div>
+
+  <div class="card-red" style="margin-bottom:16px;">
+    <strong>고충 2:</strong> <span style="font-size:16px;"><mark>모르는 게 너무 많다.</mark> 프레임워크, 백엔드 자동화, 알림톡 정책, 시트 자동화, OAuth 인증, PDF 변환 ... 매일 새로운 개념과 마주친다.</span>
+  </div>
+
+  <div class="card-dark" style="margin-top:14px;">
+    <strong class="text-gold">그래서 한 일:</strong>
+    <span style="color:#F0EDE5;"> 모르는 건 그날 공부하고, 막히면 우회 솔루션 찾고, <strong style="color:#FFF;">매일 한 조각씩 쌓아 올렸다.</strong> 1주일 동안 그 누적이 이 PoC다.</span>
+  </div>
+</section>
+
+<!-- ===========================
+     SLIDE 4 (신규): 핵심 메시지
+=========================== -->
+<section>
+  <div class="sec-header">
+    <span class="num">03</span>
+    <h2>한 줄 핵심 메시지</h2>
+    <span class="tag">CORE MESSAGE</span>
+  </div>
+
+  <div class="card-blue" style="margin-bottom:18px; padding:32px 28px; text-align:center;">
+    <p style="font-size:26px; font-weight:700; color:var(--text); line-height:1.5; margin:0;">
+      "전화 받기 <span class="text-gold">전</span>과 <span class="text-gold">후</span>,<br/>
+      <mark style="font-size:28px;">모든 것을 한 대시보드</mark>로 처리한다."
+    </p>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <strong>📞 전화 받기 전</strong>
+      <ul style="font-size:14px; margin-top:8px; line-height:1.8;">
+        <li>신청 접수 (아임웹·직접)</li>
+        <li>자동 알림톡 #1·#2</li>
+        <li>신청 카드로 정렬</li>
+      </ul>
+    </div>
+    <div class="card">
+      <strong>📞 전화 받은 후</strong>
+      <ul style="font-size:14px; margin-top:8px; line-height:1.8;">
+        <li>AI 인사이트로 통화 요약</li>
+        <li>견적서·메뉴리스트 시트 자동</li>
+        <li>PDF + 알림톡 1버튼 발송</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card-dark" style="margin-top:14px;">
+    <strong class="text-gold">결과:</strong>
+    <span style="color:#F0EDE5;"> 운영자가 다른 도구로 점프하지 않는다. <strong style="color:#FFF;">한 화면, 단계별 클릭만</strong>으로 끝난다.</span>
+  </div>
+</section>
+
+<!-- ===========================
+     SLIDE 5: BEFORE 페인
+=========================== -->
+<section>
+  <div class="sec-header">
+    <span class="num">04</span>
+    <h2>Before — 4단계 수기 작업의 페인</h2>
+    <span class="tag">PROBLEM</span>
+  </div>
+
+  <div class="flow" style="margin-bottom:16px;">
+    <div class="flow-step bad">
+      <strong>STEP 1</strong>아임웹<br/>신청 접수<br/>↓ 이메일 확인<br/>수동 정리
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step bad">
+      <strong>STEP 2</strong>전화 상담<br/>↓ 메모<br/>↓ 손글씨<br/>or 메신저
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step bad">
+      <strong>STEP 3</strong>견적서·메뉴<br/>리스트<br/>↓ 시트 수기<br/>30분/건+
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step bad">
+      <strong>STEP 4</strong>메일 응대<br/>↓ 이메일 복붙<br/>↓ 추적 불가<br/>누락 위험
+    </div>
+  </div>
+
+  <div class="bignum-grid" style="grid-template-columns:repeat(3,1fr);">
+    <div class="bignum" style="border-top-color:var(--red);">
+      <div class="label">월 수작업 시간</div>
+      <div class="value text-red">10h+</div>
+      <div class="sub-label">대표·팀장이 직접 처리하는 운영 손실</div>
+    </div>
+    <div class="bignum" style="border-top-color:var(--red);">
+      <div class="label">견적서 1건 작성</div>
+      <div class="value text-red">30분+</div>
+      <div class="sub-label">단가 입력 / 메뉴 매칭 / 수식 / 출력</div>
+    </div>
+    <div class="bignum" style="border-top-color:var(--red);">
+      <div class="label">건당 채널 전환</div>
+      <div class="value text-red">3~4회</div>
+      <div class="sub-label">이메일·전화·메일·시트 왕복</div>
+    </div>
+  </div>
+
+  <div class="card-dark" style="margin-top:14px;">
+    <strong class="text-gold">진짜 문제:</strong>
+    <span style="color:#F0EDE5;"> 운영이 <strong style="color:#FFF;">대표 1인의 손에 묶여 있다.</strong> 8년 노하우가 누적될수록 <mark>대표가 떠나면 멈춘다.</mark></span>
+  </div>
+</section>
+
+<!-- ===========================
+     SLIDE 7 (신규): 기술 선택 과정
+=========================== -->
+<section>
+  <div class="sec-header">
+    <span class="num">05</span>
+    <h2>기술 선택 과정 — 공부하면서 골랐다</h2>
+    <span class="tag">DECISION</span>
+  </div>
+
+  <div class="two-col" style="margin-bottom:14px;">
+    <div class="card-red">
+      <strong>처음 생각: n8n (노코드 자동화)</strong>
+      <ul style="font-size:14px; margin-top:8px; line-height:1.8;">
+        <li>노코드 워크플로우 도구</li>
+        <li>드래그앤드롭으로 자동화</li>
+        <li>익숙한 도구라 빠르게 시작 가능</li>
+      </ul>
+    </div>
+    <div class="card-red">
+      <strong>막힌 점</strong>
+      <ul style="font-size:14px; margin-top:8px; line-height:1.8;">
+        <li>구글 시트 양식 자동 복제 → ❌</li>
+        <li>시트 PDF 변환 → 별도 호스팅 필요</li>
+        <li>인계 시 김민영 대표 계정 분리 X</li>
+        <li>월 운영비 발생 (n8n cloud)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="flow" style="margin-bottom:14px;">
+    <div class="flow-step bad">n8n<br/>(노코드)</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step center-bold">공부 + 결정</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step good"><strong>Apps Script<br/>+ Next.js</strong></div>
+  </div>
+
+  <div class="two-col">
+    <div class="card-green">
+      <strong>왜 Apps Script?</strong>
+      <ul style="font-size:14px; margin-top:8px; line-height:1.8;">
+        <li>김민영 시트에 직접 묶여서 작동</li>
+        <li>시트 PDF 변환 → Drive 업로드 한 흐름</li>
+        <li>대표 계정으로 인계 시 1줄 수정</li>
+        <li>월 운영비 0원 (구글 무료 티어)</li>
+      </ul>
+    </div>
+    <div class="card-green">
+      <strong>왜 Next.js?</strong>
+      <ul style="font-size:14px; margin-top:8px; line-height:1.8;">
+        <li><mark>여러 운영자가 동시에 같이 사용</mark> — 김민영 대표·팀원·외주 한 사이트에서</li>
+        <li>운영자 화면 + 신청자 페이지 한 코드</li>
+        <li>Vercel 무료 호스팅 + 자동 배포</li>
+        <li>풀스택 (UI + API) 한 프레임워크</li>
+      </ul>
+    </div>
+  </div>
+
+  <p style="font-size:12px; color:var(--muted); margin-top:10px; text-align:center;">
+    <em>※ Electron · Flutter는 각자 PC 설치 필요 + 신청자 페이지 별도 빌드 → 멀티유저 협업·인계 단순성에서 Next.js가 유리</em>
+  </p>
+
+  <div class="card-dark" style="margin-top:14px;">
+    <strong class="text-gold">학습:</strong>
+    <span style="color:#F0EDE5;"> 친숙한 도구가 정답이 아니다. <strong style="color:#FFF;">클라이언트 자산 보호 + 인계 안정성 + 월 운영비 0원</strong> — 자영업자 AX의 3원칙을 만족하는 조합으로 결정.</span>
+  </div>
+</section>
+
+<!-- ===========================
+     SLIDE 8: 솔루션 아키텍처 (단순화)
+=========================== -->
+<section>
+  <div class="sec-header">
+    <span class="num">06</span>
+    <h2>전체 구조 — 5박스 흐름</h2>
+    <span class="tag">ARCHITECTURE</span>
+  </div>
+
+  <div class="card-blue" style="margin-bottom:14px;">
+    <strong>쉽게 말하면:</strong> 신청자가 신청 → 우리 화면에서 받음 → 자동화 도구가 시트에 정리 → 시트에 데이터 저장 → 카카오톡으로 발송. <strong>5단계가 자동으로 연결됨.</strong>
+  </div>
+
+  <div class="arch-flow">
+    <div class="arch-node imweb">
+      <div class="node-num">① 신청 받기</div>
+      <div class="node-name">아임웹</div>
+      <div class="node-sub">신청자가 작성<br/>(기존 사이트 그대로)</div>
+    </div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-node next">
+      <div class="node-num">② 운영자 화면</div>
+      <div class="node-name">Next.js<br/>웹사이트</div>
+      <div class="node-sub">대표·운영자가 보는 화면<br/>(신청자도 보는 페이지)</div>
+    </div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-node gas">
+      <div class="node-num">③ 자동화 도구</div>
+      <div class="node-name">Apps Script</div>
+      <div class="node-sub">구글이 만든 자동화 도구<br/>시트·드라이브 자동 조작</div>
+    </div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-node sheets">
+      <div class="node-num">④ 데이터 저장</div>
+      <div class="node-name">Google<br/>스프레드시트</div>
+      <div class="node-sub">8년 양식 그대로<br/>고객·견적 누적</div>
+    </div>
+    <div class="arch-arrow">→</div>
+    <div class="arch-node kakao">
+      <div class="node-num">⑤ 발송</div>
+      <div class="node-name">카카오<br/>비즈채널</div>
+      <div class="node-sub">신청자에게 알림톡<br/>+ 1:1 채팅 응대</div>
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-top:14px;">
+    <div class="card-green">
+      <strong>설계 원칙</strong>
+      <ul style="font-size:15px; margin-top:8px;">
+        <li><mark>아임웹·시트 양식 0% 변경</mark></li>
+        <li><mark>김민영 견적서·메뉴 양식 그대로 복제</mark></li>
+        <li>대표 명의 Google·카카오 — <strong>인계 시 1줄 수정</strong></li>
+        <li>한국어 코드·주석 — <strong>인수인계 가능</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <strong>왜 이 조합인가</strong>
+      <ul style="font-size:15px; margin-top:8px;">
+        <li>구글 안에서 끝남 — <strong>외부 서버 X</strong></li>
+        <li>운영비 <strong>월 0원</strong> (무료 티어 사용)</li>
+        <li>대표 구글 계정 1개로 전체 운영</li>
+        <li>코드 양 최소 → <strong>운영 안정성 ↑</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================
+     SLIDE 6: 기술 스택 (사용자 피드백 반영)
+=========================== -->
+<section>
+  <div class="sec-header">
+    <span class="num">07</span>
+    <h2>기술 스택 — 어떤 도구를 썼나</h2>
+    <span class="tag">TECH STACK</span>
+  </div>
+
+  <div class="tech-grid">
+    <div class="tech-item">
+      <div class="tech-label">웹사이트 프레임워크</div>
+      <div class="tech-value">Next.js <small>(웹 페이지를 만드는 도구)</small></div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-label">프로그래밍 언어</div>
+      <div class="tech-value">TypeScript <small>(웹사이트 쪽)</small> · JavaScript <small>(시트 자동화 쪽)</small></div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-label">시트 자동화 도구</div>
+      <div class="tech-value">Google Apps Script <small>(구글 시트 안에서 작동하는 자동화)</small></div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-label">데이터 저장소</div>
+      <div class="tech-value">Google 스프레드시트 <small>(김민영 대표 8년 운영 양식 그대로)</small></div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-label">웹사이트 호스팅</div>
+      <div class="tech-value">Vercel <small>(웹사이트를 인터넷에 띄우는 서비스 · 무료)</small></div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-label">알림 발송</div>
+      <div class="tech-value">카카오 비즈니스채널 알림톡 + 1:1 채팅</div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-label">개발 도구</div>
+      <div class="tech-value">Claude Code <small>(AI 코딩 도구)</small> · clasp <small>(Apps Script 업로드)</small></div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-label">버전 관리</div>
+      <div class="tech-value">Git <small>(코드 변경 기록 도구)</small> + GitHub <small>(Git 코드 저장 사이트)</small></div>
+    </div>
+    <div class="tech-item">
+      <div class="tech-label">PDF 자동 생성</div>
+      <div class="tech-value">Google 스프레드시트 PDF 변환 <small>(시트 → PDF → 구글 드라이브 자동 업로드)</small></div>
+    </div>
+  </div>
+
+  <div class="card-dark" style="margin-top:14px;">
+    <strong class="text-gold">선택 기준:</strong>
+    <span style="color:#F0EDE5;"> <strong style="color:#FFF;">월 운영비 0원</strong> + <strong style="color:#FFF;">대표 본인 계정으로 인계 가능</strong> + <strong style="color:#FFF;">코드 최소화</strong>. 자영업자 AX의 3원칙.</span>
+  </div>
+</section>
+
+<!-- ===========================
+     SLIDE 9 (신규): 빌드 결과 — 라이브 사이트 직접 시연
+=========================== -->
+<section>
+  <div class="sec-header">
+    <span class="num">08</span>
+    <h2>빌드 결과 — 라이브 사이트 직접 확인</h2>
+    <span class="tag">LIVE DEMO</span>
+  </div>
+
+  <a class="url-card" href="https://sonyeo-dashboard.vercel.app/" target="_blank" style="margin-bottom:20px; padding:24px 28px;">
+    <div class="url-label" style="font-size:13px;">🌐 지금 클릭해서 직접 시연</div>
+    <div class="url-link" style="font-size:22px; font-weight:700;">
+      <span class="icon">→</span>https://sonyeo-dashboard.vercel.app/
+    </div>
+  </a>
+
+  <div class="card-blue" style="margin-top:14px;">
+    <strong>시연 순서:</strong>
+    <ol style="font-size:15px; line-height:1.9; margin-top:8px; padding-left:22px;">
+      <li>우상단 <strong>"🎬 데모 시작"</strong> → 가상 신청서 → 알림톡 #1·#2 자동 발송</li>
+      <li><strong>김민영 대시보드 진입</strong> → 신청 카드 보이는 화면</li>
+      <li>STEP 03 <strong>통화 녹취 paste → AI 인사이트 추출</strong> (한 화면에서)</li>
+      <li>STEP 04 <strong>견적서 양식 시트 자동 생성</strong> (스프레드시트 탭 2개 자동)</li>
+      <li>STEP 05 단가 입력 → <mark>"📨 견적서 확정 + 자동 발송"</mark> 1버튼 클릭</li>
+      <li>STEP 06 <strong>신청자가 받은 알림톡 Mock 카드</strong> 도착 확인</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===========================
+     SLIDE 10: AFTER 효과
+=========================== -->
+<section>
+  <div class="sec-header">
+    <span class="num">09</span>
+    <h2>After — 4단계 수기에서 1버튼으로</h2>
+    <span class="tag">RESULT</span>
+  </div>
+
+  <div class="flow" style="margin-bottom:14px;">
+    <div class="flow-step bad">
+      <strong>BEFORE</strong>STEP 1<br/>아임웹·이메일<br/>수동 정리
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step bad">
+      <strong>BEFORE</strong>STEP 2<br/>통화 후 메모<br/>수기 정리
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step bad">
+      <strong>BEFORE</strong>STEP 3<br/>견적서·메뉴<br/>30분 수기 작성
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step bad">
+      <strong>BEFORE</strong>STEP 4<br/>알림톡·복붙<br/>누락 위험
+    </div>
+    <div class="flow-arrow" style="font-size:28px;">⟹</div>
+    <div class="flow-step good">
+      <strong>AFTER</strong>대시보드<br/>자동 적재<br/>+ AI 인사이트
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step good">
+      <strong>AFTER</strong>1버튼 확정<br/>견적·메뉴 PDF<br/>알림톡 자동
+    </div>
+  </div>
+
+  <div class="bignum-grid" style="grid-template-columns:repeat(4,1fr);">
+    <div class="bignum" style="border-top-color:var(--green);">
+      <div class="label">월 수작업 시간</div>
+      <div class="value text-green">≈30분</div>
+      <div class="sub-label">10h+ → 30분 (95% 절감)</div>
+    </div>
+    <div class="bignum" style="border-top-color:var(--green);">
+      <div class="label">견적서 1건</div>
+      <div class="value text-green">3초</div>
+      <div class="sub-label">30분 → 3초 (1버튼)</div>
+    </div>
+    <div class="bignum" style="border-top-color:var(--green);">
+      <div class="label">월 운영비</div>
+      <div class="value text-green">0원</div>
+      <div class="sub-label">Apps Script + Vercel 무료 티어</div>
+    </div>
+    <div class="bignum" style="border-top-color:var(--green);">
+      <div class="label">대표 의존도</div>
+      <div class="value text-green">↓</div>
+      <div class="sub-label">팀장·직원도 1버튼으로 발송</div>
+    </div>
+  </div>
+
+  <div class="card-dark" style="margin-top:14px;">
+    <strong class="text-gold">진짜 변화:</strong>
+    <span style="color:#F0EDE5;"> 대표 시간이 회복된다 → <strong style="color:#FFF;">신규 영업 / 메뉴 개발 / 파트너십</strong>에 쓸 수 있다. 자동화의 본질은 <mark>시간 회수</mark>.</span>
+  </div>
+</section>
+
+<!-- ===========================
+     SLIDE 13: 보완 사항 1 — 아임웹 API 차단 검증
+=========================== -->
+<section>
+  <div class="sec-header">
+    <span class="num">10</span>
+    <h2>보완 사항 1 — 아임웹 API 차단 검증 & 우회 결정</h2>
+    <span class="tag">CHALLENGE #1</span>
+  </div>
+
+  <div class="card-red" style="margin-bottom:12px;">
+    <strong>발견:</strong> 아임웹 v2 API — 입력폼·신청서·게시판 endpoint 전부 <strong>nginx 400</strong> 반환.<br/>
+    <small style="color:var(--muted);">→ 외부에서 신청 데이터 직접 가져올 수 없음.</small>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3 style="font-size:17px; margin-bottom:8px;">선택지 2개</h3>
+      <div class="card-red" style="margin-bottom:8px;">
+        <strong>❌ 안 한 선택:</strong> 클라이언트 아임웹 사이트 코드를 건드려서 우회 — <strong>8년 자산을 위협</strong>
+      </div>
+      <div class="card-green">
+        <strong>✅ 한 선택:</strong> <code>/order/new</code> 수동 입력 페이지 + 양식 자동화로 우회 — 클라이언트 자산 100% 보호
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:17px; margin-bottom:8px;">학습</h3>
+      <div class="card">
+        <ul style="font-size:15px; line-height:1.8;">
+          <li>막힌 게 있으면 <strong>우회 솔루션</strong>으로</li>
+          <li>클라이언트 자산은 <strong>절대 안 건드림</strong></li>
+          <li>외부 API 의존도 ↓ → 인계 안정성 ↑</li>
+          <li>발표에 <strong>막힌 이유까지 투명 공유</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-dark" style="margin-top:14px;">
+    <strong class="text-gold">교훈:</strong>
+    <span style="color:#F0EDE5;"> <strong style="color:#FFF;">"클라이언트 자산 안전"</strong>은 <mark>속도보다 우선</mark>한다.</span>
+  </div>
+</section>
+
+<!-- ===========================
+     SLIDE 14: 보완 사항 2 — 커뮤니케이션 우려 (구 보완 사항 3, 견적서 fix는 발표 후 자체 처리)
+=========================== -->
+<section>
+  <div class="sec-header">
+    <span class="num">11</span>
+    <h2>보완 사항 2 — 업무 프로세스 (가장 큰 고민)</h2>
+    <span class="tag">CHALLENGE #2</span>
+  </div>
+
+  <div class="card-red" style="margin-bottom:16px;">
+    <strong>저의 가장 큰 고민:</strong>
+    <span style="display:block; margin-top:8px; font-size:16px;">
+      <mark>알림톡이 잘못 가서 고객 신뢰가 깨질까봐 걱정된다.</mark><br/><br/>
+      알림톡을 실수로 잘못된 고객에게 보내거나, 견적서에 잘못된 단가가 박히거나, 발송 자동화 중 한 단계가 빠지면... 한 번 깨진 신뢰는 <strong>회복하기 정말 어렵다.</strong><br/><br/>
+      <strong>= 그래서 <mark>업무 프로세스 설계</mark>가 코드·자동화보다 먼저다.</strong>
+    </span>
+  </div>
+
+  <div class="card-blue">
+    <strong>업무 프로세스 = 운영자가 매 단계 "이게 맞나" 확인할 수 있는 흐름</strong>
+    <ul style="font-size:15px; line-height:1.9; margin-top:8px;">
+      <li>신청 → 통화 → 견적 → 발송 → 응대 — <strong>각 단계 클릭 1번씩 통과</strong></li>
+      <li>운영자가 다음 단계로 넘어가기 전 <mark>현재 상태를 한 화면에서 확인</mark></li>
+      <li>발송 실수 = 시트에 자동 기록 → 추적 가능 → 복구 가능</li>
+      <li>1명이 운영해도 5명 팀처럼 작동하는 흐름</li>
+    </ul>
+  </div>
+
+  <div class="card" style="margin-top:14px;">
+    <strong>📌 다른 어려움 — 클라이언트 계정 협조 의존성</strong>
+    <ul style="font-size:14px; line-height:1.8; margin-top:6px;">
+      <li>지금은 김민영 대표 구글 계정에 편집자 권한 받아서 작업 — <strong>보통 컨설팅 케이스는 어떻게 진행하는지 모르겠다</strong></li>
+      <li><mark>인증·동의가 늦어지면 PoC 진행도 같이 지연됨</mark> (카카오 비즈채널·OAuth 동의 등)</li>
+      <li>외주가 빨라도 — <strong>클라이언트 1회 클릭이 안 오면 일정이 밀린다</strong></li>
+    </ul>
+  </div>
+
+  <div class="card-dark" style="margin-top:14px;">
+    <strong class="text-gold">핵심 교훈:</strong>
+    <span style="color:#F0EDE5;"> 자동화는 <strong style="color:#FFF;">속도가 아니라 신뢰</strong>다. 코드를 잘 짜는 것보다, <mark>"내가 보내는 게 맞나"를 1초 안에 확인할 수 있는 업무 프로세스</mark>를 설계하는 게 진짜 가치.</span>
+  </div>
+</section>
+
+<!-- ===========================
+     SLIDE 16: 앞으로 계획
+=========================== -->
+<section>
+  <div class="sec-header">
+    <span class="num">12</span>
+    <h2>앞으로 계획</h2>
+    <span class="tag">NEXT STEP</span>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3 style="font-size:17px; margin-bottom:10px;">단기 (5/13 ~ 5/20)</h3>
+      <div class="card">
+        <ul style="font-size:15px; line-height:1.9;">
+          <li><strong>카카오 비즈채널 알림톡 #2·#3 심사 등록</strong><br/><small style="color:var(--muted);">김민영 대표 본인 명의 진행 (1~3 영업일)</small></li>
+          <li><strong>아임웹 자동 메일 SMTP 재인증</strong><br/><small style="color:var(--muted);">신청 들어올 때 김민영 대표 메일 정상 수신</small></li>
+          <li><strong>김민영 대표 시연 + 피드백 반영</strong><br/><small style="color:var(--muted);">실제 행사 1~2건으로 작동 검증</small></li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:17px; margin-bottom:10px;">중기 (5/20 이후)</h3>
+      <div class="card-green">
+        <ul style="font-size:15px; line-height:1.9;">
+          <li><strong>김민영 대표 정식 인계</strong><br/><small style="color:#1a4a32;">계정·환경변수 1줄 수정 → 라이브 전환</small></li>
+          <li><strong>실 알림톡 발송 시작</strong><br/><small style="color:#1a4a32;">카카오 심사 통과 후 즉시 작동</small></li>
+          <li><strong>운영 데이터 축적 + 보강</strong><br/><small style="color:#1a4a32;">신청 → 견적 → 발송 흐름 안정화</small></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-blue" style="margin-top:14px;">
+    <strong>관전 포인트:</strong> 5/20 이후 김민영 대표가 <strong>직접 운영하는 모습</strong>이 PoC의 진짜 결과. 외주가 없어도 작동해야 컨설팅이 끝난다.
+  </div>
+</section>
+
+<!-- ===========================
+     SLIDE 17: 클로징 + URL
+=========================== -->
+<section>
+  <h2 style="text-align:center; margin-bottom:8px;">소녀방앗간 케이터링 운영 자동화</h2>
+  <p style="text-align:center; font-size:17px; color:var(--muted); margin-bottom:32px;">
+    1주일 테스트 빌드 결과 · 직접 확인해보세요
+  </p>
+
+  <div style="max-width: 880px; margin: 0 auto;">
+    <a class="url-card" href="https://gogaeseodong-sigma.vercel.app/sonyeo-cohort2.html" target="_blank">
+      <div class="url-label">📊 이 발표 자료</div>
+      <div class="url-link"><span class="icon">→</span>https://gogaeseodong-sigma.vercel.app/sonyeo-cohort2.html</div>
+    </a>
+    <a class="url-card" href="https://sonyeo-dashboard.vercel.app/" target="_blank">
+      <div class="url-label">🌐 라이브 사이트 (직접 확인)</div>
+      <div class="url-link"><span class="icon">→</span>https://sonyeo-dashboard.vercel.app/</div>
+    </a>
+  </div>
+</section>
+
+</div><!-- /slides -->
+</div><!-- /reveal -->
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.esm.js" type="module">
+</script>
+<script type="module">
+import Reveal from 'https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.esm.js';
+Reveal.initialize({
+  hash: true,
+  slideNumber: 'c/t',
+  progress: true,
+  controls: true,
+  transition: 'slide',
+  transitionSpeed: 'fast',
+  width: 1280,
+  height: 720,
+  margin: 0,
+  minScale: 0.2,
+  maxScale: 2.0,
+});
+</script>
+</body>
+</html>

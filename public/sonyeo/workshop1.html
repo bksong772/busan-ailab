@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>소녀방앗간 인터뷰 요약 보고서 | 워크샵 #1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: #F5F5F0;
+    color: #1A1A1A;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    padding: 64px 56px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+
+  /* HERO */
+  .hero {
+    border-bottom: 3px solid #1A1A1A;
+    padding-bottom: 28px;
+    margin-bottom: 48px;
+  }
+  .hero .badge {
+    display: inline-block;
+    background: #1A1A1A;
+    color: #FFF;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    padding: 5px 12px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    color: #1A1A1A;
+  }
+  .hero .subtitle {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 18px;
+  }
+  .hero .meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    font-size: 12px;
+    color: #555;
+    border-top: 1px solid #E0E0E0;
+    padding-top: 18px;
+  }
+  .hero .meta dt {
+    font-weight: 600;
+    color: #888;
+    margin-bottom: 4px;
+    letter-spacing: 0.05em;
+  }
+  .hero .meta dd { color: #1A1A1A; font-weight: 500; }
+
+  /* SECTION HEADER */
+  section { margin-bottom: 56px; page-break-inside: avoid; }
+  .sec-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #1A1A1A;
+  }
+  .sec-header .num {
+    font-size: 38px;
+    font-weight: 800;
+    color: #C8A063;
+    line-height: 1;
+    letter-spacing: -0.05em;
+  }
+  .sec-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .sec-header .tag {
+    margin-left: auto;
+    font-size: 11px;
+    color: #888;
+    background: #F5F5F0;
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+
+  /* SUMMARY BOX */
+  .summary {
+    background: #FFFAF0;
+    border-left: 3px solid #C8A063;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+    font-size: 14px;
+    color: #4A3F2A;
+  }
+  .summary strong { color: #1A1A1A; }
+
+  /* 5단계 FLOW */
+  .flow {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    margin-bottom: 32px;
+  }
+  .flow-step {
+    background: #FAFAF7;
+    text-align: center;
+    padding: 14px 6px;
+    font-size: 12px;
+    border-radius: 4px;
+    position: relative;
+  }
+  .flow-step .label {
+    font-size: 10px;
+    color: #888;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+  .flow-step .name {
+    font-weight: 700;
+    color: #1A1A1A;
+    font-size: 13px;
+  }
+
+  /* 5단계 STAGE BLOCKS */
+  .stage {
+    margin-bottom: 28px;
+    padding-left: 20px;
+    border-left: 3px solid #E0DCD0;
+  }
+  .stage-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .stage-head .step-num {
+    background: #1A1A1A;
+    color: #FFF;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .stage-head h3 {
+    font-size: 17px;
+    font-weight: 700;
+  }
+  .stage-head .focus {
+    font-size: 11px;
+    color: #888;
+    margin-left: auto;
+    font-weight: 500;
+  }
+  .stage ul { list-style: none; padding-left: 0; }
+  .stage ul li {
+    font-size: 14px;
+    padding: 6px 0 6px 18px;
+    position: relative;
+    color: #2A2A2A;
+  }
+  .stage ul li::before {
+    content: "▪";
+    position: absolute;
+    left: 0;
+    color: #C8A063;
+    font-weight: bold;
+  }
+  .stage ul li strong { color: #1A1A1A; font-weight: 600; }
+  .stage .quote {
+    background: #F5F5F0;
+    border-left: 2px solid #C8A063;
+    padding: 10px 14px;
+    margin-top: 12px;
+    font-size: 13px;
+    color: #555;
+    font-style: italic;
+  }
+  .stage .quote .who {
+    display: block;
+    font-style: normal;
+    font-size: 11px;
+    color: #888;
+    margin-top: 4px;
+  }
+
+  /* DIAGNOSE - 강점/약점/기회 */
+  .swot {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .swot-box {
+    background: #FAFAF7;
+    padding: 18px 20px;
+    border-top: 3px solid;
+  }
+  .swot-box.s { border-color: #2D7D5F; }
+  .swot-box.w { border-color: #C8595E; }
+  .swot-box.o { border-color: #C8A063; }
+  .swot-box h4 {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+  .swot-box.s h4 { color: #2D7D5F; }
+  .swot-box.w h4 { color: #C8595E; }
+  .swot-box.o h4 { color: #B58652; }
+  .swot-box ul { list-style: none; padding: 0; }
+  .swot-box li {
+    font-size: 12.5px;
+    padding: 4px 0;
+    color: #2A2A2A;
+    line-height: 1.55;
+  }
+
+  /* KPI numbers */
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .kpi {
+    background: #FAFAF7;
+    padding: 18px 14px;
+    text-align: center;
+    border-radius: 4px;
+  }
+  .kpi .val {
+    font-size: 24px;
+    font-weight: 800;
+    color: #1A1A1A;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .kpi .lbl {
+    font-size: 11px;
+    color: #666;
+    letter-spacing: 0.02em;
+  }
+
+  /* 매출 표 */
+  .revenue-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+    font-size: 13px;
+  }
+  .revenue-table th, .revenue-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #E5E1D6;
+    text-align: left;
+  }
+  .revenue-table th {
+    background: #1A1A1A;
+    color: #FFF;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+  .revenue-table tr:last-child td { border-bottom: 2px solid #1A1A1A; }
+  .revenue-table .num-cell { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  /* AX 과제 카드 */
+  .task-card {
+    border: 1px solid #E5E1D6;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+    background: #FFFFFF;
+  }
+  .task-card .head {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .task-card .priority {
+    background: #1A1A1A;
+    color: #FFF;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .task-card.p1 .priority { background: #C8595E; }
+  .task-card.p2 .priority { background: #C8A063; }
+  .task-card.p3 .priority { background: #2D7D5F; }
+  .task-card.p4 .priority { background: #5A6B7D; }
+  .task-card.p5 .priority { background: #888; }
+  .task-card h3 {
+    font-size: 17px;
+    font-weight: 700;
+    flex: 1;
+    line-height: 1.3;
+  }
+  .task-card .horizon {
+    font-size: 11px;
+    color: #888;
+    flex-shrink: 0;
+    padding-top: 4px;
+  }
+  .task-card .body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    font-size: 13px;
+  }
+  .task-card .body .col h5 {
+    font-size: 11px;
+    color: #888;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .task-card .body .col p {
+    font-size: 13px;
+    color: #2A2A2A;
+    line-height: 1.6;
+  }
+  .task-card .impact {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed #E5E1D6;
+    font-size: 12.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .task-card .impact .arr {
+    color: #C8A063;
+    font-weight: 700;
+  }
+  .task-card .impact strong { color: #1A1A1A; }
+  .task-card .quote-bx {
+    margin-top: 12px;
+    background: #F5F5F0;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #555;
+    font-style: italic;
+    border-left: 2px solid #C8A063;
+  }
+
+  /* CLOSING */
+  .closing {
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 2px solid #1A1A1A;
+    font-size: 12px;
+    color: #888;
+    text-align: center;
+  }
+
+  /* PRINT */
+  @media print {
+    body { background: #FFF; }
+    .page { box-shadow: none; padding: 32px 28px; max-width: 100%; }
+    section { page-break-inside: avoid; }
+    .task-card { page-break-inside: avoid; }
+  }
+
+  @media (max-width: 720px) {
+    .page { padding: 32px 24px; }
+    .hero h1 { font-size: 22px; }
+    .hero .meta { grid-template-columns: repeat(2, 1fr); }
+    .flow { grid-template-columns: repeat(5, 1fr); gap: 2px; }
+    .flow-step { padding: 8px 2px; }
+    .flow-step .name { font-size: 11px; }
+    .swot { grid-template-columns: 1fr; }
+    .kpis { grid-template-columns: repeat(2, 1fr); }
+    .task-card .body { grid-template-columns: 1fr; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HERO -->
+  <header class="hero">
+    <span class="badge">WORKSHOP #1 · 인터뷰 요약 보고서</span>
+    <h1>소녀방앗간 (주식회사 방앗간컴퍼니)</h1>
+    <p class="subtitle">청정재료 한식밥집 · 사회적기업 · 2014년 창업 · 직원 24명 · 매출 30억(2024)</p>
+    <dl class="meta">
+      <div>
+        <dt>인터뷰 대상</dt>
+        <dd>김민영 대표</dd>
+      </div>
+      <div>
+        <dt>인터뷰 일시</dt>
+        <dd>2026-04-22 (서울)</dd>
+      </div>
+      <div>
+        <dt>컨설팅 팀</dt>
+        <dd>김소연 (경영진단·세이브어스랩) · 안재은 (식품제조·농부의기획) · 송병근 (AI 생산성)</dd>
+      </div>
+      <div>
+        <dt>제출 시점</dt>
+        <dd>2026-04-29 워크샵 #1</dd>
+      </div>
+    </dl>
+  </header>
+
+  <!-- =========================== -->
+  <!-- SECTION 1: 5단계 인터뷰 구조 -->
+  <!-- =========================== -->
+  <section>
+    <div class="sec-header">
+      <span class="num">01</span>
+      <h2>5단계 인터뷰 구조 기반 정리</h2>
+      <span class="tag">유입 → 입력 → 로직 → 결과 → 확보</span>
+    </div>
+
+    <div class="summary">
+      <strong>핵심 요약:</strong> 케이터링이 매출의 40%를 차지하면서 수익률은 매장 대비 2배. 재구매율 80%·전화 상담 전환율 거의 100%(실질 95%+)인 강력한 BM이지만, 견적·상담·정리 전 과정이 <strong>대표 + 10년차 팀 리더 1인 = 단 2인</strong>에게 집중되어 있어 조직적 병목이 명확하다. AI 툴은 미사용이지만 도입 의향은 있는 상태.
+    </div>
+
+    <div class="flow">
+      <div class="flow-step"><div class="label">STEP 1</div><div class="name">유입 Entry</div></div>
+      <div class="flow-step"><div class="label">STEP 2</div><div class="name">입력 Input</div></div>
+      <div class="flow-step"><div class="label">STEP 3</div><div class="name">로직 Process</div></div>
+      <div class="flow-step"><div class="label">STEP 4</div><div class="name">결과 Output</div></div>
+      <div class="flow-step"><div class="label">STEP 5</div><div class="name">확보 Data</div></div>
+    </div>
+
+    <!-- STAGE 1 -->
+    <div class="stage">
+      <div class="stage-head">
+        <span class="step-num">1</span>
+        <h3>유입 (Entry) — 채널·진입 경로</h3>
+        <span class="focus">고객은 어디로 들어오는가</span>
+      </div>
+      <ul>
+        <li><strong>오프라인 매장 (60%)</strong>: 성수동·현대백화점·이화여대·고속터미널·용산아이파크몰 5개 직영. 유동인구 거점 입점이 유입 전략. <strong style="color:#C8595E;">⚠️ 워크인 손님이 매장 경험 후 케이터링·명절 선물 고객으로 전환되는 사례 다수</strong> (인터뷰: 예산 웨딩 케이터링 손님이 알고 보니 매장 단골) — 그러나 매장 손님 데이터 0이라 깔때기 측정 불가</li>
+        <li><strong>케이터링·명절 B2B (40%)</strong>: 거의 100% <strong>바이럴</strong> 유입 (소개·경험 기반). DB손해보험·대법원·KB·현대해상 등 8년차 재구매 고객 다수</li>
+        <li><strong>케이터링 신청 채널</strong>: 자사 홈페이지(아임웹) 신청서 → 단일 진입점</li>
+        <li><strong>SNS·디지털 마케팅</strong>: 거의 0. 작년 처음으로 <strong>경기도 사회적경제원 임팩트프랜차이즈</strong> 통해 SNS 에이전시 월 100만원 시도 (지속 여부 불투명)</li>
+        <li>대표 본인은 매장·케이터링 외 <strong>유료 트래픽 의존도 거의 없음</strong>을 강점으로 인식</li>
+      </ul>
+    </div>
+
+    <!-- STAGE 2 -->
+    <div class="stage">
+      <div class="stage-head">
+        <span class="step-num">2</span>
+        <h3>입력 (Input) — 입력 데이터 정의</h3>
+        <span class="focus">고객 이탈 지점 제거, 입력 최소화</span>
+      </div>
+      <ul>
+        <li><strong>케이터링 입력 흐름</strong>: 아임웹 신청서 → <strong>전화 상담 (대표 + 10년차 팀 리더 단 2인만 응대)</strong> → 구글시트 수동 정리 → 이메일 견적서 → 채널톡 상세 소통</li>
+        <li>아임웹 → 구글시트 자동 연동을 <strong>한 번 시도했으나, 전화 상담 중 정보 정제가 필요해 수동으로 회귀</strong></li>
+        <li>800만원 이상(50~60인+) 행사: 현장 사전 방문 / 그 이하: 사진으로 대체</li>
+        <li>재구매 B2B 고객: 신청서·견적 메일 단계 생략 → 채널톡으로 직접 소통</li>
+        <li>고객 정보 관리: 구글 스프레드시트 단일 (CRM 미도입)</li>
+      </ul>
+      <div class="quote">
+        "구글시트 쓰기 권한은 저랑 팀리더만요. 커스터마이징 판단이 필요해서."
+        <span class="who">— 김민영 대표</span>
+      </div>
+    </div>
+
+    <!-- STAGE 3 -->
+    <div class="stage">
+      <div class="stage-head">
+        <span class="step-num">3</span>
+        <h3>로직 (Process) — 운영 비법·암묵지</h3>
+        <span class="focus">사장님만의 운영 비법 구조화</span>
+      </div>
+      <ul>
+        <li><strong>수익 1순위는 케이터링</strong>. 매장 대비 수익률 약 2배 (임대료 부담이 없는 구조)</li>
+        <li><strong>메뉴 결정 로직</strong>: 트렌드보다 <strong>"지역 식재료 → 본연의 맛"</strong>이 1순위. 저염·무조미료(MSG·소금·설탕 최소) 정책 유지</li>
+        <li><strong>농가 150곳은 오해</strong>: 실제로는 지역 <strong>시니어클럽/거점 조직</strong> 단위로 소통 (개인 농가는 법인 증빙 처리 불가). 월 4~5천만원 가공품 + 가락시장·육류 월 3천만원</li>
+        <li><strong>가격 결정</strong>: 원가·임대료 기반의 정성적 판단 (밥 한 그릇 9,800원 — "1만원 사수")</li>
+        <li><strong>케이터링 커스터마이징</strong>은 대표 + 10년차 팀 리더의 <strong>경험·감</strong> 기반. 명시적 룰북·체크리스트 부재 (팀원 레벨에서는 "예외 가능 여부" 판단이 어려워 단순 거절로 응대)</li>
+        <li>임대료 압박: 용산 월 2천만, 성수동은 4배 상승 → 케이터링 비중 확대 압력</li>
+      </ul>
+      <div class="quote">
+        "지금 BM을 보면 케이터링이 수익률이 더 높겠네요." → "맞습니다, 약 2배. 임대료가 없어서요."
+        <span class="who">— 송병근 ↔ 김민영 대표</span>
+      </div>
+    </div>
+
+    <!-- STAGE 4 -->
+    <div class="stage">
+      <div class="stage-head">
+        <span class="step-num">4</span>
+        <h3>결과 (Output) — 산출물·KPI·핵심가치</h3>
+        <span class="focus">고객이 받는 최종 가치</span>
+      </div>
+      <ul>
+        <li><strong>핵심 가치 메시지</strong>: "지역 식재료를 도시에 전하자". 제일 맛있는 게 아니라 <strong>본연의 된장 맛</strong>. 농가 안정 소득 + 도시민 건강한 한 끼</li>
+        <li><strong>차별화</strong>: 모든 원재료 정보·재배자 이름 공개 / 계약재배 (풍흉년 무관 계약금 지급) / 전통 발효 조리</li>
+        <li><strong>케이터링 전환율</strong>: 전화 상담 시 <strong>거의 100% (실질 95%+)</strong> — "여러 데 전화해 봤는데 이렇게 상세한 상담이 처음"이라는 고객 피드백. 자동 견적으로 대체 시 이탈 우려 큼</li>
+        <li><strong>케이터링 재구매율</strong>: 80% (마케팅 비용 거의 0인 채로 유지)</li>
+        <li>고객이 가장 만족하는 포인트: 정직한 식재료 + 합리적 가격 + 도시인의 힐링 한 끼라는 정서적 가치</li>
+      </ul>
+    </div>
+
+    <!-- STAGE 5 -->
+    <div class="stage">
+      <div class="stage-head">
+        <span class="step-num">5</span>
+        <h3>확보 (Data) — 데이터 자원·디지털 성숙도</h3>
+        <span class="focus">자동화 가능한 자원 확보</span>
+      </div>
+      <ul>
+        <li><strong>현재 도구 스택</strong>:
+          <ul style="margin-top:6px; padding-left:18px;">
+            <li style="padding-left:14px;">구글 스프레드시트 — 케이터링 고객DB·견적·진행단계</li>
+            <li style="padding-left:14px;">KT비즈메카 메일+게시판 — 지출결의·내부서류·파일공유</li>
+            <li style="padding-left:14px;">ERP (카운트 등) — 물류 입출고</li>
+            <li style="padding-left:14px;">카카오 채널톡 — 케이터링 고객 소통 (히스토리 영구 유지)</li>
+            <li style="padding-left:14px;">아임웹 — 홈페이지·케이터링 신청서</li>
+          </ul>
+        </li>
+        <li><strong>AI 툴 미사용</strong>. 대표 개인적으로 GPT 가끔 쓰는 수준. 팀원들은 새 툴 도입에 허들 인식</li>
+        <li><strong>도입 의향은 명확</strong>: "재무 부분을 클로드로 전환하면 좋겠다" — 대표 직접 발언</li>
+        <li>SNS 콘텐츠는 담당자가 수동 작성, 비정기 발행 (KPI·발행주기 미관리)</li>
+        <li>월 AI·디지털 도구 투자 가능 예산: 인터뷰에서 명시적 응답은 없으나, 작년 <strong>경기도 사회적경제원 임팩트프랜차이즈</strong> 통해 SNS 에이전시 월 100만원을 시도한 이력으로 추정</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- =========================== -->
+  <!-- SECTION 2: 기업 현황 진단 -->
+  <!-- =========================== -->
+  <section>
+    <div class="sec-header">
+      <span class="num">02</span>
+      <h2>기업 현황 진단 초안</h2>
+      <span class="tag">DIAGNOSE</span>
+    </div>
+
+    <div class="summary">
+      <strong>핵심 진단:</strong> 매출 30억·재구매율 80%·수익률 2배의 케이터링이라는 <strong>고마진 BM</strong>을 보유했지만, <strong>4-Lens · 6대 병목 · CTS 분석</strong> 결과 <strong style="color:#C8595E;">공급망 · 상담 · 데이터</strong>가 핵심 3대 병목으로 도출됨. 운영 노하우가 <strong>대표 + 10년차 팀 리더 단 2인</strong>에 집중돼 매출 확장이 인적 자원으로 막혀 있는 구조. AX 도입의 가장 큰 레버는 "<strong>대표 의존도 경량화 + 공급망·데이터 시스템화</strong>"다.
+    </div>
+
+    <!-- KPIs -->
+    <div class="kpis">
+      <div class="kpi"><div class="val">30억</div><div class="lbl">2024 매출</div></div>
+      <div class="kpi"><div class="val">82%</div><div class="lbl">3년 매출 성장</div></div>
+      <div class="kpi"><div class="val">80%</div><div class="lbl">케이터링 재구매율</div></div>
+      <div class="kpi"><div class="val">2배</div><div class="lbl">케이터링 수익률 (vs 매장)</div></div>
+    </div>
+
+    <!-- 매출 추이 -->
+    <table class="revenue-table">
+      <thead>
+        <tr><th>연도</th><th>매출액</th><th class="num-cell">YoY 성장</th><th>비고</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2021</td><td>15.4억원</td><td class="num-cell">—</td><td>코로나 직후</td></tr>
+        <tr><td>2022</td><td>22.3억원</td><td class="num-cell">+44.8%</td><td>사회적기업 인증</td></tr>
+        <tr><td>2023</td><td>27.6억원</td><td class="num-cell">+23.8%</td><td>케이터링 본격 확장</td></tr>
+        <tr><td>2024</td><td>30.0억원 (28.1억 + 케이터링·명절 12억)</td><td class="num-cell">+8.7%</td><td>매장 60% : B2B 40% 달성</td></tr>
+      </tbody>
+    </table>
+
+    <!-- 핵심 정의 -->
+    <div style="background:#1A1A1A; color:#FFF; padding:18px 24px; border-radius:4px; margin-bottom:32px;">
+      <div style="font-size:11px; letter-spacing:0.15em; color:#C8A063; margin-bottom:8px; font-weight:600;">핵심 정의 (한 줄)</div>
+      <p style="font-size:15px; line-height:1.7; color:#F0EDE5; font-weight:500;">
+        소녀방앗간 = "<strong style="color:#FFF;">지역 생산자 공급망을 기반으로 B2B 식문화 경험을 제공하는 하이브리드 F&amp;B 플랫폼</strong>"
+      </p>
+      <div style="margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.15); font-size:12.5px; color:#C8A063;">
+        <strong>성장 단계:</strong> 2014 창업 → 2022 사회적기업 인증 → <strong style="color:#FFF;">현재 성장 후반 진입 (3년간 82% 성장 → 둔화 초기 신호)</strong>
+      </div>
+    </div>
+
+    <!-- 4-Lens 시장 리서치 -->
+    <div style="margin-bottom:36px;">
+      <h3 style="font-size:18px; font-weight:700; margin-bottom:4px; letter-spacing:-0.01em;">🔬 4-Lens 시장 리서치</h3>
+      <p style="font-size:12px; color:#888; margin-bottom:16px;">분석: 김소연 코치 (세이브어스랩 · 경영진단)</p>
+      <div class="swot">
+        <div class="swot-box s">
+          <h4>① CUSTOMER · 고객</h4>
+          <ul>
+            <li><strong>핵심 고객</strong>: B2B (기업 총무·행사 담당) / 프리미엄 개인 행사 (웨딩·돌잔치) / 매장 방문객</li>
+            <li><strong>진짜 구매 이유</strong>: 음식이 아니라 <strong>"행사를 실패 없이 운영할 신뢰"</strong> 구매</li>
+            <li><strong>핵심 니즈</strong>: 빠른 견적 · 신뢰 가능한 결과 · 행사 맞춤 구성</li>
+          </ul>
+        </div>
+        <div class="swot-box w">
+          <h4>② COMPETITOR · 경쟁</h4>
+          <ul>
+            <li>일반 케이터링 (가격 경쟁) — 비경쟁</li>
+            <li>프리미엄 도시락 (고급화) — 부분 경쟁</li>
+            <li>ESG 선물 (가치 중심) — 직접 경쟁</li>
+            <li>한식 브랜드 (대중성) — 차별화</li>
+            <li><strong>포지셔닝: 프리미엄 + 사회적 가치 + 맞춤형</strong></li>
+          </ul>
+        </div>
+        <div class="swot-box o">
+          <h4>③ COMPANY · 내부</h4>
+          <ul>
+            <li><strong>강점</strong>: 공급망 확보 (150 농가) · B2B 재구매 구조 · 브랜드 스토리</li>
+            <li><strong>약점</strong>: 데이터 없음 · 자동화 없음 · 경험 의존 운영</li>
+          </ul>
+        </div>
+        <div class="swot-box s" style="border-top-color:#5A6B7D;">
+          <h4 style="color:#5A6B7D;">④ CONTEXT · 환경</h4>
+          <ul>
+            <li><strong>기회</strong>: ESG 소비 증가 · B2B 케이터링 시장 확대</li>
+            <li><strong>위협</strong>: 인건비 상승 · 식재료 가격 변동 · 운영 복잡도 증가</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6대 구조적 병목 -->
+    <div style="margin-bottom:36px;">
+      <h3 style="font-size:18px; font-weight:700; margin-bottom:4px; letter-spacing:-0.01em;">⚙️ 6대 구조적 병목</h3>
+      <p style="font-size:12px; color:#888; margin-bottom:8px;">분석: 김소연 코치 (세이브어스랩) · "성장은 했지만, 사람 중심 운영이 확장을 막고 있음"</p>
+
+      <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:10px;">
+        <div style="background:#FFF3F3; border-left:3px solid #C8595E; padding:14px 18px; border-radius:4px;">
+          <div style="font-size:9.5px; font-weight:700; color:#C8595E; letter-spacing:0.12em; margin-bottom:4px;">CORE BOTTLENECK</div>
+          <div style="font-weight:700; font-size:14px; margin-bottom:6px;">① 공급망 병목</div>
+          <div style="font-size:12px; color:#555; line-height:1.55;">150개 농가 → 담당자 의존 / 발주·정산·소통 비표준화<br/><strong>리스크:</strong> 공급 지연 · 품질 편차 · 정산 오류</div>
+        </div>
+        <div style="background:#FAFAF7; border-left:3px solid #C4A882; padding:14px 18px; border-radius:4px;">
+          <div style="font-size:9.5px; font-weight:700; color:#888; letter-spacing:0.12em; margin-bottom:4px;">BOTTLENECK</div>
+          <div style="font-weight:700; font-size:14px; margin-bottom:6px;">② 케이터링 수주 병목</div>
+          <div style="font-size:12px; color:#555; line-height:1.55;">전화·메일 중심 / 견적 수작업<br/><strong>문제:</strong> 처리 속도 느림 · 담당자 피로 증가</div>
+        </div>
+        <div style="background:#FFF3F3; border-left:3px solid #C8595E; padding:14px 18px; border-radius:4px;">
+          <div style="font-size:9.5px; font-weight:700; color:#C8595E; letter-spacing:0.12em; margin-bottom:4px;">CORE BOTTLENECK</div>
+          <div style="font-weight:700; font-size:14px; margin-bottom:6px;">③ 상담 병목</div>
+          <div style="font-size:12px; color:#555; line-height:1.55;">대표 + 10년차 팀 리더 단 2인 집중<br/><strong>결과:</strong> 확장 불가능 구조</div>
+        </div>
+        <div style="background:#FAFAF7; border-left:3px solid #C4A882; padding:14px 18px; border-radius:4px;">
+          <div style="font-size:9.5px; font-weight:700; color:#888; letter-spacing:0.12em; margin-bottom:4px;">BOTTLENECK</div>
+          <div style="font-weight:700; font-size:14px; margin-bottom:6px;">④ 생산·재고 병목</div>
+          <div style="font-size:12px; color:#555; line-height:1.55;">수요 예측 없음 / 경험 기반 생산<br/><strong>결과:</strong> 로스 발생 · 과잉/부족 반복</div>
+        </div>
+        <div style="background:#FAFAF7; border-left:3px solid #C4A882; padding:14px 18px; border-radius:4px;">
+          <div style="font-size:9.5px; font-weight:700; color:#888; letter-spacing:0.12em; margin-bottom:4px;">BOTTLENECK</div>
+          <div style="font-weight:700; font-size:14px; margin-bottom:6px;">⑤ 콘텐츠 병목</div>
+          <div style="font-size:12px; color:#555; line-height:1.55;">SNS 수동 운영 / 농가 스토리 활용 부족<br/><strong>결과:</strong> 브랜드 확장 제한</div>
+        </div>
+        <div style="background:#FFF3F3; border-left:3px solid #C8595E; padding:14px 18px; border-radius:4px;">
+          <div style="font-size:9.5px; font-weight:700; color:#C8595E; letter-spacing:0.12em; margin-bottom:4px;">CORE BOTTLENECK</div>
+          <div style="font-weight:700; font-size:14px; margin-bottom:6px;">⑥ 데이터 병목</div>
+          <div style="font-size:12px; color:#555; line-height:1.55;">CRM 없음 / 고객 이력 분산<br/><strong>결과:</strong> 재구매 관리 비효율</div>
+        </div>
+      </div>
+
+      <div style="background:#1A1A1A; color:#FFF; padding:14px 22px; border-radius:4px; margin-top:14px; text-align:center; font-size:14px;">
+        ▶ "<strong style="color:#C8A063;">공급망 · 상담 · 데이터</strong>" 이 <strong>3개가 핵심 병목</strong>
+      </div>
+
+      <!-- 안재은 코치 추가 진단 -->
+      <div style="margin-top:16px; background:#FFF3F3; border:2px solid #C8595E; border-radius:8px; padding:18px 22px;">
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap;">
+          <span style="background:#C8595E; color:#FFF; font-size:9.5px; font-weight:700; letter-spacing:0.12em; padding:3px 10px; border-radius:100px;">+ 추가 진단 (인터뷰 후 팀 회고)</span>
+          <span style="font-size:12px; color:#888;">분석: 안재은 코치 (농부의기획 · 식품제조)</span>
+        </div>
+        <div style="font-weight:700; font-size:15px; margin-bottom:8px; letter-spacing:-0.01em;">🏪 매장 데이터 부재 — 워크인→케이터링 전환 경로의 블랙박스화</div>
+        <div style="font-size:13px; color:#3A3A3A; line-height:1.75;">
+          소녀방앗간은 <strong>매장 워크인 손님이 케이터링·명절 고객으로 전환되는 케이스가 많음</strong> (인터뷰: 예산 웨딩 케이터링 손님이 알고 보니 매장 단골). 그러나 매장에서 <strong>"누가·언제·몇 시에·어떤 구성으로"</strong> 들어오는지 데이터가 0인 상태. 즉 <strong style="color:#C8595E;">가장 큰 깔때기의 시작점이 측정 불가능</strong>.
+          <br/><br/>
+          <strong>임팩트:</strong> 케이터링 매출 12억 중 상당 비중이 매장 워크인 출처일 가능성. 데이터화하면 ① 시간대별 운영 효율화 ② 매장→케이터링 전환 funnel 가시화 ③ 매장 단골 식별 → 선제적 케이터링 제안 가능.
+        </div>
+      </div>
+    </div>
+
+    <!-- CTS 숨은 비용 분석 -->
+    <div style="margin-bottom:32px;">
+      <h3 style="font-size:18px; font-weight:700; margin-bottom:4px; letter-spacing:-0.01em;">💰 CTS · 숨은 비용 분석</h3>
+      <p style="font-size:12px; color:#888; margin-bottom:16px;">분석: 김소연 코치 (세이브어스랩 · 경영진단)</p>
+
+      <table class="revenue-table">
+        <thead>
+          <tr><th>항목</th><th>구성</th><th>핵심 통찰</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>① 공급망 운영</strong></td><td>농가 소통 시간 · 발주 조율 · 정산 처리</td><td>인건비보다 <strong>'시간 비용'</strong>이 더 큼</td></tr>
+          <tr><td><strong>② 상담</strong></td><td>전화 상담 시간 · 요구사항 정리</td><td>고가 서비스라 필수, 그러나 <strong>반복 비용</strong>으로 누적</td></tr>
+          <tr><td><strong>③ 견적·제안</strong></td><td>엑셀 계산 · 제안서 제작</td><td><strong>"매번 새로 만드는"</strong> 비효율 구조</td></tr>
+          <tr><td><strong>④ 재고 로스</strong></td><td>수요 예측 실패</td><td><strong>직접 손실</strong> 발생</td></tr>
+          <tr><td><strong>⑤ 내부 커뮤니케이션</strong></td><td>매장-공장-케이터링 간 전달</td><td>오류 발생 가능성</td></tr>
+          <tr><td><strong>⑥ 기회비용</strong></td><td>대응 지연으로 수주 실패</td><td><strong style="color:#C8595E;">가장 큰 손실</strong></td></tr>
+        </tbody>
+      </table>
+
+      <div style="background:#FFFAF0; border-left:3px solid #C8A063; padding:14px 22px; margin-top:14px; font-size:14px;">
+        <strong>구조적 한 줄 진단:</strong> "돈보다 <strong style="color:#C8595E;">시간이 더 많이 새고 있는 구조</strong>"
+      </div>
+    </div>
+
+    <!-- 종합 진단 -->
+    <div style="background:#1A1A1A; color:#FFF; padding:24px 28px; border-radius:4px; margin-top:8px;">
+      <div style="font-size:11px; letter-spacing:0.15em; color:#C8A063; margin-bottom:10px; font-weight:600;">종합 진단</div>
+      <p style="font-size:14px; line-height:1.7; color:#F0EDE5;">
+        소녀방앗간은 <strong style="color:#FFF;">재구매율 80%·전화 상담 전환율 거의 100%</strong>라는 강력한 케이터링 BM을 보유한 사회적기업이다. <strong style="color:#C8A063;">"좋은 구조는 이미 만들었지만, 운영 시스템이 따라오지 못하는 상태"</strong> — 매출 성장이 둔화(+8.7%)되는 현 시점에 <strong style="color:#FFF;">공급망 · 상담 · 데이터</strong> 3대 병목이 확장을 막고 있고, 그 핵심에 <strong style="color:#FFF;">대표 + 10년차 팀 리더 단 2인</strong>에 집중된 운영 구조가 있다. AI·자동화로 일부 이양해 <strong style="color:#FFF;">"전환율은 유지하되, 단 2인이 처리할 수 있는 케이스 수 자체를 늘리는 것"</strong> + <strong style="color:#FFF;">"공급망·데이터를 사람 의존에서 시스템 의존으로 전환하는 것"</strong>이 AX의 핵심 전략 방향이다.
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================== -->
+  <!-- SECTION 3: 핵심 AX 과제 -->
+  <!-- =========================== -->
+  <section>
+    <div class="sec-header">
+      <span class="num">03</span>
+      <h2>핵심 AX 과제 도출 (6건)</h2>
+      <span class="tag">3건 이상 도출 ✓</span>
+    </div>
+
+    <div class="summary">
+      <strong>전략 원칙:</strong> 대표 본인이 우려한 <strong>"전화 상담 시 거의 100% 전환되는 강점을 자동화로 깨면 안 된다"</strong>는 제약을 지키면서, <strong>견적서 전달 방식·데이터 입력·재무 처리·내부 운영 가시화</strong>를 우선 자동화한다. 5주 내 구축 가능한 1건을 메인으로 하고, 나머지는 확장 로드맵으로 단계화.
+    </div>
+
+    <!-- TASK 1 -->
+    <div class="task-card p1">
+      <div class="head">
+        <span class="priority">P1 · 즉시</span>
+        <h3>케이터링 견적서 웹화 (모바일 반응형 + 채널톡 연결)</h3>
+        <span class="horizon">5주 구축</span>
+      </div>
+      <div class="body">
+        <div class="col">
+          <h5>현황</h5>
+          <p>엑셀 견적서를 이메일에 첨부 발송. 고객이 모바일에서 보면 가독성 떨어지고, 다음 액션(채널톡 문의)으로 연결되지 않음.</p>
+        </div>
+        <div class="col">
+          <h5>AX 솔루션</h5>
+          <p>고유 URL 기반 웹 견적서 (모바일 반응형) + <strong>"채널톡으로 바로 문의" 버튼</strong> + PDF 다운로드. 인원·메뉴·날짜 변경 시 URL만 갱신해 재발송.</p>
+        </div>
+      </div>
+      <div class="impact">
+        <span class="arr">→</span>
+        <strong>기대 효과:</strong> 핸드폰에서 즉시 확인·전송, 채널톡 즉시 연결, 브랜드 전문성 상승. 작업 부담은 기존과 동일(인원·메뉴 입력만).
+      </div>
+      <div class="quote-bx">
+        "견적서를 웹사이트로 배포하면 모바일 반응형이 돼서 훨씬 편하지 않을까요?" → "너무 좋을 것 같아요. 핸드폰으로 바로 채널톡 연결도 되고."
+      </div>
+    </div>
+
+    <!-- TASK 2 -->
+    <div class="task-card p2">
+      <div class="head">
+        <span class="priority">P2 · 즉시</span>
+        <h3>아임웹 → 구글시트 자동 연동 (Webhook 기반)</h3>
+        <span class="horizon">2주 구축</span>
+      </div>
+      <div class="body">
+        <div class="col">
+          <h5>현황</h5>
+          <p>아임웹 신청서를 대표·팀리더가 보고 구글시트에 수동 입력. 과거 자동 연동을 시도했으나, 전화 상담 중 정보 정제가 필요해서 포기.</p>
+        </div>
+        <div class="col">
+          <h5>AX 솔루션</h5>
+          <p>아임웹 Webhook → n8n → 구글시트 <strong>"신규 신청 raw"</strong> 시트로 자동 적재. 대표는 raw에서 정제 컬럼만 채우면 됨. 채널톡 알림 동시 발송.</p>
+        </div>
+      </div>
+      <div class="impact">
+        <span class="arr">→</span>
+        <strong>기대 효과:</strong> 신청 누락 0건 보장, 대표 입력 시간 70% 절감, 응답 시간 단축으로 전환율 추가 향상 가능성.
+      </div>
+    </div>
+
+    <!-- TASK 3 (NEW · 안재은 코치) -->
+    <div class="task-card p3">
+      <div class="head">
+        <span class="priority">P3 · 단기</span>
+        <h3>매장 워크인 데이터 수집·분석 시스템 (매장→케이터링 전환 funnel 가시화)</h3>
+        <span class="horizon">5주 MVP</span>
+      </div>
+      <div class="body">
+        <div class="col">
+          <h5>현황</h5>
+          <p>5개 매장에서 누가·언제·몇 시에·어떤 구성으로 들어오는지 데이터 0. 워크인 손님이 케이터링 고객으로 전환되는 사례가 많은데도 그 깔때기를 측정·관리할 방법이 없는 상태.</p>
+        </div>
+        <div class="col">
+          <h5>AX 솔루션</h5>
+          <p>매장 직원 30초 입력 인터페이스 (태블릿/모바일) + 시간대별·고객군별 통계 대시보드 + 케이터링 전환 추적. POS 연동은 2단계로. 채널톡과 연동하면 단골 식별 시 자동 케이터링 제안 발송 가능.</p>
+        </div>
+      </div>
+      <div class="impact">
+        <span class="arr">→</span>
+        <strong>기대 효과:</strong> 케이터링 12억 매출의 매장 출처 비중 가시화, 시간대별 운영 효율화, 매장 단골 → 케이터링 선제 제안으로 전환율 추가 상승.
+      </div>
+      <div class="quote-bx">
+        💡 안재은 코치 인터뷰 후 회고: "매장에 어떤 손님이 언제 들어오는지 데이터가 없다는 게 가장 큰 한계."
+      </div>
+    </div>
+
+    <!-- TASK 4 (구 TASK 3) -->
+    <div class="task-card p3">
+      <div class="head">
+        <span class="priority">P4 · 단기</span>
+        <h3>재무 정리 AI 도구 (Claude 기반 가계부·결산 자동화)</h3>
+        <span class="horizon">4주 구축</span>
+      </div>
+      <div class="body">
+        <div class="col">
+          <h5>현황</h5>
+          <p>재무 데이터가 KT비즈메카·구글시트·ERP·통장으로 분산. 월별 결산·세무 정리에 대표 시간 다수 투입. 대표 직접 도입 의향 명시.</p>
+        </div>
+        <div class="col">
+          <h5>AX 솔루션</h5>
+          <p><strong>Claude API 기반 재무 자동화 시스템</strong> 구축. CSV 임포트 → 자동 거래 분류 → 월별 P&L·급여 대시보드. 회계사무소와 병행 운영하면서 점진적 이관.</p>
+        </div>
+      </div>
+      <div class="impact">
+        <span class="arr">→</span>
+        <strong>기대 효과:</strong> 월별 결산 시간 50%+ 절감, 매출·임대료·식자재 비중 실시간 가시화, 임대료 압박이 큰 매장의 의사결정 속도 향상.
+      </div>
+      <div class="quote-bx">
+        "안 써요. 써요. 아니 쓰고 싶은데 아직 못 해봤어요. 재무 부분 클로드로 하면 좋겠다고."
+      </div>
+    </div>
+
+    <!-- TASK 4 -->
+    <div class="task-card p4">
+      <div class="head">
+        <span class="priority">P5 · 중기</span>
+        <h3>케이터링 내부 운영 통합 대시보드 (SaaS형)</h3>
+        <span class="horizon">3개월</span>
+      </div>
+      <div class="body">
+        <div class="col">
+          <h5>현황</h5>
+          <p>고객DB·진행단계·견적·채널톡이 도구별로 분산. 대표 + 10년차 팀 리더 단 2인 외에는 진행 상황 파악 불가 → 인수인계 어려움.</p>
+        </div>
+        <div class="col">
+          <h5>AX 솔루션</h5>
+          <p>내부 운영 SaaS: 케이터링 DB + 칸반(신청→상담→견적→확정→실행→정산) + 채널톡 메시지 미러링 + 자동 리마인더. 권한 차등(대표 + 시니어 리더 / 일반 팀원 / 뷰어).</p>
+        </div>
+      </div>
+      <div class="impact">
+        <span class="arr">→</span>
+        <strong>기대 효과:</strong> 대표 의존도 경량화, 신규 팀원 1주 onboarding 가능, 처리 가능 케이스 수 30% 이상 확대 여지.
+      </div>
+    </div>
+
+    <!-- TASK 5 -->
+    <div class="task-card p5">
+      <div class="head">
+        <span class="priority">P6 · 중기</span>
+        <h3>SNS 콘텐츠 AI 반자동화 (농가 스토리 파이프라인)</h3>
+        <span class="horizon">6주</span>
+      </div>
+      <div class="body">
+        <div class="col">
+          <h5>현황</h5>
+          <p>인스타·블로그·유튜브가 비정기 운영. 작년 처음 외부 에이전시(월 100만원) 시도했으나 효과 측정 어려움.</p>
+        </div>
+        <div class="col">
+          <h5>AX 솔루션</h5>
+          <p>농가 인터뷰 노트·계약재배 정보 → Claude API → 인스타·블로그 초안 자동 생성. 검수·감성 조율은 사람이. 발행 캘린더 자동화.</p>
+        </div>
+      </div>
+      <div class="impact">
+        <span class="arr">→</span>
+        <strong>기대 효과:</strong> 콘텐츠 제작 시간 70% 절감, 발행 주기 안정화, 외주비 월 100만원 → 0원 전환 가능.
+      </div>
+    </div>
+
+    <!-- 우선순위 결론 -->
+    <div style="margin-top:32px; padding:24px 28px; background:#FFFAF0; border-left:4px solid #C8A063;">
+      <div style="font-size:11px; letter-spacing:0.15em; color:#888; margin-bottom:8px; font-weight:600;">5주 컨설팅 집중 제안</div>
+      <p style="font-size:14px; line-height:1.7; color:#1A1A1A;">
+        5주 내 실제 구동 가능한 솔루션은 <strong>P1 (케이터링 견적서 웹화)</strong>를 메인으로 추천. 대표가 가장 큰 호응을 보였고, 전화 상담 → 견적 전달 흐름의 약한 지점을 정확히 보완하는 솔루션이며, ROI 가시화가 빠르다(첫 견적 발송 직후 측정 가능).
+        <br/><br/>
+        <strong>P2 (아임웹 자동 연동)</strong>은 P1 구축 과정에서 부수적으로 함께 구현 가능. <strong>P3 (매장 워크인 데이터 · 안재은 코치 준비)</strong>는 매장→케이터링 깔때기 가시화의 첫 단계로 5주 내 MVP 가능 — 시간대별 운영 효율화 + 단골 식별로 즉시 임팩트. <strong>P4 (재무 AI)</strong>는 5주 내 PoC만 보여드리고, P5·P6은 최종 발표(5/27) 시 <strong>"확장 로드맵"</strong>으로 제안하는 구조가 가장 현실적이다.
+      </p>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <!-- =========================== -->
+  <!-- APPENDIX · 별첨 -->
+  <!-- =========================== -->
+  <section style="margin-top:56px; padding-top:32px; border-top:2px dashed #C8A082;">
+    <div class="sec-header" style="border-bottom:1px solid #ddd; padding-bottom:12px; margin-bottom:24px;">
+      <span class="num" style="font-size:30px; color:#888;">A</span>
+      <h2 style="font-size:20px;">별첨 · 추가 논의 사항</h2>
+      <span class="tag">핵심 과제 외 · 팀 토론 기록</span>
+    </div>
+
+    <!-- A. 깔때기 분석 -->
+    <div style="margin-bottom:40px;">
+      <h3 style="font-size:16px; font-weight:700; margin-bottom:4px;">A. 깔때기 · 고객 이탈률 분석 (정성적)</h3>
+      <p style="font-size:12px; color:#888; margin-bottom:14px;">분석: 컨설팅 팀 토론 — 데이터 가용성 기준 정성 평가</p>
+
+      <table class="revenue-table">
+        <thead>
+          <tr><th>단계</th><th>측정 가능성</th><th>현재 상태</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>① 매장 워크인 (입구)</strong></td><td><strong style="color:#C8595E;">❌ 데이터 0</strong></td><td>방문 시간 · 고객군 · 횟수 모두 미수집</td></tr>
+          <tr><td><strong>② 매장 구매 (체험)</strong></td><td><strong style="color:#B58652;">△ POS 매출만</strong></td><td>고객별 분리 X · 단순 매출 합산</td></tr>
+          <tr><td><strong>③ 매장 단골 형성</strong></td><td><strong style="color:#C8595E;">❌ 데이터 0</strong></td><td>재방문 · 단골 인지 시스템 부재</td></tr>
+          <tr><td><strong>④ 케이터링 신청 (인입)</strong></td><td><strong style="color:#2D7D5F;">✅ 아임웹</strong></td><td>2017~ 누적 DB 보유 (약 10년치)</td></tr>
+          <tr><td><strong>⑤ 전화 상담 (전환)</strong></td><td><strong style="color:#B58652;">△ 정성</strong></td><td>거의 100% 전환 (대표 + 10년차 팀 리더 응대)</td></tr>
+          <tr><td><strong>⑥ 케이터링 실행</strong></td><td><strong style="color:#2D7D5F;">✅ 매출</strong></td><td>월 30건 · 월매출 6,000만원</td></tr>
+          <tr><td><strong>⑦ 재구매</strong></td><td><strong style="color:#2D7D5F;">✅ 80%</strong></td><td>B2B 고객 기준</td></tr>
+        </tbody>
+      </table>
+
+      <div style="background:#FFFAF0; border-left:3px solid #C8A063; padding:12px 18px; margin-top:14px; font-size:13px; line-height:1.7;">
+        <strong>핵심 인사이트:</strong> ①~③ <strong>매장 단계의 측정 부재</strong>가 전체 깔때기의 가장 큰 블랙박스. 매장에서 케이터링으로 전환되는 사례가 다수임에도 그 비율을 알 수 없는 상태.
+        <br/>(연결: Section 02 "매장 데이터 부재" 추가 진단 + Section 03 <strong>P3 매장 워크인 데이터 시스템</strong> 참조)
+      </div>
+    </div>
+
+    <!-- B. 10년치 DB 활용 논의 -->
+    <div>
+      <h3 style="font-size:16px; font-weight:700; margin-bottom:4px;">B. 10년치 케이터링 DB 활용 논의</h3>
+      <p style="font-size:12px; color:#888; margin-bottom:14px;">안재은 코치 제안 → 송병근 코치 후속 검토 (팀 토론)</p>
+
+      <div style="background:#FFFAF0; border:2px solid #C8A063; border-radius:8px; padding:18px 22px;">
+        <div style="font-size:13px; color:#3A3A3A; line-height:1.75; margin-bottom:14px;">
+          <strong style="color:#B58652;">▶ 안재은 코치 제안:</strong> 소녀방앗간은 2017년부터 모든 케이터링 고객 데이터를 보유 (성함·연락처·소속·메일·예산·메뉴·만족도) — <strong>약 10년치 DB</strong>가 구글시트와 채널톡에 적재돼 있다. 그러나 견적서 작성·메뉴 제안 시 이 DB를 <strong>시스템적으로 활용하는 단계는 부재</strong>. 매번 대표·팀 리더의 <strong>기억에 의존해 새로 구성</strong>하는 구조 → 견적서에 기존 DB를 활용하면 큰 효율 개선 가능.
+        </div>
+
+        <div style="background:#FFF; border:1px dashed #C8595E; border-radius:6px; padding:14px 18px;">
+          <div style="font-size:11px; font-weight:700; color:#C8595E; letter-spacing:0.1em; margin-bottom:8px;">⚠️ 송병근 코치 후속 검토 (현실 점검)</div>
+          <div style="font-size:12.5px; color:#555; line-height:1.7;">
+            "데이터 활용"이 명확한 기회임은 동의. 다만 인터뷰 분석상 <strong style="color:#1A1A1A;">"이미 할 수 있었다면 진작 했을 것"</strong>이라는 점에 주목해 <strong>"왜 그동안 못 했는지"</strong>를 먼저 진단해야 함:
+            <br/><br/>
+            ① 케이터링이 매번 고도의 <strong>커스터마이즈</strong>가 필요해 표준 DB 검색이 오히려 비효율일 가능성<br/>
+            ② 대표·10년차 팀 리더의 <strong>머릿속 매칭이 시스템보다 빠를 수 있음</strong> (현재 전화 상담 거의 100% 전환율 = 그 자체로 검증된 운영)<br/>
+            ③ 데이터 정제·구조화 비용 vs 활용 빈도 ROI 검증 필요
+          </div>
+        </div>
+
+        <div style="margin-top:14px; padding:12px 18px; background:#1A1A1A; color:#FFF; border-radius:6px;">
+          <div style="font-size:10.5px; font-weight:700; letter-spacing:0.12em; color:#C8A063; margin-bottom:4px;">팀 합의 결론</div>
+          <div style="font-size:13px; line-height:1.7; color:#F0EDE5;">
+            전면 DB 시스템 신축이 아니라, <strong style="color:#FFF;">"대표·리더의 빠른 검색·참조를 보조하는 채널톡 통합 검색 도구"</strong> 수준이 현실적. <strong style="color:#FFF;">P5 (케이터링 SaaS) 내 "과거 견적·메뉴 검색" 기능으로 단계적 접근</strong> — 5주 안에 풀 시스템 만들지 않고, 정말 자주 쓰이는 검색 패턴부터 가볍게 검증.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="closing">
+    소녀방앗간 AX 컨설팅 · 워크샵 #1 인터뷰 요약 보고서<br/>
+    송병근(AI생산성) · 김소연(경영진단) · 안재은(식품제조) · 2026-04-29
+  </footer>
+
+</div>
+
+</body>
+</html>
