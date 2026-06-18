@@ -94,15 +94,15 @@ export default function DiagnosisForm() {
   };
 
   const inputCls =
-    "w-full rounded-xl bg-[#13131B] border border-[#2A2A35] focus:border-[#3B82F6] outline-none px-4 py-3 text-sm text-[#F5F5F5] placeholder-[#F5F5F5]/30 transition";
-  const labelCls = "block text-xs font-semibold text-[#F5F5F5]/70 mb-2 uppercase tracking-wide";
-  const sectionCls = "rounded-3xl border border-[#2A2A35] bg-[#0F0F18] p-6 sm:p-8";
+    "w-full rounded-xl bg-[#13131B] border border-[#E4E4E7] focus:border-[#3B82F6] outline-none px-4 py-3 text-sm text-[#18181B] placeholder-[#18181B]/30 transition";
+  const labelCls = "block text-xs font-semibold text-[#18181B]/70 mb-2 uppercase tracking-wide";
+  const sectionCls = "rounded-3xl border border-[#E4E4E7] bg-[#0F0F18] p-6 sm:p-8";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Section 1 — 회사 기본 */}
       <div className={sectionCls}>
-        <h3 className="text-base font-extrabold text-[#F5F5F5] mb-5">
+        <h3 className="text-base font-extrabold text-[#18181B] mb-5">
           1️⃣ 회사 기본 정보
         </h3>
         <div className="grid sm:grid-cols-2 gap-4">
@@ -168,7 +168,7 @@ export default function DiagnosisForm() {
               value={form.businessDesc}
               onChange={(e) => setForm((f) => ({ ...f, businessDesc: e.target.value }))}
             />
-            <p className="mt-2 text-xs text-[#F5F5F5]/40 leading-5">
+            <p className="mt-2 text-xs text-[#18181B]/40 leading-5">
               사업·업무 흐름을 짧게 적어주세요. 진단 정확도가 크게 올라갑니다.
             </p>
           </div>
@@ -177,7 +177,7 @@ export default function DiagnosisForm() {
 
       {/* Section 2 — 현재 AI 사용 상황 */}
       <div className={sectionCls}>
-        <h3 className="text-base font-extrabold text-[#F5F5F5] mb-5">
+        <h3 className="text-base font-extrabold text-[#18181B] mb-5">
           2️⃣ 현재 AI 사용 상황
         </h3>
         <div className="space-y-5">
@@ -193,8 +193,8 @@ export default function DiagnosisForm() {
                     onClick={() => setForm((f) => ({ ...f, stage: s }))}
                     className={`text-left text-sm px-4 py-3 rounded-xl border transition ${
                       active
-                        ? "border-[#3B82F6] bg-[#3B82F6]/10 text-[#F5F5F5]"
-                        : "border-[#2A2A35] bg-[#13131B] text-[#F5F5F5]/70 hover:border-[#3B82F6]/50"
+                        ? "border-[#3B82F6] bg-[#3B82F6]/10 text-[#18181B]"
+                        : "border-[#E4E4E7] bg-[#13131B] text-[#18181B]/70 hover:border-[#3B82F6]/50"
                     }`}
                   >
                     {s}
@@ -215,8 +215,8 @@ export default function DiagnosisForm() {
                     onClick={() => toggleTool(t)}
                     className={`text-xs sm:text-sm px-4 py-2 rounded-full border transition ${
                       active
-                        ? "border-[#3B82F6] bg-[#3B82F6]/10 text-[#F5F5F5]"
-                        : "border-[#2A2A35] bg-[#13131B] text-[#F5F5F5]/70 hover:border-[#3B82F6]/50"
+                        ? "border-[#3B82F6] bg-[#3B82F6]/10 text-[#18181B]"
+                        : "border-[#E4E4E7] bg-[#13131B] text-[#18181B]/70 hover:border-[#3B82F6]/50"
                     }`}
                   >
                     {t}
@@ -230,10 +230,10 @@ export default function DiagnosisForm() {
 
       {/* Section 3 — 자동화하고 싶은 업무 */}
       <div className={sectionCls}>
-        <h3 className="text-base font-extrabold text-[#F5F5F5] mb-2">
+        <h3 className="text-base font-extrabold text-[#18181B] mb-2">
           3️⃣ 자동화하고 싶은 업무
         </h3>
-        <p className="text-xs text-[#F5F5F5]/50 mb-5 leading-5">
+        <p className="text-xs text-[#18181B]/50 mb-5 leading-5">
           답변하신 내용대로 진단 결과 PDF에 1순위 자동화 후보를 추천드립니다.
         </p>
         <div className="space-y-5">
@@ -247,7 +247,7 @@ export default function DiagnosisForm() {
               value={form.painPoint}
               onChange={(e) => setForm((f) => ({ ...f, painPoint: e.target.value }))}
             />
-            <p className="mt-2 text-xs text-[#F5F5F5]/40 leading-5">
+            <p className="mt-2 text-xs text-[#18181B]/40 leading-5">
               지금 어떤 일에 시간이 가장 많이 들어가는지 솔직하게 적어주세요.
             </p>
           </div>
@@ -260,7 +260,7 @@ export default function DiagnosisForm() {
               value={form.reduceWant}
               onChange={(e) => setForm((f) => ({ ...f, reduceWant: e.target.value }))}
             />
-            <p className="mt-2 text-xs text-[#F5F5F5]/40 leading-5">
+            <p className="mt-2 text-xs text-[#18181B]/40 leading-5">
               ①과 같은 업무라면 비워두셔도 됩니다.
             </p>
           </div>
@@ -279,7 +279,7 @@ export default function DiagnosisForm() {
 
       {/* Section 4 — 연락처 */}
       <div className={sectionCls}>
-        <h3 className="text-base font-extrabold text-[#F5F5F5] mb-5">
+        <h3 className="text-base font-extrabold text-[#18181B] mb-5">
           4️⃣ 진단 결과 받을 곳
         </h3>
         <div className="grid sm:grid-cols-2 gap-4">
@@ -328,7 +328,7 @@ export default function DiagnosisForm() {
       >
         {status === "loading" ? "제출 중…" : "무료 자가진단 신청 — 24시간 내 PDF 회신"}
       </button>
-      <p className="text-center text-xs text-[#F5F5F5]/40">
+      <p className="text-center text-xs text-[#18181B]/40">
         제출 시 개인정보처리방침에 동의하는 것으로 간주됩니다. 진단 목적 외 사용 X.
       </p>
     </form>

@@ -269,7 +269,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="bg-[#0A0A0F] text-[#F5F5F5] antialiased">
+      <body className="bg-[#FFFFFF] text-[#18181B] antialiased">
         {children}
         <InquiryModal />
       </body>

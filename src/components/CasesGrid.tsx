@@ -19,14 +19,14 @@ export default function CasesGrid({ cases }: { cases: CaseItem[] }) {
   const 개인Cases = cases.filter((c) => c.target === "개인");
 
   return (
-    <section className="py-24 px-4 sm:px-6 bg-[#0D0D14]">
+    <section className="py-24 px-4 sm:px-6 bg-[#FFFFFF]">
       <div className="max-w-6xl mx-auto">
         <FadeInSection>
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
               교육 현장에서 실제로 다뤘습니다
             </h2>
-            <p className="text-[#F5F5F5]/50 text-base sm:text-lg">
+            <p className="text-[#18181B]/50 text-base sm:text-lg">
               기관 출강부터 실무자 제작물까지, 검증된 교육 경험입니다.
             </p>
           </div>
@@ -36,7 +36,7 @@ export default function CasesGrid({ cases }: { cases: CaseItem[] }) {
         <FadeInSection delay={0.05}>
           <div className="flex items-center gap-3 mb-6">
             <span className="text-xl">🏛️</span>
-            <h3 className="text-lg font-bold text-[#F5F5F5]">기관 출강 사례</h3>
+            <h3 className="text-lg font-bold text-[#18181B]">기관 출강 사례</h3>
             <span className="text-xs bg-[#3B82F6]/10 border border-[#3B82F6]/30 text-[#3B82F6] rounded-full px-2.5 py-1">
               {기관Cases.length}건
             </span>
@@ -53,7 +53,7 @@ export default function CasesGrid({ cases }: { cases: CaseItem[] }) {
         <FadeInSection delay={0.05}>
           <div className="flex items-center gap-3 mb-6">
             <span className="text-xl">👤</span>
-            <h3 className="text-lg font-bold text-[#F5F5F5]">수강생 제작 사례</h3>
+            <h3 className="text-lg font-bold text-[#18181B]">수강생 제작 사례</h3>
             <span className="text-xs bg-[#10B981]/10 border border-[#10B981]/30 text-[#10B981] rounded-full px-2.5 py-1">
               {개인Cases.length}건
             </span>
@@ -76,7 +76,7 @@ function CaseCard({ item, index, color }: { item: CaseItem; index: number; color
       <motion.div
         whileHover={{ y: -4 }}
         transition={{ duration: 0.2 }}
-        className="bg-[#13131A] border border-[#2A2A35] rounded-2xl p-5 flex flex-col gap-3 h-full"
+        className="bg-[#F6F6F8] border border-[#E4E4E7] rounded-2xl p-5 flex flex-col gap-3 h-full"
       >
         {(item.imageUrl || item.image) && (
           <div className="relative w-full h-36 rounded-xl overflow-hidden">
@@ -91,7 +91,7 @@ function CaseCard({ item, index, color }: { item: CaseItem; index: number; color
         )}
 
         <div className="flex items-start justify-between gap-2">
-          <h4 className="text-sm font-bold text-[#F5F5F5] leading-snug flex-1">
+          <h4 className="text-sm font-bold text-[#18181B] leading-snug flex-1">
             {item.title}
           </h4>
           <span
@@ -107,7 +107,7 @@ function CaseCard({ item, index, color }: { item: CaseItem; index: number; color
         </div>
 
         {item.summary && (
-          <p className="text-xs text-[#F5F5F5]/50 leading-relaxed flex-1">{item.summary}</p>
+          <p className="text-xs text-[#18181B]/50 leading-relaxed flex-1">{item.summary}</p>
         )}
 
         {item.link && (

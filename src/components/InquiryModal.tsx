@@ -118,73 +118,73 @@ export default function InquiryModal() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.97 }}
             transition={{ duration: 0.25 }}
-            className="pointer-events-auto w-full sm:max-w-lg bg-[#13131A] border border-[#2A2A35] rounded-t-3xl sm:rounded-2xl shadow-2xl max-h-[92vh] overflow-y-auto"
+            className="pointer-events-auto w-full sm:max-w-lg bg-[#F6F6F8] border border-[#E4E4E7] rounded-t-3xl sm:rounded-2xl shadow-2xl max-h-[92vh] overflow-y-auto"
           >
             {status !== "done" ? (
               <form onSubmit={handleSubmit} className="p-6 sm:p-8 flex flex-col gap-5">
                 {/* 헤더 */}
                 <div className="flex items-start justify-between">
                   <div>
-                    <h2 className="text-xl font-bold text-[#F5F5F5] mb-1">문의 · 의뢰하기</h2>
-                    <p className="text-sm text-[#F5F5F5]/50">강의·출강·컨설팅·자동화 — 무엇이든 받습니다. 보통 영업일 1일 내 연락드립니다.</p>
+                    <h2 className="text-xl font-bold text-[#18181B] mb-1">문의 · 의뢰하기</h2>
+                    <p className="text-sm text-[#18181B]/50">강의·출강·컨설팅·자동화 — 무엇이든 받습니다. 보통 영업일 1일 내 연락드립니다.</p>
                   </div>
-                  <button type="button" onClick={close} className="text-[#F5F5F5]/40 hover:text-[#F5F5F5] transition-colors text-2xl leading-none mt-0.5">×</button>
+                  <button type="button" onClick={close} className="text-[#18181B]/40 hover:text-[#18181B] transition-colors text-2xl leading-none mt-0.5">×</button>
                 </div>
 
                 {/* 필드 */}
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-xs font-semibold text-[#F5F5F5]/50 uppercase tracking-wider">이름 *</label>
+                    <label className="text-xs font-semibold text-[#18181B]/50 uppercase tracking-wider">이름 *</label>
                     <input
                       required
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
                       placeholder="홍길동"
-                      className="bg-[#0A0A0F] border border-[#2A2A35] rounded-xl px-4 py-3 text-sm text-[#F5F5F5] placeholder-[#F5F5F5]/25 focus:outline-none focus:border-[#3B82F6] transition-colors"
+                      className="bg-[#FFFFFF] border border-[#E4E4E7] rounded-xl px-4 py-3 text-sm text-[#18181B] placeholder-[#18181B]/25 focus:outline-none focus:border-[#3B82F6] transition-colors"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-xs font-semibold text-[#F5F5F5]/50 uppercase tracking-wider">연락처 *</label>
+                    <label className="text-xs font-semibold text-[#18181B]/50 uppercase tracking-wider">연락처 *</label>
                     <input
                       required
                       value={form.contact}
                       onChange={(e) => setForm({ ...form, contact: e.target.value })}
                       placeholder="010-0000-0000"
-                      className="bg-[#0A0A0F] border border-[#2A2A35] rounded-xl px-4 py-3 text-sm text-[#F5F5F5] placeholder-[#F5F5F5]/25 focus:outline-none focus:border-[#3B82F6] transition-colors"
+                      className="bg-[#FFFFFF] border border-[#E4E4E7] rounded-xl px-4 py-3 text-sm text-[#18181B] placeholder-[#18181B]/25 focus:outline-none focus:border-[#3B82F6] transition-colors"
                     />
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-semibold text-[#F5F5F5]/50 uppercase tracking-wider">기관/기업명 <span className="normal-case font-normal">(선택)</span></label>
+                  <label className="text-xs font-semibold text-[#18181B]/50 uppercase tracking-wider">기관/기업명 <span className="normal-case font-normal">(선택)</span></label>
                   <input
                     value={form.org}
                     onChange={(e) => setForm({ ...form, org: e.target.value })}
                     placeholder="부산시청 / OO주식회사"
-                    className="bg-[#0A0A0F] border border-[#2A2A35] rounded-xl px-4 py-3 text-sm text-[#F5F5F5] placeholder-[#F5F5F5]/25 focus:outline-none focus:border-[#3B82F6] transition-colors"
+                    className="bg-[#FFFFFF] border border-[#E4E4E7] rounded-xl px-4 py-3 text-sm text-[#18181B] placeholder-[#18181B]/25 focus:outline-none focus:border-[#3B82F6] transition-colors"
                   />
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-semibold text-[#F5F5F5]/50 uppercase tracking-wider">문의 유형 *</label>
+                  <label className="text-xs font-semibold text-[#18181B]/50 uppercase tracking-wider">문의 유형 *</label>
                   <select
                     required
                     value={form.type}
                     onChange={(e) => setForm({ ...form, type: e.target.value })}
-                    className="bg-[#0A0A0F] border border-[#2A2A35] rounded-xl px-4 py-3 text-sm text-[#F5F5F5] focus:outline-none focus:border-[#3B82F6] transition-colors"
+                    className="bg-[#FFFFFF] border border-[#E4E4E7] rounded-xl px-4 py-3 text-sm text-[#18181B] focus:outline-none focus:border-[#3B82F6] transition-colors"
                   >
                     {TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
                   </select>
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-semibold text-[#F5F5F5]/50 uppercase tracking-wider">문의 내용 <span className="normal-case font-normal">(선택)</span></label>
+                  <label className="text-xs font-semibold text-[#18181B]/50 uppercase tracking-wider">문의 내용 <span className="normal-case font-normal">(선택)</span></label>
                   <textarea
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
                     placeholder="인원 수, 희망 일정, 원하는 결과물 등 자유롭게 적어주세요"
                     rows={3}
-                    className="bg-[#0A0A0F] border border-[#2A2A35] rounded-xl px-4 py-3 text-sm text-[#F5F5F5] placeholder-[#F5F5F5]/25 focus:outline-none focus:border-[#3B82F6] transition-colors resize-none"
+                    className="bg-[#FFFFFF] border border-[#E4E4E7] rounded-xl px-4 py-3 text-sm text-[#18181B] placeholder-[#18181B]/25 focus:outline-none focus:border-[#3B82F6] transition-colors resize-none"
                   />
                 </div>
 
@@ -203,22 +203,22 @@ export default function InquiryModal() {
             ) : (
               /* 완료 화면 */
               <div className="p-6 sm:p-8 flex flex-col items-center gap-5 text-center">
-                <button type="button" onClick={close} className="self-end text-[#F5F5F5]/40 hover:text-[#F5F5F5] transition-colors text-2xl leading-none -mt-1 -mr-1">×</button>
+                <button type="button" onClick={close} className="self-end text-[#18181B]/40 hover:text-[#18181B] transition-colors text-2xl leading-none -mt-1 -mr-1">×</button>
                 <div className="text-5xl">✅</div>
                 <div>
-                  <h3 className="text-xl font-bold text-[#F5F5F5] mb-2">문의가 접수됐습니다!</h3>
-                  <p className="text-sm text-[#F5F5F5]/55 leading-relaxed">
+                  <h3 className="text-xl font-bold text-[#18181B] mb-2">문의가 접수됐습니다!</h3>
+                  <p className="text-sm text-[#18181B]/55 leading-relaxed">
                     빠른 시간 내에 연락드리겠습니다.<br />
                     급하신 경우 전화로 문의해주세요.
                   </p>
                 </div>
                 <a
                   href="tel:010-9825-8816"
-                  className="w-full flex items-center justify-center gap-2 border border-[#2A2A35] hover:border-[#3B82F6] text-[#F5F5F5]/70 hover:text-[#F5F5F5] font-semibold py-3 rounded-xl transition-colors text-sm"
+                  className="w-full flex items-center justify-center gap-2 border border-[#E4E4E7] hover:border-[#3B82F6] text-[#18181B]/70 hover:text-[#18181B] font-semibold py-3 rounded-xl transition-colors text-sm"
                 >
                   📞 전화 문의
                 </a>
-                <button onClick={close} className="text-sm text-[#F5F5F5]/40 hover:text-[#F5F5F5] transition-colors">
+                <button onClick={close} className="text-sm text-[#18181B]/40 hover:text-[#18181B] transition-colors">
                   닫기
                 </button>
               </div>

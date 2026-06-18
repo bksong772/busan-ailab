@@ -42,15 +42,15 @@ const refs = [
 
 export default function ReferencesSection() {
   return (
-    <section className="py-24 px-4 sm:px-6 bg-[#0D0D14]">
+    <section className="py-24 px-4 sm:px-6 bg-[#FFFFFF]">
       <div className="max-w-6xl mx-auto">
         <FadeInSection>
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 text-xs text-[#F5F5F5]/40 border border-[#2A2A35] rounded-full px-4 py-1.5 mb-5">
+            <div className="inline-flex items-center gap-2 text-xs text-[#18181B]/40 border border-[#E4E4E7] rounded-full px-4 py-1.5 mb-5">
               부산AI코딩스쿨 교육팀 기반
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">교육 경험이 다릅니다</h2>
-            <p className="text-[#F5F5F5]/50 text-base sm:text-lg">
+            <p className="text-[#18181B]/50 text-base sm:text-lg">
               AX그라운드는 부산AI코딩스쿨 운영팀이 만든 AI 실무 전문 브랜드입니다.<br />
               아래는 팀이 직접 출강한 기관들입니다.
             </p>
@@ -63,7 +63,7 @@ export default function ReferencesSection() {
             {badges.map((b) => (
               <span
                 key={b.text}
-                className="inline-flex items-center gap-2 bg-[#13131A] border border-[#2A2A35] rounded-full px-4 py-2 text-sm text-[#F5F5F5]/70"
+                className="inline-flex items-center gap-2 bg-[#F6F6F8] border border-[#E4E4E7] rounded-full px-4 py-2 text-sm text-[#18181B]/70"
               >
                 <span>{b.icon}</span>
                 <span>{b.text}</span>
@@ -79,7 +79,7 @@ export default function ReferencesSection() {
               <motion.div
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.2 }}
-                className="bg-[#13131A] border border-[#2A2A35] rounded-2xl p-6 flex flex-col gap-4"
+                className="bg-[#F6F6F8] border border-[#E4E4E7] rounded-2xl p-6 flex flex-col gap-4"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-2xl">{r.icon}</span>
@@ -95,8 +95,8 @@ export default function ReferencesSection() {
                   </span>
                 </div>
                 <div>
-                  <p className="font-bold text-[#F5F5F5] mb-1">{r.org}</p>
-                  <p className="text-sm text-[#F5F5F5]/55 leading-snug">{r.program}</p>
+                  <p className="font-bold text-[#18181B] mb-1">{r.org}</p>
+                  <p className="text-sm text-[#18181B]/55 leading-snug">{r.program}</p>
                 </div>
               </motion.div>
             </FadeInSection>

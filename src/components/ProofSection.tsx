@@ -47,14 +47,14 @@ function SkillCard({ s, index }: { s: typeof skills[0]; index: number }) {
       <motion.div
         whileHover={{ y: -4 }}
         transition={{ duration: 0.2 }}
-        className="bg-[#13131A] border border-[#2A2A35] rounded-2xl p-6 flex flex-col gap-4 h-full"
+        className="bg-[#F6F6F8] border border-[#E4E4E7] rounded-2xl p-6 flex flex-col gap-4 h-full"
       >
         <div className="flex items-center gap-3">
           <span className="text-2xl">{s.icon}</span>
-          <h3 className="text-base font-bold text-[#F5F5F5] leading-snug">{s.skill}</h3>
+          <h3 className="text-base font-bold text-[#18181B] leading-snug">{s.skill}</h3>
         </div>
 
-        <p className="text-sm text-[#F5F5F5]/60 leading-relaxed flex-1">{s.what}</p>
+        <p className="text-sm text-[#18181B]/60 leading-relaxed flex-1">{s.what}</p>
 
         <div
           className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-medium self-start"
@@ -63,8 +63,8 @@ function SkillCard({ s, index }: { s: typeof skills[0]; index: number }) {
           ✓ {s.result}
         </div>
 
-        <div className="pt-2 border-t border-[#2A2A35]">
-          <p className="text-xs text-[#F5F5F5]/30 mb-2">적용 사례</p>
+        <div className="pt-2 border-t border-[#E4E4E7]">
+          <p className="text-xs text-[#18181B]/30 mb-2">적용 사례</p>
           <div className="flex flex-wrap gap-2">
             {s.cases.map((c) => (
               <a
@@ -93,7 +93,7 @@ export default function ProofSection() {
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
               지금도 매달 만들고 있습니다
             </h2>
-            <p className="text-[#F5F5F5]/50 text-base sm:text-lg max-w-2xl mx-auto">
+            <p className="text-[#18181B]/50 text-base sm:text-lg max-w-2xl mx-auto">
               AI로 사업을 운영하면서 생긴 노하우를 그대로 가르칩니다.<br />
               강의실 밖에서 먼저 써본 것만 교육합니다.
             </p>

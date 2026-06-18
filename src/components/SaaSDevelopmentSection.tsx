@@ -107,12 +107,12 @@ const differentiators = [
 
 export default function SaaSDevelopmentSection() {
   return (
-    <section id="saas-development" className="py-24 px-4 sm:px-6 bg-[#0A0A10]">
+    <section id="saas-development" className="py-24 px-4 sm:px-6 bg-[#FFFFFF]">
       <div className="max-w-6xl mx-auto">
         {/* 헤더 */}
         <FadeInSection>
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 text-xs text-[#F5F5F5]/40 border border-[#2A2A35] rounded-full px-4 py-1.5 mb-5">
+            <div className="inline-flex items-center gap-2 text-xs text-[#18181B]/40 border border-[#E4E4E7] rounded-full px-4 py-1.5 mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6] animate-pulse" />
               SAAS · 맞춤 프로그램 개발
             </div>
@@ -121,7 +121,7 @@ export default function SaaSDevelopmentSection() {
               <br />
               <span className="text-[#3B82F6]">맞춤 프로그램으로 확장</span>합니다
             </h2>
-            <p className="text-[#F5F5F5]/50 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+            <p className="text-[#18181B]/50 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
               한 곳에서 검증한 자동화를 여러 회사가 함께 쓰는 프로그램으로.
               <br />
               같은 업종의 다른 기관·기업도 그대로 쓸 수 있는 형태로.
@@ -134,7 +134,7 @@ export default function SaaSDevelopmentSection() {
           <motion.div
             whileHover={{ y: -4 }}
             transition={{ duration: 0.2 }}
-            className="bg-[#13131A] border border-[#3B82F6]/30 rounded-2xl p-6 sm:p-10 mb-20 relative overflow-hidden"
+            className="bg-[#F6F6F8] border border-[#3B82F6]/30 rounded-2xl p-6 sm:p-10 mb-20 relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-[#3B82F6]/5 blur-3xl pointer-events-none" />
             <div className="relative z-10 grid lg:grid-cols-2 gap-8 items-center">
@@ -144,14 +144,14 @@ export default function SaaSDevelopmentSection() {
                 </span>
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-4xl">🎓</span>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-[#F5F5F5]">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-[#18181B]">
                     학원 관리 SaaS
                   </h3>
                 </div>
-                <p className="text-[#F5F5F5]/60 text-sm sm:text-base leading-relaxed mb-4">
+                <p className="text-[#18181B]/60 text-sm sm:text-base leading-relaxed mb-4">
                   <span className="text-[#3B82F6] font-semibold">academy-manager</span> — 부산AI코딩스쿨 자체 운영 학원 관리 SaaS
                 </p>
-                <ul className="space-y-2 text-sm text-[#F5F5F5]/70">
+                <ul className="space-y-2 text-sm text-[#18181B]/70">
                   <li className="flex items-start gap-2">
                     <span className="text-[#3B82F6] mt-0.5 shrink-0">▸</span>
                     Next.js + Supabase 기반 (여러 지점 동시 운영)
@@ -175,13 +175,13 @@ export default function SaaSDevelopmentSection() {
                 ].map((m) => (
                   <div
                     key={m.label}
-                    className="bg-[#0A0A10] border border-[#2A2A35] rounded-xl p-4 text-center"
+                    className="bg-[#FFFFFF] border border-[#E4E4E7] rounded-xl p-4 text-center"
                   >
                     <div className="text-2xl sm:text-3xl font-bold text-[#3B82F6] mb-1 tabular-nums">
                       {m.value}
                       {m.unit}
                     </div>
-                    <p className="text-xs text-[#F5F5F5]/50 leading-tight">{m.label}</p>
+                    <p className="text-xs text-[#18181B]/50 leading-tight">{m.label}</p>
                   </div>
                 ))}
               </div>
@@ -195,7 +195,7 @@ export default function SaaSDevelopmentSection() {
             <h3 className="text-2xl sm:text-3xl font-bold mb-3">
               SaaS 개발 가능 분야
             </h3>
-            <p className="text-[#F5F5F5]/50 text-sm sm:text-base">
+            <p className="text-[#18181B]/50 text-sm sm:text-base">
               운영 경험이 있는 4개 영역에서 SaaS화 가능합니다
             </p>
           </div>
@@ -207,25 +207,25 @@ export default function SaaSDevelopmentSection() {
               <motion.div
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.2 }}
-                className="bg-[#13131A] border border-[#2A2A35] rounded-2xl p-6 h-full flex flex-col gap-4"
+                className="bg-[#F6F6F8] border border-[#E4E4E7] rounded-2xl p-6 h-full flex flex-col gap-4"
               >
                 <div>
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-2xl">{f.icon}</span>
-                    <h4 className="text-base sm:text-lg font-bold text-[#F5F5F5]">
+                    <h4 className="text-base sm:text-lg font-bold text-[#18181B]">
                       {f.title}
                     </h4>
                   </div>
-                  <p className="text-xs text-[#F5F5F5]/40">{f.sub}</p>
+                  <p className="text-xs text-[#18181B]/40">{f.sub}</p>
                 </div>
 
-                <p className="text-sm text-[#F5F5F5]/70">{f.desc}</p>
+                <p className="text-sm text-[#18181B]/70">{f.desc}</p>
 
                 <div className="space-y-2 mt-auto">
                   {f.points.map((point, idx) => (
                     <div
                       key={idx}
-                      className="flex items-start gap-2 text-xs text-[#F5F5F5]/60"
+                      className="flex items-start gap-2 text-xs text-[#18181B]/60"
                     >
                       <span style={{ color: f.color }} className="mt-0.5 shrink-0">
                         ▸
@@ -242,13 +242,13 @@ export default function SaaSDevelopmentSection() {
         {/* 운영 모델 — 3단 깔때기 */}
         <FadeInSection delay={0.1}>
           <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 text-xs text-[#F5F5F5]/40 border border-[#2A2A35] rounded-full px-4 py-1.5 mb-5">
+            <div className="inline-flex items-center gap-2 text-xs text-[#18181B]/40 border border-[#E4E4E7] rounded-full px-4 py-1.5 mb-5">
               운영 모델 · 3단 깔때기
             </div>
             <h3 className="text-2xl sm:text-3xl font-bold mb-3">
               검증 → 확장 → 출시
             </h3>
-            <p className="text-[#F5F5F5]/50 text-sm sm:text-base">
+            <p className="text-[#18181B]/50 text-sm sm:text-base">
               실패 가능성을 단계별로 줄이는 운영 모델
             </p>
           </div>
@@ -260,7 +260,7 @@ export default function SaaSDevelopmentSection() {
               <motion.div
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.2 }}
-                className="bg-[#13131A] border rounded-2xl p-6 h-full relative"
+                className="bg-[#F6F6F8] border rounded-2xl p-6 h-full relative"
                 style={{ borderColor: `${f.color}40` }}
               >
                 <div
@@ -269,10 +269,10 @@ export default function SaaSDevelopmentSection() {
                 >
                   {f.step}
                 </div>
-                <h4 className="text-lg font-bold text-[#F5F5F5] mb-2">{f.title}</h4>
-                <p className="text-sm text-[#F5F5F5]/60 leading-relaxed">{f.desc}</p>
+                <h4 className="text-lg font-bold text-[#18181B] mb-2">{f.title}</h4>
+                <p className="text-sm text-[#18181B]/60 leading-relaxed">{f.desc}</p>
                 {i < funnel.length - 1 && (
-                  <div className="hidden md:flex absolute top-1/2 -right-3 -translate-y-1/2 w-6 h-6 rounded-full bg-[#0A0A10] border border-[#2A2A35] items-center justify-center text-[#F5F5F5]/40 text-xs z-10">
+                  <div className="hidden md:flex absolute top-1/2 -right-3 -translate-y-1/2 w-6 h-6 rounded-full bg-[#FFFFFF] border border-[#E4E4E7] items-center justify-center text-[#18181B]/40 text-xs z-10">
                     ↓
                   </div>
                 )}
@@ -284,7 +284,7 @@ export default function SaaSDevelopmentSection() {
         {/* 가격 안내 */}
         <FadeInSection delay={0.1}>
           <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 text-xs text-[#F5F5F5]/40 border border-[#2A2A35] rounded-full px-4 py-1.5 mb-5">
+            <div className="inline-flex items-center gap-2 text-xs text-[#18181B]/40 border border-[#E4E4E7] rounded-full px-4 py-1.5 mb-5">
               진행 단계
             </div>
             <h3 className="text-2xl sm:text-3xl font-bold mb-3">
@@ -299,10 +299,10 @@ export default function SaaSDevelopmentSection() {
               <motion.div
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.2 }}
-                className={`bg-[#13131A] border rounded-2xl p-6 h-full flex flex-col ${
+                className={`bg-[#F6F6F8] border rounded-2xl p-6 h-full flex flex-col ${
                   p.featured
                     ? "border-[#3B82F6]/40"
-                    : "border-[#2A2A35]"
+                    : "border-[#E4E4E7]"
                 }`}
               >
                 {p.featured && (
@@ -310,12 +310,12 @@ export default function SaaSDevelopmentSection() {
                     추천
                   </span>
                 )}
-                <h4 className="text-lg font-bold text-[#F5F5F5] mb-2">{p.name}</h4>
+                <h4 className="text-lg font-bold text-[#18181B] mb-2">{p.name}</h4>
                 <div className="text-3xl font-bold text-[#3B82F6] mb-1 tabular-nums">
                   {p.price}
                 </div>
-                <p className="text-xs text-[#F5F5F5]/40 mb-4">{p.period}</p>
-                <p className="text-sm text-[#F5F5F5]/60 leading-relaxed mt-auto">
+                <p className="text-xs text-[#18181B]/40 mb-4">{p.period}</p>
+                <p className="text-sm text-[#18181B]/60 leading-relaxed mt-auto">
                   {p.desc}
                 </p>
               </motion.div>
@@ -326,7 +326,7 @@ export default function SaaSDevelopmentSection() {
         {/* 차별점 */}
         <FadeInSection delay={0.1}>
           <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 text-xs text-[#F5F5F5]/40 border border-[#2A2A35] rounded-full px-4 py-1.5 mb-5">
+            <div className="inline-flex items-center gap-2 text-xs text-[#18181B]/40 border border-[#E4E4E7] rounded-full px-4 py-1.5 mb-5">
               AX그라운드 SaaS 개발의 4가지 차별점
             </div>
             <h3 className="text-2xl sm:text-3xl font-bold mb-3">
@@ -341,14 +341,14 @@ export default function SaaSDevelopmentSection() {
               <motion.div
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.2 }}
-                className="bg-[#13131A] border border-[#2A2A35] rounded-2xl p-6 h-full flex gap-4"
+                className="bg-[#F6F6F8] border border-[#E4E4E7] rounded-2xl p-6 h-full flex gap-4"
               >
                 <div className="text-3xl shrink-0">{d.icon}</div>
                 <div>
-                  <h4 className="text-base sm:text-lg font-bold text-[#F5F5F5] mb-2">
+                  <h4 className="text-base sm:text-lg font-bold text-[#18181B] mb-2">
                     {d.title}
                   </h4>
-                  <p className="text-sm text-[#F5F5F5]/60 leading-relaxed">
+                  <p className="text-sm text-[#18181B]/60 leading-relaxed">
                     {d.desc}
                   </p>
                 </div>
@@ -359,11 +359,11 @@ export default function SaaSDevelopmentSection() {
 
         {/* CTA */}
         <FadeInSection delay={0.2}>
-          <div className="bg-[#13131A] border border-[#2A2A35] rounded-2xl p-8 sm:p-10 text-center">
+          <div className="bg-[#F6F6F8] border border-[#E4E4E7] rounded-2xl p-8 sm:p-10 text-center">
             <h3 className="text-2xl sm:text-3xl font-bold mb-3">
               SaaS 개발, 함께 시작합시다
             </h3>
-            <p className="text-[#F5F5F5]/50 text-sm sm:text-base mb-8 max-w-xl mx-auto leading-relaxed">
+            <p className="text-[#18181B]/50 text-sm sm:text-base mb-8 max-w-xl mx-auto leading-relaxed">
               먼저 한 곳에서 검증하고, 같은 업종의 다른 곳으로 확장합니다.
               <br />
               지금 바로 상담 신청하세요.
@@ -377,7 +377,7 @@ export default function SaaSDevelopmentSection() {
               </button>
               <a
                 href="tel:010-9825-8816"
-                className="inline-flex items-center justify-center gap-2 border border-[#2A2A35] hover:border-[#3B82F6] text-[#F5F5F5]/80 hover:text-[#F5F5F5] font-semibold px-8 py-3.5 rounded-xl transition-all text-base"
+                className="inline-flex items-center justify-center gap-2 border border-[#E4E4E7] hover:border-[#3B82F6] text-[#18181B]/80 hover:text-[#18181B] font-semibold px-8 py-3.5 rounded-xl transition-all text-base"
               >
                 📞 전화 상담 — 김진완 010-9825-8816
               </a>

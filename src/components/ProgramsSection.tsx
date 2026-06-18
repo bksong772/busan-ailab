@@ -73,7 +73,7 @@ const programs = [
 
 function ChatPreview() {
   return (
-    <div className="mt-4 rounded-xl overflow-hidden border border-[#2A2A35]">
+    <div className="mt-4 rounded-xl overflow-hidden border border-[#E4E4E7]">
       <div className="bg-[#F5F0E8] p-3">
         <div className="flex items-center gap-2 mb-3">
           <div className="w-7 h-7 rounded-full bg-[#8B7355] flex items-center justify-center text-xs text-white font-bold">고</div>
@@ -101,8 +101,8 @@ function ProgramCard({ p, index }: { p: typeof programs[0]; index: number }) {
       <motion.div
         whileHover={{ y: -4 }}
         transition={{ duration: 0.2 }}
-        className={`bg-[#13131A] border rounded-2xl p-6 h-full flex flex-col gap-4 ${
-          p.featured ? "border-[#F59E0B]/40" : "border-[#2A2A35]"
+        className={`bg-[#F6F6F8] border rounded-2xl p-6 h-full flex flex-col gap-4 ${
+          p.featured ? "border-[#F59E0B]/40" : "border-[#E4E4E7]"
         }`}
       >
         {p.featured && (
@@ -114,20 +114,20 @@ function ProgramCard({ p, index }: { p: typeof programs[0]; index: number }) {
         <div>
           <div className="flex items-center gap-2 mb-2">
             <span className="text-2xl">{p.icon}</span>
-            <h3 className="text-base sm:text-lg font-bold text-[#F5F5F5]">{p.title}</h3>
+            <h3 className="text-base sm:text-lg font-bold text-[#18181B]">{p.title}</h3>
           </div>
-          <p className="text-sm text-[#F5F5F5]/50">{p.sub}</p>
+          <p className="text-sm text-[#18181B]/50">{p.sub}</p>
         </div>
 
         <div className="flex gap-3 flex-wrap">
-          <span className="text-xs bg-[#2A2A35] rounded-full px-3 py-1 text-[#F5F5F5]/60">⏱ {p.time}</span>
-          <span className="text-xs bg-[#2A2A35] rounded-full px-3 py-1 text-[#F5F5F5]/60">👤 {p.target}</span>
+          <span className="text-xs bg-[#E4E4E7] rounded-full px-3 py-1 text-[#18181B]/60">⏱ {p.time}</span>
+          <span className="text-xs bg-[#E4E4E7] rounded-full px-3 py-1 text-[#18181B]/60">👤 {p.target}</span>
         </div>
 
         <div className="space-y-2">
-          <p className="text-xs font-semibold text-[#F5F5F5]/40 uppercase tracking-wider">커리큘럼</p>
+          <p className="text-xs font-semibold text-[#18181B]/40 uppercase tracking-wider">커리큘럼</p>
           {p.curriculum.map((item, i) => (
-            <div key={i} className="flex items-start gap-2 text-sm text-[#F5F5F5]/70">
+            <div key={i} className="flex items-start gap-2 text-sm text-[#18181B]/70">
               <span style={{ color: p.color }} className="mt-0.5 shrink-0">▸</span>
               {item}
             </div>
@@ -143,7 +143,7 @@ function ProgramCard({ p, index }: { p: typeof programs[0]; index: number }) {
           >
             📦 결과물: {p.result}
           </div>
-          <p className="text-xs text-[#F5F5F5]/40">실제 사례: {p.caseRef}</p>
+          <p className="text-xs text-[#18181B]/40">실제 사례: {p.caseRef}</p>
         </div>
       </motion.div>
     </FadeInSection>
@@ -152,17 +152,17 @@ function ProgramCard({ p, index }: { p: typeof programs[0]; index: number }) {
 
 export default function ProgramsSection() {
   return (
-    <section id="programs" className="py-24 px-4 sm:px-6 bg-[#0D0D14]">
+    <section id="programs" className="py-24 px-4 sm:px-6 bg-[#FFFFFF]">
       <div className="max-w-6xl mx-auto">
         <FadeInSection>
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 text-xs text-[#F5F5F5]/40 border border-[#2A2A35] rounded-full px-4 py-1.5 mb-5">
+            <div className="inline-flex items-center gap-2 text-xs text-[#18181B]/40 border border-[#E4E4E7] rounded-full px-4 py-1.5 mb-5">
               AI실무교육 · AX교육 · AI업무자동화 프로그램
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
               수업이 끝나면 결과물이 남습니다
             </h2>
-            <p className="text-[#F5F5F5]/50 text-base sm:text-lg">
+            <p className="text-[#18181B]/50 text-base sm:text-lg">
               이론 말고 실무. 부산·울산·경남 기업·공공기관 대상 AI실무교육 — 교육 당일 완성한 것을 내일 바로 씁니다.
             </p>
           </div>

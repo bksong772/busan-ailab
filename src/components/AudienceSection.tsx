@@ -42,7 +42,7 @@ export default function AudienceSection() {
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
               이런 상황이라면, AX그라운드가 맞습니다
             </h2>
-            <p className="text-[#F5F5F5]/50 text-base sm:text-lg">
+            <p className="text-[#18181B]/50 text-base sm:text-lg">
               부산·울산·경남 기업·공공기관·소상공인 대상 AI실무교육 · AX실무교육 출강
             </p>
           </div>
@@ -54,22 +54,22 @@ export default function AudienceSection() {
               <motion.div
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.2 }}
-                className="bg-[#13131A] border border-[#2A2A35] rounded-2xl p-6 h-full flex flex-col gap-5"
+                className="bg-[#F6F6F8] border border-[#E4E4E7] rounded-2xl p-6 h-full flex flex-col gap-5"
               >
                 <div className="flex items-center gap-3">
                   <span className="text-3xl">{a.icon}</span>
-                  <h3 className="text-lg font-bold text-[#F5F5F5]">{a.title}</h3>
+                  <h3 className="text-lg font-bold text-[#18181B]">{a.title}</h3>
                 </div>
 
-                <div className="bg-[#0A0A0F] border border-[#2A2A35] rounded-xl p-4">
-                  <p className="text-sm text-[#F5F5F5]/60 italic leading-relaxed">{a.pain}</p>
+                <div className="bg-[#FFFFFF] border border-[#E4E4E7] rounded-xl p-4">
+                  <p className="text-sm text-[#18181B]/60 italic leading-relaxed">{a.pain}</p>
                 </div>
 
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: a.color }}>
                     AX그라운드의 솔루션
                   </p>
-                  <p className="text-sm text-[#F5F5F5]/80 leading-relaxed">{a.solution}</p>
+                  <p className="text-sm text-[#18181B]/80 leading-relaxed">{a.solution}</p>
                 </div>
 
                 <div className="mt-auto flex flex-wrap gap-1.5">

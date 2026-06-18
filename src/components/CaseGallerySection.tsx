@@ -100,7 +100,7 @@ function CaseCard({ c, i }: { c: Case; i: number }) {
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: i * 0.08 }}
       whileHover={{ y: -4 }}
-      className="group relative bg-[#13131A] border border-[#2A2A35] rounded-2xl p-6 hover:border-[#3B82F6]/40 transition-all overflow-hidden"
+      className="group relative bg-[#F6F6F8] border border-[#E4E4E7] rounded-2xl p-6 hover:border-[#3B82F6]/40 transition-all overflow-hidden"
       style={{ display: "block" }}
     >
       {/* 호버 시 배경 그라디언트 */}
@@ -132,14 +132,14 @@ function CaseCard({ c, i }: { c: Case; i: number }) {
         <div className="flex items-start gap-3 mb-4">
           <span className="text-4xl flex-shrink-0">{c.emoji}</span>
           <div className="flex-1 min-w-0">
-            <h3 className="text-lg font-bold text-[#F5F5F5] leading-tight">
+            <h3 className="text-lg font-bold text-[#18181B] leading-tight">
               {c.title}
             </h3>
           </div>
         </div>
 
         {/* 흐름 */}
-        <p className="text-sm text-[#F5F5F5]/60 leading-relaxed mb-5 min-h-[60px]">
+        <p className="text-sm text-[#18181B]/60 leading-relaxed mb-5 min-h-[60px]">
           {c.subtitle}
         </p>
 
@@ -160,14 +160,14 @@ function CaseCard({ c, i }: { c: Case; i: number }) {
           <div className="text-base font-bold" style={{ color: c.accent }}>
             {c.effect}
           </div>
-          <div className="text-[11px] text-[#F5F5F5]/55 mt-1.5 pt-1.5 border-t border-[#2A2A35]/60">
+          <div className="text-[11px] text-[#18181B]/55 mt-1.5 pt-1.5 border-t border-[#E4E4E7]/60">
             💰 {c.roi}
           </div>
         </div>
 
         {/* CTA */}
         <div className="flex items-center justify-between">
-          <span className="text-xs text-[#F5F5F5]/50">
+          <span className="text-xs text-[#18181B]/50">
             🎬 자동 재생 · {c.duration}
           </span>
           <span
@@ -210,7 +210,7 @@ export default function CaseGallerySection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
-          <div className="inline-flex items-center gap-2 bg-[#13131A] border border-[#2A2A35] rounded-full px-4 py-1.5 text-sm text-[#3B82F6] mb-5">
+          <div className="inline-flex items-center gap-2 bg-[#F6F6F8] border border-[#E4E4E7] rounded-full px-4 py-1.5 text-sm text-[#3B82F6] mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6] animate-pulse" />
             CASE GALLERY · 자동화 사례
           </div>
@@ -219,7 +219,7 @@ export default function CaseGallerySection() {
             <br />
             <span className="text-[#3B82F6]">5개 자동화를</span> 보여드립니다
           </h2>
-          <p className="text-base sm:text-lg text-[#F5F5F5]/60 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-[#18181B]/60 max-w-2xl mx-auto leading-relaxed">
             외부 고객 컨설팅 1건 + 우리가 직접 운영하는 4개 사업.
             <br />
             클릭하면 십수 초 안에 풀 사이클이 자동 재생됩니다.
@@ -232,10 +232,10 @@ export default function CaseGallerySection() {
             <span className="text-xs font-bold tracking-wider text-[#FF6B35] uppercase">
               ① 외부 고객 컨설팅
             </span>
-            <span className="text-xs text-[#F5F5F5]/40">
+            <span className="text-xs text-[#18181B]/40">
               — 의뢰받아 구축하고 직원에게 넘겨드린 케이스
             </span>
-            <div className="flex-1 h-px bg-[#2A2A35]" />
+            <div className="flex-1 h-px bg-[#E4E4E7]" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {externalCases.map((c, i) => (
@@ -247,10 +247,10 @@ export default function CaseGallerySection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.08 }}
-              className="border border-dashed border-[#2A2A35] rounded-2xl p-6 flex flex-col items-center justify-center text-center min-h-[280px]"
+              className="border border-dashed border-[#E4E4E7] rounded-2xl p-6 flex flex-col items-center justify-center text-center min-h-[280px]"
             >
               <span className="text-3xl mb-3 opacity-50">＋</span>
-              <p className="text-sm text-[#F5F5F5]/50 leading-relaxed">
+              <p className="text-sm text-[#18181B]/50 leading-relaxed">
                 다음 컨설팅 사례는
                 <br />
                 당신의 회사일 수 있습니다
@@ -271,10 +271,10 @@ export default function CaseGallerySection() {
             <span className="text-xs font-bold tracking-wider text-[#3B82F6] uppercase">
               ② 우리가 직접 운영하며 다듬은 자동화
             </span>
-            <span className="text-xs text-[#F5F5F5]/40">
+            <span className="text-xs text-[#18181B]/40">
               — 4개 사업에서 매일 돌아가는 시스템
             </span>
-            <div className="flex-1 h-px bg-[#2A2A35]" />
+            <div className="flex-1 h-px bg-[#E4E4E7]" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {internalCases.map((c, i) => (
@@ -284,7 +284,7 @@ export default function CaseGallerySection() {
         </div>
 
         {/* ROI 환산 안내 */}
-        <p className="text-center text-[11px] text-[#F5F5F5]/35 mt-6">
+        <p className="text-center text-[11px] text-[#18181B]/35 mt-6">
           * 절감 효과는 실제 운영 데이터 기반 환산이며 업무량에 따라 달라집니다.
         </p>
 
@@ -296,18 +296,18 @@ export default function CaseGallerySection() {
           transition={{ duration: 0.6 }}
           className="text-center mt-14 max-w-3xl mx-auto"
         >
-          <div className="inline-block bg-[#13131A] border border-[#2A2A35] rounded-2xl px-7 py-5 text-left">
-            <div className="text-sm text-[#F5F5F5]/50 mb-2 tracking-wider">
+          <div className="inline-block bg-[#F6F6F8] border border-[#E4E4E7] rounded-2xl px-7 py-5 text-left">
+            <div className="text-sm text-[#18181B]/50 mb-2 tracking-wider">
               CONSULTANT&apos;S MOAT
             </div>
-            <p className="text-base sm:text-lg text-[#F5F5F5]/85 leading-relaxed">
+            <p className="text-base sm:text-lg text-[#18181B]/85 leading-relaxed">
               외부 컨설턴트가 절대 못 가지는 자산 —{" "}
               <span className="text-[#3B82F6] font-semibold">
                 4개 사업을 직접 굴리며 다듬은 자동화
               </span>
               .
               <br />
-              <span className="text-[#F5F5F5]/60 text-sm">
+              <span className="text-[#18181B]/60 text-sm">
                 현장 언어 이해 · 도구 능숙 · 직원이 이어받는 구조 설계 — 한 사람이 이 셋을 갖추기는 쉽지 않습니다.
               </span>
             </p>

@@ -57,7 +57,7 @@ const services = [
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="py-20 px-4 sm:px-6 relative overflow-hidden border-t border-[#1A1A22]">
+    <section id="services" className="py-20 px-4 sm:px-6 relative overflow-hidden border-t border-[#EEEEF1]">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-[#FF6B35]/5 blur-3xl" />
       </div>
@@ -71,7 +71,7 @@ export default function ServicesSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 bg-[#13131A] border border-[#2A2A35] rounded-full px-4 py-1.5 text-sm text-[#FF6B35] mb-5">
+          <div className="inline-flex items-center gap-2 bg-[#F6F6F8] border border-[#E4E4E7] rounded-full px-4 py-1.5 text-sm text-[#FF6B35] mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B35] animate-pulse" />
             SERVICES · 제공 서비스
           </div>
@@ -80,7 +80,7 @@ export default function ServicesSection() {
             <br />
             <span className="text-[#FF6B35]">살 수 있나요?</span>
           </h2>
-          <p className="text-base sm:text-lg text-[#F5F5F5]/60 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-[#18181B]/60 max-w-2xl mx-auto leading-relaxed">
             교육부터 AX 컨설팅·SaaS까지 — 필요한 단계부터 고르면 됩니다.
             <br />
             처음이면 무료 진단부터 가볍게.
@@ -101,10 +101,10 @@ export default function ServicesSection() {
               >
                 <a
                   href={s.href}
-                  className={`group relative bg-[#13131A] border rounded-2xl p-6 transition-all overflow-hidden block w-full text-left ${
+                  className={`group relative bg-[#F6F6F8] border rounded-2xl p-6 transition-all overflow-hidden block w-full text-left ${
                     s.featured
                       ? "border-[#FF6B35]/40 shadow-[0_0_40px_rgba(255,107,53,0.08)]"
-                      : "border-[#2A2A35] hover:border-[#3B82F6]/40"
+                      : "border-[#E4E4E7] hover:border-[#3B82F6]/40"
                   }`}
                 >
                   {/* Featured 배지 */}
@@ -133,12 +133,12 @@ export default function ServicesSection() {
 
                     {/* 이모지 + 제목 */}
                     <div className="text-4xl mb-2">{s.emoji}</div>
-                    <h3 className="text-lg font-bold text-[#F5F5F5] leading-tight mb-3">
+                    <h3 className="text-lg font-bold text-[#18181B] leading-tight mb-3">
                       {s.title}
                     </h3>
 
                     {/* 한 줄 설명 */}
-                    <p className="text-xs text-[#F5F5F5]/60 leading-relaxed mb-5 min-h-[48px]">
+                    <p className="text-xs text-[#18181B]/60 leading-relaxed mb-5 min-h-[48px]">
                       {s.sub}
                     </p>
 
@@ -162,7 +162,7 @@ export default function ServicesSection() {
                       >
                         {s.pricing}
                       </div>
-                      <div className="text-[10px] text-[#F5F5F5]/50 mt-0.5">
+                      <div className="text-[10px] text-[#18181B]/50 mt-0.5">
                         {s.pricingNote}
                       </div>
                     </div>
@@ -201,7 +201,7 @@ export default function ServicesSection() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-10"
         >
-          <p className="text-sm text-[#F5F5F5]/50">
+          <p className="text-sm text-[#18181B]/50">
             처음이세요? <a href="/diagnosis" className="text-[#10B981] hover:underline font-semibold">무료 진단</a>부터 가볍게 — 어떤 자동화가 가능한지 짚어드립니다.
           </p>
         </motion.div>

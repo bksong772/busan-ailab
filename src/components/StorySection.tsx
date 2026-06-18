@@ -23,22 +23,22 @@ const steps = [
 
 export default function StorySection() {
   return (
-    <section className="py-24 px-4 sm:px-6 bg-[#0F0F1A] border-t border-[#1A1A22]">
+    <section className="py-24 px-4 sm:px-6 bg-[#F7F7FA] border-t border-[#EEEEF1]">
       <div className="max-w-4xl mx-auto">
         <FadeInSection>
           <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 bg-[#13131A] border border-[#2A2A35] rounded-full px-4 py-1.5 text-sm text-[#3B82F6] mb-5">
+            <div className="inline-flex items-center gap-2 bg-[#F6F6F8] border border-[#E4E4E7] rounded-full px-4 py-1.5 text-sm text-[#3B82F6] mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6] animate-pulse" />
               왜 AX그라운드인가
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-snug tracking-tight mb-5">
               교육만 받고 끝,
               <br />
-              <span className="text-[#F5F5F5]/50">업무는 그대로인 경우가 많습니다</span>
+              <span className="text-[#18181B]/50">업무는 그대로인 경우가 많습니다</span>
             </h2>
-            <p className="text-base sm:text-lg text-[#F5F5F5]/60 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg text-[#18181B]/60 max-w-2xl mx-auto leading-relaxed">
               진짜 문제는 &lsquo;AI를 아느냐&rsquo;가 아니라,
-              <span className="text-[#F5F5F5]"> 우리 회사의 반복 업무가 실제로 줄었느냐</span>입니다.
+              <span className="text-[#18181B]"> 우리 회사의 반복 업무가 실제로 줄었느냐</span>입니다.
               <br className="hidden sm:block" />
               그래서 저희는 도구 사용법을 알려주는 데서 멈추지 않습니다.
             </p>
@@ -54,15 +54,15 @@ export default function StorySection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.12 }}
-              className="relative bg-[#13131A] border border-[#2A2A35] rounded-2xl p-6"
+              className="relative bg-[#F6F6F8] border border-[#E4E4E7] rounded-2xl p-6"
             >
               <div className="text-sm font-bold tracking-wider text-[#3B82F6] mb-3">
                 {s.no}
               </div>
-              <h3 className="text-lg font-bold text-[#F5F5F5] mb-2 leading-tight">
+              <h3 className="text-lg font-bold text-[#18181B] mb-2 leading-tight">
                 {s.title}
               </h3>
-              <p className="text-sm text-[#F5F5F5]/60 leading-relaxed">{s.desc}</p>
+              <p className="text-sm text-[#18181B]/60 leading-relaxed">{s.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -70,7 +70,7 @@ export default function StorySection() {
         {/* 실제 사례 한 줄 (증거 다리) */}
         <FadeInSection>
           <div className="mt-8 flex items-center justify-center gap-3 text-center">
-            <span className="text-sm text-[#F5F5F5]/50 leading-relaxed">
+            <span className="text-sm text-[#18181B]/50 leading-relaxed">
               실제로 <span className="text-[#FF6B35] font-semibold">소녀방앗간</span>은 주문·정산·SNS 글쓰기 작업을
               직원이 직접 자동화해, 매주 반복되던 시간을 줄였습니다.
             </span>

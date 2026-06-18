@@ -41,14 +41,14 @@ export default function StatsSection() {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section className="py-24 px-4 sm:px-6 bg-[#0D0D14]">
+    <section className="py-24 px-4 sm:px-6 bg-[#FFFFFF]">
       <div className="max-w-6xl mx-auto">
         <FadeInSection>
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
               숫자로 보여드립니다
             </h2>
-            <p className="text-[#F5F5F5]/50 text-base sm:text-lg">
+            <p className="text-[#18181B]/50 text-base sm:text-lg">
               AX그라운드 운영팀이 실제 사업에서 측정한 수치입니다
             </p>
           </div>
@@ -57,19 +57,19 @@ export default function StatsSection() {
         <div ref={ref} className="grid grid-cols-2 lg:grid-cols-4 gap-5">
           {stats.map((s, i) => (
             <FadeInSection key={s.label} delay={i * 0.1}>
-              <div className="bg-[#13131A] border border-[#2A2A35] rounded-2xl p-6 sm:p-8 text-center">
+              <div className="bg-[#F6F6F8] border border-[#E4E4E7] rounded-2xl p-6 sm:p-8 text-center">
                 <div className="text-5xl sm:text-6xl font-bold text-[#3B82F6] mb-3 tabular-nums">
                   <CountUp target={s.value} started={isInView} />
                   {s.unit}
                 </div>
-                <p className="text-sm text-[#F5F5F5]/60 leading-tight">{s.label}</p>
+                <p className="text-sm text-[#18181B]/60 leading-tight">{s.label}</p>
               </div>
             </FadeInSection>
           ))}
         </div>
 
         <FadeInSection delay={0.4}>
-          <p className="text-center text-xs text-[#F5F5F5]/30 mt-8">
+          <p className="text-center text-xs text-[#18181B]/30 mt-8">
             * 수리공의온도, 고개서동, 부산AI코딩스쿨 실제 운영 데이터 기준
           </p>
         </FadeInSection>

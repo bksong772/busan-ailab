@@ -92,7 +92,7 @@ export default function AXConsultingSection() {
   return (
     <section
       id="ax-consulting"
-      className="py-24 px-4 sm:px-6 bg-[#0D0D14] relative overflow-hidden"
+      className="py-24 px-4 sm:px-6 bg-[#FFFFFF] relative overflow-hidden"
     >
       {/* 배경 그라디언트 */}
       <div className="absolute inset-0 pointer-events-none">
@@ -112,7 +112,7 @@ export default function AXConsultingSection() {
               <br />
               <span className="text-[#3B82F6]">실제 업무를 자동화</span>해 드립니다.
             </h2>
-            <p className="text-[#F5F5F5]/60 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+            <p className="text-[#18181B]/60 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
               소녀방앗간처럼 진단 · 자동화 · 직원에게 넘기기 —
               <br className="sm:hidden" />
               {" "}외부 컨설턴트가 떠나도 직원이 그대로 돌릴 수 있는 형태로.
@@ -124,13 +124,13 @@ export default function AXConsultingSection() {
         <FadeInSection delay={0.1}>
           <div className="mb-10">
             <div className="text-center mb-6">
-              <div className="inline-flex items-center gap-2 text-xs text-[#F5F5F5]/40 border border-[#2A2A35] rounded-full px-4 py-1.5 mb-3">
+              <div className="inline-flex items-center gap-2 text-xs text-[#18181B]/40 border border-[#E4E4E7] rounded-full px-4 py-1.5 mb-3">
                 CASE STUDY · 실전 사례
               </div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-[#F5F5F5] mb-2">
+              <h3 className="text-2xl sm:text-3xl font-bold text-[#18181B] mb-2">
                 소녀방앗간 케이터링 자동화
               </h3>
-              <p className="text-sm sm:text-base text-[#F5F5F5]/50">
+              <p className="text-sm sm:text-base text-[#18181B]/50">
                 풀 사이클 17초 — 신청부터 카톡 발송까지 자동
               </p>
             </div>
@@ -140,7 +140,7 @@ export default function AXConsultingSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative rounded-2xl overflow-hidden border border-[#2A2A35] bg-[#13131A] shadow-2xl"
+              className="relative rounded-2xl overflow-hidden border border-[#E4E4E7] bg-[#F6F6F8] shadow-2xl"
             >
               <div className="aspect-video w-full">
                 <iframe
@@ -154,7 +154,7 @@ export default function AXConsultingSection() {
               </div>
             </motion.div>
 
-            <p className="mt-4 text-xs sm:text-sm text-[#F5F5F5]/50 text-center leading-relaxed">
+            <p className="mt-4 text-xs sm:text-sm text-[#18181B]/50 text-center leading-relaxed">
               🎬 소녀방앗간 케이터링 자동화 — 신청 → 시트 → 알림 → 통화·STT →
               AI 자동작성 → 검토·승인 → 카톡 발송 → 채널톡 연결{" "}
               <span className="text-[#3B82F6]">(17초)</span>
@@ -166,10 +166,10 @@ export default function AXConsultingSection() {
         <FadeInSection delay={0.15}>
           <div className="mb-24">
             <div className="text-center mb-8">
-              <h3 className="text-xl sm:text-2xl font-bold text-[#F5F5F5] mb-2">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#18181B] mb-2">
                 Before / After
               </h3>
-              <p className="text-sm text-[#F5F5F5]/50">
+              <p className="text-sm text-[#18181B]/50">
                 숫자로 보는 자동화 결과
               </p>
             </div>
@@ -180,17 +180,17 @@ export default function AXConsultingSection() {
                   <motion.div
                     whileHover={{ y: -4 }}
                     transition={{ duration: 0.2 }}
-                    className="bg-[#13131A] border border-[#2A2A35] rounded-2xl p-5 h-full flex flex-col"
+                    className="bg-[#F6F6F8] border border-[#E4E4E7] rounded-2xl p-5 h-full flex flex-col"
                   >
-                    <p className="text-xs font-semibold text-[#F5F5F5]/40 uppercase tracking-wider mb-3">
+                    <p className="text-xs font-semibold text-[#18181B]/40 uppercase tracking-wider mb-3">
                       {item.label}
                     </p>
                     <div className="flex flex-col gap-2">
                       <div className="flex items-baseline gap-2">
-                        <span className="text-[10px] uppercase tracking-wider text-[#F5F5F5]/40 shrink-0 w-12">
+                        <span className="text-[10px] uppercase tracking-wider text-[#18181B]/40 shrink-0 w-12">
                           Before
                         </span>
-                        <span className="text-base sm:text-lg font-bold text-[#F5F5F5]/50 line-through">
+                        <span className="text-base sm:text-lg font-bold text-[#18181B]/50 line-through">
                           {item.before}
                         </span>
                       </div>
@@ -213,13 +213,13 @@ export default function AXConsultingSection() {
         {/* 컨설팅 패키지 3종 */}
         <FadeInSection>
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 text-xs text-[#F5F5F5]/40 border border-[#2A2A35] rounded-full px-4 py-1.5 mb-3">
+            <div className="inline-flex items-center gap-2 text-xs text-[#18181B]/40 border border-[#E4E4E7] rounded-full px-4 py-1.5 mb-3">
               PACKAGES · 컨설팅 패키지
             </div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-[#F5F5F5] mb-2">
+            <h3 className="text-2xl sm:text-3xl font-bold text-[#18181B] mb-2">
               규모에 맞춰 시작하세요
             </h3>
-            <p className="text-sm sm:text-base text-[#F5F5F5]/50">
+            <p className="text-sm sm:text-base text-[#18181B]/50">
               자영업자부터 공공기관까지 — 3가지 패키지 중 선택
             </p>
           </div>
@@ -230,8 +230,8 @@ export default function AXConsultingSection() {
                 <motion.div
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.2 }}
-                  className={`bg-[#13131A] border rounded-2xl p-7 h-full flex flex-col gap-5 ${
-                    p.featured ? "border-[#F59E0B]/40" : "border-[#2A2A35]"
+                  className={`bg-[#F6F6F8] border rounded-2xl p-7 h-full flex flex-col gap-5 ${
+                    p.featured ? "border-[#F59E0B]/40" : "border-[#E4E4E7]"
                   }`}
                 >
                   {p.featured && (
@@ -241,7 +241,7 @@ export default function AXConsultingSection() {
                   )}
 
                   <div>
-                    <h4 className="text-xl font-bold text-[#F5F5F5] mb-2">
+                    <h4 className="text-xl font-bold text-[#18181B] mb-2">
                       {p.name}
                     </h4>
                     <div className="flex items-baseline gap-2 mb-1">
@@ -252,14 +252,14 @@ export default function AXConsultingSection() {
                         {p.price}
                       </span>
                     </div>
-                    <p className="text-xs text-[#F5F5F5]/40">{p.priceNote}</p>
+                    <p className="text-xs text-[#18181B]/40">{p.priceNote}</p>
                   </div>
 
                   <div className="space-y-2">
                     {p.features.map((f, j) => (
                       <div
                         key={j}
-                        className="flex items-start gap-2 text-sm text-[#F5F5F5]/70"
+                        className="flex items-start gap-2 text-sm text-[#18181B]/70"
                       >
                         <span
                           style={{ color: p.color }}
@@ -272,12 +272,12 @@ export default function AXConsultingSection() {
                     ))}
                   </div>
 
-                  <div className="space-y-2 pt-2 border-t border-[#2A2A35]">
-                    <p className="text-xs text-[#F5F5F5]/50 leading-relaxed">
-                      <span className="text-[#F5F5F5]/40">대상: </span>
+                  <div className="space-y-2 pt-2 border-t border-[#E4E4E7]">
+                    <p className="text-xs text-[#18181B]/50 leading-relaxed">
+                      <span className="text-[#18181B]/40">대상: </span>
                       {p.target}
                     </p>
-                    <p className="text-xs text-[#F5F5F5]/40 leading-relaxed">
+                    <p className="text-xs text-[#18181B]/40 leading-relaxed">
                       {p.example}
                     </p>
                   </div>
@@ -306,13 +306,13 @@ export default function AXConsultingSection() {
         {/* 작동 흐름 4단계 */}
         <FadeInSection>
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 text-xs text-[#F5F5F5]/40 border border-[#2A2A35] rounded-full px-4 py-1.5 mb-3">
+            <div className="inline-flex items-center gap-2 text-xs text-[#18181B]/40 border border-[#E4E4E7] rounded-full px-4 py-1.5 mb-3">
               METHOD · 작동 방식
             </div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-[#F5F5F5] mb-2">
+            <h3 className="text-2xl sm:text-3xl font-bold text-[#18181B] mb-2">
               이렇게 진행합니다
             </h3>
-            <p className="text-sm sm:text-base text-[#F5F5F5]/50">
+            <p className="text-sm sm:text-base text-[#18181B]/50">
               진단부터 넘겨드림까지 4단계 — 직원이 그대로 돌릴 수 있는 형태로
             </p>
           </div>
@@ -323,7 +323,7 @@ export default function AXConsultingSection() {
                 <motion.div
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.2 }}
-                  className="bg-[#13131A] border border-[#2A2A35] rounded-2xl p-6 flex flex-col gap-4 h-full"
+                  className="bg-[#F6F6F8] border border-[#E4E4E7] rounded-2xl p-6 flex flex-col gap-4 h-full"
                 >
                   <div className="flex items-center gap-3">
                     <span
@@ -339,10 +339,10 @@ export default function AXConsultingSection() {
                     <span className="text-2xl">{c.icon}</span>
                   </div>
                   <div>
-                    <h4 className="text-base font-bold text-[#F5F5F5] mb-2">
+                    <h4 className="text-base font-bold text-[#18181B] mb-2">
                       {c.title}
                     </h4>
-                    <p className="text-sm text-[#F5F5F5]/60 leading-relaxed whitespace-pre-line">
+                    <p className="text-sm text-[#18181B]/60 leading-relaxed whitespace-pre-line">
                       {c.desc}
                     </p>
                   </div>
@@ -359,12 +359,12 @@ export default function AXConsultingSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-gradient-to-br from-[#13131A] to-[#0A0A0F] border border-[#2A2A35] rounded-2xl p-8 sm:p-12 text-center"
+            className="bg-gradient-to-br from-[#F6F6F8] to-[#FFFFFF] border border-[#E4E4E7] rounded-2xl p-8 sm:p-12 text-center"
           >
-            <h3 className="text-2xl sm:text-3xl font-bold text-[#F5F5F5] mb-4">
+            <h3 className="text-2xl sm:text-3xl font-bold text-[#18181B] mb-4">
               지금 자동화하면 한 달 안에 결과가 나옵니다
             </h3>
-            <p className="text-sm sm:text-base text-[#F5F5F5]/60 mb-8 max-w-xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base text-[#18181B]/60 mb-8 max-w-xl mx-auto leading-relaxed">
               30분 무료 진단으로 시작하세요. 어떤 업무를 자동화하면 가장 큰 효과가
               나올지 함께 찾습니다.
             </p>
@@ -378,7 +378,7 @@ export default function AXConsultingSection() {
               </button>
               <a
                 href="tel:010-9825-8816"
-                className="inline-flex items-center justify-center gap-2 border border-[#2A2A35] hover:border-[#3B82F6] text-[#F5F5F5]/80 hover:text-[#F5F5F5] font-semibold px-8 py-3.5 rounded-xl transition-all text-base"
+                className="inline-flex items-center justify-center gap-2 border border-[#E4E4E7] hover:border-[#3B82F6] text-[#18181B]/80 hover:text-[#18181B] font-semibold px-8 py-3.5 rounded-xl transition-all text-base"
               >
                 📞 전화 상담 — 김진완 010-9825-8816
               </a>

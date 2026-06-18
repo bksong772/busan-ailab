@@ -41,7 +41,7 @@ export default function FounderSection() {
   return (
     <section
       id="founder"
-      className="py-20 px-4 sm:px-6 relative overflow-hidden border-t border-[#1A1A22]"
+      className="py-20 px-4 sm:px-6 relative overflow-hidden border-t border-[#EEEEF1]"
     >
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-1/4 w-[500px] h-[400px] rounded-full bg-[#3B82F6]/5 blur-3xl" />
@@ -56,7 +56,7 @@ export default function FounderSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 bg-[#13131A] border border-[#2A2A35] rounded-full px-4 py-1.5 text-sm text-[#3B82F6] mb-5">
+          <div className="inline-flex items-center gap-2 bg-[#F6F6F8] border border-[#E4E4E7] rounded-full px-4 py-1.5 text-sm text-[#3B82F6] mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#3B82F6] animate-pulse" />
             FOUNDER · 대표 코치
           </div>
@@ -65,7 +65,7 @@ export default function FounderSection() {
             <br />
             <span className="text-[#3B82F6]">직접 합니다</span>
           </h2>
-          <p className="text-base sm:text-lg text-[#F5F5F5]/60 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-[#18181B]/60 max-w-2xl mx-auto leading-relaxed">
             10년간 28개 공간을 창업·운영하고, 그 사업을 직접 AI로 자동화한
             <br className="hidden sm:block" />
             실전 운영자가 그대로 교육하고 컨설팅합니다.
@@ -78,7 +78,7 @@ export default function FounderSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-[#13131A] border border-[#2A2A35] rounded-2xl p-6 sm:p-8 mb-8"
+          className="bg-[#F6F6F8] border border-[#E4E4E7] rounded-2xl p-6 sm:p-8 mb-8"
         >
           <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
             {/* 사진 */}
@@ -86,21 +86,21 @@ export default function FounderSection() {
               <img
                 src="/founder.jpg"
                 alt="송병근 코치 — AX(AI 전환) 코치, 부산 AI 실무교육·자동화 컨설팅"
-                className="w-32 h-40 sm:w-36 sm:h-44 object-cover rounded-xl border border-[#2A2A35] grayscale"
+                className="w-32 h-40 sm:w-36 sm:h-44 object-cover rounded-xl border border-[#E4E4E7] grayscale"
               />
             </div>
             {/* 이름·타이틀 */}
             <div className="flex-1 text-center sm:text-left">
-              <h3 className="text-2xl font-bold text-[#F5F5F5] mb-1">송병근 <span className="text-base font-medium text-[#F5F5F5]/60">코치</span></h3>
+              <h3 className="text-2xl font-bold text-[#18181B] mb-1">송병근 <span className="text-base font-medium text-[#18181B]/60">코치</span></h3>
               <p className="text-[#3B82F6] font-semibold mb-2">AX(AI 전환) 코치 · 창업 코치</p>
-              <p className="text-sm text-[#F5F5F5]/55 mb-5">현직 창업가 · 소상공인 · 공간 · 교육 전문</p>
+              <p className="text-sm text-[#18181B]/55 mb-5">현직 창업가 · 소상공인 · 공간 · 교육 전문</p>
 
               {/* 숫자 */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {stats.map((s) => (
-                  <div key={s.label} className="bg-[#0A0A0F] border border-[#2A2A35] rounded-xl px-3 py-3 text-center">
+                  <div key={s.label} className="bg-[#FFFFFF] border border-[#E4E4E7] rounded-xl px-3 py-3 text-center">
                     <div className="text-xl font-bold text-[#3B82F6]">{s.num}</div>
-                    <div className="text-[11px] text-[#F5F5F5]/50 leading-tight mt-1">{s.label}</div>
+                    <div className="text-[11px] text-[#18181B]/50 leading-tight mt-1">{s.label}</div>
                   </div>
                 ))}
               </div>
@@ -117,12 +117,12 @@ export default function FounderSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="bg-[#13131A] border border-[#2A2A35] rounded-2xl p-5"
+              className="bg-[#F6F6F8] border border-[#E4E4E7] rounded-2xl p-5"
             >
-              <h4 className="text-sm font-bold text-[#F5F5F5] mb-3 pb-3 border-b border-[#2A2A35]">{b.title}</h4>
+              <h4 className="text-sm font-bold text-[#18181B] mb-3 pb-3 border-b border-[#E4E4E7]">{b.title}</h4>
               <ul className="flex flex-col gap-2.5">
                 {b.items.map((it, j) => (
-                  <li key={j} className="text-xs text-[#F5F5F5]/60 leading-relaxed flex gap-2">
+                  <li key={j} className="text-xs text-[#18181B]/60 leading-relaxed flex gap-2">
                     <span className="text-[#3B82F6] shrink-0">·</span>
                     <span>{it}</span>
                   </li>
@@ -150,7 +150,7 @@ export default function FounderSection() {
             href="/axground-company-profile.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 border border-[#2A2A35] hover:border-[#3B82F6] text-[#F5F5F5]/80 hover:text-[#F5F5F5] font-semibold px-8 py-3.5 rounded-xl transition-all text-base"
+            className="inline-flex items-center justify-center gap-2 border border-[#E4E4E7] hover:border-[#3B82F6] text-[#18181B]/80 hover:text-[#18181B] font-semibold px-8 py-3.5 rounded-xl transition-all text-base"
           >
             📄 회사소개서 (PDF)
           </a>
