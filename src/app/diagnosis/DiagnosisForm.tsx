@@ -94,9 +94,9 @@ export default function DiagnosisForm() {
   };
 
   const inputCls =
-    "w-full rounded-xl bg-[#13131B] border border-[#E4E4E7] focus:border-[#3B82F6] outline-none px-4 py-3 text-sm text-[#18181B] placeholder-[#18181B]/30 transition";
+    "w-full rounded-xl bg-[#F6F6F8] border border-[#E4E4E7] focus:border-[#3B82F6] outline-none px-4 py-3 text-sm text-[#18181B] placeholder-[#18181B]/30 transition";
   const labelCls = "block text-xs font-semibold text-[#18181B]/70 mb-2 uppercase tracking-wide";
-  const sectionCls = "rounded-3xl border border-[#E4E4E7] bg-[#0F0F18] p-6 sm:p-8";
+  const sectionCls = "rounded-3xl border border-[#E4E4E7] bg-[#FFFFFF] p-6 sm:p-8";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -194,7 +194,7 @@ export default function DiagnosisForm() {
                     className={`text-left text-sm px-4 py-3 rounded-xl border transition ${
                       active
                         ? "border-[#3B82F6] bg-[#3B82F6]/10 text-[#18181B]"
-                        : "border-[#E4E4E7] bg-[#13131B] text-[#18181B]/70 hover:border-[#3B82F6]/50"
+                        : "border-[#E4E4E7] bg-[#F6F6F8] text-[#18181B]/70 hover:border-[#3B82F6]/50"
                     }`}
                   >
                     {s}
@@ -216,7 +216,7 @@ export default function DiagnosisForm() {
                     className={`text-xs sm:text-sm px-4 py-2 rounded-full border transition ${
                       active
                         ? "border-[#3B82F6] bg-[#3B82F6]/10 text-[#18181B]"
-                        : "border-[#E4E4E7] bg-[#13131B] text-[#18181B]/70 hover:border-[#3B82F6]/50"
+                        : "border-[#E4E4E7] bg-[#F6F6F8] text-[#18181B]/70 hover:border-[#3B82F6]/50"
                     }`}
                   >
                     {t}

@@ -26,15 +26,15 @@ export default function DiagnosisThanksPage() {
           </p>
 
           <div className="mt-10 grid sm:grid-cols-3 gap-3 text-left">
-            <div className="rounded-2xl border border-[#E4E4E7] bg-[#13131B] p-5">
+            <div className="rounded-2xl border border-[#E4E4E7] bg-[#F6F6F8] p-5">
               <div className="text-xs text-[#3B82F6] font-semibold mb-2">STEP 1 — 지금</div>
               <div className="text-sm text-[#18181B]/80 leading-6">신청 접수 + 답변 검토</div>
             </div>
-            <div className="rounded-2xl border border-[#E4E4E7] bg-[#13131B] p-5">
+            <div className="rounded-2xl border border-[#E4E4E7] bg-[#F6F6F8] p-5">
               <div className="text-xs text-[#3B82F6] font-semibold mb-2">STEP 2 — 24시간 내</div>
               <div className="text-sm text-[#18181B]/80 leading-6">맞춤 진단 결과 PDF 이메일 발송</div>
             </div>
-            <div className="rounded-2xl border border-[#E4E4E7] bg-[#13131B] p-5">
+            <div className="rounded-2xl border border-[#E4E4E7] bg-[#F6F6F8] p-5">
               <div className="text-xs text-[#3B82F6] font-semibold mb-2">STEP 3 — 원하시면</div>
               <div className="text-sm text-[#18181B]/80 leading-6">30분 무료 통화 일정 안내</div>
             </div>

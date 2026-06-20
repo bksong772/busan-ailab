@@ -149,7 +149,7 @@ export default async function InsightDetailPage({ params }: { params: Params }) 
                   </a>
                 ),
                 blockquote: ({ children }) => (
-                  <blockquote className="my-7 border-l-2 border-[#3B82F6] bg-[#13131B] pl-5 pr-4 py-3 text-[15px] leading-7 text-[#18181B]/70 rounded-r-lg">
+                  <blockquote className="my-7 border-l-2 border-[#3B82F6] bg-[#F6F6F8] pl-5 pr-4 py-3 text-[15px] leading-7 text-[#18181B]/70 rounded-r-lg">
                     {children}
                   </blockquote>
                 ),
@@ -164,7 +164,7 @@ export default async function InsightDetailPage({ params }: { params: Params }) 
                 ),
                 hr: () => <hr className="my-10 border-[#E4E4E7]" />,
                 code: ({ children }) => (
-                  <code className="rounded bg-[#13131B] border border-[#E4E4E7] px-1.5 py-0.5 text-[13px] text-[#93C5FD] font-mono">
+                  <code className="rounded bg-[#F6F6F8] border border-[#E4E4E7] px-1.5 py-0.5 text-[13px] text-[#93C5FD] font-mono">
                     {children}
                   </code>
                 ),
@@ -174,7 +174,7 @@ export default async function InsightDetailPage({ params }: { params: Params }) 
                   </div>
                 ),
                 thead: ({ children }) => (
-                  <thead className="bg-[#13131B]">{children}</thead>
+                  <thead className="bg-[#F6F6F8]">{children}</thead>
                 ),
                 th: ({ children }) => (
                   <th className="px-4 py-3 text-left font-bold text-[#18181B] border-b border-[#E4E4E7]">
@@ -193,7 +193,7 @@ export default async function InsightDetailPage({ params }: { params: Params }) 
           </div>
 
           {/* Footer CTA */}
-          <div className="mt-16 rounded-3xl border border-[#3B82F6]/30 bg-gradient-to-br from-[#3B82F6]/10 to-[#13131B] p-8 sm:p-10">
+          <div className="mt-16 rounded-3xl border border-[#3B82F6]/30 bg-gradient-to-br from-[#3B82F6]/10 to-[#F6F6F8] p-8 sm:p-10">
             <h3 className="text-xl sm:text-2xl font-extrabold text-[#18181B] break-keep">
               AX 전환, 어디서부터 시작해야 할지 고민되시나요?
             </h3>

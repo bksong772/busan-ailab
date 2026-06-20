@@ -52,7 +52,7 @@ export default async function InsightListPage() {
         {/* List */}
         <section className="max-w-5xl mx-auto px-4 sm:px-6 mt-14">
           {items.length === 0 ? (
-            <div className="rounded-3xl border border-[#E4E4E7] bg-[#13131B] p-12 text-center text-[#18181B]/50">
+            <div className="rounded-3xl border border-[#E4E4E7] bg-[#F6F6F8] p-12 text-center text-[#18181B]/50">
               곧 첫 번째 인사이트가 공개됩니다.
             </div>
           ) : (
@@ -61,7 +61,7 @@ export default async function InsightListPage() {
                 <Link
                   key={it.slug}
                   href={`/insight/${it.slug}`}
-                  className="group overflow-hidden rounded-3xl border border-[#E4E4E7] bg-[#13131B] p-7 transition hover:border-[#3B82F6]/50 hover:-translate-y-0.5"
+                  className="group overflow-hidden rounded-3xl border border-[#E4E4E7] bg-[#F6F6F8] p-7 transition hover:border-[#3B82F6]/50 hover:-translate-y-0.5"
                 >
                   <div className="flex flex-wrap items-center gap-2">
                     {it.tags.slice(0, 3).map((t) => (
