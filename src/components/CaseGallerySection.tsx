@@ -224,6 +224,21 @@ export default function CaseGallerySection() {
             <br />
             클릭하면 십수 초 안에 풀 사이클이 자동 재생됩니다.
           </p>
+
+          {/* 실적 통계 — 신뢰 */}
+          <div className="flex flex-wrap justify-center gap-x-8 sm:gap-x-12 gap-y-4 mt-10 pt-8 border-t border-[#E4E4E7] max-w-2xl mx-auto">
+            {[
+              { v: "28개", l: "직접 운영 사업" },
+              { v: "50억+", l: "누적 매출" },
+              { v: "310회+", l: "기관 출강" },
+              { v: "부울경", l: "현장 거점" },
+            ].map((s) => (
+              <div key={s.l} className="text-center">
+                <div className="text-2xl sm:text-3xl font-extrabold text-[#3B82F6]">{s.v}</div>
+                <div className="mt-1 text-xs sm:text-sm text-[#18181B]/55 font-medium">{s.l}</div>
+              </div>
+            ))}
+          </div>
         </motion.div>
 
         {/* 그룹 1: 외부 고객 컨설팅 */}

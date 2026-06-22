@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import RouterSection from "@/components/RouterSection";
 import StorySection from "@/components/StorySection";
 import ServicesSection from "@/components/ServicesSection";
 import StatsSection from "@/components/StatsSection";
@@ -17,6 +18,9 @@ export default function Home() {
       <main>
         {/* 1. 후킹 */}
         <HeroSection />
+
+        {/* 1.2 교통정리 — AI 고민별 세 사업 안내 (허브) */}
+        <RouterSection />
 
         {/* 1.5 스토리 — 고통→전환 */}
         <StorySection />
