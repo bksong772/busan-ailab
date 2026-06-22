@@ -7,7 +7,8 @@ export default function Footer() {
             <p className="text-lg font-bold mb-1">
               AX<span className="text-[#3B82F6]">그라운드</span>
             </p>
-            <p className="text-sm text-[#18181B]/40 mb-1">운영: 부산AI코딩스쿨 운영팀</p>
+            <p className="text-sm text-[#18181B]/40 mb-1">주식회사 크리플레이 · 대표 송병근</p>
+            <p className="text-sm text-[#18181B]/40 mb-1">사업자등록번호 617-86-24973</p>
             <p className="text-sm text-[#18181B]/40">
               부산광역시 금정구 금정로 63-1 청년창조발전소 4층
             </p>
