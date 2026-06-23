@@ -7,6 +7,7 @@ import { openInquiry } from "@/lib/openInquiry";
 const MENU = [
   { href: "/consulting", label: "AX컨설팅" },
   { href: "/cases", label: "사례" },
+  { href: "/insight", label: "인사이트" },
   { href: "/about", label: "회사소개" },
   { href: "/diagnosis", label: "무료 진단", accent: true },
 ];
